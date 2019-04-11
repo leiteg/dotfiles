@@ -1,0 +1,50 @@
+# ------------------------------------------------------------------------------
+#                                            __
+#                                 __________/ /_
+#                                / ___/ ___/ __ \
+#                               (__  |__  ) / / /
+#                              /____/____/_/ /_/
+#
+#                         <gustavoleite.ti@gmail.com>
+#
+# ------------------------------------------------------------------------------
+
+Host *
+    KeepAlive yes
+    ServerAliveInterval 60
+    ServerAliveCountMAx 5
+    ControlMaster auto
+    ControlPath ~/.ssh/control:%h:%p:%r
+
+# ------------------------------------------------------------------------------
+
+Host atomic
+    User        leite
+    HostName    atomic.rc.unesp.br
+    Port        6868
+
+Host node10
+    User        leite
+    ProxyJump   atomic
+
+Host node01
+    User        leite
+    ProxyJump   atomic
+
+# ------------------------------------------------------------------------------
+
+Host innisfree
+   HostName    innisfree.cs.ualberta.ca
+   User        gleite
+
+Host heldar
+   User            gleite
+   ProxyCommand    ssh -q innisfree nc heldar.cs.ualberta.ca 22
+
+Host heldar24
+   User            gleite
+   ProxyCommand    ssh -q heldar nc heldar24 22
+
+Host heldar25
+   User            gleite
+   ProxyCommand    ssh -q heldar nc heldar25 22

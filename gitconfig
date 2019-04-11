@@ -1,0 +1,26 @@
+[user]
+	name = Gustavo Leite
+	email = gustavoleite.ti@gmail.com
+[core]
+	editor = vim
+	pager = less -F -X
+[colors]
+	ui = auto
+	interactive = auto
+[alias]
+	lg = log --oneline --graph --all --decorate
+	st = status
+	ss = status --short
+	df = diff
+	ds = diff --stat
+	ignore = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
+	whatadded = log --follow --diff-filter=A
+[push]
+	default = matching
+[merge]
+	tool = vimdiff
+[sendemail]
+	smtpuser = gustavoleite.ti@gmail.com
+	smtpserver = smtp.googlemail.com
+	smtpencryption = tls
+	smtpserverport = 587
