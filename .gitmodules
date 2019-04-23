@@ -94,3 +94,6 @@
 [submodule "vim/pack/plugin/start/emmet-vim"]
 	path = vim/pack/plugin/start/emmet-vim
 	url = https://github.com/mattn/emmet-vim
+[submodule "vim/pack/plugin/start/dracula"]
+	path = vim/pack/plugin/start/dracula
+	url = https://github.com/dracula/vim
