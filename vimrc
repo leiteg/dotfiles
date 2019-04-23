@@ -43,7 +43,7 @@ set listchars=tab:▸\ ,space:·
 set exrc
 
 " Colorscheme
-colorscheme base16-gruvbox-dark-soft
+colorscheme dracula
 set termguicolors
 set background=dark
 set t_Co=256
@@ -146,7 +146,7 @@ let g:airline#extensions#tabline#tab_min_count = 1
 let g:airline#extensions#tabline#buffer = 1
 let g:airline#extensions#tabline#show_tabs = 1
 let g:airline#extensions#tabline#show_close_button = 0
-let g:airline_theme = 'base16'
+let g:airline_theme = 'dracula'
 let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_left_alt_sep = ''
