@@ -8,6 +8,3 @@
 #             Gustavo Leite <gustavoleite.ti@gmail.com>
 #
 # --------------------------------------------------------------------
-
-export PATH="$PATH:/usr/local/opt/llvm/bin"
-export PATH="$PATH:/Library/TeX/texbin"
