@@ -9,11 +9,11 @@
 "
 " --------------------------------------------------------------------
 
-" Enable syntax highlighting
-syntax on
-
 " Enable filetype detection
 filetype plugin indent on
+
+" Enable syntax highlighting
+syntax on
 
 " Set leader character
 let mapleader = ","
