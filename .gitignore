@@ -2,4 +2,5 @@ vim/backups/*
 vim/spell/*
 vim/swaps/*
 vim/undo/*
+vim/view/*
 vim/.netrwhist
