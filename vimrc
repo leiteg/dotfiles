@@ -62,6 +62,9 @@ set nowrap textwidth=80
 set cursorline colorcolumn=81
 set number relativenumber
 
+" Folds
+set foldenable foldmethod=marker
+
 " Directories
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -109,6 +112,8 @@ vnoremap <s-tab>    <gv
 nnoremap <tab>      :bnext<CR>
 nnoremap <s-tab>    :bprevious<CR>
 nnoremap <leader>sr *N:%s/<C-R>//
+nnoremap <space>    za
+vnoremap <space>    za
 
 " Disable
 nnoremap q/         <nop>
