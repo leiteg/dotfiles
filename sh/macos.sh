@@ -8,3 +8,6 @@
 #             Gustavo Leite <gustavoleite.ti@gmail.com>
 #
 # --------------------------------------------------------------------
+
+alias copy="pbcopy"
+alias paste="pbpaste"
