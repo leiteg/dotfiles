@@ -18,6 +18,14 @@ Host *
 
 # ------------------------------------------------------------------------------
 
+Host ubuntu
+    User leite
+    Hostname localhost
+    Port 9000
+    ProxyJump atomic
+
+# ------------------------------------------------------------------------------
+
 Host atomic
     User        leite
     HostName    atomic.rc.unesp.br
