@@ -2,6 +2,7 @@
 
 % METADATA {{{
 
+% TODO: Update title information
 \title{This is my document title \\ \large This is my document subtitle}
 \author{Gustavo Leite \\ \texttt{gustavo.leite@unesp.br}}
 \date{\today}
@@ -20,6 +21,7 @@
 \usepackage{geometry}
 \usepackage{lipsum}
 \usepackage{pifont}
+\usepackage{setspace}
 \usepackage{tikz}
 \usepackage{xcolor}
 
@@ -73,13 +75,14 @@
 % INTRODUCTION {{{
 \section{Introduction} \label{sec:intro}
 
-% TODO: Write main document here
+% TODO: Write introduction
 \lipsum[4-6]
 
 % }}}
 % CONCLUSION {{{
 \section{Conclusion} \label{sec:conclusion}
 
+% TODO: Write conclusion
 \lipsum[1-2]
 
 % }}}
@@ -88,6 +91,7 @@
 \newpage
 \singlespacing
 
+\nocite{*} % TODO: Remove this line
 \bibliographystyle{plain}
 \bibliography{references}
 
