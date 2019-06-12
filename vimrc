@@ -95,7 +95,7 @@ augroup END
 
 augroup Templates
     autocmd!
-    autocmd BufNewFile *.*          silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e")
+    autocmd BufNewFile *.*          silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e").' | normal Gddgg'
 augroup END
 
 " Mappings
