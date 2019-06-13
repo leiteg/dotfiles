@@ -32,12 +32,14 @@ else
   export EDITOR='vim'
 fi
 
+# Load common settings
+if [[ -f ~/dotfiles/sh/common.sh ]]; then
+    source ~/dotfiles/sh/common.sh
+fi
+
 # Load OS-specific configs
-if test "$(uname)" = "Darwin" ; then
+if [[ "$(uname)" = "Darwin" ]]; then
     source ~/dotfiles/sh/macos.sh
 else
     source ~/dotfiles/sh/linux.sh
 fi
-
-# User environment variables
-export PATH="$PATH:$HOME/bin"
