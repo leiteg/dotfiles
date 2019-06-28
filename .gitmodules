@@ -97,3 +97,6 @@
 [submodule "vim/pack/plugin/start/dracula"]
 	path = vim/pack/plugin/start/dracula
 	url = https://github.com/dracula/vim
+[submodule "vim/pack/plugin/start/vim-sneak"]
+	path = vim/pack/plugin/start/vim-sneak
+	url = https://github.com/justinmk/vim-sneak
