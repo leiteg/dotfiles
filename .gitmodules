@@ -100,3 +100,6 @@
 [submodule "vim/pack/plugin/start/vim-sneak"]
 	path = vim/pack/plugin/start/vim-sneak
 	url = https://github.com/justinmk/vim-sneak
+[submodule "vim/pack/plugin/start/gv.vim"]
+	path = vim/pack/plugin/start/gv.vim
+	url = https://github.com/junegunn/gv.vim
