@@ -114,6 +114,8 @@ nnoremap <s-tab>    :bprevious<CR>
 nnoremap <leader>sr *N:%s/<C-R>//
 nnoremap <space>    za
 vnoremap <space>    za
+vnoremap J          :m '>+1<CR>gv=gv
+vnoremap K          :m '<-2<CR>gv=gv
 
 " Disable
 nnoremap q/         <nop>
