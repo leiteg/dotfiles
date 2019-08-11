@@ -103,3 +103,6 @@
 [submodule "vim/pack/plugin/start/gv.vim"]
 	path = vim/pack/plugin/start/gv.vim
 	url = https://github.com/junegunn/gv.vim
+[submodule "vim/pack/plugin/start/coc.nvim"]
+	path = vim/pack/plugin/start/coc.nvim
+	url = https://github.com/neoclide/coc.nvim
