@@ -3,4 +3,6 @@ vim/spell/*
 vim/swaps/*
 vim/undo/*
 vim/view/*
+vim/plugged/*
+vim/autoload/plug.vim
 vim/.netrwhist

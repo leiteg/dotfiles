@@ -18,6 +18,55 @@ syntax on
 " Set leader character
 let mapleader = ","
 
+" Check if vim-plug is installed
+if !empty(glob('~/.vim/autoload/plug.vim'))
+
+    call plug#begin('~/.vim/plugged')
+
+    " Plug 'altercation/vim-colors-solarized'
+    " Plug 'chriskempson/base16-vim'
+    " Plug 'joshdick/onedark.vim'
+    " Plug 'tpope/vim-fireplace'
+    " Plug 'tpope/vim-markdown'
+    " Plug 'tpope/vim-jdaddy'
+    " Plug 'tpope/vim-tbone'
+    " Plug 'mileszs/ack.vim'
+    " Plug 'majutsushi/tagbar'
+    " Plug 'joe-skb7/cscope-maps.git'
+    " Plug 'neoclide/coc.nvim'
+    " Plug 'kana/vim-submode'
+    " Plug 'neoclide/coc.nvim'
+
+    Plug 'alvan/vim-closetag', { 'for': 'html' }
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'dracula/vim', { 'as': 'dracula.vim' }
+    Plug 'godlygeek/tabular'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'junegunn/goyo.vim'
+    Plug 'junegunn/gv.vim'
+    Plug 'justinmk/vim-sneak'
+    Plug 'klen/python-mode', { 'for': 'python', 'branch': 'develop' }
+    Plug 'lervag/vimtex'
+    Plug 'mateusbraga/vim-spell-pt-br'
+    Plug 'mattn/emmet-vim', { 'for': 'html' }
+    Plug 'mhinz/vim-signify'
+    Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'tpope/vim-endwise'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-git'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-sensible'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
+    Plug 'wellle/targets.vim'
+
+    call plug#end()
+
+endif
+
 " Options
 " --------------------------------------------------------------------
 
