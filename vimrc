@@ -41,6 +41,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dracula/vim', { 'as': 'dracula.vim' }
     Plug 'godlygeek/tabular'
+    Plug 'google/yapf', { 'for': 'python', 'rtp': 'plugins/vim' }
     Plug 'jiangmiao/auto-pairs'
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/gv.vim'
