@@ -9,6 +9,8 @@
 "
 " --------------------------------------------------------------------
 
+" {{{
+"
 " Enable filetype detection
 filetype plugin indent on
 
@@ -18,7 +20,10 @@ syntax on
 " Set leader character
 let mapleader = ","
 
-" Check if vim-plug is installed
+" }}}
+
+" VIM-PLUG {{{
+
 if !empty(glob('~/.vim/autoload/plug.vim'))
 
     call plug#begin('~/.vim/plugged')
@@ -68,8 +73,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
 endif
 
-" Options
-" --------------------------------------------------------------------
+" }}}
+
+" EDITOR OPTIONS {{{
 
 " General
 set encoding=utf-8
@@ -115,6 +121,11 @@ set number relativenumber
 " Folds
 set foldenable foldmethod=marker
 
+" Diffs
+if has('nvim-0.3.2') || has("patch-8.1.0360")
+    set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+endif
+
 " Directories
 set backupdir=~/.vim/backups
 set directory=~/.vim/swaps
@@ -122,13 +133,27 @@ if exists("&undodir")
     set undodir=~/.vim/undo
 endif
 
-" Auto Commands
-" --------------------------------------------------------------------
+" }}}
 
-" Trailing spaces
+" AUTO COMMANDS {{{
+
+" General purpose
+augroup AutoCommands
+    autocmd!
+    autocmd QuickFixCmdPost *       :copen
+    autocmd BufWritePost .vimrc     :source %
+augroup END
+
+" Skeleton files
+augroup Templates
+    autocmd!
+    autocmd BufNewFile *.*          silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e").' | normal Gddgg'
+augroup END
+
 highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 
+" Highligh trailing whitespace
 augroup TrailingWhitespace
     autocmd!
     autocmd BufWinEnter *           match ExtraWhitespace /\s\+$/
@@ -137,33 +162,29 @@ augroup TrailingWhitespace
     autocmd BufWinLeave *           call clearmatches()
 augroup END
 
-augroup AutoCommands
-    autocmd!
-    autocmd QuickFixCmdPost *       :copen
-    autocmd BufWritePost .vimrc     :source %
-augroup END
+" }}}
 
-augroup Templates
-    autocmd!
-    autocmd BufNewFile *.*          silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e").' | normal Gddgg'
-augroup END
-
-" Mappings
-" --------------------------------------------------------------------
-
+" MAPPINGS {{{
+"
 noremap <F5>        :setlocal spell!<CR>
 
 inoremap jk         <esc>
 inoremap JK         <esc>
 inoremap Jk         <esc>
+
 nnoremap '          `
+
 vnoremap <tab>      >gv
 vnoremap <s-tab>    <gv
+
 nnoremap <tab>      :bnext<CR>
 nnoremap <s-tab>    :bprevious<CR>
+
 nnoremap <leader>sr *N:%s/<C-R>//
+
 nnoremap <space>    za
 vnoremap <space>    za
+
 vnoremap J          :m '>+1<CR>gv=gv
 vnoremap K          :m '<-2<CR>gv=gv
 
@@ -179,12 +200,9 @@ inoremap <down>     <nop>
 inoremap <left>     <nop>
 inoremap <right>    <nop>
 
-" Abbrevs
-" --------------------------------------------------------------------
+" }}}
 
-iabbrev @n Gustavo Leite
-iabbrev @m gustavoleite.ti@gmail.com
-iabbrev @s Signed-off-by: Gustavo Leite <gustavoleite.ti@gmail.com>
+" ABBREVS {{{
 
 cnoreabbrev W   w
 cnoreabbrev Wq  wq
@@ -192,11 +210,12 @@ cnoreabbrev WQ  wq
 cnoreabbrev Sh  sh
 cnoreabbrev SH  sh
 cnoreabbrev Set set
+"
+" }}}
 
-" Plugins (TODO: Refactor section)
-" --------------------------------------------------------------------
+" PLUGINS CONFIGURATION {{{
 
-" bling/vim-airline
+" vim-airline/vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 1
@@ -232,3 +251,5 @@ let g:ctrlp_custom_ignore = '\.o$'
 
 " kana/vim-submode
 let g:submode_timeout = 0
+"
+" }}}
