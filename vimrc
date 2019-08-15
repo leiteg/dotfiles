@@ -43,11 +43,12 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     " Plug 'neoclide/coc.nvim'
 
     Plug 'alvan/vim-closetag', { 'for': 'html' }
-    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'dracula/vim', { 'as': 'dracula.vim' }
     Plug 'godlygeek/tabular'
     Plug 'google/yapf', { 'for': 'python', 'rtp': 'plugins/vim' }
     Plug 'jiangmiao/auto-pairs'
+    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf.vim'
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/gv.vim'
     Plug 'justinmk/vim-sneak'
@@ -99,7 +100,7 @@ set listchars=tab:▸\ ,space:·
 set exrc
 
 " Colorscheme
-colorscheme dracula
+silent! colorscheme dracula
 set termguicolors
 set background=dark
 set t_Co=256
@@ -214,6 +215,24 @@ cnoreabbrev Set set
 " }}}
 
 " PLUGINS CONFIGURATION {{{
+
+" junegunn/fzf.vim
+nmap <leader>f      :GFiles<CR>
+nmap <leader>F      :Files<CR>
+nmap <leader>b      :Buffers<CR>
+nmap <leader>h      :History<CR>
+nmap <leader>t      :BTags<CR>
+nmap <leader>T      :Tags<CR>
+nmap <leader>l      :BLines<CR>
+nmap <leader>L      :Lines<CR>
+nmap <leader>m      :Marks<CR>
+nmap <leader>a      :Ag<CR>
+nmap <leader>H      :Helptags!<CR>
+nmap <leader>C      :Commands<CR>
+nmap <leader>:      :History:<CR>
+nmap <leader>/      :History/<CR>
+nmap <leader>M      :Maps<CR>
+nmap <leader>s      :Filetypes<CR>
 
 " vim-airline/vim-airline
 let g:airline#extensions#tabline#enabled = 1
