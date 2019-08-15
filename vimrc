@@ -28,36 +28,22 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
     call plug#begin('~/.vim/plugged')
 
-    " Plug 'altercation/vim-colors-solarized'
-    " Plug 'chriskempson/base16-vim'
-    " Plug 'joshdick/onedark.vim'
-    " Plug 'tpope/vim-fireplace'
-    " Plug 'tpope/vim-markdown'
-    " Plug 'tpope/vim-jdaddy'
-    " Plug 'tpope/vim-tbone'
-    " Plug 'mileszs/ack.vim'
-    " Plug 'majutsushi/tagbar'
-    " Plug 'joe-skb7/cscope-maps.git'
-    " Plug 'neoclide/coc.nvim'
-    " Plug 'kana/vim-submode'
-    " Plug 'neoclide/coc.nvim'
-
-    Plug 'alvan/vim-closetag', { 'for': 'html' }
-    Plug 'dracula/vim', { 'as': 'dracula.vim' }
+    Plug 'alvan/vim-closetag'             , { 'for': 'html' }
+    Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
     Plug 'godlygeek/tabular'
-    Plug 'google/yapf', { 'for': 'python', 'rtp': 'plugins/vim' }
+    Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
     Plug 'jiangmiao/auto-pairs'
-    Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+    Plug 'junegunn/fzf'                   , { 'dir': '~/.fzf', 'do': './install --all' }
     Plug 'junegunn/fzf.vim'
     Plug 'junegunn/goyo.vim'
     Plug 'junegunn/gv.vim'
     Plug 'justinmk/vim-sneak'
-    Plug 'klen/python-mode', { 'for': 'python', 'branch': 'develop' }
+    Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
     Plug 'lervag/vimtex'
     Plug 'mateusbraga/vim-spell-pt-br'
-    Plug 'mattn/emmet-vim', { 'for': 'html' }
+    Plug 'mattn/emmet-vim'                , { 'for': 'html' }
     Plug 'mhinz/vim-signify'
-    Plug 'petRUShka/vim-opencl', { 'for': 'opencl' }
+    Plug 'petRUShka/vim-opencl'           , { 'for': 'opencl' }
     Plug 'scrooloose/nerdcommenter'
     Plug 'tpope/vim-endwise'
     Plug 'tpope/vim-fugitive'
@@ -189,6 +175,25 @@ vnoremap <space>    za
 vnoremap J          :m '>+1<CR>gv=gv
 vnoremap K          :m '<-2<CR>gv=gv
 
+" junegunn/fzf.vim
+nmap <leader>f      :GFiles<CR>
+nmap <C-p>          :Files<CR>
+nmap <leader>b      :Buffers<CR>
+nmap <leader>h      :History<CR>
+nmap <leader>t      :BTags<CR>
+nmap <leader>T      :Tags<CR>
+nmap <leader>l      :BLines<CR>
+nmap <leader>L      :Lines<CR>
+nmap <leader>m      :Marks<CR>
+nmap <leader>H      :Helptags!<CR>
+nmap <leader>C      :Commands<CR>
+nmap <leader>:      :History:<CR>
+nmap <leader>/      :History/<CR>
+nmap <leader>M      :Maps<CR>
+nmap <leader>s      :Filetypes<CR>
+" nmap <leader>a      :Ag<CR>
+" nmap <leader>r      :Rg<CR>
+
 " Disable
 nnoremap q/         <nop>
 nnoremap q:         <nop>
@@ -215,24 +220,6 @@ cnoreabbrev Set set
 " }}}
 
 " PLUGINS CONFIGURATION {{{
-
-" junegunn/fzf.vim
-nmap <leader>f      :GFiles<CR>
-nmap <leader>F      :Files<CR>
-nmap <leader>b      :Buffers<CR>
-nmap <leader>h      :History<CR>
-nmap <leader>t      :BTags<CR>
-nmap <leader>T      :Tags<CR>
-nmap <leader>l      :BLines<CR>
-nmap <leader>L      :Lines<CR>
-nmap <leader>m      :Marks<CR>
-nmap <leader>a      :Ag<CR>
-nmap <leader>H      :Helptags!<CR>
-nmap <leader>C      :Commands<CR>
-nmap <leader>:      :History:<CR>
-nmap <leader>/      :History/<CR>
-nmap <leader>M      :Maps<CR>
-nmap <leader>s      :Filetypes<CR>
 
 " vim-airline/vim-airline
 let g:airline#extensions#tabline#enabled = 1
