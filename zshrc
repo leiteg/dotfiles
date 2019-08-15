@@ -43,3 +43,5 @@ if [[ "$(uname)" = "Darwin" ]]; then
 else
     source ~/dotfiles/sh/linux.sh
 fi
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
