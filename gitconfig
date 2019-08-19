@@ -15,6 +15,7 @@
 	ds = diff --stat
 	ignore = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
 	whatadded = log --follow --diff-filter=A
+        review = diff --staged
 [push]
 	default = matching
 [merge]
