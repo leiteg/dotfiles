@@ -152,59 +152,66 @@ augroup END
 " }}}
 
 " MAPPINGS {{{
-"
-noremap <F5>        :setlocal spell!<CR>
 
-inoremap jk         <esc>
-inoremap JK         <esc>
-inoremap Jk         <esc>
 
-nnoremap '          `
 
-vnoremap <tab>      >gv
-vnoremap <s-tab>    <gv
+inoremap jk             <esc>
+inoremap JK             <esc>
+inoremap Jk             <esc>
+vnoremap J              :m '>+1<CR>gv=gv
+vnoremap K              :m '<-2<CR>gv=gv
+vnoremap <tab>          >gv
+vnoremap <s-tab>        <gv
+nnoremap <tab>          :bnext<CR>
+nnoremap <s-tab>        :bprevious<CR>
+nnoremap <leader>sr     :%s/\<<C-R><C-W>\>/
+noremap  <F5>           :setlocal spell!<CR>
+noremap  <space>        za
+noremap  '              `
 
-nnoremap <tab>      :bnext<CR>
-nnoremap <s-tab>    :bprevious<CR>
+" Plugin: junegunn/fzf.vim
+nmap <C-P>              :Files<CR>
+nmap g<C-P>             :GFiles<CR>
+nmap <leader>gg         :Commits<CR>
+nmap <leader>gb         :Buffers<CR>
+nmap <leader>gl         :Lines<CR>
+nmap <leader>gL         :BLines<CR>
+nmap <leader>gt         :Tags<CR>
+nmap <leader>gT         :BTags<CR>
+nmap <leader>gh         :History<CR>
 
-nnoremap <leader>sr *N:%s/<C-R>//
-
-nnoremap <space>    za
-vnoremap <space>    za
-
-vnoremap J          :m '>+1<CR>gv=gv
-vnoremap K          :m '<-2<CR>gv=gv
-
-" junegunn/fzf.vim
-nmap <leader>f      :GFiles<CR>
-nmap <C-p>          :Files<CR>
-nmap <leader>b      :Buffers<CR>
-nmap <leader>h      :History<CR>
-nmap <leader>t      :BTags<CR>
-nmap <leader>T      :Tags<CR>
-nmap <leader>l      :BLines<CR>
-nmap <leader>L      :Lines<CR>
-nmap <leader>m      :Marks<CR>
-nmap <leader>H      :Helptags!<CR>
-nmap <leader>C      :Commands<CR>
-nmap <leader>:      :History:<CR>
-nmap <leader>/      :History/<CR>
-nmap <leader>M      :Maps<CR>
-nmap <leader>s      :Filetypes<CR>
-" nmap <leader>a      :Ag<CR>
-" nmap <leader>r      :Rg<CR>
+" Plugin: tpope/vim-fugitive
+nmap <leader>gs         :Gstatus<CR>
+nmap <leader>gc         :Gcommit<CR>
 
 " Disable
-nnoremap q/         <nop>
-nnoremap q:         <nop>
-nnoremap <up>       <nop>
-nnoremap <down>     <nop>
-nnoremap <left>     <nop>
-nnoremap <right>    <nop>
-inoremap <up>       <nop>
-inoremap <down>     <nop>
-inoremap <left>     <nop>
-inoremap <right>    <nop>
+nnoremap <up>           <nop>
+nnoremap <down>         <nop>
+nnoremap <left>         <nop>
+nnoremap <right>        <nop>
+inoremap <up>           <nop>
+inoremap <down>         <nop>
+inoremap <left>         <nop>
+inoremap <right>        <nop>
+nnoremap q/             <nop>
+nnoremap q:             <nop>
+
+" Unused
+" nmap <leader>q      :Colors<CR>
+" nmap <leader>q      :Windows<CR>
+" nmap <leader>q      :Locate<CR>
+" nmap <leader>q      :Snippets<CR>
+" nmap <leader>q      :Marks<CR>
+" nmap <leader>q      :GFiles?<CR>
+" nmap <leader>q      :BCommits<CR>
+" nmap <leader>q      :Commands<CR>
+" nmap <leader>q      :Maps<CR>
+" nmap <leader>q      :Ag<CR>
+" nmap <leader>q      :Rg<CR>
+" nmap <leader>q      :History:<CR>
+" nmap <leader>q      :History/<CR>
+" nmap <leader>q      :Helptags<CR>
+" nmap <leader>q      :Filetypes<CR>
 
 " }}}
 
@@ -241,7 +248,7 @@ let g:airline_detect_paste = 1
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'skim'
 let g:vimtex_complete_close_braces = 1
-let g:vimtex_compiler_latexmk = {'callback': 0}
+let g:vimtex_compiler_latexmk = { 'callback': 0, 'build_dir': 'build' }
 
 " scroolose/NERDCommenter
 let NERDSpaceDelims = 1
