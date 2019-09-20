@@ -12,10 +12,11 @@
 	st = status
 	ss = status --short
 	df = diff
-	ds = diff --stat
+	stat = diff --stat
+	review = diff --staged
+	word = diff --word-diff
 	ignore = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
 	whatadded = log --follow --diff-filter=A
-        review = diff --staged
 [push]
 	default = matching
 [merge]
