@@ -11,3 +11,5 @@
 
 alias copy="pbcopy"
 alias paste="pbpaste"
+
+export LC_ALL=en_US.UTF-8
