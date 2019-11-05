@@ -56,3 +56,10 @@ Host heldar24
 Host heldar25
    User            gleite
    ProxyCommand    ssh -q heldar nc heldar25 22
+
+# ------------------------------------------------------------------------------
+
+Host lightsail
+    User            ubuntu
+    HostName        34.197.58.149
+    IdentityFile    ~/.ssh/lightsail.pem
