@@ -62,4 +62,3 @@ Host heldar25
 Host lightsail
     User            ubuntu
     HostName        34.197.58.149
-    IdentityFile    ~/.ssh/lightsail.pem
