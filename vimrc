@@ -87,9 +87,12 @@ set exrc
 
 " Colorscheme
 silent! colorscheme dracula
-set termguicolors
 set background=dark
 set t_Co=256
+
+if has('termguicolors')
+    set termguicolors
+endif
 
 " Splits
 set splitbelow splitright
