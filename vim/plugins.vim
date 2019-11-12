@@ -15,6 +15,7 @@ Plug 'lervag/vimtex'
 Plug 'mateusbraga/vim-spell-pt-br'
 Plug 'mattn/emmet-vim'                , { 'for': 'html' }
 Plug 'mhinz/vim-signify'
+Plug 'mileszs/ack.vim'
 Plug 'petRUShka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-endwise'
