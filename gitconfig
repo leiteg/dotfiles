@@ -8,7 +8,9 @@
 	ui = auto
 	interactive = auto
 [alias]
-	lg = log --oneline --graph --all --decorate
+	ls = log --oneline --graph --all --decorate
+	ld = log --pretty=format:"%C(yellow)%h%Creset\\ %s\\ %C(bold\\ blue)[%an]%Creset\\ %C(red)<%ar>%C(auto)%d"
+	ll = !vim +Gitv
 	st = status
 	ss = status --short
 	df = diff
