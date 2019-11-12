@@ -4,6 +4,7 @@ Plug 'alvan/vim-closetag'             , { 'for': 'html' }
 Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
 Plug 'godlygeek/tabular'
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
+Plug 'gregsexton/gitv'                , { 'on': ['Gitv'] }
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf'                   , { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
