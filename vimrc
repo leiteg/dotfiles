@@ -124,8 +124,6 @@ augroup END
 
 " MAPPINGS {{{
 
-
-
 inoremap jk             <esc>
 inoremap JK             <esc>
 inoremap Jk             <esc>
