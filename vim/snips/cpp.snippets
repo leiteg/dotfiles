@@ -1,0 +1,36 @@
+extends c
+
+snippet ans "namespace {}" b
+namespace {
+
+${0:${VISUAL}}
+
+} // anonymous namespace
+endsnippet
+
+snippet ns "namespace foo {}" b
+namespace ${1} {
+
+${0:${VISUAL}}
+
+} // ${1/(\w+)/namespace $1/}
+endsnippet
+
+snippet class "class Name {};" b
+class ${1:MyClass} {
+  public:
+    ${1/(\w+).*/$1/}($2);
+
+  private:
+    $3
+};
+endsnippet
+
+snippet mku "std::make_unique<>()"
+std::make_unique<${1:T}>(${0:${VISUAL}})
+endsnippet
+
+snippet mks "std::make_unique<>()"
+std::make_shared<${1:T}>(${0:${VISUAL}})
+endsnippet
+

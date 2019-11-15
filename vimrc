@@ -233,5 +233,12 @@ let g:ctrlp_custom_ignore = '\.o$'
 
 " kana/vim-submode
 let g:submode_timeout = 0
-"
+
+let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsSnippetDirectories = [ "snips" ]
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsListSnippets = "<c-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-b>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+
 " }}}
