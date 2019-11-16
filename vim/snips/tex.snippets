@@ -1,0 +1,67 @@
+snippet pak "LaTex Package"
+\usepackage{$1}
+endsnippet
+
+snippet env "LaTeX Environment" b
+\begin{${1:itemize}}
+  ${0:${VISUAL}}
+\end{$1}
+endsnippet
+
+snippet fig "LaTeX Figure" b
+\begin{figure}[${1:ht}]
+  \centering
+  \includegraphics[width=${3:1.0}\textwidth]{$2}
+  \caption{${4:TODO: Missing caption.}}
+  \label{fig:${5:label}}
+\end{figure}
+endsnippet
+
+snippet tab "LaTeX Table" b
+\begin{table}[${1:ht}]
+  \centering
+  \caption{${2:TODO: Missing caption.}}
+  \begin{tabular}{$3}
+    \toprule
+    $0
+    \bottomrule
+  \endtabular
+  \label{fig:${4:label}}
+\end{table}
+endsnippet
+
+snippet chap "LaTeX Chapter" b
+\chapter{${1:Title}} ${2:\label{ch:${3:label}}}
+endsnippet
+
+snippet sec "LaTeX Section" b
+\section{${1:Title}} ${2:\label{sec:${3:label}}}
+endsnippet
+
+snippet ssec "LaTeX Section" b
+\subsection{${1:Title}} ${2:\label{subsec:${3:label}}}
+endsnippet
+
+snippet cite "LaTex Citation" i
+~\cite{$1}
+endsnippet
+
+snippet ref "LaTex Reference" i
+~\ref{$1}
+endsnippet
+
+snippet lab "LaTex Label" i
+\label{$1}
+endsnippet
+
+snippet i "LaTeX Italics" w
+\textit{${1:${VISUAL}}}
+endsnippet
+
+snippet b "LaTeX Bold" w
+\textbf{${1:${VISUAL}}}
+endsnippet
+
+snippet t "LaTeX Monospaced" w
+\texttt{${1:${VISUAL}}}
+endsnippet
