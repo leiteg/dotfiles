@@ -52,6 +52,7 @@ set clipboard=unnamed
 set noesckeys
 set listchars=tab:▸\ ,space:·
 set exrc
+set secure
 
 " Colorscheme
 silent! colorscheme dracula
