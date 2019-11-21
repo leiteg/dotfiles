@@ -12,6 +12,7 @@ intel-ucode
 llvm
 ltrace
 openssh
+perf
 python-pip
 ripgrep
 strace
