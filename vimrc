@@ -130,8 +130,8 @@ inoremap JK             <esc>
 inoremap Jk             <esc>
 vnoremap J              :m '>+1<CR>gv=gv
 vnoremap K              :m '<-2<CR>gv=gv
-vnoremap <tab>          >gv
-vnoremap <s-tab>        <gv
+vnoremap >              >gv
+vnoremap <              <gv
 nnoremap <tab>          :bnext<CR>
 nnoremap <s-tab>        :bprevious<CR>
 nnoremap <leader>sr     :%s/\<<C-R><C-W>\>/
