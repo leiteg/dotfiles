@@ -18,6 +18,7 @@
 	review = diff --staged
 	word = diff --word-diff
 	fuck = commit --amend --no-edit
+	oops = !git fuck && git push -f
 	ignore = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
 	whatadded = log --follow --diff-filter=A
 [push]
