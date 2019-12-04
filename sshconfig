@@ -33,24 +33,6 @@ Host node01
 
 # ------------------------------------------------------------------------------
 
-Host innisfree
-   HostName    innisfree.cs.ualberta.ca
-   User        gleite
-
-Host heldar
-   User            gleite
-   ProxyCommand    ssh -q innisfree nc heldar.cs.ualberta.ca 22
-
-Host heldar24
-   User            gleite
-   ProxyCommand    ssh -q heldar nc heldar24 22
-
-Host heldar25
-   User            gleite
-   ProxyCommand    ssh -q heldar nc heldar25 22
-
-# ------------------------------------------------------------------------------
-
 Host lightsail
     User            ubuntu
     HostName        34.197.58.149
