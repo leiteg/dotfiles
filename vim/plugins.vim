@@ -19,6 +19,7 @@ Plug 'mhinz/vim-signify'
 Plug 'mileszs/ack.vim'
 Plug 'petRUShka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 Plug 'SirVer/Ultisnips'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'

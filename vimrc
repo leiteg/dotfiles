@@ -154,6 +154,9 @@ nmap <leader>gh         :History<CR>
 nmap <leader>gs         :Gstatus<CR>
 nmap <leader>gc         :Gcommit<CR>
 
+" Plugin: preservim/nerdtree
+nnoremap <C-Z> :NERDTreeToggleVCS<CR>
+
 " Disable
 nnoremap <up>           <nop>
 nnoremap <down>         <nop>
