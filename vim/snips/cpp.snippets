@@ -26,6 +26,18 @@ class ${1:MyClass} {
 };
 endsnippet
 
+snippet fore "for (auto &a : b) {}" b
+for (auto &${1:item} : ${2:container}) {
+  ${0:${VISUAL}}
+}
+endsnippet
+
+snippet cfore "for (const auto &a : b) {}" b
+for (const auto &${1:item} : ${2:container}) {
+  ${0:${VISUAL}}
+}
+endsnippet
+
 snippet mku "std::make_unique<>()"
 std::make_unique<${1:T}>(${2:${VISUAL}});$0
 endsnippet
