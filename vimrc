@@ -74,7 +74,7 @@ set softtabstop=4 shiftwidth=4
 set nowrap textwidth=80
 
 " Appearence
-set cursorline colorcolumn=81
+set cursorline colorcolumn=+1
 set number relativenumber
 
 " Folds
