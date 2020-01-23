@@ -27,10 +27,10 @@ class ${1:MyClass} {
 endsnippet
 
 snippet mku "std::make_unique<>()"
-std::make_unique<${1:T}>(${0:${VISUAL}})
+std::make_unique<${1:T}>(${2:${VISUAL}});$0
 endsnippet
 
-snippet mks "std::make_unique<>()"
-std::make_shared<${1:T}>(${0:${VISUAL}})
+snippet mks "std::make_shared<>()"
+std::make_shared<${1:T}>(${2:${VISUAL}});$0
 endsnippet
 
