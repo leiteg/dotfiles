@@ -16,12 +16,38 @@ ${0:${VISUAL}}
 } // ${1/(\w+)/namespace $1/}
 endsnippet
 
+snippet uns "using namespace std;"
+using namespace ${1:std};$0
+endsnippet
+
+snippet enum "enum name {}" b
+enum ${1:enum_name} {
+  $2
+};$0
+endsnippet
+
+snippet enumc "enum class name {}" b
+enum class ${1:enum_name} {
+  $2
+};$0
+endsnippet
+
+snippet struct "struct name {}" b
+struct ${1:struct_name} {
+  $2
+};$0
+endsnippet
+
 snippet class "class Name {};" b
 class ${1:MyClass} {
 public:
   ${1/(\w+).*/$1/}($2);
   $3
 };
+endsnippet
+
+snippet temp "template <typename T>"
+template <typename ${1:T}>$0
 endsnippet
 
 snippet fore "for (auto &a : b) {}" b
@@ -34,6 +60,14 @@ snippet cfore "for (const auto &a : b) {}" b
 for (const auto &${1:item} : ${2:container}) {
   ${0:${VISUAL}}
 }
+endsnippet
+
+snippet cout "std::cout << std::endl;"
+std::cout << ${1:"Hello, World!"} << std::endl;$0
+endsnippet
+
+snippet cerr "std::cerr << std::endl;"
+std::cerr << ${1:"Hello, World!"} << std::endl;$0
 endsnippet
 
 snippet mku "std::make_unique<>()"
