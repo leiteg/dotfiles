@@ -9,8 +9,8 @@
 "
 " --------------------------------------------------------------------
 
-" {{{
-"
+" BASIC CONFIG {{{
+
 " Enable filetype detection
 filetype plugin indent on
 
@@ -99,8 +99,8 @@ endif
 " General purpose
 augroup AutoCommands
     autocmd!
-    autocmd QuickFixCmdPost *       :copen
-    autocmd BufWritePost .vimrc     :source %
+    autocmd QuickFixCmdPost *             :copen
+    autocmd BufWritePost .vimrc,vimrc     :source %
 augroup END
 
 " Skeleton files
@@ -128,8 +128,8 @@ augroup END
 inoremap jk             <esc>
 inoremap JK             <esc>
 inoremap Jk             <esc>
-vnoremap J              :m '>+1<CR>gv=gv
-vnoremap K              :m '<-2<CR>gv=gv
+vnoremap J              :m '>+1<CR>gv
+vnoremap K              :m '<-2<CR>gv
 vnoremap >              >gv
 vnoremap <              <gv
 nnoremap <tab>          :bnext<CR>
