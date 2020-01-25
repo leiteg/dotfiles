@@ -140,8 +140,8 @@ noremap  <space>        za
 noremap  '              `
 
 " Plugin: junegunn/vim-plug
-nnoremap <leader>pc     :PlugClean   <bar> normal q<CR>
-nnoremap <leader>pi     :PlugInstall <bar> normal q<CR>
+nnoremap <leader>pc     :PlugClean<CR>
+nnoremap <leader>pi     :PlugInstall<CR>
 nnoremap <leader>pu     :PlugUpdate<CR>
 
 " Plugin: junegunn/fzf.vim
