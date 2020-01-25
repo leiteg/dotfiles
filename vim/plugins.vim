@@ -17,10 +17,10 @@ Plug 'mateusbraga/vim-spell-pt-br'
 Plug 'mattn/emmet-vim'                , { 'for': 'html' }
 Plug 'mhinz/vim-signify'
 Plug 'mileszs/ack.vim'
-Plug 'scrooloose/nerdcommenter'
 Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 Plug 'sirver/ultisnips'
+Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-git'
@@ -34,5 +34,9 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
+
+" This should be deleted soon
+" Replace with tpope/vim-commentary
+Plug 'scrooloose/nerdcommenter'
 
 call plug#end()
