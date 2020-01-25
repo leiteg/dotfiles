@@ -139,6 +139,11 @@ noremap  <F5>           :setlocal spell!<CR>
 noremap  <space>        za
 noremap  '              `
 
+" Plugin: junegunn/vim-plug
+nnoremap <leader>pc     :PlugClean   <bar> normal q<CR>
+nnoremap <leader>pi     :PlugInstall <bar> normal q<CR>
+nnoremap <leader>pu     :PlugUpdate<CR>
+
 " Plugin: junegunn/fzf.vim
 nmap <C-P>              :Files<CR>
 nmap g<C-P>             :GFiles<CR>
