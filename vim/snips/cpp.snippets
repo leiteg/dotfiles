@@ -18,11 +18,9 @@ endsnippet
 
 snippet class "class Name {};" b
 class ${1:MyClass} {
-  public:
-    ${1/(\w+).*/$1/}($2);
-
-  private:
-    $3
+public:
+  ${1/(\w+).*/$1/}($2);
+  $3
 };
 endsnippet
 
