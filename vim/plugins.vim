@@ -2,7 +2,6 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'alvan/vim-closetag'             , { 'for': 'html' }
 Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
-Plug 'godlygeek/tabular'
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
 Plug 'gregsexton/gitv'                , { 'on': ['Gitv'] }
 Plug 'jiangmiao/auto-pairs'
@@ -10,6 +9,7 @@ Plug 'junegunn/fzf'                   , { 'dir': '~/.fzf', 'do': './install --al
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/gv.vim'
+Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-sneak'
 Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
 Plug 'lervag/vimtex'
