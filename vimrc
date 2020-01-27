@@ -138,6 +138,8 @@ nnoremap <leader>sr     :%s/\<<C-R><C-W>\>/
 noremap  <F5>           :setlocal spell!<CR>
 noremap  <space>        za
 noremap  '              `
+nnoremap /              /\v
+nnoremap ?              ?\v
 
 " Plugin: junegunn/vim-plug
 nnoremap <leader>pc     :PlugClean<CR>
