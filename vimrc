@@ -193,8 +193,7 @@ nnoremap q:             <nop>
 " nmap <leader>q      :Helptags<CR>
 " nmap <leader>q      :Filetypes<CR>
 
-command! Vimrc           :edit $MYVIMRC
-command! PlugList        :edit ~/dotfiles/vim/plugins.vim
+command! Config       :tabnew | edit $MYVIMRC | vsplit ~/dotfiles/vim/plugins.vim
 
 " }}}
 
