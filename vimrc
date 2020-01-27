@@ -160,7 +160,7 @@ nmap <leader>gs         :Gstatus<CR>
 nmap <leader>gc         :Gcommit<CR>
 
 " Plugin: preservim/nerdtree
-nnoremap <C-Z> :NERDTreeToggleVCS<CR>
+nnoremap <C-Z>          :NERDTreeToggleVCS<CR>
 
 " Disable
 nnoremap <up>           <nop>
@@ -204,7 +204,7 @@ cnoreabbrev WQ  wq
 cnoreabbrev Sh  sh
 cnoreabbrev SH  sh
 cnoreabbrev Set set
-"
+
 " }}}
 
 " PLUGINS CONFIGURATION {{{
