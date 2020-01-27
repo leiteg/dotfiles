@@ -10,13 +10,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'              , { 'on': ['Goyo'] }
 Plug 'junegunn/gv.vim'                , { 'on': ['GV'] }
 Plug 'junegunn/vim-easy-align'
-Plug 'justinmk/vim-sneak'
 Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
 Plug 'lervag/vimtex'
 Plug 'mateusbraga/vim-spell-pt-br'
 Plug 'mattn/emmet-vim'                , { 'for': 'html' }
-Plug 'mhinz/vim-signify'
-Plug 'mileszs/ack.vim'
 Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 Plug 'sirver/ultisnips'
