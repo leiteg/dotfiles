@@ -12,3 +12,5 @@
 alias open="xdg-open"
 alias copy="xsel -ib"
 alias paste="xsel -ob"
+
+export PATH="$HOME/.local/bin:$PATH"
