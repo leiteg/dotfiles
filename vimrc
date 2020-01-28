@@ -157,6 +157,10 @@ nmap <leader>gt         :Tags<CR>
 nmap <leader>gT         :BTags<CR>
 nmap <leader>gh         :History<CR>
 
+" Plugin: junegunn/vim-easy-align
+nmap ga                 <Plug>(EasyAlign)
+xmap ga                 <Plug>(EasyAlign)
+
 " Plugin: tpope/vim-fugitive
 nmap <leader>gs         :Gstatus<CR>
 nmap <leader>gc         :Gcommit<CR>
