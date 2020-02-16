@@ -36,3 +36,4 @@ Host node01
 Host lightsail
     User            ubuntu
     HostName        34.197.58.149
+    Port            222
