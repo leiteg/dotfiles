@@ -37,3 +37,10 @@ Host lightsail
     User            ubuntu
     HostName        34.197.58.149
     Port            222
+
+# ------------------------------------------------------------------------------
+
+Host lsc
+    User        gustavo.leite
+    Hostname    ssh.lsc.ic.unicamp.br
+    Port        6868
