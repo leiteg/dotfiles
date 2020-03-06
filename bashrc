@@ -141,3 +141,13 @@ if [[ "$(uname)" = "Darwin" ]]; then
 else
     source ~/dotfiles/sh/linux.sh
 fi
+
+# Load host-specific configs
+# TODO: Do this check automatically for every host
+case $(hostname) in
+    n18)
+	source ~/dotfiles/sh/host_n18.sh
+        ;;
+esac
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
