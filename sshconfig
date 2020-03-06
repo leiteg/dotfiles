@@ -44,3 +44,11 @@ Host lsc
     User        gustavo.leite
     Hostname    ssh.lsc.ic.unicamp.br
     Port        6868
+
+Host n18
+    User        gustavo.leite
+    ProxyJump   lsc
+
+Host workhard
+    User        gustavo.leite
+    ProxyJump   lsc
