@@ -101,6 +101,13 @@ augroup AutoCommands
     autocmd!
     autocmd QuickFixCmdPost *             :copen
     autocmd BufWritePost .vimrc,vimrc     :source %
+
+    " Jump to last location when opening a file
+    autocmd BufReadPost *
+        \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+        \ |   exe "normal! g`\""
+        \ | endif
+
 augroup END
 
 " Skeleton files
