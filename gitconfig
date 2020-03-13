@@ -21,6 +21,7 @@
 	oops = !git fuck && git push -f
 	ignore = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
 	whatadded = log --follow --diff-filter=A
+	preview = !git commit -am \"--- squash ---\" && git push
 [push]
 	default = matching
 [merge]
