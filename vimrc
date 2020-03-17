@@ -149,6 +149,9 @@ noremap  '              `
 nnoremap /              /\v
 nnoremap ?              ?\v
 
+nnoremap <C-W>t         :vert term<CR>
+nnoremap <C-W>T         :term<CR>
+
 " Plugin: junegunn/vim-plug
 nnoremap <leader>pc     :PlugClean<CR>
 nnoremap <leader>pi     :PlugInstall<CR>
