@@ -9,11 +9,11 @@ git
 gvim
 htop
 intel-ucode
+linux-tools
 llvm
 ltrace
 openmp
 openssh
-perf
 python-pip
 ripgrep
 strace
