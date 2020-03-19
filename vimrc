@@ -53,7 +53,6 @@ set noesckeys
 set listchars=tab:▸\ ,space:·
 set exrc
 set secure
-set mouse=n
 
 " Colorscheme
 silent! colorscheme dracula
