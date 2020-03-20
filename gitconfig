@@ -3,7 +3,7 @@
 	email = gustavoleite.ti@gmail.com
 [core]
 	editor = vim
-	pager = less -F -X
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [colors]
 	ui = auto
 	interactive = auto
