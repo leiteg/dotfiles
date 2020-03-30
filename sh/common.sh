@@ -11,6 +11,7 @@
 
 # Aliases
 alias quit="exit"
+alias t="taskbook"
 
 # User environment variables
 export PATH="$PATH:$HOME/bin"
