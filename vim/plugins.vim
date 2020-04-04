@@ -1,6 +1,6 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'airblade/vim-rooter'
+" Plug 'airblade/vim-rooter'
 Plug 'alvan/vim-closetag'             , { 'for': 'html' }
 Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
