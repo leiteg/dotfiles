@@ -18,6 +18,7 @@ Host *
 
 # ------------------------------------------------------------------------------
 
+# FIXME: This is a workaround
 Host gitlab.com
     AddressFamily inet
 
