@@ -12,7 +12,7 @@
 Host *
     KeepAlive yes
     ServerAliveInterval 60
-    ServerAliveCountMAx 5
+    ServerAliveCountMax 10
     ControlMaster auto
     ControlPath ~/.ssh/control:%h:%p:%r
 
