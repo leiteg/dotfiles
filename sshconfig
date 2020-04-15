@@ -62,3 +62,25 @@ Host n18
 Host workhard
     User        gustavo.leite
     ProxyJump   lsc
+
+# ------------------------------------------------------------------------------
+
+Host ogbon-login3
+    User        gustavo.leite
+    Hostname    200.128.24.24
+    Port        5001
+
+Host ogbon-login4
+    User        gustavo.leite
+    Hostname    200.128.24.25
+    Port        5001
+
+Host ogbon-gpu3
+    User        gustavo.leite
+    Hostname    200.128.24.26
+    Port        5001
+
+Host ogbon-gpu4
+    User        gustavo.leite
+    Hostname    200.128.24.27
+    Port        5001
