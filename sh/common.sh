@@ -16,6 +16,9 @@ alias t="taskbook"
 # User environment variables
 export PATH="$PATH:$HOME/bin"
 
+# Remove annoyng 'Entering directory' messages from make
+export MAKEFLAGS=--no-print-directory
+
 # Connect to a server using SSH an automatically attach/create session
 function tsh {
     host=$1
