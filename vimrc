@@ -48,7 +48,7 @@ set gdefault
 set laststatus=2
 set backspace=indent,eol,start
 set nofoldenable
-set clipboard=unnamed
+set clipboard=unnamedplus
 set noesckeys
 set listchars=tab:▸\ ,space:·
 set exrc
