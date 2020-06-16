@@ -22,7 +22,7 @@ Host *
 Host gitlab.com
     AddressFamily inet
 
-# ------------------------------------------------------------------------------
+# Atomic (UNESP) ---------------------------------------------------------------
 
 Host atomic
     User        leite
@@ -37,14 +37,14 @@ Host node01
     User        leite
     ProxyJump   atomic
 
-# ------------------------------------------------------------------------------
+# Lightsail (Amazon) -----------------------------------------------------------
 
 Host lightsail
     User            ubuntu
     HostName        34.197.58.149
     Port            222
 
-# ------------------------------------------------------------------------------
+# LSC Cluster (Unicamp) --------------------------------------------------------
 
 Host lsc
     User        gustavo.leite
@@ -63,24 +63,24 @@ Host workhard
     User        gustavo.leite
     ProxyJump   lsc
 
-# ------------------------------------------------------------------------------
+# Ogbon (CIMATEC) --------------------------------------------------------------
 
-Host ogbon-login3
+Host ogbon-3
     User        gustavo.leite
     Hostname    200.128.24.24
     Port        5001
 
-Host ogbon-login4
+Host ogbon-4
     User        gustavo.leite
     Hostname    200.128.24.25
     Port        5001
 
-Host ogbon-gpu3
+Host ogbon-7
     User        gustavo.leite
     Hostname    200.128.24.26
     Port        5001
 
-Host ogbon-gpu4
+Host ogbon-8
     User        gustavo.leite
     Hostname    200.128.24.27
     Port        5001
