@@ -84,3 +84,9 @@ Host ogbon-8
     User        gustavo.leite
     Hostname    200.128.24.27
     Port        5001
+
+# Kahuna (Unicamp) -------------------------------------------------------------
+
+Host kahuna
+    User        gustavoleite
+    Hostname    kahuna.iqm.unicamp.br
