@@ -63,6 +63,10 @@ Host workhard
     User        gustavo.leite
     ProxyJump   lsc
 
+Host sorgan
+    User        gustavo.leite
+    ProxyJump   lsc
+
 # Ogbon (CIMATEC) --------------------------------------------------------------
 
 Host ogbon-3
