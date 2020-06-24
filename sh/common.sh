@@ -22,6 +22,10 @@ export MAKEFLAGS=--no-print-directory
 # Connect to a server using SSH an automatically attach/create session
 function tsh {
     host=$1
-    session=${2:-main}
-    ssh $host -t "tmux attach -t $session || tmux new -s $session";
+    session=$2
+    if [[ -z "$session" ]]; then
+        ssh $host -t "tmux attach || tmux new -s main";
+    else
+        ssh $host -t "tmux attach -t $session || tmux new -s $session";
+    fi
 }
