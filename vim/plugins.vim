@@ -32,6 +32,8 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
+Plug 'rhysd/git-messenger.vim'
+Plug 'mzlogin/vim-markdown-toc'       , { 'for': 'markdown' }
 
 " This should be deleted soon
 " Replace with tpope/vim-commentary
