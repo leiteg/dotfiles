@@ -224,7 +224,7 @@ cnoreabbrev Set set
 
 " PLUGINS CONFIGURATION {{{
 
-" vim-airline/vim-airline
+" vim-airline/vim-airline {{{
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 1
@@ -239,33 +239,41 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_detect_modified = 1
 let g:airline_detect_paste = 1
+" }}}
 
-" lervag/vimtex
+" lervag/vimtex {{{
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'skim'
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_compiler_latexmk = { 'callback': 0, 'build_dir': 'build' }
+" }}}
 
-" scroolose/NERDCommenter
+" scroolose/NERDCommenter {{{
 let NERDSpaceDelims = 1
+" }}}
 
-" mhinz/vim-signify
+" mhinz/vim-signify {{{
 let g:signify_disable_by_default = 1
 let g:signify_line_highlight = 1
 let g:signify_vcs_list = ['git']
 hi SignColumn      ctermbg=0
+" }}}
 
-" kien/ctrlp
+" kien/ctrlp {{{
 let g:ctrlp_custom_ignore = '\.o$'
+" }}}
 
-" kana/vim-submode
+" kana/vim-submode {{{
 let g:submode_timeout = 0
+" }}}
 
+" SirVer/ultisnips {{{
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsSnippetDirectories = [ "snips" ]
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<c-b>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+" }}}
 
 " }}}
