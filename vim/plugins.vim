@@ -1,6 +1,5 @@
 call plug#begin('~/.vim/plugged')
 
-" Plug 'airblade/vim-rooter'
 Plug 'alvan/vim-closetag'             , { 'for': 'html' }
 Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
@@ -15,9 +14,11 @@ Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
 Plug 'lervag/vimtex'
 Plug 'mateusbraga/vim-spell-pt-br'
 Plug 'mattn/emmet-vim'                , { 'for': 'html' }
+Plug 'mzlogin/vim-markdown-toc'       , { 'for': 'markdown' }
 Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
+Plug 'rhysd/git-messenger.vim'
+Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
-Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -32,11 +33,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'wellle/targets.vim'
-Plug 'rhysd/git-messenger.vim'
-Plug 'mzlogin/vim-markdown-toc'       , { 'for': 'markdown' }
 
-" This should be deleted soon
-" Replace with tpope/vim-commentary
-Plug 'scrooloose/nerdcommenter'
+" Deactivated {{{
+" Plug 'airblade/vim-rooter'
+" Plug 'sirver/ultisnips'
+" }}}
 
 call plug#end()
