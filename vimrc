@@ -53,6 +53,7 @@ set noesckeys
 set listchars=tab:▸\ ,space:·
 set exrc
 set secure
+set timeoutlen=500 ttimeoutlen=0
 
 " Colorscheme
 silent! colorscheme dracula
