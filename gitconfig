@@ -38,3 +38,5 @@
 	required = true
 [commit]
 	verbose = true
+[pull]
+	ff = only
