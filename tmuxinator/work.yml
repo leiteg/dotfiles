@@ -1,0 +1,15 @@
+# /home/leite/.config/tmuxinator/brcloud.yml
+
+name: work
+root: ~/git/brcloud
+
+windows:
+  - main:
+  - awave3d:
+      root: ~/git/brcloud/awave3d
+      panes:
+        - git fetch
+  - perf-evaluator:
+      root: ~/git/brcloud/perf-evaluator
+      panes:
+        - . venv/bin/activate

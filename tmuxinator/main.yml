@@ -1,0 +1,17 @@
+# /home/leite/.config/tmuxinator/main.yml
+
+name: main
+root: ~/
+
+windows:
+  - home:
+      layout: main-vertical
+      panes:
+        - taskbook
+  - everything:
+      root: ~/git/everything/
+      layout: main-vertical
+      panes:
+        - git ls
+  - dotfiles:
+      root: ~/dotfiles
