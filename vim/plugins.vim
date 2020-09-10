@@ -10,7 +10,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'              , { 'on': ['Goyo'] }
 Plug 'junegunn/gv.vim'                , { 'on': ['GV'] }
 Plug 'junegunn/vim-easy-align'
-Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
+"Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
 Plug 'lervag/vimtex'
 Plug 'mateusbraga/vim-spell-pt-br'
 Plug 'mattn/emmet-vim'                , { 'for': 'html' }
