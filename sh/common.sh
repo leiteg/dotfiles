@@ -11,7 +11,9 @@
 
 # Aliases
 alias quit="exit"
-alias t="taskbook"
+alias tb="taskbook"
+alias tm="tmux"
+alias t="tmuxinator"
 
 # User environment variables
 export PATH="$PATH:$HOME/bin"

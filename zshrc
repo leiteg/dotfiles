@@ -16,7 +16,7 @@ ZSH_THEME="agnoster-vim"
 HYPHEN_INSENSITIVE="true"
 
 # Oh My Zsh plugins
-plugins=(git)
+plugins=(git tmuxinator)
 
 # Source relevant files
 source $ZSH/oh-my-zsh.sh
