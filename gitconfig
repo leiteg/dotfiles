@@ -22,6 +22,7 @@
 	ignore = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
 	whatadded = log --follow --diff-filter=A
 	preview = !git commit -am \"--- squash ---\" && git push
+	fixup = commit --fixup=HEAD
 [push]
 	default = matching
 [merge]
