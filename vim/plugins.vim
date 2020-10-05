@@ -18,6 +18,7 @@ Plug 'mzlogin/vim-markdown-toc'       , { 'for': 'markdown' }
 Plug 'neoclide/coc.nvim'              , {'branch': 'release'}
 Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'rhysd/git-messenger.vim'
+Plug 'reedes/vim-pencil'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 Plug 'tpope/vim-commentary'

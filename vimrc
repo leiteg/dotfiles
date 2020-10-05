@@ -378,4 +378,17 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " }}}
 
+" reedes/vim-pencil {{{
+
+let g:pencil#autoformat = 1
+let g:pencil#wrapModeDefault = 'hard'
+let g:pencil#textwidth = 80
+
+augroup pencil
+    autocmd!
+    autocmd FileType markdown call pencil#init({'wrap': 'hard', 'textwidth': 80})
+augroup END
+
+" }}}
+
 " }}}
