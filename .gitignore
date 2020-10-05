@@ -9,3 +9,5 @@ vim/.netrwhist
 
 tmux/plugins/*
 tmux/resurrect/*
+
+sh/local.sh

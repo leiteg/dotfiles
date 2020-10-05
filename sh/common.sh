@@ -31,3 +31,7 @@ function tsh {
         ssh $host -t "tmux attach -t $session || tmux new -s $session";
     fi
 }
+
+if [ -f ~/dotfiles/sh/local.sh ]; then
+    source ~/dotfiles/sh/local.sh
+fi
