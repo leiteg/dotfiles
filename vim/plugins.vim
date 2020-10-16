@@ -21,6 +21,7 @@ Plug 'rhysd/git-messenger.vim'
 Plug 'reedes/vim-pencil'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
+Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-fugitive'
@@ -38,7 +39,6 @@ Plug 'wellle/targets.vim'
 
 " Deactivated {{{
 " Plug 'airblade/vim-rooter'
-" Plug 'sirver/ultisnips'
 " }}}
 
 call plug#end()

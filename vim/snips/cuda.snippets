@@ -1,10 +1,9 @@
-extends c
+extends cpp
 
 # Language
 
 snippet kdef "__global__ void kernel() {}" b
-__global__
-void ${1:kernel_name}($2) {
+__global__ void ${1:kernel_name}($2) {
     ${0:// void}
 }
 endsnippet

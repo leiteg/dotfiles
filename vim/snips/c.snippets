@@ -23,6 +23,22 @@ ${0:${VISUAL}}
 #endif /* $1 */
 endsnippet
 
+# Documentation
+
+snippet hdoxy "Doxygen file header docstring" b
+/**
+ * \file `!v expand('%:t')`
+ * \brief $1
+ */
+$0
+endsnippet
+
+snippet doxy "Doxygen function docstring" b
+/**
+ * \brief $1
+ */
+endsnippet
+
 # Language
 
 snippet main "int main(int argc, char **argv)" b
