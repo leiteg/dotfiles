@@ -10,15 +10,14 @@ Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'              , { 'on': ['Goyo'] }
 Plug 'junegunn/gv.vim'                , { 'on': ['GV'] }
 Plug 'junegunn/vim-easy-align'
-"Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
 Plug 'lervag/vimtex'
 Plug 'mateusbraga/vim-spell-pt-br'
 Plug 'mattn/emmet-vim'                , { 'for': 'html' }
 Plug 'mzlogin/vim-markdown-toc'       , { 'for': 'markdown' }
 Plug 'neoclide/coc.nvim'              , {'branch': 'release'}
 Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
-Plug 'rhysd/git-messenger.vim'
 Plug 'reedes/vim-pencil'
+Plug 'rhysd/git-messenger.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 Plug 'sirver/ultisnips'
@@ -39,6 +38,7 @@ Plug 'wellle/targets.vim'
 
 " Deactivated {{{
 " Plug 'airblade/vim-rooter'
+"Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
 " }}}
 
 call plug#end()
