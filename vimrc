@@ -386,7 +386,7 @@ let g:pencil#textwidth = 80
 
 augroup pencil
     autocmd!
-    autocmd FileType markdown call pencil#init({'wrap': 'hard', 'textwidth': 80})
+    autocmd FileType markdown,rst call pencil#init({'wrap': 'hard', 'textwidth': 80})
 augroup END
 
 " }}}
