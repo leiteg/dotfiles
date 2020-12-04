@@ -14,7 +14,7 @@ Plug 'lervag/vimtex'
 Plug 'mateusbraga/vim-spell-pt-br'
 Plug 'mattn/emmet-vim'                , { 'for': 'html' }
 Plug 'mzlogin/vim-markdown-toc'       , { 'for': 'markdown' }
-Plug 'neoclide/coc.nvim'              , {'branch': 'release'}
+Plug 'neoclide/coc.nvim'              , { 'branch': 'release' }
 Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'reedes/vim-pencil'
 Plug 'rhysd/git-messenger.vim'
