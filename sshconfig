@@ -67,6 +67,10 @@ Host sorgan
     User        gustavo.leite
     ProxyJump   lsc
 
+Host f1-alveo
+    User        gustavo.leite
+    ProxyJump   lsc
+
 # Ogbon (CIMATEC) --------------------------------------------------------------
 
 Host ogbon-3
