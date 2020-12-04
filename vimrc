@@ -281,7 +281,7 @@ let g:submode_timeout = 0
 " SirVer/ultisnips {{{
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsSnippetDirectories = [ "snips" ]
-let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsExpandTrigger = "<c-l>"
 let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<c-b>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
