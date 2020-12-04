@@ -40,10 +40,14 @@ endsnippet
 
 snippet class "class Name {};" b
 class ${1:MyClass} {
-public:
-  ${1/(\w+).*/$1/}($2);
+private:
   $3
-};
+public:
+  $1() = default;
+  $1(const $1 &other) = default;
+  $1 &operator=(const $1 &other) = default;
+  ~$1() = default;
+};$0
 endsnippet
 
 snippet temp "template <typename T>"
@@ -70,11 +74,26 @@ snippet cerr "std::cerr << std::endl;"
 std::cerr << ${1:"Hello, World!"} << std::endl;$0
 endsnippet
 
-snippet mku "std::make_unique<>()"
+snippet mup "std::make_unique<>()"
 std::make_unique<${1:T}>(${2:${VISUAL}});$0
 endsnippet
 
-snippet mks "std::make_shared<>()"
+snippet msp "std::make_shared<>()"
 std::make_shared<${1:T}>(${2:${VISUAL}});$0
 endsnippet
 
+snippet up "std::unique_ptr<T> up;"
+std::unique_ptr<${1:T}> ${2:up};$0
+endsnippet
+
+snippet sp "std::shared_ptr<T> up;"
+std::shared_ptr<${2:T}> ${2:sp};$0
+endsnippet
+
+snippet vec "std::vector<T> vec;"
+std::vector<${1:T}> ${2:vec};$0
+endsnippet
+
+snippet map "std::map<K, V> map;"
+std::map<${1:K}, ${2:V}> ${4:map};$0
+endsnippet
