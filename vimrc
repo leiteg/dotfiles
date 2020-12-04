@@ -20,6 +20,13 @@ syntax on
 " Set leader character
 let mapleader = ","
 
+" Set neovim specific config
+if has('nvim')
+  set runtimepath^=~/.vim
+  set runtimepath^=~/.vim/after
+  let &packpath = &runtimepath
+endif
+
 " }}}
 
 " VIM-PLUG {{{
@@ -49,11 +56,14 @@ set laststatus=2
 set backspace=indent,eol,start
 set nofoldenable
 set clipboard=unnamedplus
-set noesckeys
 set listchars=tab:▸\ ,space:·
 set exrc
 set secure
 set timeoutlen=500 ttimeoutlen=0
+
+if !has('nvim')
+  set noesckeys
+endif
 
 " Colorscheme
 silent! colorscheme dracula

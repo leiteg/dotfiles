@@ -44,4 +44,7 @@ else
     source ~/dotfiles/sh/linux.sh
 fi
 
+# Aliases
+alias vim=nvim
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
