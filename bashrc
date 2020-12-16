@@ -128,26 +128,6 @@ if ! shopt -oq posix; then
 fi
 
 # ------------------------------------------------------------------------------
-# TODO: Clean this file
 
-# Load common settings
-if [[ -f ~/dotfiles/sh/common.sh ]]; then
-    source ~/dotfiles/sh/common.sh
-fi
-
-# Load OS-specific configs
-if [[ "$(uname)" = "Darwin" ]]; then
-    source ~/dotfiles/sh/macos.sh
-else
-    source ~/dotfiles/sh/linux.sh
-fi
-
-# Load host-specific configs
-# TODO: Do this check automatically for every host
-case $(hostname) in
-    n18)
-	source ~/dotfiles/sh/host_n18.sh
-        ;;
-esac
-
+[ -f ~/dotfiles/sh/common.sh ] && source ~/dotfiles/sh/common.sh
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

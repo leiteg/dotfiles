@@ -15,8 +15,17 @@ alias tb="taskbook"
 alias tm="tmux"
 alias t="tmuxinator"
 
+# Use nvim instead of vim if available
+if command -v nvim &>/dev/null; then
+    alias vim=nvim
+    export EDITOR=nvim
+else
+    export EDITOR=vim
+fi
+
 # User environment variables
 export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
 
 # Remove annoyng 'Entering directory' messages from make
 export MAKEFLAGS=--no-print-directory
@@ -31,6 +40,13 @@ function tsh {
         ssh $host -t "tmux attach -t $session || tmux new -s $session";
     fi
 }
+
+# Load OS-specific configs
+if [[ "$(uname)" = "Darwin" ]]; then
+    source ~/dotfiles/sh/macos.sh
+else
+    source ~/dotfiles/sh/linux.sh
+fi
 
 if [ -f ~/dotfiles/sh/local.sh ]; then
     source ~/dotfiles/sh/local.sh
