@@ -18,6 +18,7 @@ Plug 'neoclide/coc.nvim'              , { 'branch': 'release' }
 Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'reedes/vim-pencil'
 Plug 'rhysd/git-messenger.vim'
+Plug 'rust-lang/rust.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 Plug 'sirver/ultisnips'
