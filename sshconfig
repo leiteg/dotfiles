@@ -99,3 +99,9 @@ Host kahuna
     User        gustavoleite
     Hostname    kahuna.iqm.unicamp.br
     ProxyJump   lsc
+
+# Santos Dumon (LNCC) ----------------------------------------------------------
+
+Host sdumont
+    User        gustavo.leite
+    Hostname    login.sdumont.lncc.br
