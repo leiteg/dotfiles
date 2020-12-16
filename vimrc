@@ -401,4 +401,8 @@ augroup END
 
 " }}}
 
+" voldikss/vim-floaterm {{{
+nnoremap <leader>t :FloatermToggle<CR>
+" }}}
+
 " }}}
