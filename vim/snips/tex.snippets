@@ -1,23 +1,80 @@
-snippet pak "LaTex Package"
-\usepackage{$1}
+global !p
+
+def math():
+    return vim.eval('vimtex#syntax#in_mathzone()') == '1'
+
+def comment():
+    return vim.eval('vimtex#syntax#in_comment()') == '1'
+
+def env(name):
+    [x,y] = vim.eval("vimtex#env#is_inside('" + name + "')")
+    return x != '0' and x != '0'
+
+endglobal
+
+# ------------------------------------------------------------------------------
+# BLOCKS
+# ------------------------------------------------------------------------------
+
+snippet \use "Package" bA
+\usepackage{${1:package}}$0
 endsnippet
 
-snippet env "LaTeX Environment" b
+snippet beg "Environment" bA
 \begin{${1:itemize}}
   ${0:${VISUAL}}
 \end{$1}
 endsnippet
 
-snippet fig "LaTeX Figure" b
+snippet itemize "Itemize env" bA
+\begin{itemize}
+  \item $0
+\end{itemize}
+endsnippet
+
+snippet enumerate "Enumerate env" bA
+\begin{enumerate}
+  \item $0
+\end{enumerate}
+endsnippet
+
+snippet abstract "Abstract env" bA
+\begin{abstract}
+  $0
+\end{abstract}
+endsnippet
+
+snippet \ch "Chapter" bA
+\chapter{${1:Title}} \label{ch:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
+endsnippet
+
+snippet \sec "Section" bA
+\section{${1:Title}} \label{ch:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
+endsnippet
+
+snippet \sub "Section" bA
+\subsection{${1:Title}} \label{ch:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
+endsnippet
+
+snippet lorem "Lorem ipsum" bA
+\lipsum[1-2]
+endsnippet
+
+snippet bib "Bibliography" bA
+\bibliographystyle{plain}
+\bibliography{references}
+endsnippet
+
+snippet fig "Figure" b
 \begin{figure}[${1:ht}]
   \centering
-  \includegraphics[width=${3:1.0}\textwidth]{$2}
+  \includegraphics[width=${3:1.0}\textwidth]{images/$2}
   \caption{${4:TODO: Missing caption.}}
   \label{fig:${5:label}}
 \end{figure}
 endsnippet
 
-snippet tab "LaTeX Table" b
+snippet tab "Table" b
 \begin{table}[${1:ht}]
   \centering
   \caption{${2:TODO: Missing caption.}}
@@ -30,38 +87,187 @@ snippet tab "LaTeX Table" b
 \end{table}
 endsnippet
 
-snippet chap "LaTeX Chapter" b
-\chapter{${1:Title}} ${2:\label{ch:${3:label}}}
-endsnippet
+# ------------------------------------------------------------------------------
+# INLINE
+# ------------------------------------------------------------------------------
 
-snippet sec "LaTeX Section" b
-\section{${1:Title}} ${2:\label{sec:${3:label}}}
-endsnippet
-
-snippet ssec "LaTeX Section" b
-\subsection{${1:Title}} ${2:\label{subsec:${3:label}}}
-endsnippet
-
-snippet cite "LaTex Citation" i
+snippet cite "Citation" iA
 ~\cite{$1}
 endsnippet
 
-snippet ref "LaTex Reference" i
+snippet ref "Reference" iA
 ~\ref{$1}
 endsnippet
 
-snippet lab "LaTex Label" i
+snippet lab "Label" i
 \label{$1}
 endsnippet
 
-snippet i "LaTeX Italics" w
+# ------------------------------------------------------------------------------
+# MATH
+# ------------------------------------------------------------------------------
+
+snippet dm "Display Math" bA
+\[
+  ${1:${VISUAL}}
+\]$0
+endsnippet
+
+context "math()"
+snippet != "Not equal" iA
+\neq 
+endsnippet
+
+context "math()"
+snippet <= "Less than or equal" iA
+\leq 
+endsnippet
+
+context "math()"
+snippet >= "Greater than or equal" iA
+\geq 
+endsnippet
+
+context "math()"
+snippet inn "In set" iA
+\in 
+endsnippet
+
+context "math()"
+snippet EE "Exists" iA
+\exists 
+endsnippet
+
+context "math()"
+snippet AA "Forall" iA
+\forall 
+endsnippet
+
+context "math()"
+snippet iff "iff" iA
+\iff 
+endsnippet
+
+context "math()"
+snippet xx "times" iA
+\times 
+endsnippet
+
+context "math()"
+snippet ** "cdot" iA
+\cdot 
+endsnippet
+
+context "math()"
+snippet nabla "Nabla" iA
+\nabla 
+endsnippet
+
+context "math()"
+snippet -> "to" iA
+\to 
+endsnippet
+
+context "math()"
+snippet !> "mapsto" iA
+\mapsto 
+endsnippet
+
+context "math()"
+snippet part "partial" iA
+\partial 
+endsnippet
+
+context "math()"
+snippet OO "Empty set" iA
+\O
+endsnippet
+
+context "math()"
+snippet NN "Natural numbers" iA
+\N
+endsnippet
+
+context "math()"
+snippet ZZ "Integer numbers" iA
+\Z
+endsnippet
+
+context "math()"
+snippet QQ "Rational numbers" iA
+\Q
+endsnippet
+
+context "math()"
+snippet RR "Real numbers" iA
+\R
+endsnippet
+
+context "math()"
+snippet lr "Left and right parens" iA
+\left( ${1:${VISUAL}} \right)
+endsnippet
+
+priority 10
+context "math()"
+snippet "vec" "Vector" riA
+\vec{$1}
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])vec" "Vector" riA
+\vec{`!p snip.rv = match.group(1)`}
+endsnippet
+
+priority 10
+context "math()"
+snippet "bar" "Bar" riA
+\overline{$1}
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])bar" "Bar" riA
+\overline{`!p snip.rv = match.group(1)`}
+endsnippet
+
+priority 10
+context "math()"
+snippet "har" "Hat" riA
+\hat{$1}
+endsnippet
+
+priority 100
+context "math()"
+snippet "([a-zA-Z])hat" "Hat" riA
+\hat{`!p snip.rv = match.group(1)`}
+endsnippet
+
+priority 100
+context "math()"
+snippet '(?<!\\)(sin|cos|arccot|cot|csc|ln|log|exp|star|perp)' "Functions 1" rwA
+\\`!p snip.rv = match.group(1)`
+endsnippet
+
+priority 200
+context "math()"
+snippet '(?<!\\)(arcsin|arccos|arctan|arccot|arccsc|arcsec|pi|zeta|int)' "Functions 2" rwA
+\\`!p snip.rv = match.group(1)`
+endsnippet
+
+# ------------------------------------------------------------------------------
+# WORD
+# ------------------------------------------------------------------------------
+
+snippet i "Italics" w
 \textit{${1:${VISUAL}}}
 endsnippet
 
-snippet b "LaTeX Bold" w
+snippet b "Bold" w
 \textbf{${1:${VISUAL}}}
 endsnippet
 
-snippet t "LaTeX Monospaced" w
+snippet t "Monospaced" w
 \texttt{${1:${VISUAL}}}
 endsnippet
