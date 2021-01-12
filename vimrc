@@ -25,6 +25,7 @@ if has('nvim')
   set runtimepath^=~/.vim
   set runtimepath^=~/.vim/after
   let &packpath = &runtimepath
+  set inccommand=nosplit
 endif
 
 " }}}
