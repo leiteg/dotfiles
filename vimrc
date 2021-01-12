@@ -405,4 +405,8 @@ augroup END
 nnoremap <leader>t :FloatermToggle<CR>
 " }}}
 
+" justinmk/sneak {{{
+let g:sneak#label = 1
+" }}}
+
 " }}}
