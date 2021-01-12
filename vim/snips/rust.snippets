@@ -1,0 +1,31 @@
+snippet main "fn main() -> Result<i32, String>" b
+fn main() -> Result<(), String> {
+  ${1:println!("Hello, World!");}
+  Ok(())
+}
+endsnippet
+
+snippet fn "fn name() -> {}" b
+fn ${1:function_name}($2) -> ${3:()} {
+    ${4:${VISUAL}}
+}
+endsnippet
+
+snippet match "match expr {}" b
+match ${1:expr} {
+  $2
+  ${3:_ => panic!("Unexpected value!"),}
+}
+endsnippet
+
+snippet pr "println!();"
+println!(${1:"\{\}"}, $2);
+endsnippet
+
+snippet op "Option<T>"
+Option<${1:T}>
+endsnippet
+
+snippet rs "Result<T, U>"
+Result<${1:T}, ${2:U}>
+endsnippet
