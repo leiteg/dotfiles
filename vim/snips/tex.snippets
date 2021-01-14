@@ -49,11 +49,11 @@ snippet \ch "Chapter" bA
 endsnippet
 
 snippet \sec "Section" bA
-\section{${1:Title}} \label{ch:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
+\section{${1:Title}} \label{sec:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
 endsnippet
 
 snippet \sub "Section" bA
-\subsection{${1:Title}} \label{ch:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
+\subsection{${1:Title}} \label{subsec:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
 endsnippet
 
 snippet lorem "Lorem ipsum" bA
