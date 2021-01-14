@@ -11,6 +11,19 @@ fn ${1:function_name}($2) -> ${3:()} {
 }
 endsnippet
 
+snippet pfn "pub fn name() -> {}" b
+pub fn ${1:function_name}($2) -> ${3:()} {
+    ${4:${VISUAL}}
+}
+endsnippet
+
+snippet tfn "#[test] fn name()"
+#[test]
+fn ${1:test_name}() {
+    ${2:${VISUAL}}
+}
+endsnippet
+
 snippet match "match expr {}" b
 match ${1:expr} {
   $2
@@ -20,6 +33,14 @@ endsnippet
 
 snippet pr "println!();"
 println!(${1:"\{\}"}, $2);
+endsnippet
+
+snippet aeq "assert_eq!"
+assert_eq!(${1:()}, ${2:()});
+endsnippet
+
+snippet ane "assert_eq!"
+assert_ne!(${1:()}, ${2:()});
 endsnippet
 
 snippet op "Option<T>"
