@@ -5,5 +5,13 @@
             "--clang-tidy",
             "--log=verbose"
         ]
+    },
+    "languageserver": {
+        "rust": {
+            "command": "rust-analyzer",
+            "rootPatterns": ["Cargo.toml"],
+            "trace.server": "verbose",
+            "filetypes": ["rust", "rs"]
+        }
     }
 }
