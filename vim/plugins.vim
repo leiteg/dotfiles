@@ -39,6 +39,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'voldikss/vim-floaterm'
 Plug 'wellle/targets.vim'
+Plug 'bfrg/vim-cpp-modern'          , { 'for': 'cpp' }
 
 " Deactivated {{{
 " Plug 'airblade/vim-rooter'
