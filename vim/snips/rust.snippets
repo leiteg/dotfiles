@@ -1,52 +1,168 @@
-snippet main "fn main() -> Result<i32, String>" b
+# ------------------------------------------------------------------------------
+# Top level snippets
+# ------------------------------------------------------------------------------
+
+snippet main "fn main() {}" b
+fn main() {
+    ${1:println!("Hello, World!");}
+}
+endsnippet
+
+snippet mainr "fn main() -> Result<i32, String>" b
 fn main() -> Result<(), String> {
-  ${1:println!("Hello, World!");}
-  Ok(())
+    ${1:println!("Hello, World!");}
+    Ok(())
 }
 endsnippet
 
 snippet fn "fn name() -> {}" b
-fn ${1:function_name}($2) -> ${3:()} {
-    ${4:${VISUAL}}
+fn ${1:function_name}($2)${3: -> ${4:()}} {
+    ${0:${VISUAL}}
 }
 endsnippet
 
 snippet pfn "pub fn name() -> {}" b
-pub fn ${1:function_name}($2) -> ${3:()} {
-    ${4:${VISUAL}}
+pub fn ${1:function_name}($2)${3: -> ${4:()}} {
+    ${0:${VISUAL}}
 }
 endsnippet
 
-snippet tfn "#[test] fn name()"
+snippet tfn "#[test] fn name()" b
 #[test]
 fn ${1:test_name}() {
     ${2:${VISUAL}}
 }
 endsnippet
 
-snippet match "match expr {}" b
-match ${1:expr} {
-  $2
-  ${3:_ => panic!("Unexpected value!"),}
+snippet mod "mod name {}" wA
+mod ${1:`!p snip.rv = snip.basename.lower() or "name"`} {
+    ${2:${VISUAL}}
 }
 endsnippet
 
-snippet pr "println!();"
-println!(${1:"\{\}"}, $2);
+snippet struct "struct name {}" wA
+struct ${1:type_name} {
+    ${2:value: i32,}
+}
 endsnippet
 
-snippet aeq "assert_eq!"
+snippet tstruct "struct name(i32)" wA
+struct ${1:type_name}($2);
+endsnippet
+
+snippet trait "trait name {}" wA
+trait ${1:name} {
+    ${2:fn new($3) -> Self;}$0
+}
+endsnippet
+
+snippet impl "impl type {}" bA
+impl ${1:T}${2: for ${3:U}} {
+    ${4:${VISUAL}}
+}
+endsnippet
+
+snippet enum "Enum {}" wA
+enum ${1:type_name} {
+    ${2:EnumValue,}
+}
+endsnippet
+
+snippet derive "#[derive(Trait)]" b
+#[derive(${1:Trait})]
+endsnippet
+
+# ------------------------------------------------------------------------------
+# Statements
+# ------------------------------------------------------------------------------
+
+snippet let "let var = value;" w
+let ${1:variable} = ${2:value};
+endsnippet
+
+snippet mlet "let var = value;" w
+let mut ${1:variable} = ${2:value};
+endsnippet
+
+snippet ilet "if let Some(_) = value {}" w
+if let ${1:Some(i)} = ${2:value} {
+    ${3:${VISUAL}}
+}
+endsnippet
+
+snippet wlet "while let Some(_) = value {}" w
+while let ${1:Some(i)} = ${2:value} {
+    ${3:${VISUAL}}
+}
+endsnippet
+
+snippet if "if expr {}" w
+if ${1:expr} {
+    ${2:${VISUAL}}
+}
+endsnippet
+
+snippet elif "else if expr {}" w
+else if ${1:expr} {
+    ${2:${VISUAL}}
+}
+endsnippet
+
+snippet else "else {}" w
+else {
+    ${2:${VISUAL}}
+}
+endsnippet
+
+snippet loop "loop {}" wA
+loop {
+    ${1:${VISUAL}}
+}
+endsnippet
+
+snippet while "while expr {}" wA
+while ${1:expr} {
+    ${2:${VISUAL}}
+}
+endsnippet
+
+snippet for "for variable in collection {}" wA
+for ${1:variable} in ${2:iterator} {
+    ${3:${VISUAL}}
+}
+endsnippet
+
+snippet match "match expr {}" b
+match ${1:expr} {
+    ${2:// case}
+    ${3:_ => panic!("Unexpected value!"),}
+}
+endsnippet
+
+snippet case "left => right," b
+${1:left} => ${2:right},
+endsnippet
+
+snippet pr "println!();" w
+println!("${1:\{\}}", $2);
+endsnippet
+
+snippet aeq "assert_eq!" b
 assert_eq!(${1:()}, ${2:()});
 endsnippet
 
-snippet ane "assert_eq!"
+snippet ane "assert_ne!" b
 assert_ne!(${1:()}, ${2:()});
 endsnippet
 
-snippet op "Option<T>"
+# ------------------------------------------------------------------------------
+# Types
+# ------------------------------------------------------------------------------
+
+snippet Opt "Option<T>" wA
 Option<${1:T}>
 endsnippet
 
-snippet rs "Result<T, U>"
+snippet Res "Result<T, U>" wA
 Result<${1:T}, ${2:U}>
 endsnippet
