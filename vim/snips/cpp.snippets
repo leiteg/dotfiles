@@ -1,99 +1,154 @@
 extends c
 
-snippet ans "namespace {}" b
-namespace {
+global !p
+
+def get_ns_comment(t):
+    return "// {}".format("anonymous namespace" if not t else f"namespace {t}")
+
+endglobal
+
+snippet ns "namespace foo {}" bA
+namespace${1/.+/ /}${1:foo} {
 
 ${0:${VISUAL}}
 
-} // anonymous namespace
-endsnippet
-
-snippet ns "namespace foo {}" b
-namespace ${1} {
-
-${0:${VISUAL}}
-
-}${1/(\w+)/ \/\/ namespace $1/}
+} `!p snip.rv = get_ns_comment(t[1])`
 endsnippet
 
 snippet uns "using namespace std;"
 using namespace ${1:std};$0
 endsnippet
 
-snippet enum "enum name {}" b
+priority 10
+snippet en "enum name {}" b
 enum ${1:enum_name} {
-  $2
+  ${2:ENUM_ITEM,}
 };$0
 endsnippet
 
-snippet enumc "enum class name {}" b
+priority 20
+snippet '(\w+)_en' "enum name {}" rbA
+enum `!p snip.rv = match.group(1)` {
+  ${1:ENUM_ITEM,}
+};$0
+endsnippet
+
+priority 10
+snippet cen "enum class name {}" b
 enum class ${1:enum_name} {
-  $2
+  ${2:ENUM_ITEM,}
 };$0
 endsnippet
 
-snippet struct "struct name {}" b
+priority 20
+snippet '(\w+)_cen' "enum class name {}" rbA
+enum class `!p snip.rv = match.group(1)` {
+  ${1:ENUM_ITEM,}
+};$0
+endsnippet
+
+priority 10
+snippet st "struct name {}" b
 struct ${1:struct_name} {
-  $2
+  ${2:int value;}
 };$0
 endsnippet
 
-snippet class "class Name {};" b
+priority 20
+snippet '(\w+)_st' "struct name {}" rbA
+struct `!p snip.rv = match.group(1)` {
+  ${1:int value;}
+};$0
+endsnippet
+
+priority 10
+snippet fn "function" b
+auto ${1:function_name}(${2:/* parms */}) -> ${3:void} {
+  ${0:${VISUAL:return;}}
+}
+endsnippet
+
+priority 20
+snippet '(\w+)_fn' "function" rbA
+auto `!p snip.rv = match.group(1)`(${1:/* parms */})${2/.+/ -> /}${2:int} {
+  ${0:${VISUAL:return;}}
+}
+endsnippet
+
+snippet class "class Name {};" bA
 class ${1:MyClass} {
-private:
-  $3
 public:
   $1() = default;
-  $1(const $1 &other) = default;
-  $1 &operator=(const $1 &other) = default;
-  ~$1() = default;
+
+private:
+  ${2:int member;}
 };$0
 endsnippet
 
-snippet temp "template <typename T>"
+snippet temp "template <typename T>" b
 template <typename ${1:T}>$0
 endsnippet
 
-snippet fore "for (auto &a : b) {}" b
-for (auto &${1:item} : ${2:container}) {
-  ${0:${VISUAL}}
+priority 10
+snippet afor "for (auto &a : b) {}" bA
+for (auto &${2:value} : ${1:container}) {
+  ${0:${VISUAL:;}}
 }
 endsnippet
 
-snippet cfore "for (const auto &a : b) {}" b
-for (const auto &${1:item} : ${2:container}) {
-  ${0:${VISUAL}}
+priority 20
+snippet '(\w+)_afor' "for (auto &a : b) {}" rbA
+for (auto &${1:value} : `!p snip.rv = match.group(1)`) {
+  ${0:${VISUAL:;}}
 }
 endsnippet
 
-snippet cout "std::cout << std::endl;"
+priority 10
+snippet cafor "for (const auto &a : b) {}" bA
+for (const auto &${2:value} : ${1:container}) {
+  ${0:${VISUAL:;}}
+}
+endsnippet
+
+priority 20
+snippet '(\w+)_cafor' "for (const auto &a : b) {}" rbA
+for (const auto &${1:value} : `!p snip.rv = match.group(1)`) {
+  ${0:${VISUAL:;}}
+}
+endsnippet
+
+snippet cout "std::cout << std::endl;" bA
 std::cout << ${1:"Hello, World!"} << std::endl;$0
 endsnippet
 
-snippet cerr "std::cerr << std::endl;"
+snippet cerr "std::cerr << std::endl;" bA
 std::cerr << ${1:"Hello, World!"} << std::endl;$0
 endsnippet
 
-snippet mup "std::make_unique<>()"
+snippet mup "std::make_unique<>()" w
 std::make_unique<${1:T}>(${2:${VISUAL}});$0
 endsnippet
 
-snippet msp "std::make_shared<>()"
+snippet msp "std::make_shared<>()" w
 std::make_shared<${1:T}>(${2:${VISUAL}});$0
 endsnippet
 
-snippet up "std::unique_ptr<T> up;"
-std::unique_ptr<${1:T}> ${2:up};$0
+snippet up "std::unique_ptr<T> up;" w
+std::unique_ptr<${1:T}>
 endsnippet
 
-snippet sp "std::shared_ptr<T> up;"
-std::shared_ptr<${2:T}> ${2:sp};$0
+snippet sp "std::shared_ptr<T> up;" w
+std::shared_ptr<${1:T}>
 endsnippet
 
-snippet vec "std::vector<T> vec;"
-std::vector<${1:T}> ${2:vec};$0
+snippet vec "std::vector<T> vec;" i
+std::vector<${1:T}>
 endsnippet
 
-snippet map "std::map<K, V> map;"
-std::map<${1:K}, ${2:V}> ${4:map};$0
+snippet map "std::map<K, V> map;" w
+std::map<${1:K}, ${2:V}>
+endsnippet
+
+snippet str "std::string" w
+std::string
 endsnippet
