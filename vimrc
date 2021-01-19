@@ -255,9 +255,14 @@ let g:airline_detect_paste = 1
 
 " lervag/vimtex {{{
 let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'skim'
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_compiler_latexmk = { 'callback': 0, 'build_dir': 'build' }
+
+if has('mac')
+  let g:vimtex_view_method = 'skim'
+else
+  let g:vimtex_view_method = 'zathura'
+endif
 " }}}
 
 " scroolose/NERDCommenter {{{
