@@ -16,7 +16,7 @@ endglobal
 # BLOCKS
 # ------------------------------------------------------------------------------
 
-snippet \use "Package" bA
+snippet use "Package" bA
 \usepackage{${1:package}}$0
 endsnippet
 
@@ -26,33 +26,37 @@ snippet beg "Environment" bA
 \end{$1}
 endsnippet
 
-snippet itemize "Itemize env" bA
+snippet itemize "Itemize environment" bA
 \begin{itemize}
   \item $0
 \end{itemize}
 endsnippet
 
-snippet enumerate "Enumerate env" bA
+snippet enumerate "Enumerate environment" bA
 \begin{enumerate}
   \item $0
 \end{enumerate}
 endsnippet
 
-snippet abstract "Abstract env" bA
+snippet li "List item" bA
+\item $0
+endsnippet
+
+snippet abstract "Abstract environment" bA
 \begin{abstract}
   $0
 \end{abstract}
 endsnippet
 
-snippet \ch "Chapter" bA
+snippet ch "Chapter" bA
 \chapter{${1:Title}} \label{ch:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
 endsnippet
 
-snippet \sec "Section" bA
+snippet sec "Section" bA
 \section{${1:Title}} \label{sec:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
 endsnippet
 
-snippet \sub "Section" bA
+snippet sub "Section" bA
 \subsection{${1:Title}} \label{subsec:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
 endsnippet
 
@@ -65,25 +69,36 @@ snippet bib "Bibliography" bA
 \bibliography{references}
 endsnippet
 
-snippet fig "Figure" b
-\begin{figure}[${1:ht}]
+priority 10
+snippet fig "Figure" bA
+\begin{figure}[ht]
   \centering
-  \includegraphics[width=${3:1.0}\textwidth]{images/$2}
+  \includegraphics[width=${2:0.75}\textwidth]{images/$1}
   \caption{${4:TODO: Missing caption.}}
-  \label{fig:${5:label}}
+  \label{fig:${3:label}}
 \end{figure}
 endsnippet
 
-snippet tab "Table" b
-\begin{table}[${1:ht}]
+priority 20
+snippet '([a-zA-Z0-9_-]+)_fig' "Figure" rbA
+\begin{figure}[ht]
   \centering
+  \includegraphics[width=${1:0.75}\textwidth]{images/`!p snip.rv = match.group(1)`.pdf}
   \caption{${2:TODO: Missing caption.}}
-  \begin{tabular}{$3}
+  \label{fig:`!p snip.rv = match.group(1)`}
+\end{figure}
+endsnippet
+
+snippet tab "Table" bA
+\begin{table}[ht]
+  \centering
+  \caption{${1:TODO: Missing caption.}}
+  \begin{tabular}{@{}$3@{}}
     \toprule
     $0
     \bottomrule
-  \endtabular
-  \label{fig:${4:label}}
+  \end{tabular}
+  \label{tab:${2:label}}
 \end{table}
 endsnippet
 
@@ -91,16 +106,28 @@ endsnippet
 # INLINE
 # ------------------------------------------------------------------------------
 
-snippet cite "Citation" iA
-~\cite{$1}
+snippet cite "Citation" i
+~\cite{$1}$0
 endsnippet
 
-snippet ref "Reference" iA
-~\ref{$1}
+snippet ref "Reference" i
+~\ref{$1}$0
 endsnippet
 
-snippet lab "Label" i
-\label{$1}
+snippet lab "Label" w
+\label{$1}$0
+endsnippet
+
+snippet i "Italic" w
+\textit{${1:${VISUAL}}}$0
+endsnippet
+
+snippet b "Bold" w
+\textbf{${1:${VISUAL}}}$0
+endsnippet
+
+snippet t "Monospaced" w
+\texttt{${1:${VISUAL}}}$0
 endsnippet
 
 # ------------------------------------------------------------------------------
