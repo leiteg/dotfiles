@@ -16,21 +16,21 @@ fn main() -> Result<(), String> {
 endsnippet
 
 snippet fn "fn name() -> {}" b
-fn ${1:function_name}($2)${3: -> ${4:()}} {
-    ${0:${VISUAL}}
+fn ${1:function_name}($2)${3/.+/ -> /}${3:()} {
+    ${4:${VISUAL:unimplemented!()}}
 }
 endsnippet
 
 snippet pfn "pub fn name() -> {}" b
-pub fn ${1:function_name}($2)${3: -> ${4:()}} {
-    ${0:${VISUAL}}
+pub fn ${1:function_name}($2)${3/.+/ -> /}${3:()} {
+    ${4:${VISUAL:unimplemented!()}}
 }
 endsnippet
 
 snippet tfn "#[test] fn name()" b
 #[test]
 fn ${1:test_name}() {
-    ${2:${VISUAL}}
+    ${2:${VISUAL:unimplemented!()}}
 }
 endsnippet
 
@@ -57,7 +57,7 @@ trait ${1:name} {
 endsnippet
 
 snippet impl "impl type {}" bA
-impl ${1:T}${2: for ${3:U}} {
+impl ${1:T}${2/.+/ for /}${2:U} {
     ${4:${VISUAL}}
 }
 endsnippet
