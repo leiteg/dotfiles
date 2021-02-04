@@ -3,7 +3,8 @@
 global !p
 
 def get_fname(snip):
-  return f"__{snip.fn.upper().replace('.', '_')}__"
+    """Convert filename to include guard format"""
+    return f"__{snip.fn.upper().replace('.', '_')}__"
 
 endglobal
 
@@ -56,6 +57,18 @@ snippet fun "void function() {}" b
 ${2:void} ${1:name}($3) {
   ${4:${VISUAL}}
 }$0
+endsnippet
+
+snippet p "printf(<format>[, <args>]);" b
+printf("${1:${VISUAL:Hello, World!}}\n"${2/.+/, /}$2);l
+endsnippet
+
+snippet pe "fprintf(stderr, <format>[, <args>]);" b
+fprintf(stderr, "${1:${VISUAL:Hello, World!}}\n"${2/.+/, /}$2);
+endsnippet
+
+snippet pf "fprintf(<file>, <format>[, <args>]);" b
+fprintf(${1:stdout}, "${2:${VISUAL:Hello, World!}}\n"${3/.+/, /}$3);
 endsnippet
 
 snippet if "if (condition) {}"
