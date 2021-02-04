@@ -415,4 +415,13 @@ nnoremap <leader>t :FloatermToggle<CR>
 let g:sneak#label = 1
 " }}}
 
+" tpope/vim-commentary {{{
+xmap <leader>c      <Plug>Commentary
+omap <leader>c      <Plug>Commentary
+nmap <leader>c      <Plug>Commentary
+nmap <leader>cg     <Plug>ChangeCommentary
+nmap <leader>cu     <Plug>Commentary<Plug>Commentary
+nmap <leader>cc     <Plug>CommentaryLine
+" }}}
+
 " }}}
