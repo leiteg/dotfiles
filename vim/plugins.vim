@@ -21,8 +21,6 @@ Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'reedes/vim-pencil'
 Plug 'rhysd/git-messenger.vim'
 Plug 'rust-lang/rust.vim'
-Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -42,8 +40,12 @@ Plug 'wellle/targets.vim'
 Plug 'bfrg/vim-cpp-modern'          , { 'for': 'cpp' }
 
 " Deactivated {{{
+
 " Plug 'airblade/vim-rooter'
-"Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
+" Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
+" Plug 'scrooloose/nerdcommenter'
+" Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
+
 " }}}
 
 call plug#end()
