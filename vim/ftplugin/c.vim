@@ -6,3 +6,4 @@ nnoremap <buffer> <C-[>d :cs find d <C-R>=expand("<cword>")<CR><CR>
 map <buffer> <C-K>      :py3file ~/dotfiles/scripts/clang-format.py<CR>
 
 setlocal path+=/usr/include/**,./include
+setlocal commentstring=//\ %s
