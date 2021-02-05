@@ -70,6 +70,8 @@ endif
 silent! colorscheme dracula
 set background=dark
 set t_Co=256
+set t_ZH=[3m
+set t_ZR=[23m
 
 if has('termguicolors')
     set termguicolors
