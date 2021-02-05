@@ -323,6 +323,8 @@ function! s:check_back_space() abort
 endfunction
 
 inoremap <silent><expr> <c-space> coc#refresh()
+nnoremap <silent>       <c-space>      :CocList symbols<CR>
+nnoremap <silent>       <leader>sh     :CocCommand clangd.switchSourceHeader<CR>
 
 "if exists('*complete_info')
 "  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
