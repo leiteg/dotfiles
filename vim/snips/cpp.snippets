@@ -7,7 +7,7 @@ def get_ns_comment(t):
 
 endglobal
 
-snippet ns "namespace foo {}" bA
+snippet ns "namespace foo {}" b
 namespace${1/.+/ /}${1:foo} {
 
 ${0:${VISUAL}}
@@ -75,7 +75,7 @@ auto `!p snip.rv = match.group(1)`(${1:/* parms */})${2/.+/ -> /}${2:int} {
 }
 endsnippet
 
-snippet class "class Name {};" bA
+snippet class "class Name {};" b
 class ${1:MyClass} {
 public:
   $1() = default;
@@ -90,7 +90,7 @@ template <typename ${1:T}>$0
 endsnippet
 
 priority 10
-snippet afor "for (auto &a : b) {}" bA
+snippet afor "for (auto &a : b) {}" b
 for (auto &${2:value} : ${1:container}) {
   ${0:${VISUAL:;}}
 }
@@ -104,7 +104,7 @@ for (auto &${1:value} : `!p snip.rv = match.group(1)`) {
 endsnippet
 
 priority 10
-snippet cafor "for (const auto &a : b) {}" bA
+snippet cafor "for (const auto &a : b) {}" b
 for (const auto &${2:value} : ${1:container}) {
   ${0:${VISUAL:;}}
 }
@@ -117,11 +117,11 @@ for (const auto &${1:value} : `!p snip.rv = match.group(1)`) {
 }
 endsnippet
 
-snippet cout "std::cout << std::endl;" bA
+snippet cout "std::cout << std::endl;" b
 std::cout << ${1:"Hello, World!"} << std::endl;$0
 endsnippet
 
-snippet cerr "std::cerr << std::endl;" bA
+snippet cerr "std::cerr << std::endl;" b
 std::cerr << ${1:"Hello, World!"} << std::endl;$0
 endsnippet
 

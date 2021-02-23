@@ -34,35 +34,35 @@ fn ${1:test_name}() {
 }
 endsnippet
 
-snippet mod "mod name {}" wA
+snippet mod "mod name {}" w
 mod ${1:`!p snip.rv = snip.basename.lower() or "name"`} {
     ${2:${VISUAL}}
 }
 endsnippet
 
-snippet struct "struct name {}" wA
+snippet struct "struct name {}" w
 struct ${1:type_name} {
     ${2:value: i32,}
 }
 endsnippet
 
-snippet tstruct "struct name(i32)" wA
+snippet tstruct "struct name(i32)" w
 struct ${1:type_name}($2);
 endsnippet
 
-snippet trait "trait name {}" wA
+snippet trait "trait name {}" w
 trait ${1:name} {
     ${2:fn new($3) -> Self;}$0
 }
 endsnippet
 
-snippet impl "impl type {}" bA
+snippet impl "impl type {}" b
 impl ${1:T}${2/.+/ for /}${2:U} {
     ${4:${VISUAL}}
 }
 endsnippet
 
-snippet enum "Enum {}" wA
+snippet enum "Enum {}" w
 enum ${1:type_name} {
     ${2:EnumValue,}
 }
@@ -114,25 +114,25 @@ else {
 }
 endsnippet
 
-snippet loop "loop {}" wA
+snippet loop "loop {}" w
 loop {
     ${1:${VISUAL}}
 }
 endsnippet
 
-snippet while "while expr {}" wA
+snippet while "while expr {}" w
 while ${1:expr} {
     ${2:${VISUAL}}
 }
 endsnippet
 
-snippet for "for variable in collection {}" wA
+snippet for "for variable in collection {}" w
 for ${1:variable} in ${2:iterator} {
     ${3:${VISUAL}}
 }
 endsnippet
 
-snippet match "match expr {}" b
+snippet match "match expr {}" w
 match ${1:expr} {
     ${2:// case}
     ${3:_ => panic!("Unexpected value!"),}
@@ -143,15 +143,15 @@ snippet case "left => right," b
 ${1:left} => ${2:right},
 endsnippet
 
-snippet pr "println!();" w
+snippet p "println!();" w
 println!("${1:\{\}}", $2);
 endsnippet
 
-snippet aeq "assert_eq!" b
+snippet aeq "assert_eq!" w
 assert_eq!(${1:()}, ${2:()});
 endsnippet
 
-snippet ane "assert_ne!" b
+snippet ane "assert_ne!" w
 assert_ne!(${1:()}, ${2:()});
 endsnippet
 
@@ -159,10 +159,10 @@ endsnippet
 # Types
 # ------------------------------------------------------------------------------
 
-snippet Opt "Option<T>" wA
+snippet opt "Option<T>" w
 Option<${1:T}>
 endsnippet
 
-snippet Res "Result<T, U>" wA
+snippet res "Result<T, U>" w
 Result<${1:T}, ${2:U}>
 endsnippet
