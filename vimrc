@@ -162,6 +162,9 @@ noremap  '              `
 nnoremap /              /\v
 nnoremap ?              ?\v
 
+" Fix previous spelling mistake
+inoremap <C-P>          <C-G>u<ESC>[s1z=`]a<C-G>u
+
 nnoremap <C-W>t         :vert term<CR>
 nnoremap <C-W>T         :term<CR>
 
