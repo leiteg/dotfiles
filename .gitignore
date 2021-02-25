@@ -6,6 +6,7 @@ vim/view/*
 vim/plugged/*
 vim/autoload/plug.vim
 vim/.netrwhist
+vim/init.vim
 
 tmux/plugins/*
 tmux/resurrect/*
