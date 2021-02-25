@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'alvan/vim-closetag'             , { 'for': 'html' }
+Plug 'bfrg/vim-cpp-modern'            , { 'for': 'cpp' }
 Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
 Plug 'gregsexton/gitv'                , { 'on': ['Gitv'] }
@@ -37,7 +38,6 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'voldikss/vim-floaterm'
 Plug 'wellle/targets.vim'
-Plug 'bfrg/vim-cpp-modern'          , { 'for': 'cpp' }
 
 " Deactivated {{{
 

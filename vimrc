@@ -9,7 +9,7 @@
 "
 " --------------------------------------------------------------------
 
-" BASIC CONFIG {{{
+" BASIC CONFIG {{{1
 
 " Enable filetype detection
 filetype plugin indent on
@@ -25,17 +25,13 @@ if has('nvim')
   set inccommand=nosplit
 endif
 
-" }}}
-
-" VIM-PLUG {{{
+" VIM-PLUG {{{1
 
 if !empty(glob('~/.vim/autoload/plug.vim')) && !empty(glob('~/.vim/plugins.vim'))
     source ~/.vim/plugins.vim
 endif
 
-" }}}
-
-" EDITOR OPTIONS {{{
+" EDITOR OPTIONS {{{1
 
 " General
 set encoding=utf-8
@@ -103,9 +99,7 @@ if exists("&undodir")
     set undodir=~/.vim/undo
 endif
 
-" }}}
-
-" AUTO COMMANDS {{{
+" AUTO COMMANDS {{{1
 
 " General purpose
 augroup AutoCommands
@@ -139,9 +133,7 @@ augroup TrailingWhitespace
     autocmd BufWinLeave *           call clearmatches()
 augroup END
 
-" }}}
-
-" MAPPINGS {{{
+" MAPPINGS {{{1
 
 inoremap jk             <esc>
 inoremap JK             <esc>
@@ -223,9 +215,7 @@ nnoremap q:             <nop>
 
 command! Config       :tabnew | edit $MYVIMRC | vsplit ~/dotfiles/vim/plugins.vim | wincmd h
 
-" }}}
-
-" ABBREVS {{{
+" ABBREVS {{{1
 
 cnoreabbrev W   w
 cnoreabbrev Wq  wq
@@ -236,9 +226,11 @@ cnoreabbrev Set set
 
 " }}}
 
-" PLUGINS CONFIGURATION {{{
+" PLUGIN CONFIGURATION
+" --------------------------------------------------------------------
 
-" vim-airline/vim-airline {{{
+" vim-airline/vim-airline {{{1
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#tab_min_count = 1
@@ -253,9 +245,9 @@ let g:airline_right_sep = ''
 let g:airline_right_alt_sep = ''
 let g:airline_detect_modified = 1
 let g:airline_detect_paste = 1
-" }}}
 
-" lervag/vimtex {{{
+" lervag/vimtex {{{1
+
 let g:tex_flavor = 'latex'
 let g:vimtex_complete_close_braces = 1
 let g:vimtex_compiler_latexmk = { 'callback': 0, 'build_dir': 'build' }
@@ -265,37 +257,36 @@ if has('mac')
 else
   let g:vimtex_view_method = 'zathura'
 endif
-" }}}
 
-" scroolose/NERDCommenter {{{
+" scroolose/NERDCommenter {{{ 1
+
 let NERDSpaceDelims = 1
-" }}}
 
-" mhinz/vim-signify {{{
+" mhinz/vim-signify {{{1
+
 let g:signify_disable_by_default = 1
 let g:signify_line_highlight = 1
 let g:signify_vcs_list = ['git']
 hi SignColumn      ctermbg=0
-" }}}
 
-" kien/ctrlp {{{
+" kien/ctrlp {{{1
+
 let g:ctrlp_custom_ignore = '\.o$'
-" }}}
 
-" kana/vim-submode {{{
+" kana/vim-submode {{{1
+
 let g:submode_timeout = 0
-" }}}
 
-" SirVer/ultisnips {{{
+" SirVer/ultisnips {{{1
+
 let g:UltiSnipsEditSplit = "vertical"
 let g:UltiSnipsSnippetDirectories = [ "snips" ]
 let g:UltiSnipsExpandTrigger = "<c-l>"
 let g:UltiSnipsListSnippets = "<c-tab>"
 let g:UltiSnipsJumpForwardTrigger = "<c-b>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
-" }}}
 
-" neoclide/coc.nvim {{{
+" neoclide/coc.nvim {{{1
 
 set hidden
 set nobackup
@@ -396,9 +387,7 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 " nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" }}}
-
-" reedes/vim-pencil {{{
+" reedes/vim-pencil {{{1
 
 let g:pencil#autoformat = 1
 let g:pencil#wrapModeDefault = 'hard'
@@ -409,23 +398,21 @@ augroup pencil
     autocmd FileType markdown,rst call pencil#init({'wrap': 'hard', 'textwidth': 80})
 augroup END
 
-" }}}
+" voldikss/vim-floaterm {{{1
 
-" voldikss/vim-floaterm {{{
 nnoremap <leader>t :FloatermToggle<CR>
-" }}}
 
-" justinmk/sneak {{{
+" justinmk/sneak {{{1
+
 let g:sneak#label = 1
-" }}}
 
-" tpope/vim-commentary {{{
+" tpope/vim-commentary {{{1
+
 xmap <leader>c      <Plug>Commentary
 omap <leader>c      <Plug>Commentary
 nmap <leader>c      <Plug>Commentary
 nmap <leader>cg     <Plug>ChangeCommentary
 nmap <leader>cu     <Plug>Commentary<Plug>Commentary
 nmap <leader>cc     <Plug>CommentaryLine
-" }}}
 
 " }}}
