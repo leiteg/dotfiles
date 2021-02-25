@@ -160,9 +160,9 @@ endsnippet
 # ------------------------------------------------------------------------------
 
 snippet opt "Option<T>" w
-Option<${1:T}>
+Option<${1:${VISUAL:T}}>
 endsnippet
 
-snippet res "Result<T, U>" w
-Result<${1:T}, ${2:U}>
+snippet res "Result<T, Error>" w
+Result<${1:${VISUAL:T}}, ${2:Error}>
 endsnippet
