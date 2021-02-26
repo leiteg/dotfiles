@@ -4,10 +4,6 @@ name: main
 root: ~/
 
 windows:
-  - home:
-      layout: main-vertical
-      panes:
-        - taskbook
   - everything:
       root: ~/git/everything/
       layout: main-vertical
