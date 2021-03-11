@@ -1,0 +1,8 @@
+name: work
+root: /scratch/llvm-project
+
+windows:
+  - llvm:
+      root: /scratch/llvm-project
+  - tests:
+      root: /scratch/runtime/tests
