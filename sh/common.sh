@@ -9,26 +9,22 @@
 #
 # --------------------------------------------------------------------
 
-# Aliases
-alias quit="exit"
-alias tb="taskbook"
-alias tm="tmux"
-alias t="tmuxinator"
+# FUNCTIONS {{{1
+# --------------------------------------------------------------------
 
-# Use nvim instead of vim if available
-if command -v nvim &>/dev/null; then
-    alias vim=nvim
-    export EDITOR=nvim
-else
-    export EDITOR=vim
-fi
+# Try to alias the first to the second, if this exists.
+function try_alias {
+    if command -v $2 &>/dev/null; then
+        alias $1=$2
+    fi
+}
 
-# User environment variables
-export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/.local/bin"
-
-# Remove annoyng 'Entering directory' messages from make
-export MAKEFLAGS=--no-print-directory
+# Try to source a file, if it exists.
+function try_source {
+    if [ -f "$1" ]; then
+        source $1
+    fi
+}
 
 # Connect to a server using SSH an automatically attach/create session
 function tsh {
@@ -41,13 +37,48 @@ function tsh {
     fi
 }
 
-# Load OS-specific configs
-if [[ "$(uname)" = "Darwin" ]]; then
-    source ~/dotfiles/sh/macos.sh
+# ALIASES {{{1
+# --------------------------------------------------------------------
+
+alias quit="exit"
+
+try_alias ls    exa
+try_alias cat   bat
+try_alias find  fd
+try_alias vim   nvim
+try_alias grep  rg
+try_alias tb    taskbook
+try_alias tm    tmux
+try_alias t     tmuxinator
+
+# VARIABLES {{{1
+# --------------------------------------------------------------------
+
+# User environment variables
+export PATH="$PATH:$HOME/bin"
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="$HOME/.cargo/bin:$PATH"
+
+# Where the configuration files should live
+export XDG_CONFIG_HOME="$HOME/.config"
+
+# Remove annoyng 'Entering directory' messages from make
+export MAKEFLAGS=--no-print-directory
+
+# Choose default editor
+if command -v nvim &>/dev/null; then
+    export EDITOR=nvim
 else
-    source ~/dotfiles/sh/linux.sh
+    export EDITOR=vim
 fi
 
-if [ -f ~/dotfiles/sh/local.sh ]; then
-    source ~/dotfiles/sh/local.sh
-fi
+# CONFIGURATION {{{1
+# --------------------------------------------------------------------
+
+# Load os-specific config
+try_source ~/dotfiles/sh/$(uname | tr '[:upper:]' '[:lower:]').sh
+
+# Load machine-specific config
+try_source ~/dotfiles/sh/local.sh
+
+# }}}
