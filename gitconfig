@@ -9,6 +9,7 @@
 	interactive = auto
 [alias]
 	ls = log --oneline --graph --all --decorate
+	dog = log --decorate --oneline --graph
 	ld = log --pretty=format:"%C(yellow)%h%Creset\\ %s\\ %C(bold\\ blue)[%an]%Creset\\ %C(red)<%ar>%C(auto)%d"
 	ll = !vim +Gitv
 	st = status
