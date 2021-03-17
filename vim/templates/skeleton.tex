@@ -1,15 +1,13 @@
 \documentclass[12pt,a4paper]{article}
 
-% METADATA {{{
+% METADATA {{{1
 
 % TODO: Update title information
 \title{This is my document title \\ \large This is my document subtitle}
 \author{Gustavo Leite \\ \texttt{gustavo.leite@unesp.br}}
 \date{\today}
 
-% }}}
-
-% PACKAGES {{{
+% PACKAGES {{{1
 
 \usepackage[english]{babel}
 \usepackage[utf8]{inputenc}
@@ -27,9 +25,7 @@
 \usepackage{tikz}
 \usepackage{xcolor}
 
-% }}}
-
-%  DEFINITIONS {{{
+%  DEFINITIONS {{{1
 
 \definecolor{lightblue}{RGB}{41,5,195}
 
@@ -39,9 +35,7 @@
 \newcommand* \NO    {\ding{55}}
 \newcommand* \DOT   {\textbullet}
 
-% }}}
-
-%  CONFIGURATION {{{
+%  CONFIGURATION {{{1
 
 % Bookmarks
 \hypersetup{
@@ -68,12 +62,10 @@
 \maketitle
 
 % ABSTRACT {{{
-
 \begin{abstract}
   % TODO: Write Abstract
   \lipsum[1]
 \end{abstract}
-
 % }}}
 
 \section{Introduction} \label{sec:intro}
@@ -87,14 +79,12 @@
 \lipsum[1-2]
 
 %  BIBLIOGRAPHY {{{
-
 \newpage
 \singlespacing
 
 \nocite{*} % TODO: Remove this line
 \bibliographystyle{plain}
 \bibliography{references}
-
 % }}}
 
 \end{document}
