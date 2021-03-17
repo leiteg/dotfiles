@@ -45,6 +45,14 @@ snippet doc "Doxygen function docstring" b
 ///
 endsnippet
 
+snippet todo "// TODO: message" w
+// TODO: ${1:${VISUAL:implement this!}}
+endsnippet
+
+snippet fixme "// FIXME: message" w
+// FIXME: ${1:${VISUAL:fix this!}}
+endsnippet
+
 # Language
 
 snippet main "int main(int argc, char **argv)" bA
@@ -54,7 +62,7 @@ int main(int argc, char **argv) {
 }
 endsnippet
 
-snippet fun "void function() {}" b
+snippet fn "void function() {}" b
 ${2:void} ${1:name}($3) {
   ${4:${VISUAL}}
 }$0
