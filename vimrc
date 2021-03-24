@@ -157,33 +157,6 @@ inoremap <C-P>          <C-G>u<ESC>[s1z=`]a<C-G>u
 nnoremap <C-W>t         :vert term<CR>
 nnoremap <C-W>T         :term<CR>
 
-" Plugin: junegunn/vim-plug
-nnoremap <leader>pc     :PlugClean<CR>
-nnoremap <leader>pi     :PlugInstall<CR>
-nnoremap <leader>pu     :PlugUpdate<CR>
-
-" Plugin: junegunn/fzf.vim
-nmap <C-P>              :Files<CR>
-nmap g<C-P>             :GFiles<CR>
-nmap <leader>gg         :Commits<CR>
-nmap <leader>gb         :Buffers<CR>
-nmap <leader>gl         :Lines<CR>
-nmap <leader>gL         :BLines<CR>
-nmap <leader>gt         :Tags<CR>
-nmap <leader>gT         :BTags<CR>
-nmap <leader>gh         :History<CR>
-
-" Plugin: junegunn/vim-easy-align
-nmap ga                 <Plug>(EasyAlign)
-xmap ga                 <Plug>(EasyAlign)
-
-" Plugin: tpope/vim-fugitive
-nmap <leader>gs         :Gstatus<CR>
-nmap <leader>gc         :Gcommit<CR>
-
-" Plugin: preservim/nerdtree
-nnoremap <C-Z>          :NERDTreeToggleVCS<CR>
-
 " Disable
 nnoremap <up>           <nop>
 nnoremap <down>         <nop>
@@ -196,26 +169,9 @@ inoremap <right>        <nop>
 nnoremap q/             <nop>
 nnoremap q:             <nop>
 
-" Unused
-" nmap <leader>q      :Colors<CR>
-" nmap <leader>q      :Windows<CR>
-" nmap <leader>q      :Locate<CR>
-" nmap <leader>q      :Snippets<CR>
-" nmap <leader>q      :Marks<CR>
-" nmap <leader>q      :GFiles?<CR>
-" nmap <leader>q      :BCommits<CR>
-" nmap <leader>q      :Commands<CR>
-" nmap <leader>q      :Maps<CR>
-" nmap <leader>q      :Ag<CR>
-" nmap <leader>q      :Rg<CR>
-" nmap <leader>q      :History:<CR>
-" nmap <leader>q      :History/<CR>
-" nmap <leader>q      :Helptags<CR>
-" nmap <leader>q      :Filetypes<CR>
+" COMMANDS {{{1
 
 command! Config       :tabnew | edit $MYVIMRC | vsplit ~/dotfiles/vim/plugins.vim | wincmd h
-
-" ABBREVS {{{1
 
 cnoreabbrev W   w
 cnoreabbrev Wq  wq
@@ -257,10 +213,6 @@ if has('mac')
 else
   let g:vimtex_view_method = 'zathura'
 endif
-
-" scroolose/NERDCommenter {{{ 1
-
-let NERDSpaceDelims = 1
 
 " mhinz/vim-signify {{{1
 
@@ -414,5 +366,57 @@ nmap <leader>c      <Plug>Commentary
 nmap <leader>cg     <Plug>ChangeCommentary
 nmap <leader>cu     <Plug>Commentary<Plug>Commentary
 nmap <leader>cc     <Plug>CommentaryLine
+
+" tpope/vim-fugitive {{{1
+
+nmap <leader>gs         :Gstatus<CR>
+nmap <leader>gc         :Gcommit<CR>
+
+" junegunn/vim-plug {{{1
+
+nnoremap <leader>pc     :PlugClean<CR>
+nnoremap <leader>pi     :PlugInstall<CR>
+nnoremap <leader>pu     :PlugUpdate<CR>
+
+" junegunn/fzf.vim {{{1
+
+nmap <C-P>              :Files<CR>
+nmap g<C-P>             :GFiles<CR>
+nmap <leader>gg         :Commits<CR>
+nmap <leader>gb         :Buffers<CR>
+nmap <leader>gl         :Lines<CR>
+nmap <leader>gL         :BLines<CR>
+nmap <leader>gt         :Tags<CR>
+nmap <leader>gT         :BTags<CR>
+nmap <leader>gh         :History<CR>
+
+" nmap <leader>q      :Colors<CR>
+" nmap <leader>q      :Windows<CR>
+" nmap <leader>q      :Locate<CR>
+" nmap <leader>q      :Snippets<CR>
+" nmap <leader>q      :Marks<CR>
+" nmap <leader>q      :GFiles?<CR>
+" nmap <leader>q      :BCommits<CR>
+" nmap <leader>q      :Commands<CR>
+" nmap <leader>q      :Maps<CR>
+" nmap <leader>q      :Ag<CR>
+" nmap <leader>q      :Rg<CR>
+" nmap <leader>q      :History:<CR>
+" nmap <leader>q      :History/<CR>
+" nmap <leader>q      :Helptags<CR>
+" nmap <leader>q      :Filetypes<CR>
+
+" junegunn/vim-easy-align {{{1
+
+nmap ga                 <Plug>(EasyAlign)
+xmap ga                 <Plug>(EasyAlign)
+
+" preservim/NERDCommenter {{{1
+
+let NERDSpaceDelims = 1
+
+" preservim/NERDTree {{{1
+
+nnoremap <C-Z>          :NERDTreeToggleVCS<CR>
 
 " }}}
