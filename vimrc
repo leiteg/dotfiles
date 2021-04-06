@@ -380,8 +380,8 @@ nnoremap <leader>pu     :PlugUpdate<CR>
 
 " junegunn/fzf.vim {{{1
 
-nmap <C-P>              :Files<CR>
-nmap g<C-P>             :GFiles<CR>
+nmap <C-P>              :GFiles<CR>
+nmap g<C-P>             :Files<CR>
 nmap <leader>gg         :Commits<CR>
 nmap <leader>gb         :Buffers<CR>
 nmap <leader>gl         :Lines<CR>
