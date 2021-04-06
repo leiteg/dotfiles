@@ -62,7 +62,7 @@ impl ${1:T}${2/.+/ for /}${2:U} {
 }
 endsnippet
 
-snippet enum "Enum {}" w
+snippet enum "enum {}" w
 enum ${1:type_name} {
     ${2:EnumValue,}
 }
@@ -145,6 +145,10 @@ endsnippet
 
 snippet p "println!();" w
 println!("${1:\{\}}", $2);
+endsnippet
+
+snippet pe "eprintln!();" w
+eprintln!("${1:\{\}}", $2);
 endsnippet
 
 snippet aeq "assert_eq!" w
