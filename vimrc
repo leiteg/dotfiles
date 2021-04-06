@@ -345,10 +345,10 @@ let g:pencil#autoformat = 1
 let g:pencil#wrapModeDefault = 'hard'
 let g:pencil#textwidth = 80
 
-augroup pencil
-    autocmd!
-    autocmd FileType markdown,rst call pencil#init({'wrap': 'hard', 'textwidth': 80})
-augroup END
+" augroup pencil
+"     autocmd!
+"     autocmd FileType markdown,rst call pencil#init({'wrap': 'hard', 'textwidth': 80})
+" augroup END
 
 " voldikss/vim-floaterm {{{1
 
