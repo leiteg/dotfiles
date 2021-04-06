@@ -2,7 +2,6 @@
     "clangd": {
         "arguments": [
             "-cross-file-rename",
-            "--clang-tidy",
             "--log=verbose"
         ]
     }
