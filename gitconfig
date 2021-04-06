@@ -3,7 +3,20 @@
 	email = gustavoleite.ti@gmail.com
 [core]
 	editor = vim
-	pager = diff-so-fancy | less --tabs=4 -RFX
+	#pager = diff-so-fancy | less --tabs=4 -RFX
+	pager = delta
+[diff]
+	colorMoved = default
+[delta]
+	plus-style = "syntax #012800"
+	minus-style = "syntax #340001"
+	syntax-theme = Dracula
+[delta "decorations"]
+	commit-decoration-style = bold yellow box ul
+	file-style = bold yellow ul
+	file-decoration-style = none
+[interactive]
+	diffFilter = delta --color-only
 [colors]
 	ui = auto
 	interactive = auto
