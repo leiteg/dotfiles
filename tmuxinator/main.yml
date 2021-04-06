@@ -4,10 +4,5 @@ name: main
 root: ~/
 
 windows:
-  - everything:
-      root: ~/git/everything/
-      layout: main-vertical
-      panes:
-        - git ls
-  - dotfiles:
-      root: ~/dotfiles
+  - everything: cd ~/git/everything/
+  - dotfiles:   cd ~/dotfiles
