@@ -8,5 +8,7 @@ windows:
       root: /scratch/llvm-project
   - tests:
       root: /scratch/runtime/tests
-  - task-bench:
-      root: /scratch/task-bench
+  - taskbench:
+      root: /scratch/taskbench
+  - ompcbench:
+      root: /scratch/ompcbench
