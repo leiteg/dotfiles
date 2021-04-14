@@ -37,6 +37,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Vimjas/vim-python-pep8-indent'
 Plug 'voldikss/vim-floaterm'
 Plug 'wellle/targets.vim'
 
