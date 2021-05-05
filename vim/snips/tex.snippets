@@ -135,7 +135,7 @@ snippet b "Bold" w
 \textbf{${1:${VISUAL}}}$0
 endsnippet
 
-snippet t "MOnospaced" w
+snippet t "Monospaced" w
 \texttt{${1:${VISUAL}}}$0
 endsnippet
 
@@ -151,6 +151,10 @@ endsnippet
 priority 20
 snippet '"(.+)"' "Quoted text" wr
 \`\``!p snip.rv = match.group(1)`''$0
+endsnippet
+
+snippet qed "QED" iA
+\QED
 endsnippet
 
 # ------------------------------------------------------------------------------
@@ -180,6 +184,12 @@ snippet ali "Align Math" bA
 \begin{align*}
   ${1:${VISUAL}}
 \end{align*}
+endsnippet
+
+priority 100
+context "math()"
+snippet t "Text" i
+\text{${1:${VISUAL}}}
 endsnippet
 
 context "math()"
@@ -314,7 +324,7 @@ endsnippet
 
 context "math()"
 snippet OO "Empty set" iA
-\O
+\emptyset
 endsnippet
 
 context "math()"
@@ -335,6 +345,26 @@ endsnippet
 context "math()"
 snippet RR "Real numbers" iA
 \R
+endsnippet
+
+context "math()"
+snippet cc "Proper subset" iA
+\subset 
+endsnippet
+
+context "math()"
+snippet c= "Subset" iA
+\subseteq 
+endsnippet
+
+context "math()"
+snippet CC "Proper subset" iA
+\supset 
+endsnippet
+
+context "math()"
+snippet C= "Subset" iA
+\supseteq 
 endsnippet
 
 context "math()"
