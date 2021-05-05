@@ -1,13 +1,11 @@
 # /home/leite/.config/tmuxinator/work.yml
 
 name: work
-root: /scratch/llvm-project
+root: /scratch/llvm
 
 windows:
   - llvm:
-      root: /scratch/llvm-project
-  - tests:
-      root: /scratch/runtime/tests
+      root: /scratch/llvm
   - taskbench:
       root: /scratch/taskbench
   - ompcbench:
