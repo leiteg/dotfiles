@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'alvan/vim-closetag'             , { 'for': 'html' }
+Plug 'APZelos/blamer.nvim'
 Plug 'bfrg/vim-cpp-modern'            , { 'for': 'cpp' }
 Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }

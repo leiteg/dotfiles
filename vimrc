@@ -419,4 +419,7 @@ let NERDSpaceDelims = 1
 
 nnoremap <C-Z>          :NERDTreeToggleVCS<CR>
 
-" }}}
+" APZelos/blamer.nvim {{{1
+
+let g:blamer_enabled = 1
+let g:blamer_delay = 1500
