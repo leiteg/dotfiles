@@ -64,6 +64,11 @@ snippet !sub "Section" bA
 $0
 endsnippet
 
+snippet !ssub "Section" bA
+\subsubsection{${1:Title}} \label{subsubsec:${2:`!p snip.rv = t[1].replace(' ', '-').lower()`}}
+$0
+endsnippet
+
 snippet lorem "Lorem ipsum" bA
 \lipsum[${1:1-2}]$0
 endsnippet
@@ -90,6 +95,26 @@ snippet '([a-zA-Z0-9_-]+)_fig' "Named Figure" rbA
   \includegraphics[width=${2:0.75}\textwidth]{images/`!p snip.rv = match.group(1)`.pdf}
   \caption{${1:`!p snip.rv = match.group(1)`}.}
   \label{fig:`!p snip.rv = match.group(1)`}
+\end{figure}
+endsnippet
+
+snippet !sfig "Side by side Figure" bA
+\begin{figure}[ht]
+  \centering
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/${1:left.pdf}}
+    \caption{$3}
+    \label{fig:`!p snip.rv = t[1].split('.')[0]`}
+  \end{subfigure}%
+  \begin{subfigure}{.5\textwidth}
+    \centering
+    \includegraphics[width=\linewidth]{images/${2:right.pdf}}
+    \caption{$4}
+    \label{fig:`!p snip.rv = t[2].split('.')[0]`}
+  \end{subfigure}
+  \caption{$5}
+  \label{fig:$6}
 \end{figure}
 endsnippet
 
