@@ -35,6 +35,17 @@ function tsh {
     #          `--> Execute the following command and quit.
 }
 
+# Create a reverse tunnel to localhost through some machine
+function create-tunnel {
+    host=${1:=lsc}
+    port=${2:=23440}
+    ssh -f -N -R $port\:localhost:22 $host
+    #    |  |  |
+    #    |  |  `--> Forward a remote port to localhost:22.
+    #    |  `--> Do not execute a remote command.
+    #    `--> Go to background just before command execution.
+}
+
 # ALIASES {{{1
 # --------------------------------------------------------------------
 
