@@ -81,6 +81,12 @@ else
     export EDITOR=vim
 fi
 
+# Use clang as default compiler only if it exists.
+if command -v clang &>/dev/null; then
+    export CC=clang
+    export CXX=clang++
+fi
+
 # CONFIGURATION {{{1
 # --------------------------------------------------------------------
 
