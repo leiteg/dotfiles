@@ -12,9 +12,14 @@
 # FUNCTIONS {{{1
 # --------------------------------------------------------------------
 
+# Check if command exists in the system.
+function command_exists {
+    command -v $1 &>/dev/null
+}
+
 # Create and alias to a command only if it exists.
 function try_alias {
-    if command -v $2 &>/dev/null; then
+    if command_exists $2; then
         alias $1=$2
     fi
 }
@@ -76,14 +81,14 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export MAKEFLAGS=--no-print-directory
 
 # Choose default editor
-if command -v nvim &>/dev/null; then
+if command_exists nvim; then
     export EDITOR=nvim
 else
     export EDITOR=vim
 fi
 
 # Use clang as default compiler only if it exists.
-if command -v clang &>/dev/null; then
+if command_exists clang; then
     export CC=clang
     export CXX=clang++
 fi
