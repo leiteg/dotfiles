@@ -89,5 +89,3 @@ try_source ~/dotfiles/sh/$(uname | tr '[:upper:]' '[:lower:]').sh
 
 # Load machine-specific config
 try_source ~/dotfiles/sh/local.sh
-
-# }}}
