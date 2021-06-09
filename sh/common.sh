@@ -12,14 +12,14 @@
 # FUNCTIONS {{{1
 # --------------------------------------------------------------------
 
-# Try to alias the first to the second, if this exists.
+# Create and alias to a command only if it exists.
 function try_alias {
     if command -v $2 &>/dev/null; then
         alias $1=$2
     fi
 }
 
-# Try to source a file, if it exists.
+# Source a file only if it exists.
 function try_source {
     if [ -f "$1" ]; then
         source $1
@@ -30,7 +30,8 @@ function try_source {
 function tsh {
     host=$1
     session=${2:=main}
-    ssh $host -t "tmux attach -t $session || tmux new -s $session";
+    ssh $host -t "tmux attach -t $session || tmux new -s $session"
+    #          | |<------- attach or create new session -------->|
     #          |
     #          `--> Execute the following command and quit.
 }
