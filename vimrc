@@ -150,6 +150,8 @@ noremap  <space>        za
 noremap  '              `
 nnoremap /              /\v
 nnoremap ?              ?\v
+nnoremap n              nzz
+nnoremap N              Nzz
 
 " Fix previous spelling mistake
 inoremap <C-P>          <C-G>u<ESC>[s1z=`]a<C-G>u
