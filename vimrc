@@ -54,6 +54,7 @@ set listchars=tab:▸\ ,space:·
 set exrc
 set secure
 set timeoutlen=500 ttimeoutlen=0
+set undofile
 
 if !has('nvim')
   set noesckeys
