@@ -36,6 +36,9 @@ define bta
     thread apply all backtrace
 end
 
+# Get offset of field in a struct
+macro define offsetof(t, f) &((t *) 0)->f
+
 # STL utilities {{{1
 # Obtained from: https://sourceware.org/legacy-ml/gdb/2008-02/msg00064.html
 
