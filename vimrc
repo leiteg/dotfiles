@@ -426,3 +426,17 @@ nnoremap <C-Z>          :NERDTreeToggleVCS<CR>
 
 let g:blamer_enabled = 1
 let g:blamer_delay = 1500
+
+" lervag/wiki.vim {{{1
+
+let g:wiki_root = '~/git/everything'
+let g:wiki_filetypes = ['rst', 'md']
+let g:wiki_journal = {
+    \ 'name': 'journal',
+    \ 'frequency': 'monthly',
+    \ 'date_format': {
+    \   'daily' : '%Y-%m-%d',
+    \   'weekly' : '%Y-%V',
+    \   'monthly' : '%Y-%m',
+    \ },
+    \}

@@ -16,6 +16,7 @@ Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-sneak'
 Plug 'KeitaNakamura/tex-conceal.vim'  , { 'for': 'tex' }
 Plug 'lervag/vimtex'
+Plug 'lervag/wiki.vim'
 Plug 'mateusbraga/vim-spell-pt-br'
 Plug 'mattn/emmet-vim'                , { 'for': 'html' }
 Plug 'mzlogin/vim-markdown-toc'       , { 'for': 'markdown' }
