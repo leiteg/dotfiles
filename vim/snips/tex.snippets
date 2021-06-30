@@ -136,6 +136,18 @@ snippet '(\d+)row' "Table row" rbA
 $0`!p snip.rv = (int(match.group(1)) - 1) * ' &' + ' \\\\'`
 endsnippet
 
+snippet !thm "Theorem" bA
+\begin{theorem} \label{thm:$1}
+$0
+\end{theorem}
+endsnippet
+
+snippet !pr "Proof" bA
+\begin{proof}
+$0
+\end{proof}
+endsnippet
+
 # ------------------------------------------------------------------------------
 # INLINE
 # ------------------------------------------------------------------------------
@@ -213,7 +225,7 @@ endsnippet
 
 priority 100
 context "math()"
-snippet t "Text" i
+snippet t "Text" w
 \text{${1:${VISUAL}}}
 endsnippet
 
@@ -393,6 +405,21 @@ snippet C= "Subset" iA
 endsnippet
 
 context "math()"
+snippet UU "Union" iA
+\cup 
+endsnippet
+
+context "math()"
+snippet II "Intersection" iA
+\cap 
+endsnippet
+
+context "math()"
+snippet set "Set" w
+\\{${1:${VISUAL}}\\}
+endsnippet
+
+context "math()"
 snippet lr "Left and right parens" iA
 \left( ${1:${VISUAL}} \right)
 endsnippet
@@ -400,7 +427,7 @@ endsnippet
 priority 10
 context "math()"
 snippet "vec" "Vector" riA
-\vec{$1}
+\vec{${1:${VISUAL}}}
 endsnippet
 
 priority 100
@@ -412,7 +439,7 @@ endsnippet
 priority 10
 context "math()"
 snippet "bar" "Bar" riA
-\overline{$1}
+\overline{${1:${VISUAL}}}
 endsnippet
 
 priority 100
@@ -424,7 +451,7 @@ endsnippet
 priority 10
 context "math()"
 snippet "hat" "Hat" riA
-\hat{$1}
+\hat{${1:${VISUAL}}}
 endsnippet
 
 priority 100

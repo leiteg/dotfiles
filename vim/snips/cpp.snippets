@@ -1,3 +1,4 @@
+priority -1
 extends c
 
 global !p
@@ -6,6 +7,12 @@ def get_ns_comment(t):
     return "// {}".format("anonymous namespace" if not t else f"namespace {t}")
 
 endglobal
+
+priority 1
+
+snippet inc "#include <>" bA
+#include <${1:iostream}>$0
+endsnippet
 
 snippet ns "namespace foo {}" b
 namespace${1/.+/ /}${1:foo} {
