@@ -35,9 +35,10 @@ function try_source {
 function tsh {
     host=$1
     session=${2:=main}
-    ssh $host -t "tmux attach -t $session || tmux new -s $session"
-    #          | |<------- attach or create new session -------->|
-    #          |
+    ssh $host -t "tmux new -A -s $session"
+    #          |            |  |
+    #          |            |  `--> Session name.
+    #          |            `--> Attach if already exists.
     #          `--> Execute the following command and quit.
 }
 
