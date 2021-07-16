@@ -105,7 +105,7 @@ endif
 " General purpose
 augroup AutoCommands
     autocmd!
-    autocmd QuickFixCmdPost *             :copen
+    autocmd QuickFixCmdPost *             :cwindow
     autocmd BufWritePost .vimrc,vimrc     :source %
 
     " Jump to last location when opening a file
