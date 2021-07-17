@@ -64,6 +64,14 @@ function dlvideo {
     #           `--> Quiet mode
 }
 
+# Convert dot file to PDF and open in viewer
+function dotshow {
+    if [ ! -f "$1" ]; then
+        echo "Error: could not open file '$1'" >&2 ; return
+    fi
+    dot -Tpdf $1 | zathura - & disown
+}
+
 # ALIASES {{{1
 # --------------------------------------------------------------------
 
