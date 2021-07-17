@@ -53,6 +53,17 @@ function create-tunnel {
     #    `--> Go to background just before command execution.
 }
 
+# Download video from URL in the clipboard.
+function dlvideo {
+    file=${1:-video.mp4}
+    url=${2:-$(xsel -ob)}
+    youtube-dl -q -o - $url | ffmpeg -i pipe: -async 1 $file
+    #           |  |                  |
+    #           |  |                  `--> Read from stdin
+    #           |  `--> Output to stdout
+    #           `--> Quiet mode
+}
+
 # ALIASES {{{1
 # --------------------------------------------------------------------
 
