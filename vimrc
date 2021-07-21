@@ -431,6 +431,8 @@ nnoremap <C-Z>          :NERDTreeToggleVCS<CR>
 
 let g:blamer_enabled = 1
 let g:blamer_delay = 1500
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_relative_time = 1
 
 " lervag/wiki.vim {{{1
 
