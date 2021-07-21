@@ -100,6 +100,11 @@ if exists("&undodir")
     set undodir=~/.vim/undo
 endif
 
+if executable('rg')
+  " Use ripgrep instead of grep for searching
+  set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+endif
+
 " AUTO COMMANDS {{{1
 
 " General purpose
