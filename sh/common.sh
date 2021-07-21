@@ -113,6 +113,10 @@ if command_exists clang; then
     export CXX=clang++
 fi
 
+if command_exists bat; then
+    export BAT_THEME="Dracula"
+fi
+
 # CONFIGURATION {{{1
 # --------------------------------------------------------------------
 
