@@ -72,6 +72,11 @@ function dotshow {
     dot -Tpdf $1 | zathura - & disown
 }
 
+# Activate Python virtualenv
+function activate {
+    source venv/bin/activate
+}
+
 # ALIASES {{{1
 # --------------------------------------------------------------------
 
