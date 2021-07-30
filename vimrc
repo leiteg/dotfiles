@@ -107,10 +107,17 @@ endif
 
 " AUTO COMMANDS {{{1
 
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
 " General purpose
 augroup AutoCommands
     autocmd!
+
+    " Open quickfix window after command only if there was errors/matches
     autocmd QuickFixCmdPost *             :cwindow
+
+    " Automatically reload vimrc on save
     autocmd BufWritePost .vimrc,vimrc     :source %
 
     " Jump to last location when opening a file
@@ -119,51 +126,55 @@ augroup AutoCommands
         \ |   exe "normal! g`\""
         \ | endif
 
-augroup END
+    " Skeleton files
+    autocmd BufNewFile *.*
+          \ silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e").'
+          \ | normal Gddgg'
 
-" Skeleton files
-augroup Templates
-    autocmd!
-    autocmd BufNewFile *.*          silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e").' | normal Gddgg'
-augroup END
-
-highlight ExtraWhitespace ctermbg=red guibg=red
-match ExtraWhitespace /\s\+$/
-
-" Highligh trailing whitespace
-augroup TrailingWhitespace
-    autocmd!
+    " Highligh trailing whitespace
     autocmd BufWinEnter *           match ExtraWhitespace /\s\+$/
     autocmd InsertEnter *           match ExtraWhitespace /\s\+\%#\@<!$/
     autocmd InsertLeave *           match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave *           call clearmatches()
+
 augroup END
 
 " MAPPINGS {{{1
 
+" Escape
 inoremap jk             <esc>
 inoremap JK             <esc>
 inoremap Jk             <esc>
-vnoremap J              :m '>+1<CR>gv
-vnoremap K              :m '<-2<CR>gv
+
+" Line movement
+vnoremap <C-J>          :m '>+1<CR>gv=gv
+vnoremap <C-K>          :m '<-2<CR>gv=gv
+inoremap <C-J>          <esc>:m .+1<CR>==a
+inoremap <C-K>          <esc>:m .-2<CR>==a
+
+" Indentation
 vnoremap >              >gv
 vnoremap <              <gv
+
+" Buffer movement
 nnoremap <tab>          :bnext<CR>
 nnoremap <s-tab>        :bprevious<CR>
-nnoremap <leader>sr     :%s/\<<C-R><C-W>\>/
-noremap  <F5>           :setlocal spell!<CR>
-noremap  <space>        za
-noremap  '              `
+
+" Search
 nnoremap /              /\v
 nnoremap ?              ?\v
-nnoremap n              nzz
-nnoremap N              Nzz
+nnoremap n              nzzzv
+nnoremap N              Nzzzv
 
-" Fix previous spelling mistake
+" Miscellaneous
 inoremap <C-P>          <C-G>u<ESC>[s1z=`]a<C-G>u
-
+nnoremap <leader>sr     :%s/\<<C-R><C-W>\>/
 nnoremap <C-W>t         :vert term<CR>
 nnoremap <C-W>T         :term<CR>
+nnoremap Y              y$
+ noremap <F5>           :setlocal spell!<CR>
+ noremap <space>        za
+ noremap '              `
 
 " Disable
 nnoremap <up>           <nop>
