@@ -37,6 +37,7 @@
 	whatadded = log --follow --diff-filter=A
 	preview = !git commit -am \"--- squash ---\" && git push
 	fixup = commit --fixup=HEAD
+	overview = "!git log --oneline --reverse main..$1 #"
 [push]
 	default = matching
 [merge]
