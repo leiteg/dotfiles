@@ -66,10 +66,13 @@ function dlvideo {
 
 # Convert dot file to PDF and open in viewer
 function dotshow {
-    if [ ! -f "$1" ]; then
-        echo "Error: could not open file '$1'" >&2 ; return
-    fi
-    dot -Tpdf $1 | zathura - & disown
+    for file in "$@"; do
+        if [[ ! -f $file ]]; then
+            echo "Error: no such file: '$file'" >&2
+            continue
+        fi
+        dot -Tpdf $file | zathura - & disown
+    done
 }
 
 # Activate Python virtualenv
