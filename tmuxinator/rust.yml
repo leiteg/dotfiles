@@ -1,0 +1,7 @@
+# /home/leite/.config/tmuxinator/rust.yml
+
+name: rust
+root: /scratch/rust
+
+windows:
+  - development:
