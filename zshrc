@@ -25,6 +25,8 @@ source $ZSH/oh-my-zsh.sh
 zstyle ':completion:*:*:vim:*:*files' \
     ignored-patterns '*.o' '*.aux' '*.bbl' '*.blg' '*.fdb_latexmk' '*.fls' '*.synctex.gz' '*.log' '*.pdf'
 
+unsetopt autocd
+
 # Load common settings
 [ -f ~/dotfiles/sh/common.sh ] && source ~/dotfiles/sh/common.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
