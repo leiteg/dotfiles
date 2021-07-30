@@ -6,6 +6,8 @@ highlight Conceal ctermbg=none
 nnoremap <buffer> K         gwap
 nnoremap <buffer> <C-T>     :call vimtex#fzf#run('itc')<cr>
 
+call SetupBreakUndoOnPunctuation()
+
 " KeitaNakamura/tex-conceal.vim {{{
 let g:tex_conceal='abdmg'
 " }}}

@@ -177,6 +177,19 @@ inoremap <right>        <nop>
 nnoremap q/             <nop>
 nnoremap q:             <nop>
 
+" Break undo sequence on punctuation.
+"
+" It is not desirable to have these mappings globally, therefore they are
+" defined in a function that can be called by specific ftplugins.
+"
+" See: :h CTRL-G_u
+function! SetupBreakUndoOnPunctuation()
+    inoremap ,  ,<C-G>u
+    inoremap .  .<C-G>u
+    inoremap !  !<C-G>u
+    inoremap ?  ?<C-G>u
+endfunction
+
 " COMMANDS {{{1
 
 command! Config       :tabnew | edit $MYVIMRC | vsplit ~/dotfiles/vim/plugins.vim | wincmd h
