@@ -1,4 +1,37 @@
+global !p
+import os
+def package():
+    return os.getcwd().split(os.path.sep)[-1]
+endglobal
+
 snippet def "def function():" b
 def ${1:fname}(`!p snip.rv = "self, " if snip.indent else ""`$2):
     ${0:${VISUAL:pass}}
+endsnippet
+
+snippet !setup "Python setuptools template" bA
+#!/usr/bin/env python
+
+from setuptools import setup, find_packages
+
+import `!p snip.rv = package()`
+
+with open('README.md', 'r', 'utf-8') as f:
+    README = f.read()
+
+setup(
+    name="`!p snip.rv = package()`",
+    version=`!p snip.rv = package()`.__version__,
+    description='',
+    long_description=README,
+    license='',
+    author='',
+    author_email='',
+    packages=find_packages('.'),
+    entry_points={
+        'console_scripts': [
+            '`!p snip.rv = package()`=`!p snip.rv = package()`.__main__:main',
+        ]
+    }
+)
 endsnippet
