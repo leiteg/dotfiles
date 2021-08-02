@@ -3,7 +3,6 @@
 	email = gustavoleite.ti@gmail.com
 [core]
 	editor = vim
-	#pager = diff-so-fancy | less --tabs=4 -RFX
 	pager = delta
 [diff]
 	colorMoved = default
@@ -21,23 +20,25 @@
 	ui = auto
 	interactive = auto
 [alias]
-	ls = log --oneline --graph --all --decorate
-	dog = log --decorate --oneline --graph
-	ld = log --pretty=format:"%C(yellow)%h%Creset\\ %s\\ %C(bold\\ blue)[%an]%Creset\\ %C(red)<%ar>%C(auto)%d"
-	ll = !vim +Gitv
-	st = status
-	ss = status --short
-	df = diff
-	stat = diff --stat
-	review = diff --staged
-	word = diff --word-diff
-	fuck = commit --amend --no-edit
-	oops = !git fuck && git push -f
-	ignore = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
-	whatadded = log --follow --diff-filter=A
-	preview = !git commit -am \"--- squash ---\" && git push
-	fixup = commit --fixup=HEAD
+	# DIFF {{{1
+	d        = diff
+	r        = diff --staged
+	ds       = diff --stat
+	wd       = diff --word-diff
+	review   = diff --staged
+	# STATUS {{{1
+	st       = status
+	ss       = status --short
+	# LOG {{{1
+	ls       = log --oneline --graph --all --decorate
+	added    = log --follow --diff-filter=A
 	overview = "!git log --oneline --reverse main..$1 #"
+	# COMMIT & PUSH {{{1
+	fuck     = commit --amend --no-edit
+	oops     = !git fuck && git push -f
+	ignore   = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
+	preview  = !git commit -am \"--- squash ---\" && git push
+	# }}}
 [push]
 	default = matching
 [merge]
