@@ -122,6 +122,13 @@ export XDG_CONFIG_HOME="$HOME/.config"
 # Remove annoyng 'Entering directory' messages from make
 export MAKEFLAGS=--no-print-directory
 
+# Less default options
+# * F: quit if output occupies less than one screen
+# * I: ignore case on searches
+# * R: raw control chars, preseves color
+# * X: do not clear screen on exit
+export LESS="-FIRX"
+
 # Choose default editor
 if command_exists nvim; then
     export EDITOR=nvim
