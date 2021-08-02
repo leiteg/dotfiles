@@ -42,6 +42,20 @@ function tsh {
     #          `--> Execute the following command and quit.
 }
 
+# Setup tmux sessions using tmuxinator
+function tsetup {
+    for project in $HOME/dotfiles/tmuxinator/*.yml; do
+        tmuxinator start --no-attach $(basename $project .yml)
+        #          [>-<] [>-------<]
+        #            |        |
+        #            |        `--> Do not attach automatically.
+        #            `--> Start new tmux session from config file.
+    done
+    tmux attach -t main
+    #            |
+    #            `-> Target session.
+}
+
 # Create a reverse tunnel to localhost through some machine
 function create-tunnel {
     host=${1:=lsc}
