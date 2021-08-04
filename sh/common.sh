@@ -1,16 +1,15 @@
-# --------------------------------------------------------------------
-#                                                           __
-#        _________  ____ ___  ____ ___  ____  ____    _____/ /_
-#       / ___/ __ \/ __ `__ \/ __ `__ \/ __ \/ __ \  / ___/ __ \
-#      / /__/ /_/ / / / / / / / / / / / /_/ / / / / (__  ) / / /
-#      \___/\____/_/ /_/ /_/_/ /_/ /_/\____/_/ /_(_)____/_/ /_/
+# ------------------------------------------------------------------------------
+#                                                                __
+#             _________  ____ ___  ____ ___  ____  ____    _____/ /_
+#            / ___/ __ \/ __ `__ \/ __ `__ \/ __ \/ __ \  / ___/ __ \
+#           / /__/ /_/ / / / / / / / / / / / /_/ / / / / (__  ) / / /
+#           \___/\____/_/ /_/ /_/_/ /_/ /_/\____/_/ /_(_)____/_/ /_/
 #
-#             Gustavo Leite <gustavoleite.ti@gmail.com>
+#                  Gustavo Leite <gustavoleite.ti@gmail.com>
 #
-# --------------------------------------------------------------------
+# ------------------------------------------------------------------------------
 
-# FUNCTIONS {{{1
-# --------------------------------------------------------------------
+# FUNCTIONS --------------------------------------------------------------- {{{1
 
 # Check if command exists in the system.
 function command_exists {
@@ -73,9 +72,9 @@ function dlvideo {
     url=${2:-$(xsel -ob)}
     youtube-dl -q -o - $url | ffmpeg -i pipe: -async 1 $file
     #           |  |                  |
-    #           |  |                  `--> Read from stdin
-    #           |  `--> Output to stdout
-    #           `--> Quiet mode
+    #           |  |                  `--> Read video stream from stdin.
+    #           |  `--> Output video stream to stdout.
+    #           `--> Run in quiet mod.
 }
 
 # Convert dot file to PDF and open in viewer
@@ -94,8 +93,7 @@ function activate {
     source venv/bin/activate
 }
 
-# ALIASES {{{1
-# --------------------------------------------------------------------
+# ALIASES ----------------------------------------------------------------- {{{1
 
 alias quit="exit"
 
@@ -108,8 +106,7 @@ try_alias tb    taskbook
 try_alias tm    tmux
 try_alias t     tmuxinator
 
-# VARIABLES {{{1
-# --------------------------------------------------------------------
+# VARIABLES --------------------------------------------------------------- {{{1
 
 # User environment variables
 export PATH="$PATH:$HOME/bin"
@@ -146,11 +143,9 @@ if command_exists bat; then
     export BAT_THEME="Dracula"
 fi
 
-# CONFIGURATION {{{1
-# --------------------------------------------------------------------
+# CONFIGURATION ----------------------------------------------------------- {{{1
 
 # Load os-specific config
 try_source ~/dotfiles/sh/$(uname | tr '[:upper:]' '[:lower:]').sh
-
 # Load machine-specific config
 try_source ~/dotfiles/sh/local.sh
