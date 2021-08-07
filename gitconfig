@@ -1,3 +1,15 @@
+# ------------------------------------------------------------------------------
+#                            _ __                   _____
+#                     ____ _(_) /__________  ____  / __(_)___ _
+#                    / __ `/ / __/ ___/ __ \/ __ \/ /_/ / __ `/
+#                   / /_/ / / /_/ /__/ /_/ / / / / __/ / /_/ /
+#                   \__, /_/\__/\___/\____/_/ /_/_/ /_/\__, /
+#                  /____/                             /____/
+#
+#                   Gustavo Leite <gustavoleite.ti@gmail.com>
+#
+# ------------------------------------------------------------------------------
+
 [user]
 	name = Gustavo Leite
 	email = gustavoleite.ti@gmail.com
@@ -20,25 +32,24 @@
 	ui = auto
 	interactive = auto
 [alias]
-	# DIFF {{{1
+	# DIFF ------------------------------------------------------------
 	d        = diff
 	r        = diff --staged
 	ds       = diff --stat
 	wd       = diff --word-diff
 	review   = diff --staged
-	# STATUS {{{1
+	# STATUS ----------------------------------------------------------
 	st       = status
 	ss       = status --short
-	# LOG {{{1
+	# LOG -------------------------------------------------------------
 	ls       = log --oneline --graph --all --decorate
 	added    = log --follow --diff-filter=A
 	overview = "!git log --oneline --reverse main..$1 #"
-	# COMMIT & PUSH {{{1
+	# COMMIT & PUSH ---------------------------------------------------
 	fuck     = commit --amend --no-edit
 	oops     = !git fuck && git push -f
 	ignore   = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
-	preview  = !git commit -am \"--- squash ---\" && git push
-	# }}}
+	preview  = !git commit -am \"squash!\" && git push
 [push]
 	default = matching
 [merge]
