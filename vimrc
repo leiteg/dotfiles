@@ -18,7 +18,7 @@ filetype plugin indent on
 syntax on
 
 " Set leader character
-let mapleader = ","
+let mapleader = " "
 
 " Set neovim specific config
 if has('nvim')
@@ -36,25 +36,15 @@ endif
 " General
 set encoding=utf-8
 set nocompatible
-set title
-set hlsearch incsearch
-set ignorecase smartcase
-set ruler
 set showcmd
 set showmatch
 set history=200
-set autoread
-set autowrite
-set gdefault
 set laststatus=2
 set backspace=indent,eol,start
-set nofoldenable
 set clipboard=unnamedplus
-set listchars=tab:▸\ ,space:·
-set exrc
-set secure
+set autoread autowrite
 set timeoutlen=500 ttimeoutlen=0
-set undofile
+set exrc secure
 
 if !has('nvim')
   set noesckeys
@@ -66,7 +56,6 @@ set background=dark
 set t_Co=256
 set t_ZH=[3m
 set t_ZR=[23m
-
 if has('termguicolors')
     set termguicolors
 endif
@@ -76,7 +65,7 @@ set splitbelow splitright
 
 " Indent
 set expandtab autoindent smartindent
-set softtabstop=4 shiftwidth=4
+set tabstop=4 softtabstop=4 shiftwidth=4
 
 " Wrapping
 set nowrap textwidth=80
@@ -84,6 +73,9 @@ set nowrap textwidth=80
 " Appearence
 set cursorline colorcolumn=+1
 set number relativenumber
+set listchars=tab:▸\ ,space:·
+set ruler
+set title
 
 " Folds
 set foldenable foldmethod=marker
@@ -93,15 +85,15 @@ if has('nvim-0.3.2') || has("patch-8.1.0360")
     set diffopt=filler,internal,algorithm:histogram,indent-heuristic
 endif
 
-" Directories
-set backupdir=~/.vim/backups
-set directory=~/.vim/swaps
-if exists("&undodir")
-    set undodir=~/.vim/undo
-endif
+" History
+set nobackup    backupdir=~/.vim/backups
+set   swapfile  directory=~/.vim/swaps
+set   undofile  undodir=~/.vim/undo
 
+" Search/global/substitute
+set hlsearch incsearch gdefault
+set ignorecase smartcase
 if executable('rg')
-  " Use ripgrep instead of grep for searching
   set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 endif
 
@@ -147,18 +139,24 @@ inoremap JK             <esc>
 inoremap Jk             <esc>
 
 " Line movement
-vnoremap <C-J>          :m '>+1<CR>gv=gv
-vnoremap <C-K>          :m '<-2<CR>gv=gv
-inoremap <C-J>          <esc>:m .+1<CR>==a
-inoremap <C-K>          <esc>:m .-2<CR>==a
+vnoremap <silent> <C-J>          :m '>+1<CR>gv=gv
+vnoremap <silent> <C-K>          :m '<-2<CR>gv=gv
+inoremap <silent> <C-J>          <esc>:m .+1<CR>==a
+inoremap <silent> <C-K>          <esc>:m .-2<CR>==a
+
+" Window movement
+nnoremap <silent> <leader>h      :wincmd h<CR>
+nnoremap <silent> <leader>j      :wincmd j<CR>
+nnoremap <silent> <leader>k      :wincmd k<CR>
+nnoremap <silent> <leader>l      :wincmd l<CR>
+
+" Buffer movement
+nnoremap <silent> <tab>          :bnext<CR>
+nnoremap <silent> <s-tab>        :bprevious<CR>
 
 " Indentation
 vnoremap >              >gv
 vnoremap <              <gv
-
-" Buffer movement
-nnoremap <tab>          :bnext<CR>
-nnoremap <s-tab>        :bprevious<CR>
 
 " Search
 nnoremap /              /\v
@@ -169,11 +167,9 @@ nnoremap N              Nzzzv
 " Miscellaneous
 inoremap <C-P>          <C-G>u<ESC>[s1z=`]a<C-G>u
 nnoremap <leader>sr     :%s/\<<C-R><C-W>\>/
-nnoremap <C-W>t         :vert term<CR>
-nnoremap <C-W>T         :term<CR>
 nnoremap Y              y$
  noremap <F5>           :setlocal spell!<CR>
- noremap <space>        za
+ noremap ,              za
  noremap '              `
 
 " Disable
@@ -187,6 +183,7 @@ inoremap <left>         <nop>
 inoremap <right>        <nop>
 nnoremap q/             <nop>
 nnoremap q:             <nop>
+nnoremap <space>        <nop>
 
 " Break undo sequence on punctuation.
 "
@@ -245,21 +242,6 @@ if has('mac')
 else
   let g:vimtex_view_method = 'zathura'
 endif
-
-" mhinz/vim-signify {{{1
-
-let g:signify_disable_by_default = 1
-let g:signify_line_highlight = 1
-let g:signify_vcs_list = ['git']
-hi SignColumn      ctermbg=0
-
-" kien/ctrlp {{{1
-
-let g:ctrlp_custom_ignore = '\.o$'
-
-" kana/vim-submode {{{1
-
-let g:submode_timeout = 0
 
 " SirVer/ultisnips {{{1
 
@@ -382,10 +364,6 @@ let g:pencil#textwidth = 80
 "     autocmd FileType markdown,rst call pencil#init({'wrap': 'hard', 'textwidth': 80})
 " augroup END
 
-" voldikss/vim-floaterm {{{1
-
-nnoremap <leader>t :FloatermToggle<CR>
-
 " justinmk/sneak {{{1
 
 let g:sneak#label = 1
@@ -401,8 +379,11 @@ nmap <leader>cc     <Plug>CommentaryLine
 
 " tpope/vim-fugitive {{{1
 
-nmap <leader>gs         :Gstatus<CR>
-nmap <leader>gc         :Gcommit<CR>
+nmap <silent> <leader>gs         :Git<CR>
+nmap <silent> <leader>gc         :Git commit<CR>
+nmap <silent> <leader>ls         :Git log<CR>
+nmap <silent> <leader>gr         :Git review<CR>
+nmap <silent> <leader>gd         :Git diff<CR>
 
 " junegunn/vim-plug {{{1
 
@@ -416,12 +397,12 @@ nmap <C-P>              :GFiles<CR>
 nmap g<C-P>             :Files<CR>
 nmap <leader>gg         :Commits<CR>
 nmap <leader>gb         :Buffers<CR>
-nmap <leader>gl         :Lines<CR>
-nmap <leader>gL         :BLines<CR>
 nmap <leader>gt         :Tags<CR>
 nmap <leader>gT         :BTags<CR>
-nmap <leader>gh         :History<CR>
-
+"
+" nmap <leader>gh         :History<CR>
+" nmap <leader>gl         :Lines<CR>
+" nmap <leader>gL         :BLines<CR>
 " nmap <leader>q      :Colors<CR>
 " nmap <leader>q      :Windows<CR>
 " nmap <leader>q      :Locate<CR>
@@ -442,10 +423,6 @@ nmap <leader>gh         :History<CR>
 
 nmap ga                 <Plug>(EasyAlign)
 xmap ga                 <Plug>(EasyAlign)
-
-" preservim/NERDCommenter {{{1
-
-let NERDSpaceDelims = 1
 
 " preservim/NERDTree {{{1
 

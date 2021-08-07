@@ -41,7 +41,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Vimjas/vim-python-pep8-indent'
-Plug 'voldikss/vim-floaterm'
 Plug 'wellle/targets.vim'
 
 " EXPERIMENTING {{{1
@@ -53,6 +52,7 @@ Plug 'pineapplegiant/spaceduck'     , { 'branch': 'main' }
 " Plug 'airblade/vim-rooter'
 " Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
 " Plug 'scrooloose/nerdcommenter'
+" Plug 'voldikss/vim-floaterm'
 
 " }}}
 
