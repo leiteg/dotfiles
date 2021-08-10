@@ -129,6 +129,9 @@ augroup AutoCommands
     autocmd InsertLeave *           match ExtraWhitespace /\s\+$/
     autocmd BufWinLeave *           call clearmatches()
 
+    " Rebalance tmux splits on window resize
+    autocmd VimResized  *           :wincmd =
+
 augroup END
 
 " MAPPINGS {{{1
