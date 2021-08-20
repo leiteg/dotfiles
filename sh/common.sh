@@ -93,6 +93,16 @@ function activate {
     source venv/bin/activate
 }
 
+# Display Clang AST for a file
+function clang-ast-dump {
+    clang++ -Xclang -ast-dump -fsyntax-only $@
+    #       [<--->] [<----->] [<--------->]
+    #          |        |           |
+    #          |        |           `--> Stop after obtaining AST.
+    #          |        `--> Dump AST to stdout.
+    #          `--> Pass options to the compiler front-end.
+}
+
 # ALIASES ----------------------------------------------------------------- {{{1
 
 alias quit="exit"
