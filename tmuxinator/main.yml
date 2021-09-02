@@ -4,5 +4,5 @@ name: main
 root: ~/
 
 windows:
-  - everything: cd ~/git/everything/
   - dotfiles:   cd ~/dotfiles
+  - everything: cd ~/git/everything/
