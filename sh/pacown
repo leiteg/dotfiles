@@ -1,3 +1,0 @@
-#!/bin/bash
-
-which $1 | xargs pacman -Qqo | xargs pacman -Qi

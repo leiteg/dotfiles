@@ -103,6 +103,15 @@ function clang-ast-dump {
     #          `--> Pass options to the compiler front-end.
 }
 
+# Show which package owns an executable
+function pacown {
+    which $1 | xargs pacman -Qqo | xargs pacman -Qi
+    #                ~~~~~~~~~~~         ~~~~~~~~~~
+    #                     |                   |
+    #                     |                   `-> Get the package information.
+    #                     `-> Get the name of the package.
+}
+
 # ALIASES ----------------------------------------------------------------- {{{1
 
 alias quit="exit"
