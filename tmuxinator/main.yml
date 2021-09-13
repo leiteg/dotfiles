@@ -6,3 +6,4 @@ root: ~/
 windows:
   - dotfiles:   cd ~/dotfiles
   - everything: cd ~/git/everything/
+  - blog:       cd ~/git/blog/
