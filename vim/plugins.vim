@@ -3,6 +3,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'alvan/vim-closetag'             , { 'for': 'html' }
 Plug 'APZelos/blamer.nvim'
 Plug 'bfrg/vim-cpp-modern'            , { 'for': 'cpp' }
+Plug 'cespare/vim-toml'
 Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
 Plug 'gregsexton/gitv'                , { 'on': ['Gitv'] }
