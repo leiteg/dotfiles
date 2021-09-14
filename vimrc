@@ -328,6 +328,7 @@ nmap <leader>a  <Plug>(coc-codeaction-selected)
 
 nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>fa  <Plug>(coc-format)
 
 xmap if <Plug>(coc-funcobj-i)
 omap if <Plug>(coc-funcobj-i)
