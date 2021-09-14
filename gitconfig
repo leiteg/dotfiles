@@ -39,13 +39,14 @@
 	wd       = diff --word-diff
 	review   = diff --staged
 	# STATUS ----------------------------------------------------------
+	s        = status --short
 	st       = status
-	ss       = status --short
 	# LOG -------------------------------------------------------------
 	ls       = log --oneline --graph --all --decorate
 	added    = log --follow --diff-filter=A
 	overview = "!git log --oneline --reverse main..$1 #"
 	# COMMIT & PUSH ---------------------------------------------------
+	c		 = commit
 	fuck     = commit --amend --no-edit
 	oops     = !git fuck && git push -f
 	ignore   = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
