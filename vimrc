@@ -134,6 +134,17 @@ augroup AutoCommands
 
 augroup END
 
+" FUNCTIONS {{{1
+
+" Print the current filename joined with the current line and yank the result to
+" the clipboard.
+function! GetSource()
+  let @+=join([expand('%:p'), line('.')], ':')
+  echo "Copied: " . @+
+endfunction
+
+nnoremap <silent> <leader>ss    :call GetSource()<CR>
+
 " MAPPINGS {{{1
 
 " Escape
