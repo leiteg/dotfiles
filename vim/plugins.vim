@@ -9,7 +9,6 @@ Plug 'ellisonleao/glow.nvim'          , { 'branch': 'main' }
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
 Plug 'gregsexton/gitv'                , { 'on': ['Gitv'] }
 Plug 'jiangmiao/auto-pairs'
-Plug 'jremmen/vim-ripgrep'
 Plug 'junegunn/fzf'                   , { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'              , { 'on': ['Goyo'] }
@@ -17,6 +16,7 @@ Plug 'junegunn/gv.vim'                , { 'on': ['GV'] }
 Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-sneak'
 Plug 'KeitaNakamura/tex-conceal.vim'  , { 'for': 'tex' }
+Plug 'lamchau/vim-ripgrep'            , { 'branch': 'patch-1' }
 Plug 'lervag/vimtex'
 Plug 'lervag/wiki.vim'
 Plug 'mateusbraga/vim-spell-pt-br'
