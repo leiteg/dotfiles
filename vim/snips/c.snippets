@@ -29,6 +29,18 @@ ${0:${VISUAL}}
 #endif /* $1 */
 endsnippet
 
+snippet ifdef "#ifdef" bA
+#ifdef ${1:MACRO}
+${2:${VISUAL}}
+#endif /* $1 */
+endsnippet
+
+snippet ifndef "#ifndef" bA
+#ifndef ${1:MACRO}
+${2:${VISUAL}}
+#endif /* $1 */
+endsnippet
+
 # Documentation
 
 snippet hdr "Doxygen file header docstring" b
