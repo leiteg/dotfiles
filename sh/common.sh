@@ -106,18 +106,18 @@ function clang-ast-dump {
 # Show which package owns an executable
 function pacown {
     which $1 | xargs pacman -Qqo | xargs pacman -Qi
-    #                ━━━━━┯━━━━━         ━━━━━━━━━━
-    #                     │                   │
-    #                     │                   ╰──⮞ (Q)uery, (i)nfo.
+    #                ━━━━━┯━━━━━         ━━━━┯━━━━━
+    #                     │                  │
+    #                     │                  ╰──⮞ (Q)uery, (i)nfo.
     #                     ╰──⮞ (Q)uery, (q)uiet, (o)wns.
 }
 
 # List explicitly installed packages and pipe through FZF
 function pacls {
-    pacman -Qqe | fzf -m --preview='cat <(pacman -Qi {+})'
-    #       ━┯━        │           ━━━━━━━━━━━┯━━━━━━━━━━━
-    #        │         │                      │
-    #        │         │                      ╰──⮞ Content of preview window.
+    pacman -Qqe | fzf -m --preview='pacman -Qi {+}'
+    #       ━┯━        │           ━━━━━━━┯━━━━━━━━
+    #        │         │                  │
+    #        │         │                  ╰──⮞ Content of preview window.
     #        │         ╰──⮞ Multi line selection.
     #        ╰──⮞ (Q)uery, (q)uiet, (e)xplicit.
 }
