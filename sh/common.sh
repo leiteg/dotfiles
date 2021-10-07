@@ -149,11 +149,11 @@ export XDG_CONFIG_HOME="$HOME/.config"
 export MAKEFLAGS=--no-print-directory
 
 # Less default options
-# * F: quit if output occupies less than one screen
-# * I: ignore case on searches
-# * R: raw control chars, preseves color
-# * X: do not clear screen on exit
 export LESS="-FIRX"
+#             │││╰──⮞ Do not clear screen on exit.
+#             ││╰───⮞ Raw control characters, preservers color.
+#             │╰────⮞ Ignore case on searches.
+#             ╰─────⮞ Quit if output occupies less than one screen.
 
 # Choose default editor
 if command_exists nvim; then
