@@ -112,6 +112,16 @@ function pacown {
     #                     ╰──⮞ (Q)uery, (q)uiet, (o)wns.
 }
 
+# List explicitly installed packages and pipe through FZF
+function pacls {
+    pacman -Qqe | fzf -m --preview='cat <(pacman -Qi {+})'
+    #       ━┯━        │           ━━━━━━━━━━━┯━━━━━━━━━━━
+    #        │         │                      │
+    #        │         │                      ╰──⮞ Content of preview window.
+    #        │         ╰──⮞ Multi line selection.
+    #        ╰──⮞ (Q)uery, (q)uiet, (e)xplicit.
+}
+
 # ALIASES ----------------------------------------------------------------- {{{1
 
 alias quit="exit"
