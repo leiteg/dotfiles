@@ -35,24 +35,24 @@ function tsh {
     host=$1
     session=${2:=main}
     ssh $host -t "tmux new -A -s $session"
-    #          |            |  |
-    #          |            |  `--> Session name.
-    #          |            `--> Attach if already exists.
-    #          `--> Execute the following command and quit.
+    #          │            │  │
+    #          │            │  ╰──⮞ Session name.
+    #          │            ╰──⮞ Attach if already exists.
+    #          ╰──⮞ Execute the following command and quit.
 }
 
 # Setup tmux sessions using tmuxinator
 function tsetup {
     for project in $HOME/dotfiles/tmuxinator/*.yml; do
         tmuxinator start --no-attach $(basename $project .yml)
-        #          [>-<] [>-------<]
-        #            |        |
-        #            |        `--> Do not attach automatically.
-        #            `--> Start new tmux session from config file.
+        #          ━━┯━━ ━━━━━┯━━━━━
+        #            │        │
+        #            │        ╰──⮞ Do not attach automatically.
+        #            ╰──⮞ Start new tmux session from config file.
     done
     tmux attach -t main
-    #            |
-    #            `-> Target session.
+    #            │
+    #            ╰──⮞ Target session.
 }
 
 # Create a reverse tunnel to localhost through some machine
@@ -60,10 +60,10 @@ function create-tunnel {
     host=${1:=lsc}
     port=${2:=23440}
     ssh -f -N -R $port\:localhost:22 $host
-    #    |  |  |
-    #    |  |  `--> Forward a remote port to localhost:22.
-    #    |  `--> Do not execute a remote command.
-    #    `--> Go to background just before command execution.
+    #    │  │  │
+    #    │  │  ╰──⮞ Forward a remote port to localhost:22.
+    #    │  ╰──⮞ Do not execute a remote command.
+    #    ╰──⮞ Go to background just before command execution.
 }
 
 # Download video from URL in the clipboard.
@@ -71,10 +71,10 @@ function dlvideo {
     file=${1:-video.mp4}
     url=${2:-$(xsel -ob)}
     youtube-dl -q -o - $url | ffmpeg -i pipe: -async 1 $file
-    #           |  |                  |
-    #           |  |                  `--> Read video stream from stdin.
-    #           |  `--> Output video stream to stdout.
-    #           `--> Run in quiet mod.
+    #           │  ━┯━                │
+    #           │   │                 ╰──⮞ Read video stream from stdin.
+    #           │   ╰──⮞ Output video stream to stdout.
+    #           ╰──⮞ Run in quiet mod.
 }
 
 # Convert dot file to PDF and open in viewer
@@ -96,20 +96,20 @@ function activate {
 # Display Clang AST for a file
 function clang-ast-dump {
     clang++ -Xclang -ast-dump -fsyntax-only $@
-    #       [<--->] [<----->] [<--------->]
-    #          |        |           |
-    #          |        |           `--> Stop after obtaining AST.
-    #          |        `--> Dump AST to stdout.
-    #          `--> Pass options to the compiler front-end.
+    #       ━━━┯━━━ ━━━━┯━━━━ ━━━━━━┯━━━━━━
+    #          │        │           │
+    #          │        │           ╰──⮞ Stop after obtaining AST.
+    #          │        ╰──⮞ Dump AST to stdout.
+    #          ╰──⮞ Pass options to the compiler front-end.
 }
 
 # Show which package owns an executable
 function pacown {
     which $1 | xargs pacman -Qqo | xargs pacman -Qi
-    #                ~~~~~~~~~~~         ~~~~~~~~~~
-    #                     |                   |
-    #                     |                   `-> Get the package information.
-    #                     `-> Get the name of the package.
+    #                ━━━━━┯━━━━━         ━━━━━━━━━━
+    #                     │                   │
+    #                     │                   ╰──⮞ (Q)uery, (i)nfo.
+    #                     ╰──⮞ (Q)uery, (q)uiet, (o)wns.
 }
 
 # ALIASES ----------------------------------------------------------------- {{{1
