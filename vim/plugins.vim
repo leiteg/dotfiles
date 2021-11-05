@@ -7,7 +7,6 @@ Plug 'cespare/vim-toml'
 Plug 'dracula/vim'                    , { 'as': 'dracula.vim' }
 Plug 'ellisonleao/glow.nvim'          , { 'branch': 'main' }
 Plug 'google/yapf'                    , { 'for': 'python', 'rtp': 'plugins/vim' }
-Plug 'gregsexton/gitv'                , { 'on': ['Gitv'] }
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/fzf'                   , { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
@@ -26,9 +25,7 @@ Plug 'neoclide/coc.nvim'              , { 'branch': 'release' }
 Plug 'petrushka/vim-opencl'           , { 'for': 'opencl' }
 Plug 'reedes/vim-pencil'
 Plug 'rhysd/committia.vim'
-Plug 'rhysd/git-messenger.vim'
 Plug 'rust-lang/rust.vim'             , { 'for': 'rust' }
-Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 Plug 'sirver/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-endwise'
@@ -56,6 +53,9 @@ Plug 'pineapplegiant/spaceduck'     , { 'branch': 'main' }
 " Plug 'klen/python-mode'               , { 'for': 'python', 'branch': 'develop' }
 " Plug 'scrooloose/nerdcommenter'
 " Plug 'voldikss/vim-floaterm'
+" Plug 'rhysd/git-messenger.vim'
+" Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
+" Plug 'gregsexton/gitv'                , { 'on': ['Gitv'] }
 
 " }}}
 
