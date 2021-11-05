@@ -14,6 +14,8 @@
 # Check if command exists in the system.
 function command_exists {
     command -v $1 &>/dev/null
+    #        │
+    #        ╰──⮞ Echo a string with the pathname that will be used.
 }
 
 # Create and alias to a command only if it exists.
@@ -80,7 +82,7 @@ function dlvideo {
 # Convert dot file to PDF and open in viewer
 function dotshow {
     for file in "$@"; do
-        if [[ ! -f $file ]]; then
+        if [[ ! -f "$file" ]]; then
             echo "Error: no such file: '$file'" >&2
             continue
         fi
