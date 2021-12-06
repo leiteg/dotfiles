@@ -86,9 +86,9 @@ if has('nvim-0.3.2') || has("patch-8.1.0360")
 endif
 
 " History
-set nobackup    backupdir=~/.vim/backups
-set   swapfile  directory=~/.vim/swaps
-set   undofile  undodir=~/.vim/undo
+set nobackup backupdir=~/.vim/backups
+set swapfile directory=~/.vim/swaps
+set undofile   undodir=~/.vim/undo
 
 " Search/global/substitute
 set hlsearch incsearch gdefault
