@@ -394,7 +394,7 @@ nmap <leader>cc     <Plug>CommentaryLine
 
 " tpope/vim-fugitive {{{1
 
-nmap <silent> <leader>gs         :Git<CR>
+nmap <silent> <leader><leader>   :Git<CR>
 nmap <silent> <leader>gc         :Git commit<CR>
 nmap <silent> <leader>ls         :Git log<CR>
 nmap <silent> <leader>gr         :Git review<CR>
