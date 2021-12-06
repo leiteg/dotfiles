@@ -48,9 +48,9 @@ Host lightsail
 # LSC Cluster (Unicamp) --------------------------------------------------------
 
 Host lsc
-    User        gustavo.leite
-    Hostname    ssh.lsc.ic.unicamp.br
-    Port        6868
+    User            gustavo.leite
+    Hostname        ssh.lsc.ic.unicamp.br
+    Port            6868
 
 Host n16
     User        gustavo.leite
