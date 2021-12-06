@@ -73,7 +73,7 @@ set nowrap textwidth=80
 " Appearence
 set cursorline colorcolumn=+1
 set number relativenumber
-set listchars=tab:▸\ ,space:·
+set listchars=tab:▸\ ,space:·,eol:¶
 set ruler
 set title
 
