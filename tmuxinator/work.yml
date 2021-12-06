@@ -10,3 +10,7 @@ windows:
       root: /scratch/taskbench
   - ompcbench:
       root: /scratch/ompcbench
+      layout: main-vertical
+      panes:
+        - source venv/bin/activate
+        - source venv/bin/activate && vim
