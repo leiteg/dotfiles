@@ -30,3 +30,9 @@ unsetopt autocd
 # Load common settings
 [ -f ~/dotfiles/sh/common.sh ] && source ~/dotfiles/sh/common.sh
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Ctrl-P opens FZF file browser and pipes to editor.
+bindkey -s "^P" "rg --files | fzf --multi --preview=\"bat --color=always {}\" | xargs -o $EDITOR^M"
+#        │   │
+#        │   ╰──⮞ Binding Ctrl-P to the command in the next string.
+#        ╰──⮞ Bind in-string to out-string (see zshzle(1))
