@@ -107,7 +107,7 @@ function clang-ast-dump {
 
 # Show which package owns an executable
 function pacown {
-    which $1 | xargs pacman -Qqo | xargs pacman -Qi
+    which $@ | xargs pacman -Qqo | xargs pacman -Qi
     #                ━━━━━┯━━━━━         ━━━━┯━━━━━
     #                     │                  │
     #                     │                  ╰──⮞ (Q)uery, (i)nfo.
