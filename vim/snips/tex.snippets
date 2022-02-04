@@ -194,6 +194,10 @@ snippet qed "QED" iA
 \QED
 endsnippet
 
+snippet !todo "TODO comment" iA
+% TODO: $0
+endsnippet
+
 # ------------------------------------------------------------------------------
 # MATH
 # ------------------------------------------------------------------------------
@@ -221,6 +225,12 @@ snippet ali "Align Math" bA
 \begin{align*}
   ${1:${VISUAL}}
 \end{align*}
+endsnippet
+
+snippet eq "Equation Math" bA
+\begin{equation}
+  ${1:${VISUAL}}
+\end{equation}
 endsnippet
 
 priority 100
