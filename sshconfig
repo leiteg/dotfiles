@@ -110,3 +110,7 @@ Host sdumont
 Host sdumont11
     User        gustavo.leite
     ProxyJump   sdumont
+
+Host sdumont17
+    User        gustavo.leite
+    ProxyJump   sdumont
