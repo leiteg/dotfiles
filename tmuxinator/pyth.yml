@@ -1,7 +1,0 @@
-# /home/leite/.config/tmuxinator/pyth.yml
-
-name: pyth
-root: ~/git/python
-
-windows:
-  - development:
