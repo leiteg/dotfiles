@@ -195,8 +195,6 @@ inoremap <up>           <nop>
 inoremap <down>         <nop>
 inoremap <left>         <nop>
 inoremap <right>        <nop>
-nnoremap q/             <nop>
-nnoremap q:             <nop>
 nnoremap <space>        <nop>
 
 " Break undo sequence on punctuation.
