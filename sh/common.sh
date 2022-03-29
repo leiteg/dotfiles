@@ -92,7 +92,18 @@ function dotshow {
 
 # Activate Python virtualenv
 function activate {
-    source venv/bin/activate
+    # Directories to attempt
+    directories=("$1" "venv" ".venv")
+
+    for directory in ${directories[@]}; do
+        if [ -d "$directory" ]; then
+            source "$directory/bin/activate"
+            return $?
+        fi
+    done
+
+    echo "Error: no virtualenv found in the current directory." >&2
+    return 1
 }
 
 # Display Clang AST for a file
