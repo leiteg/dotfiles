@@ -432,6 +432,21 @@ nmap <leader>gT         :BTags<CR>
 " nmap <leader>q      :Helptags<CR>
 " nmap <leader>q      :Filetypes<CR>
 
+" Source: https://github.com/junegunn/fzf.vim/issues/185#issuecomment-322120216
+function! s:build_quickfix_list(lines)
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
 " junegunn/vim-easy-align {{{1
 
 nmap ga                 <Plug>(EasyAlign)
