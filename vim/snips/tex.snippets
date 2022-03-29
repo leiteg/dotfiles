@@ -148,6 +148,16 @@ $0
 \end{proof}
 endsnippet
 
+snippet '!(\w+):c' "Code snippet" rbA
+\begin{listing}
+  \begin{minted}{`!p snip.rv = match.group(1)`}
+    ${2:print("Hello World!")}
+  \end{minted}
+  \caption{${1:TODO}}
+  \label{code:${3:`!p snip.rv = t[1].replace(' ', '-').split('.')[0]`}}
+\end{listing}
+endsnippet
+
 # ------------------------------------------------------------------------------
 # INLINE
 # ------------------------------------------------------------------------------
