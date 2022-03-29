@@ -5,7 +5,7 @@ root: /scratch
 
 windows:
   - research:
-      root: /scratch/phd/research
+      root: /scratch/research
   - llvm:
       root: /scratch/llvm
   - taskbench:
