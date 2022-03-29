@@ -15,7 +15,6 @@ Plug 'junegunn/gv.vim'                , { 'on': ['GV'] }
 Plug 'junegunn/vim-easy-align'
 Plug 'justinmk/vim-sneak'
 Plug 'KeitaNakamura/tex-conceal.vim'  , { 'for': 'tex' }
-Plug 'lamchau/vim-ripgrep'            , { 'branch': 'patch-1' }
 Plug 'lervag/vimtex'
 Plug 'lervag/wiki.vim'
 Plug 'mateusbraga/vim-spell-pt-br'
@@ -46,6 +45,7 @@ Plug 'wellle/targets.vim'
 " EXPERIMENTING {{{1
 
 Plug 'pineapplegiant/spaceduck'     , { 'branch': 'main' }
+Plug 'jesseleite/vim-agriculture'
 
 " INACTIVE {{{1
 
@@ -56,6 +56,7 @@ Plug 'pineapplegiant/spaceduck'     , { 'branch': 'main' }
 " Plug 'rhysd/git-messenger.vim'
 " Plug 'scrooloose/nerdtree'            , { 'on': ['NERDTreeToggleVCS'] }
 " Plug 'gregsexton/gitv'                , { 'on': ['Gitv'] }
+" Plug 'lamchau/vim-ripgrep'            , { 'branch': 'patch-1' }
 
 " }}}
 
