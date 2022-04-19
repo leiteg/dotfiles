@@ -127,11 +127,11 @@ function pacown {
 
 # List explicitly installed packages and pipe through FZF
 function pacls {
-    pacman -Qqe | fzf -m --preview='pacman -Qi {+}'
-    #       ━┯━        │           ━━━━━━━┯━━━━━━━━
-    #        │         │                  │
-    #        │         │                  ╰──⮞ Content of preview window.
-    #        │         ╰──⮞ Multi line selection.
+    pacman -Qq $1 | fzf -m --preview='pacman -Qi {+}'
+    #       ━┯━          │           ━━━━━━━┯━━━━━━━━
+    #        │           │                  │
+    #        │           │                  ╰──⮞ Content of preview window.
+    #        │           ╰──⮞ Multi line selection.
     #        ╰──⮞ (Q)uery, (q)uiet, (e)xplicit.
 }
 
