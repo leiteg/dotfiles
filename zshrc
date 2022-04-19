@@ -29,7 +29,6 @@ unsetopt autocd
 
 # Load common settings
 [ -f ~/dotfiles/sh/common.sh ] && source ~/dotfiles/sh/common.sh
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # List files with ripgrep, search with FZF and open with editor
 function rg_fzf_vim() {

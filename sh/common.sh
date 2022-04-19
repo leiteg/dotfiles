@@ -185,9 +185,15 @@ if command_exists bat; then
     export BAT_THEME="Dracula"
 fi
 
+export SHELL_NAME="${SHELL##*/}"
+
 # CONFIGURATION ----------------------------------------------------------- {{{1
 
 # Load os-specific config
 try_source ~/dotfiles/sh/$(uname | tr '[:upper:]' '[:lower:]').sh
 # Load machine-specific config
 try_source ~/dotfiles/sh/local.sh
+
+# FZF --------------------------------------------------------------------- {{{2
+
+[ -f "$HOME/.fzf.$SHELL_NAME" ] && source "$HOME/.fzf.$SHELL_NAME"

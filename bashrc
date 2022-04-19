@@ -130,4 +130,3 @@ fi
 # ------------------------------------------------------------------------------
 
 [ -f ~/dotfiles/sh/common.sh ] && source ~/dotfiles/sh/common.sh
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
