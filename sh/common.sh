@@ -204,3 +204,17 @@ if command_exists zoxide; then
     eval "$(zoxide init "$SHELL_NAME")"
     alias cd="z"
 fi
+
+# PYENV ------------------------------------------------------------------- {{{2
+
+if [[ -d "$HOME/.pyenv" ]];  then
+
+    export PYENV_ROOT="$HOME/.pyenv"
+    export PYENV_PYTHON="$PYENV_ROOT/shims/python"
+    export PATH="$PYENV_ROOT/bin:$PATH"
+
+    eval "$(pyenv init -)"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+
+fi
