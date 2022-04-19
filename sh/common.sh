@@ -197,3 +197,10 @@ try_source ~/dotfiles/sh/local.sh
 # FZF --------------------------------------------------------------------- {{{2
 
 [ -f "$HOME/.fzf.$SHELL_NAME" ] && source "$HOME/.fzf.$SHELL_NAME"
+
+# ZOXIDE ------------------------------------------------------------------ {{{2
+
+if command_exists zoxide; then
+    eval "$(zoxide init "$SHELL_NAME")"
+    alias cd="z"
+fi
