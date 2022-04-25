@@ -47,6 +47,7 @@ Plug 'wellle/targets.vim'
 
 Plug 'pineapplegiant/spaceduck'     , { 'branch': 'main' }
 Plug 'jesseleite/vim-agriculture'
+Plug 'rhysd/conflict-marker.vim'
 
 " INACTIVE {{{1
 
