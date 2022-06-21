@@ -45,7 +45,7 @@
 	# LOG -------------------------------------------------------------
 	ls       = log --oneline --graph --all --decorate
 	added    = log --follow --diff-filter=A
-	overview = "!git log --oneline --reverse main..$1 #"
+	overview = "!git log --oneline --no-decorate --reverse main..$1 #"
 	# COMMIT & PUSH ---------------------------------------------------
 	c		 = commit
 	fuck     = commit --amend --no-edit
