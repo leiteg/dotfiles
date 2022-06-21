@@ -4,9 +4,81 @@ def package():
     return os.getcwd().split(os.path.sep)[-1]
 endglobal
 
-snippet def "def function():" b
-def ${1:fname}(`!p snip.rv = "self, " if snip.indent else ""`$2):
+# IDIOMS ------------------------------------------------------------------ {{{1
+
+snippet #! "Shebang" b
+#!/usr/bin/env python
+endsnippet
+
+snippet !main "__main__" bA
+if __name__ == "__main__":
     ${0:${VISUAL:pass}}
+endsnippet
+
+snippet !impl "raise NotImplementedError()" bA
+# TODO: Implement this function!
+raise NotImplementedError($1)
+endsnippet
+
+snippet !doc "Docstring" bA
+"""${1:${VISUAL}}"""
+endsnippet
+
+# FUNCTIONS & METHODS ----------------------------------------------------- {{{1
+
+snippet def "Function" b
+def ${1:name}(`!p snip.rv = "self" if snip.indent else ""`$2):
+    ${0:${VISUAL:raise NotImplementedError()}}
+endsnippet
+
+snippet sdef "Static method" b
+@staticmethod
+def ${1:name}($2):
+    ${0:${VISUAL:raise NotImplementedError()}}
+endsnippet
+
+snippet adef "Abstract method" b
+@abstractmethod
+def ${1:name}(self$2):
+    pass
+endsnippet
+
+snippet pdef "Property" b
+@property
+def ${1:name}(self):
+    ${0:${VISUAL:return None}}
+endsnippet
+
+snippet mdef "Magic method" b
+def __${1:name}__(self$2):
+    ${0:${VISUAL:raise NotImplementedError()}}
+endsnippet
+
+snippet idef "Init method" b
+def __init__(self):
+    ${0:pass}
+endsnippet
+
+# CLASSES ----------------------------------------------------------------- {{{1
+
+snippet class "Class" b
+class ${1:Name}:
+    """${2:TODO: Missing documentation.}"""
+
+    def __init__(self):
+        ${0:pass}
+endsnippet
+
+snippet dclass "Dataclass" b
+@dataclass
+class ${1:Name}:
+    ${2:member}: ${3:None}
+endsnippet
+
+# MISCELLANEOUS ----------------------------------------------------------- {{{1
+
+snippet _ "__something__" w
+__${1:main}__
 endsnippet
 
 snippet !setup "Python setuptools template" bA
