@@ -52,6 +52,8 @@
 	oops     = !git fuck && git push -f
 	ignore   = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
 	preview  = !git commit -am \"squash!\" && git push
+	# REBASE ----------------------------------------------------------
+	ri       = rebase --interactive
 [push]
 	default = matching
 [merge]
