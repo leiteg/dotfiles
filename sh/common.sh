@@ -141,7 +141,6 @@ alias quit="exit"
 
 try_alias ls    exa
 try_alias cat   bat
-try_alias find  fd
 try_alias vim   nvim
 try_alias grep  rg
 try_alias tb    taskbook
