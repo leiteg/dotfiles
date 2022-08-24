@@ -35,12 +35,19 @@ function try_source {
 # Connect to a server using SSH an automatically attach/create session
 function tsh {
     host=$1
-    session=${2:=main}
-    ssh $host -t "tmux new -A -s $session"
-    #          │            │  │
-    #          │            │  ╰──⮞ Session name.
-    #          │            ╰──⮞ Attach if already exists.
-    #          ╰──⮞ Execute the following command and quit.
+    session=${2:-main}
+
+    # Sanitization
+    [[ -z "$1" ]] && echo "usage: tsh <host> [<session>]" >&2 && return
+    [[ -n "$2" ]] && flags="-t $session"
+
+    # Connect with ssh and spins tmux
+    ssh $host -t "tmux attach $flags || tmux new -s $session"
+    #             ━━━━━━━━┯━━━━━━━━━    ━━━━━━━━━━┯━━━━━━━━━
+    #                    (1)                     (2)
+    #
+    # (1) Attach to a session if it exists (or attach to last session if emtpy).
+    # (2) If attach fails, create a new session.
 }
 
 # Setup tmux sessions using tmuxinator
