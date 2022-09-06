@@ -207,8 +207,7 @@ try_source ~/dotfiles/sh/local.sh
 # ZOXIDE ------------------------------------------------------------------ {{{2
 
 if command_exists zoxide; then
-    eval "$(zoxide init "$SHELL_NAME")"
-    alias cd="z"
+    eval "$(zoxide init --cmd "cd" "$SHELL_NAME")"
 fi
 
 # PYENV ------------------------------------------------------------------- {{{2
