@@ -8,6 +8,12 @@ vim/autoload/plug.vim
 vim/.netrwhist
 vim/init.vim
 
+nvim/local/backups/*
+nvim/local/undo/*
+nvim/local/swaps/*
+nvim/pack/packer
+nvim/plugin
+
 tmux/plugins/*
 tmux/resurrect/*
 
