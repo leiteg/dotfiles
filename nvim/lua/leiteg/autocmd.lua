@@ -59,7 +59,8 @@ vim.cmd [[
 augroup FileTemplates
     autocmd!
     autocmd BufNewFile *.*
-          \ silent! execute '0r ~/.config/nvim/templates/skeleton.'.expand("<afile>:e").' | normal Gddgg'
+          \ silent! execute '0r ~/.config/nvim/templates/skeleton.'.expand("<afile>:e").' 
+          \ | normal Gddgg'
 augroup END
 ]]
 
