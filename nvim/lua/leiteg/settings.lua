@@ -21,6 +21,7 @@ set.timeoutlen = 500
 set.ttimeoutlen = 0
 set.exrc = true
 set.secure = true
+set.mouse = nil
 
 -- Colorscheme
 set.background = 'dark'
