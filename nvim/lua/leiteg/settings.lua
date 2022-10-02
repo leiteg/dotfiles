@@ -80,3 +80,6 @@ set.completeopt = 'menu,menuone,noselect'
 
 -- Leader
 g.mapleader = ' '
+
+-- Python
+g.python3_host_prog = '/usr/bin/python'
