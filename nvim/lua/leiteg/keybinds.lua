@@ -45,6 +45,7 @@ nmap('<leader>l', '<cmd>wincmd l<CR>')
 vmap('>', '>gv')
 vmap('<', '<gv')
 vmap('Y', 'y$')
+nmap('g<C-V>', '`[v`]')
 
 -- Complex
 vim.cmd [[
