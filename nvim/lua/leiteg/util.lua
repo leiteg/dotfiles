@@ -9,30 +9,49 @@
 
 local M = {}
 
+local default_opts = {
+    silent = true,
+}
+
 -- KEYBIND ---------------------------------------------------------------- {{{1
 
 -- General mapping
 M.map = function(key, cmd, opts)
+    if opts == nil then
+        opts = default_opts
+    end
     vim.keymap.set('', key, cmd, opts)
 end
 
 -- Normal mode mapping
 M.nmap = function(key, cmd, opts)
+    if opts == nil then
+        opts = default_opts
+    end
     vim.keymap.set('n', key, cmd, opts)
 end
 
 -- Insert mode mapping
 M.imap = function(key, cmd, opts)
+    if opts == nil then
+        opts = default_opts
+    end
     vim.keymap.set('i', key, cmd, opts)
 end
 
 -- Visual and select mode mapping
 M.vmap = function(key, cmd, opts)
+    if opts == nil then
+        opts = default_opts
+    end
     vim.keymap.set('v', key, cmd, opts)
 end
 
 -- Visual-only mode mapping
 M.xmap = function(key, cmd, opts)
+    if opts == nil then
+        opts = default_opts
+    end
     vim.keymap.set('x', key, cmd, opts)
 end
 
