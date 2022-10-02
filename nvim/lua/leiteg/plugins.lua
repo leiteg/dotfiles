@@ -305,6 +305,20 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- File browser
+    use {
+        'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons'
+        },
+        config = function()
+            require('nvim-tree').setup()
+            local map_ = vim.keymap.set
+            map_('n', '<Leader>z', '<cmd>NvimTreeToggle<CR>', {silent=true, noremap=true})
+        end
+    }
+
+
     -- LANGUAGE SPECIFIC -------------------------------------------------- {{{1
 
     -- Several language packs
