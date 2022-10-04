@@ -300,6 +300,10 @@ return require('packer').startup(function(use)
                     diary_header = "Journal",
                     auto_tags = 1,
                     auto_diary_index = 1,
+                    nested_syntaxes = {
+                        python = 'python',
+                        ['c++'] = 'cpp',
+                    }
                 }
             }
         end
