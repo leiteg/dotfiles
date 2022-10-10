@@ -160,7 +160,7 @@ return require('packer').startup(function(use)
             map_('n', '<C-P>',      '<cmd>GFiles<CR>',  {silent = true})
             map_('n', 'g<C-P>',     '<cmd>Files<CR>',   {silent = true})
             map_('n', '<Leader>gg', '<cmd>Commits<CR>', {silent = true})
-            map_('n', '<Leader>gb', '<cmd>Buffers<CR>', {silent = true})
+            map_('n', '<Leader>jk', '<cmd>Buffers<CR>', {silent = true})
             map_('n', '<Leader>gt', '<cmd>Tags<CR>',    {silent = true})
             map_('n', '<Leader>gT', '<cmd>BTags<CR>',   {silent = true})
             vim.env.FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
