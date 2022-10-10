@@ -194,13 +194,14 @@ return require('packer').startup(function(use)
                 local opts = { silent = true, noremap = true, buffer = bufnr }
 
                 -- Mappings (TODO: add more mappings)
-                map('n', 'gd',         vim.lsp.buf.definition,    opts)
-                map('n', 'gD',         vim.lsp.buf.declaration,   opts)
-                map('n', 'gr',         vim.lsp.buf.references,    opts)
-                map('n', 'K',          vim.lsp.buf.hover,         opts)
-                map('n', '<Leader>f',  vim.lsp.buf.formatting,    opts)
-                map('n', '<Leader>rn', vim.lsp.buf.rename,        opts)
-                map('n', '<Leader>e',  vim.diagnostic.open_float, opts)
+                map('n', 'gd',         vim.lsp.buf.definition,              opts)
+                map('n', 'gD',         vim.lsp.buf.declaration,             opts)
+                map('n', 'gr',         vim.lsp.buf.references,              opts)
+                map('n', 'K',          vim.lsp.buf.hover,                   opts)
+                map('n', '<Leader>f',  vim.lsp.buf.formatting,              opts)
+                map('n', '<Leader>rn', vim.lsp.buf.rename,                  opts)
+                map('n', '<Leader>e',  vim.diagnostic.open_float,           opts)
+                map('n', '<Leader>sh', '<cmd>ClangdSwitchSourceHeader<CR>', opts)
             end
 
             local lspconfig = require 'lspconfig'
