@@ -41,6 +41,10 @@ nmap('<leader>j', '<cmd>wincmd j<CR>')
 nmap('<leader>k', '<cmd>wincmd k<CR>')
 nmap('<leader>l', '<cmd>wincmd l<CR>')
 
+-- Splits
+nmap('<C-W>_', '<cmd> new | GFiles<CR>')
+nmap('<C-W>|', '<cmd>vnew | GFiles<CR>')
+
 -- Editing
 vmap('>', '>gv')
 vmap('<', '<gv')
