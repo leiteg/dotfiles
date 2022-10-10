@@ -6,7 +6,17 @@
 #                                                 /_/   /_/                     
 # ==============================================================================
 
-snippet lorem
+global !p
+from datetime import date
+
+def journal_title(fname):
+	"""
+	Generate title string for a journal entry.
+	"""
+	return date.fromisoformat(fname.rstrip(".wiki")).strftime('%Y-%m-%d: %A')
+endglobal
+
+snippet lorem "Lorem ipsum" b
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id fermentum
 magna, nec gravida ipsum. Morbi et sapien massa. Curabitur rutrum tristique
 gravida. Maecenas aliquam neque eget risus consectetur ultricies. Suspendisse
@@ -14,34 +24,39 @@ congue feugiat vulputate. Vivamus lacinia consectetur nulla, eget lobortis
 felis faucibus vel.
 endsnippet
 
-snippet journal
-= `!v expand("%:t:r")` =
+snippet journal "Journal entry" b
+= `!p snip.rv = journal_title(snip.fn)` =
+
+== Reminders ==
+
+${1:%% Reminders from the previous day}
+
+== Journal ==
+
+${2:%% Journal for the current day}
 
 == Tasks ==
 
-- [ ] Anki
-- [ ] Meditate
-- [ ] Read
-- [ ] Gym
+- [ ] Habits
+	- [ ] Flashcards
+	- [ ] Meditation
+	- [ ] Gym
+	- [ ] Reading
+- [ ] Chores$3
+- [ ] Meetings$4
+- [ ] Research$5
 endsnippet
 
-snippet paper
+snippet paper "Paper review entry" b
 = `!v expand("%:t:r")` =
 
-| Title        | ${1} |
-| Authors      |   |
-| Conference   |   |
-| Publish Date |   |
-| Review Date  |   |
-| DOI          |   |
-
-== Assessment ==
-
-| Category      |   |
-| Context       |   |
-| Correctness   |   |
-| Contributions |   |
-| Clarity       |   |
+| Title        | $1 |
+| Authors      |    |
+| Conference   |    |
+| Publish Date |    |
+| Review Date  |    |
+| DOI          |    |
+| Link         |    |
 
 == Contributions ==
 
@@ -59,17 +74,13 @@ gravida. Maecenas aliquam neque eget risus consectetur ultricies. Suspendisse
 congue feugiat vulputate. Vivamus lacinia consectetur nulla, eget lobortis
 felis faucibus vel.
 
-== Conclusion ==
+== Insights ==
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id fermentum
-magna, nec gravida ipsum. Morbi et sapien massa. Curabitur rutrum tristique
-gravida. Maecenas aliquam neque eget risus consectetur ultricies. Suspendisse
-congue feugiat vulputate. Vivamus lacinia consectetur nulla, eget lobortis
-felis faucibus vel.
+1. Insight #1
 
 == Questions ==
 
-* Question
+1. Question #1
 
 == Reference ==
 
