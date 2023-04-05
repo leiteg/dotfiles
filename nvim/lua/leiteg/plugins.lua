@@ -295,6 +295,7 @@ return require('packer').startup(function(use)
             vim.g.vimwiki_folding = 'expr'
             vim.g.vimwiki_list = {
                 {
+                    template_path = vim.fn.stdpath("data") .. "site/pack/packer/start/vimwiki/autoload/",
                     path = "~/life",
                     links_space_char = '-',
                     diary_rel_path = 'journal/',
@@ -396,6 +397,7 @@ return require('packer').startup(function(use)
     -- use { 'nvim-telescope/telescope.nvim' }
     -- use { 'numtostr/navigator.nvim' }
     -- use { 'rcarriga/nvim-notify' }
+    -- use { 'gelguy/wilder.nvim' }
 
     -- DISABLED ----------------------------------------------------------- {{{1
 
@@ -416,3 +418,4 @@ return require('packer').startup(function(use)
     -- }}}
 
 end)
+-- vim: foldlevel=99
