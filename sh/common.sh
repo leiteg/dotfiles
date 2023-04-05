@@ -142,6 +142,10 @@ function pacls {
     #        ╰──⮞ (Q)uery, (q)uiet, (e)xplicit.
 }
 
+function pacrs {
+    pacman -Qq $1 | fzf -m --preview='pacman -Qi {+}' --bind='enter:execute(sudo pacman -Rs {})'
+}
+
 # ALIASES ----------------------------------------------------------------- {{{1
 
 alias quit="exit"
