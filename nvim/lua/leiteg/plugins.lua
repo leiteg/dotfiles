@@ -209,7 +209,7 @@ return require('packer').startup(function(use)
             local opts = { on_attach = on_attach }
 
             -- Language servers
-            lspconfig.rust_analyzer.setup(opts)
+            lspconfig.rust_analyzer.setup{}
             lspconfig.clangd.setup(opts)
             lspconfig.cmake.setup(opts)
             lspconfig.pyright.setup(opts)
