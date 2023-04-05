@@ -46,7 +46,7 @@ function tsh {
     #             ━━━━━━━━┯━━━━━━━━━    ━━━━━━━━━━┯━━━━━━━━━
     #                    (1)                     (2)
     #
-    # (1) Attach to a session if it exists (or attach to last session if emtpy).
+    # (1) Attach to a session if it exists (or attach to last session if empty).
     # (2) If attach fails, create a new session.
 }
 
