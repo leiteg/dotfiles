@@ -16,6 +16,10 @@ def journal_title(fname):
 	return date.fromisoformat(fname.rstrip(".wiki")).strftime('%Y-%m-%d: %A')
 endglobal
 
+snippet "^Note:" "Note" brA
+*Note*:$0
+endsnippet
+
 snippet lorem "Lorem ipsum" b
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque id fermentum
 magna, nec gravida ipsum. Morbi et sapien massa. Curabitur rutrum tristique
