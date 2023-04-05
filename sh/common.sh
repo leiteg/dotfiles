@@ -217,6 +217,7 @@ if [[ -d "$HOME/.pyenv" ]];  then
     export PYENV_ROOT="$HOME/.pyenv"
     export PYENV_PYTHON="$PYENV_ROOT/shims/python"
     export PATH="$PYENV_ROOT/bin:$PATH"
+    export PYENV_VIRTUAL_ENV_DISABLE_PROMPT=1
 
     eval "$(pyenv init -)"
     eval "$(pyenv init --path)"

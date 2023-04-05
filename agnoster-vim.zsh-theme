@@ -157,6 +157,12 @@ prompt_virtualenv() {
   fi
 }
 
+prompt_pyenv() {
+  if [[ -n "$PYENV_VIRTUAL_ENV" ]]; then
+    prompt_segment red black "${PYENV_VIRTUAL_ENV##*/}"
+  fi
+}
+
 # Status:
 # - was there an error
 # - am I root
@@ -194,6 +200,7 @@ build_prompt() {
   prompt_status
   prompt_ssh
   prompt_vim
+  prompt_pyenv
   prompt_virtualenv
   # prompt_context
   # prompt_time
