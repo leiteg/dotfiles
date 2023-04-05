@@ -55,7 +55,7 @@
 	# REBASE ----------------------------------------------------------
 	ri       = rebase --interactive
 [push]
-	default = matching
+	default = simple
 [merge]
 	tool = vimdiff
 	conflictstyle = diff3
