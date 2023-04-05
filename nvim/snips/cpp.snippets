@@ -140,6 +140,14 @@ snippet l "Lambda Function" w
 }
 endsnippet
 
+snippet rmf "Resource management functions" b
+${1:T}() noexcept;
+$1(const $1& rhs) noexcept;
+$1($1&& rhs) noexcept;
+$1& operator=(const $1& rhs) noexcept;
+$1& operator=($1&& rhs) noexcept;
+endsnippet
+
 # STATEMENTS -------------------------------------------------------------- {{{1
 
 priority 10
