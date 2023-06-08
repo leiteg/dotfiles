@@ -43,7 +43,8 @@
 	s        = status --short
 	st       = status
 	# LOG -------------------------------------------------------------
-	ls       = log --oneline --graph --all --decorate
+	la       = log --oneline --graph --all --decorate
+	ls       = log --oneline --graph --branches --decorate
 	added    = log --follow --diff-filter=A
 	overview = "!git log --oneline --no-decorate --reverse main..$1 #"
 	# COMMIT & PUSH ---------------------------------------------------
@@ -54,6 +55,7 @@
 	preview  = !git commit -am \"squash!\" && git push
 	# REBASE ----------------------------------------------------------
 	ri       = rebase --interactive
+	rc       = rebase --continue
 [push]
 	default = simple
 [merge]
