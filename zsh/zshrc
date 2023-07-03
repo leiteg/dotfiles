@@ -9,7 +9,7 @@
 #
 # --------------------------------------------------------------------
 
-export ZSH=$HOME/.oh-my-zsh
+export ZSH=$HOME/.local/oh-my-zsh
 
 # Shell configuration
 ZSH_THEME="agnoster-vim"
