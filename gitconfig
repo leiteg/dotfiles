@@ -79,6 +79,7 @@
 	defaultBranch = main
 [rebase]
 	autosquash = true
+	updateRefs = true
 [diff "jupyternotebook"]
 	command = git-nbdiffdriver diff
 [merge "jupyternotebook"]
