@@ -160,10 +160,14 @@ try_alias t     tmuxinator
 
 # VARIABLES --------------------------------------------------------------- {{{1
 
+# Where Cargo installs packages
+export CARGO_HOME="$HOME/.local/cargo"
+export RUSTUP_HOME="$HOME/.local/rustup"
+
 # User environment variables
 export PATH="$PATH:$HOME/bin"
 export PATH="$PATH:$HOME/.local/bin"
-export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$PATH:$CARGO_HOME/bin"
 
 # Where the configuration files should live
 export XDG_CONFIG_HOME="$HOME/.config"
