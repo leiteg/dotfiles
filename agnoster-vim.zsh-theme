@@ -186,7 +186,7 @@ prompt_vim() {
 
 prompt_ssh() {
   if [[ -n "$SSH_CONNECTION" ]]; then
-    prompt_segment cyan black "$(hostname)"
+    prompt_segment cyan black "$(cat /etc/hostname)"
   fi
 }
 
