@@ -208,7 +208,9 @@ try_source ~/dotfiles/sh/local.sh
 
 # FZF --------------------------------------------------------------------- {{{2
 
-[ -f "$HOME/.fzf.$SHELL_NAME" ] && source "$HOME/.fzf.$SHELL_NAME"
+if command_exists fzf; then
+    source "/usr/share/fzf/key-bindings.$SHELL_NAME"
+fi
 
 # ZOXIDE ------------------------------------------------------------------ {{{2
 
