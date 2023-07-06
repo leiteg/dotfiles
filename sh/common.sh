@@ -154,7 +154,7 @@ try_alias ls    exa
 try_alias cat   bat
 try_alias vim   nvim
 try_alias grep  rg
-try_alias tm    tmux
+try_alias t     tmux
 
 # VARIABLES --------------------------------------------------------------- {{{1
 
