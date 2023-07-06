@@ -14,7 +14,6 @@
 	name = Gustavo Leite
 	email = gustavoleite.ti@gmail.com
 [core]
-	editor = vim
 	pager = delta
 	trustctime = false
 [diff]
