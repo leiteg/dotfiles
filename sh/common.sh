@@ -220,9 +220,9 @@ fi
 
 # PYENV ------------------------------------------------------------------- {{{2
 
-if [[ -d "$HOME/.pyenv" ]];  then
+if [[ -d "$HOME/.local/pyenv" ]];  then
 
-    export PYENV_ROOT="$HOME/.pyenv"
+    export PYENV_ROOT="$HOME/.local/pyenv"
     export PYENV_PYTHON="$PYENV_ROOT/shims/python"
     export PATH="$PYENV_ROOT/bin:$PATH"
     export PYENV_VIRTUAL_ENV_DISABLE_PROMPT=1
