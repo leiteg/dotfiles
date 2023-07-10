@@ -243,17 +243,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- Neorg (TODO: not working)
-    use {
-        'nvim-neorg/neorg',
-        tag = '0.0.12',
-        config = require('leiteg.config.neorg').config,
-        requires = {
-            'nvim-lua/plenary.nvim',
-            'max397574/neorg-kanban'
-        }
-    }
-
     -- Completion (TODO: Add more sources)
     use {
         'hrsh7th/nvim-cmp',
@@ -285,33 +274,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- Personal Wiki
-    use {
-        'vimwiki/vimwiki',
-        config = function()
-            vim.g.vimwiki_dir_link = 'index'
-            vim.g.vimwiki_hl_cb_checked = 1
-            vim.g.vimwiki_autowriteall = 1
-            vim.g.vimwiki_folding = 'expr'
-            vim.g.vimwiki_list = {
-                {
-                    template_path = vim.fn.stdpath("data") .. "site/pack/packer/start/vimwiki/autoload/",
-                    path = "~/life",
-                    links_space_char = '-',
-                    diary_rel_path = 'journal/',
-                    diary_index = 'index',
-                    diary_header = "Journal",
-                    auto_tags = 1,
-                    auto_diary_index = 1,
-                    nested_syntaxes = {
-                        python = 'python',
-                        ['c++'] = 'cpp',
-                    }
-                }
-            }
-        end
-    }
-
     -- File browser
     use {
         'kyazdani42/nvim-tree.lua',
@@ -325,6 +287,43 @@ return require('packer').startup(function(use)
         end
     }
 
+    -- Neorg
+    -- use {
+    --     'nvim-neorg/neorg',
+    --     tag = '0.0.12',
+    --     config = require('leiteg.config.neorg').config,
+    --     requires = {
+    --         'nvim-lua/plenary.nvim',
+    --         'max397574/neorg-kanban'
+    --     }
+    -- }
+
+    -- Personal Wiki
+    -- use {
+    --     'vimwiki/vimwiki',
+    --     config = function()
+    --         vim.g.vimwiki_dir_link = 'index'
+    --         vim.g.vimwiki_hl_cb_checked = 1
+    --         vim.g.vimwiki_autowriteall = 1
+    --         vim.g.vimwiki_folding = 'expr'
+    --         vim.g.vimwiki_list = {
+    --             {
+    --                 template_path = vim.fn.stdpath("data") .. "site/pack/packer/start/vimwiki/autoload/",
+    --                 path = "~/life",
+    --                 links_space_char = '-',
+    --                 diary_rel_path = 'journal/',
+    --                 diary_index = 'index',
+    --                 diary_header = "Journal",
+    --                 auto_tags = 1,
+    --                 auto_diary_index = 1,
+    --                 nested_syntaxes = {
+    --                     python = 'python',
+    --                     ['c++'] = 'cpp',
+    --                 }
+    --             }
+    --         }
+    --     end
+    -- }
 
     -- LANGUAGE SPECIFIC -------------------------------------------------- {{{1
 
