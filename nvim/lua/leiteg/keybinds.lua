@@ -50,6 +50,7 @@ vmap('>', '>gv')
 vmap('<', '<gv')
 vmap('Y', 'y$')
 nmap('g<C-V>', '`[v`]')
+nmap('J', 'mzJ`z')
 
 -- Complex
 vim.cmd [[

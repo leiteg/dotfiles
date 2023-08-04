@@ -209,7 +209,16 @@ return require('packer').startup(function(use)
             local opts = { on_attach = on_attach }
 
             -- Language servers
-            lspconfig.rust_analyzer.setup{}
+            lspconfig.rust_analyzer.setup{
+                settings = {
+                    ['rust-analyzer'] = {
+                        diagnostics = {
+                            enable = false;
+                        }
+                    }
+                },
+                on_attach = on_attach,
+            }
             lspconfig.clangd.setup(opts)
             lspconfig.cmake.setup(opts)
             lspconfig.pyright.setup(opts)
@@ -221,7 +230,7 @@ return require('packer').startup(function(use)
         'nvim-treesitter/nvim-treesitter',
         config = function()
             require('nvim-treesitter.configs').setup {
-                ensure_installed = { 'c', 'cpp', 'python', 'rust', 'norg' },
+                ensure_installed = { 'c', 'cpp', 'python', 'rust', 'lua' },
                 sync_install = false,
                 auto_install = true,
                 highlight = {

@@ -54,7 +54,7 @@ set.relativenumber = true
 set.listchars = { tab = '▸ ', space = '·', eol = '¶', trail = ';' }
 set.ruler = true
 set.title = true
-set.cmdheight = 0
+set.cmdheight = 1
 
 -- Folds
 set.foldenable = true
