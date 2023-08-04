@@ -46,6 +46,7 @@
 	ls       = log --oneline --graph --branches --decorate
 	added    = log --follow --diff-filter=A
 	overview = "!git log --oneline --no-decorate --reverse main..$1 #"
+	tags     = log --graph --simplify-by-decoration --tags --date='format:%Y-%m-%d' --pretty='format:%ad %C(green)%h%C(reset)%C(brightred)%d%C(reset)'
 	# COMMIT & PUSH ---------------------------------------------------
 	c		 = commit
 	fuck     = commit --amend --no-edit
