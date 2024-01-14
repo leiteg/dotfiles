@@ -1,0 +1,291 @@
+# vim: foldmethod=marker foldlevel=0
+# ==============================================================================
+#                           __               _                  __      
+#          _______  _______/ /_  _________  (_)___  ____  ___  / /______
+#         / ___/ / / / ___/ __/ / ___/ __ \/ / __ \/ __ \/ _ \/ __/ ___/
+#        / /  / /_/ (__  ) /__ (__  ) / / / / /_/ / /_/ /  __/ /_(__  ) 
+#       /_/   \__,_/____/\__(_)____/_/ /_/_/ .___/ .___/\___/\__/____/  
+#                                         /_/   /_/                     
+# ==============================================================================
+
+# Top-level Items {{{1
+# ------------------------------------------------------------------------------
+
+snippet @main "fn main() {}" bA
+fn main() {
+    ${1:println!("Hello, World!");}
+}
+endsnippet
+
+snippet @rmain "fn main() -> Result<i32, String>" bA
+fn main() -> Result<(), String> {
+    ${1:println!("Hello, World!");}
+    Ok(())
+}
+endsnippet
+
+snippet fn "fn name() -> {}" w
+fn ${1:function}($2)${3/.+/ -> /}${3:()} {
+    ${4:${VISUAL:todo!()}}
+}
+endsnippet
+
+snippet tfn "#[test] fn name()" b
+#[test]
+fn ${1:test_name}() {
+    ${2:${VISUAL:todo!()}}
+}
+endsnippet
+
+snippet '(pub )?mod (\w+)' "mod name {}" rw
+`!p snip.rv = "#[cfg(test)]\n" if match.group(2) == "tests" else ""
+``!p snip.rv = match.group(1)`mod `!p snip.rv = match.group(2)` {
+    `!p snip.rv = "use super::*;\n    " if match.group(2) == "tests" else ""
+    `${1:${VISUAL}}
+}
+endsnippet
+
+snippet 'struct (\w+)' "struct name {}" rw
+struct `!p snip.rv = match.group(1)` {
+    f$0
+}
+endsnippet
+
+snippet f "Struct field" w
+${1:name}: ${2:type},
+endsnippet
+
+snippet 'enum (\w+)' "enum name {}" rw
+enum `!p snip.rv = match.group(1)` {
+    ${2:EnumValue,}
+}
+endsnippet
+
+snippet 'trait (\w+)' "trait name {}" rw
+trait `!p snip.rv = match.group(1)` {
+    ${1:fn new($2) -> Self;}$0
+}
+endsnippet
+
+snippet impl "impl type {}" b
+impl ${1:T}${2/.+/ for /}${2:U} {
+    ${4:${VISUAL}}
+}
+endsnippet
+
+# Macros {{{1
+# ------------------------------------------------------------------------------
+
+snippet derive "#[derive(Trait)]" bA
+#[derive(${1:Trait})]
+endsnippet
+
+snippet muse "#[macro_use]" bA
+#[macro_use]
+endsnippet
+
+snippet mexport "#[macro_export]" bA
+#[macro_export]
+endsnippet
+
+snippet macro "macro_rules!" b
+macro_rules! ${1:name} {
+    (${2:matcher}) => {
+        ${3:todo!();}
+    }
+}
+endsnippet
+
+snippet p "println!();" w
+println!("${2:\{$1:?\}}");
+endsnippet
+
+snippet pe "eprintln!();" w
+eprintln!("${1:\{\}}", $2);
+endsnippet
+
+snippet a "assert!" w
+assert!(${1:condition});
+endsnippet
+
+snippet aeq "assert_eq!" w
+assert_eq!(${1:left}, ${2:right});
+endsnippet
+
+snippet ane "assert_ne!" w
+assert_ne!(${1:left}, ${2:right});
+endsnippet
+
+snippet dbg "dbg!();" w
+dbg!(${1:variable});
+endsnippet
+
+snippet todo "todo!();" w
+todo!();
+endsnippet
+
+# Statements {{{1
+# ------------------------------------------------------------------------------
+
+snippet let "let name = expression;" w
+let ${1:name} = ${2:expression};
+endsnippet
+
+snippet mlet "let mut name = expression;" w
+let mut ${1:name} = ${2:expression};
+endsnippet
+
+snippet iflet "if let Some(_) = value {}" w
+if let ${1:Some(i)} = ${2:value} {
+    ${3:${VISUAL}}
+}
+endsnippet
+
+snippet wlet "while let Some(_) = value {}" w
+while let ${1:Some(i)} = ${2:value} {
+    ${3:${VISUAL}}
+}
+endsnippet
+
+snippet if "if expr {}" w
+if ${1:expr} {
+    ${2:${VISUAL}}
+}
+endsnippet
+
+snippet elif "else if expr {}" w
+else if ${1:expr} {
+    ${2:${VISUAL}}
+}
+endsnippet
+
+snippet else "else {}" w
+else {
+    ${2:${VISUAL}}
+}
+endsnippet
+
+snippet loop "loop {}" w
+loop {
+    ${1:${VISUAL}}
+}
+endsnippet
+
+snippet while "while expr {}" w
+while ${1:expr} {
+    ${2:${VISUAL}}
+}
+endsnippet
+
+snippet for "for variable in collection {}" w
+for ${1:variable} in ${2:iterator} {
+    ${3:${VISUAL}}
+}
+endsnippet
+
+snippet match "match expr {}" w
+match ${1:expr} {
+    ${2:// case}
+    ${3:_ => panic!("Unexpected value!"),}
+}
+endsnippet
+
+snippet case "left => right," b
+${1:left} => ${2:right},
+endsnippet
+
+# Types {{{1
+# ------------------------------------------------------------------------------
+
+snippet opt "Option<T>" w
+Option<${1:${VISUAL:T}}>
+endsnippet
+
+snippet res "Result<T, Error>" w
+Result<${1:${VISUAL:T}}, ${2:Error}>
+endsnippet
+
+snippet vec "Vec<T>" w
+Vec<${1:${VISUAL:T}}>
+endsnippet
+
+snippet deq "VecDeque<T>" w
+VecDeque<${1:${VISUAL:T}}>
+endsnippet
+
+snippet ll "LinkedList<T>" w
+LinkedList<${1:${VISUAL:T}}>
+endsnippet
+
+snippet map "HashMap<K, V>" w
+HashMap<${1:${VISUAL:K}}, ${2:V}>
+endsnippet
+
+snippet bmap "BTreeMap<K, V>" w
+BTreeMap<${1:${VISUAL:K}}, ${2:V}>
+endsnippet
+
+snippet set "HashSet<T>" w
+HashSet<${1:${VISUAL:T}}>
+endsnippet
+
+snippet bset "BTreeSet<T>" w
+BTreeSet<${1:${VISUAL:T}}>
+endsnippet
+
+snippet heap "BinaryHeap<T>" w
+BinaryHeap<${1:${VISUAL:T}}>
+endsnippet
+
+# Traits {{{1
+# ------------------------------------------------------------------------------
+
+snippet @constructor "impl Type { fn new() -> Self {} }" bA
+impl ${1:Type} {
+    fn ${2:new}($3) -> Self {
+        Self { $4 }
+    }
+}
+endsnippet
+
+snippet @default "impl Default for Type" bA
+impl Default for ${1:Type} {
+    fn default() -> Self {
+        Self { $2 }
+    }
+}
+endsnippet
+
+snippet @iterator "impl Iterator for Type" bA
+impl Iterator for ${1:Type} {
+    type Item = ${2:ItemType}
+    fn next(&mut self) -> Option<Self::Item> {
+        ${3:todo!();}
+    }
+}
+endsnippet
+
+snippet @display "impl Display for Type" bA
+impl fmt::Display for ${1:Type} {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "${2:{:?}}", ${3:self})
+    }
+}
+endsnippet
+
+snippet @from "impl From<T> for Type" bA
+impl From<${1:FromType}> for ${2:IntoType} {
+    fn from(item: $1) -> Self {
+        $3
+    }
+}
+endsnippet
+
+snippet @fstr "impl FromStr for Type" bA
+impl FromStr for ${1:IntoType} {
+    type Err = ${2:ErrType};
+    fn from_str(item: &str) -> Result<Self, Self::Err> {
+        $3
+    }
+}
+endsnippet
