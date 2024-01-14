@@ -3,7 +3,8 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    selected=$(find ~/git ~/git/rust -mindepth 1 -maxdepth 1 -type d | fzf)
+    directories=$(find ~/git ~/git/rust ~/git/projects ~/ -mindepth 1 -maxdepth 1 -type d -name '[a-z]*')
+    selected=$(cat <(echo "$directories") <(echo "main") | fzf)
 fi
 
 if [[ -z $selected ]]; then
