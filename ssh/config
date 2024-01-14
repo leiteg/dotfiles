@@ -74,25 +74,25 @@ Host f1-alveo
 
 # Ogbon (CIMATEC) --------------------------------------------------------------
 
-Host ogbon-3
-    User        gustavo.leite
-    Hostname    200.128.24.24
-    Port        5001
+Host ogbon.br
+    User        gustavo.leite.br
+    Hostname    200.128.24.23
+    Port        22
 
-Host ogbon-4
-    User        gustavo.leite
-    Hostname    200.128.24.25
-    Port        5001
-
-Host ogbon-7
+Host ogbon
     User        gustavo.leite
     Hostname    200.128.24.26
     Port        5001
 
-Host ogbon-8
-    User        gustavo.leite
-    Hostname    200.128.24.27
-    Port        5001
+Host dgx
+    User        etvw
+    Hostname    localhost
+    Port        23440
+    ProxyJump   ogbon.br
+
+Host tatu
+    User        etvw
+    ProxyJump   dgx
 
 # Kahuna (Unicamp) -------------------------------------------------------------
 
