@@ -34,3 +34,6 @@ vim.opt.smartcase = true
 -- Splits
 vim.opt.splitbelow = true
 vim.opt.splitright = true
+
+-- Python
+vim.g.python3_host_prog = '/usr/bin/python'

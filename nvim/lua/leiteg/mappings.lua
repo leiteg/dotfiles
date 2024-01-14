@@ -12,6 +12,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 -- Movement
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<tab>", ":bn<CR>")
+vim.keymap.set("n", "<s-tab>", ":bp<CR>")
 
 -- Insert mode
 vim.keymap.set("i", "jk", "<esc>")
