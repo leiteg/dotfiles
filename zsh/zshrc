@@ -52,5 +52,11 @@ bindkey -s "^P" "rg_fzf_vim^M"
 # Ctrl-F opens tmux-sessionizer
 bindkey -s "^F" "tmux-sessionizer^M"
 #        │   │
-#        │   ╰──⮞ Binding Ctrl-P to the command in the next string.
+#        │   ╰──⮞ Binding Ctrl-F to the command in the next string.
+#        ╰──⮞ Bind in-string to out-string (see zshzle(1))
+
+# Ctrl-O opens tmux-switcher
+bindkey -s "^O" "tmux-switcher^M"
+#        │   │
+#        │   ╰──⮞ Binding Ctrl-F to the command in the next string.
 #        ╰──⮞ Bind in-string to out-string (see zshzle(1))

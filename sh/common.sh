@@ -155,6 +155,7 @@ try_alias cat   bat
 try_alias vim   nvim
 try_alias grep  rg
 try_alias t     tmux
+try_alias life  ~/.local/pyenv/versions/life-py/bin/life
 
 # VARIABLES --------------------------------------------------------------- {{{1
 
