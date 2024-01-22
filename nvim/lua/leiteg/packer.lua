@@ -84,5 +84,11 @@ return require('packer').startup(function(use)
         end
     }
     use { 'https://github.com/Vimjas/vim-python-pep8-indent' }
+    use {
+        'numToStr/Comment.nvim',
+        config = function()
+            require('Comment').setup()
+        end
+    }
 
 end)
