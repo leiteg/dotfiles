@@ -157,6 +157,15 @@ try_alias grep  rg
 try_alias t     tmux
 try_alias life  ~/.local/pyenv/versions/life-py/bin/life
 
+if command_exists life; then
+    alias ,h="life habit"
+    alias ,s="life session"
+    alias ,t="life todo"
+    alias note="life note"
+    alias trn="life transaction"
+    alias acc="life account"
+fi
+
 # VARIABLES --------------------------------------------------------------- {{{1
 
 # Where Cargo installs packages
