@@ -9,8 +9,11 @@ return require('packer').startup(function(use)
         requires = { {'nvim-lua/plenary.nvim'} }
     }
     use { 'dracula/vim', as = "dracula.nvim" }
+
     use { 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'}}
     use { 'nvim-treesitter/playground' }
+    use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+
     use { 'tpope/vim-fugitive' }
     use { 'tpope/vim-unimpaired' }
     use { 'mbbill/undotree' }
