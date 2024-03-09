@@ -13,6 +13,7 @@ autocmd("TextYankPost", {
 -- Automatically rebalance windows when vim is resized
 augroup("ResizeWindow", {clear = true})
 autocmd("VimResized", {
+    group = "ResizeWindow",
     pattern = "*",
     command = "wincmd ="
 })
@@ -20,6 +21,7 @@ autocmd("VimResized", {
 -- Automatically open quickfix window
 augroup("OpenQuickFix", {clear = true})
 autocmd("QuickFixCmdPost", {
+    group = "OpenQuickFix",
     pattern = "*",
     command = "cwindow",
 })
@@ -27,8 +29,12 @@ autocmd("QuickFixCmdPost", {
 -- Jump back to last location in file
 augroup("JumpLastLocation", {clear = true})
 autocmd("BufReadPost", {
+    group = "JumpLastLocation",
     pattern = "*",
     callback = function()
+        if vim.bo.filetype == "gitcommit" then
+            return
+        end
         local line = vim.fn.line("'\"")
         local last = vim.fn.line("$")
         if line >= 1 and line <= last then
