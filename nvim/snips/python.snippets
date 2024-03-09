@@ -1,9 +1,12 @@
 # vim: foldmethod=marker foldlevel=0
 
 global !p
+
 import os
+
 def package():
     return os.getcwd().split(os.path.sep)[-1]
+
 endglobal
 
 # IDIOMS ------------------------------------------------------------------ {{{1
@@ -29,10 +32,24 @@ snippet !doc "Docstring" bA
 """${1:${VISUAL}}"""
 endsnippet
 
-snippet !head "Header" bA
+snippet !h1 "Header 1" bA
 # ==============================================================================
 # $1
 # ==============================================================================
+endsnippet
+
+snippet !h2 "Header 2" bA
+# ------------------------------------------------------------------------------
+# $1
+# ------------------------------------------------------------------------------
+endsnippet
+
+snippet !h3 "Header 3" bA
+# $1 `!p snip.rv = "=" * (77 - len(t[1]))`$0
+endsnippet
+
+snippet !h4 "Header 4" bA
+# $1 `!p snip.rv = "-" * (77 - len(t[1]))`$0
 endsnippet
 
 # FUNCTIONS & METHODS ----------------------------------------------------- {{{1
