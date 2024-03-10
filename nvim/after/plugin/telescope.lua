@@ -25,6 +25,9 @@ vim.keymap.set("n", "<leader>ls", builtin.buffers, {
 vim.keymap.set("n", "<leader>lg", builtin.live_grep, {
     desc = "Telescope Live Grep",
 })
+vim.keymap.set("n", "<leader>td", builtin.diagnostics, {
+    desc = "Telescope Diagnostics",
+})
 vim.keymap.set("n", "<leader>go", function()
     builtin.lsp_dynamic_workspace_symbols({
         ignore_symbols = "variable"
