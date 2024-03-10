@@ -1,0 +1,28 @@
+[tool.poetry]
+name = ""
+version = ""
+description = ""
+authors = ["Gustavo Leite <gustavoleite.ti@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+
+[tool.poetry.group.dev.dependencies]
+mypy = "*"
+pytest = "*"
+ruff = "*"
+pre-commit = "*"
+
+[tool.poetry.scripts]
+module = "module.__main__:main"
+
+[tool.ruff]
+exclude = ["third_party"]
+
+[tool.ruff.lint]
+select = ["E", "F", "UP", "B", "I"]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

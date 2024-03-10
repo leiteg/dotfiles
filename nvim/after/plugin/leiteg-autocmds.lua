@@ -42,3 +42,31 @@ autocmd("BufReadPost", {
         end
     end
 })
+
+-- Load template when opening new file
+augroup("FileTemplates", {clear = true})
+autocmd("BufNewFile", {
+    group = "FileTemplates",
+    pattern = "*.*",
+    callback = function()
+        vim.cmd [[
+            silent! execute '0r ~/.config/nvim/templates/template.'.expand("<afile>:e")
+            silent! execute 'normal Gddgg'
+        ]]
+    end,
+})
+autocmd("BufNewFile", {
+    group = "FileTemplates",
+    pattern = {
+        "pyproject.toml",
+        "CMakeLists.txt",
+        "CMakePresets.json",
+        ".pre-commit-config.yaml",
+    },
+    callback = function()
+        vim.cmd [[
+            silent! execute '0r ~/.config/nvim/templates/'.expand("<afile>:t")
+            silent! execute 'normal Gddgg'
+        ]]
+    end,
+})
