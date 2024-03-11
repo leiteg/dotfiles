@@ -6,8 +6,6 @@ return require('packer').startup(function(use)
     use { 'wbthomason/packer.nvim' }
     -- Miscellaneous functions (required by Telescope)
     use { 'nvim-lua/plenary.nvim' }
-    -- Fuzzy finder
-    use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
     -- Colorscheme
     use { 'dracula/vim', as = "dracula.nvim" }
     -- Git integragtion
@@ -58,5 +56,9 @@ return require('packer').startup(function(use)
     use { 'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'}}
     use { 'nvim-treesitter/playground' }
     use { 'nvim-treesitter/nvim-treesitter-textobjects' }
+
+    -- Telescope
+    use { 'nvim-telescope/telescope.nvim', branch = '0.1.x' }
+    use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
 
 end)

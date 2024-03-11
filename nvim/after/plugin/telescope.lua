@@ -12,6 +12,9 @@ telescope.setup {
     },
 }
 
+-- Extensions
+telescope.load_extension("fzf")
+
 -- See :h telescope.builtin
 vim.keymap.set("n", "<C-p>", builtin.git_files, {
     desc = "Telescope Git Files",
