@@ -48,6 +48,8 @@ return require('packer').startup(function(use)
     use { 'stevearc/oil.nvim' }
     -- Take code screenshots
     use { 'krivahtoo/silicon.nvim', run = './install.sh' }
+    -- Show possible keymappings
+    use { 'folke/which-key.nvim' }
 
     -- Language server protocol
     use {
