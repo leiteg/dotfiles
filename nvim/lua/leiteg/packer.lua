@@ -46,6 +46,8 @@ return require('packer').startup(function(use)
     use { 'numToStr/Comment.nvim' }
     -- File explorer
     use { 'stevearc/oil.nvim' }
+    -- Take code screenshots
+    use { 'krivahtoo/silicon.nvim', run = './install.sh' }
 
     -- Language server protocol
     use {
