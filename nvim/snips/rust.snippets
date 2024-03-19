@@ -289,3 +289,28 @@ impl FromStr for ${1:IntoType} {
     }
 }
 endsnippet
+
+# Clap {{{1
+# ------------------------------------------------------------------------------
+
+snippet !clap:cli "Clap Parser" bA
+#[derive(Parser)]
+#[command(version, about, long_about = None)]
+struct ${1:Cli} {
+	${2:// TODO}
+}
+endsnippet
+
+snippet !clap:cmd "Clap Subcommand" bA
+#[derive(Subcommand)]
+enum ${1:Command} {
+	${2:// TODO}
+}
+endsnippet
+
+snippet !clap:arg "Clap Args" bA
+#[derive(Args)]
+struct ${1:Arg} {
+	${2:// TODO}
+}
+endsnippet
