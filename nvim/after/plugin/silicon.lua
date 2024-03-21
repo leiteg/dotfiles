@@ -9,6 +9,10 @@ silicon.setup({
     pad_vert = 5,
 })
 
-vim.keymap.set("v", "<leader>ss", "<cmd>Silicon<CR>", {
-    desc = "Take a screenshot with Silicon."
+vim.keymap.set("v", "<leader>ss", "<cmd>'<,'>Silicon<CR>", {
+    desc = "Take a screenshot of selected text with Silicon."
+})
+
+vim.keymap.set("n", "<leader>ss", "<cmd>%Silicon<CR>", {
+    desc = "Take a screenshot entire file with Silicon."
 })

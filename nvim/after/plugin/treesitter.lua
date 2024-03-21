@@ -2,9 +2,8 @@ require('nvim-treesitter.configs').setup {
     ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust", "python" },
     sync_install = false,
     auto_install = true,
-    highlight = {
-        enable = true,
-    },
+    highlight = { enable = true, },
+    indent = { enable = true, },
 
     textobjects = {
 
@@ -12,30 +11,34 @@ require('nvim-treesitter.configs').setup {
         select = {
             enable = true,
             lookahead = true,
-            include_surrounding_whitespace = true,
             keymaps = {
+                ["a="] = "@assignment.outer",
+                ["i="] = "@assignment.inner",
+                ["l="] = "@assignment.lhs",
+                ["r="] = "@assignment.rhs",
+                ["aa"] = "@parameter.inner",
+                ["ia"] = "@parameter.inner",
+                ["am"] = "@call.outer",
+                ["im"] = "@call.inner",
                 ["af"] = "@function.outer",
                 ["if"] = "@function.inner",
                 ["ac"] = "@class.outer",
                 ["ic"] = "@class.inner",
             },
-            -- Which selection mode (e.g. v, V, <c-v>) to use.
-            selection_modes = {
-                ["@function.outer"] = "V",
-                ["@function.inner"] = "V",
-                ["@class.outer"] = "V",
-                ["@class.inner"] = "v",
-            },
         },
 
         -- Swap AST nodes.
         swap = {
-            enable = false,
+            enable = true,
             swap_next = {
-                ["<leader>a"] = "@function.inner",
+                ["<leader>pj"] = "@parameter.inner",
+                ["<leader>fj"] = "@function.outer",
+                ["<leader>cj"] = "@class.outer",
             },
             swap_previous = {
-                ["<leader>A"] = "@funcion.inner",
+                ["<leader>pk"] = "@parameter.inner",
+                ["<leader>fk"] = "@function.outer",
+                ["<leader>ck"] = "@class.outer",
             },
         },
 
@@ -46,18 +49,22 @@ require('nvim-treesitter.configs').setup {
             goto_next_start = {
                 ["]f"] = "@function.outer",
                 ["]c"] = "@class.outer",
+                ["]a"] = "@parameter.inner",
             },
             goto_next_end = {
                 ["]F"] = "@function.outer",
                 ["]C"] = "@class.outer",
+                ["]A"] = "@parameter.inner",
             },
             goto_previous_start = {
                 ["[f"] = "@function.outer",
                 ["[c"] = "@class.outer",
+                ["[a"] = "@parameter.inner",
             },
             goto_previous_end = {
                 ["[F"] = "@function.outer",
                 ["[C"] = "@class.outer",
+                ["[A"] = "@parameter.inner",
             },
         },
 
@@ -67,8 +74,8 @@ require('nvim-treesitter.configs').setup {
             border = 'none',
             floating_preview_opts = {},
             peek_definition_code = {
-                ["<leader>df"] = "@function.outer",
-                ["<leader>dc"] = "@class.outer",
+                ["<leader>pf"] = "@function.outer",
+                ["<leader>pc"] = "@class.outer",
             }
         },
 
