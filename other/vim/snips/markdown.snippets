@@ -1,0 +1,19 @@
+snippet '# (.+)' "H1 header" rb
+`!p snip.rv = match.group(1)`
+================================================================================
+
+$0
+endsnippet
+
+snippet '## (.+)' "H2 header" rb
+`!p snip.rv = match.group(1)`
+--------------------------------------------------------------------------------
+
+$0
+endsnippet
+
+snippet code "Code block" b
+\`\`\`$2
+${1:${VISUAL}}
+\`\`\`
+endsnippet

@@ -1,0 +1,478 @@
+" --------------------------------------------------------------------
+"                            _
+"                     _   __(_)___ ___  __________
+"                    | | / / / __ `__ \/ ___/ ___/
+"                   _| |/ / / / / / / / /  / /__
+"                  (_)___/_/_/ /_/ /_/_/   \___/
+"
+"              Gustavo Leite <gustavoleite.ti@gmail.com>
+"
+" --------------------------------------------------------------------
+
+" BASIC CONFIG {{{1
+
+" Enable filetype detection
+filetype plugin indent on
+
+" Enable syntax highlighting
+syntax on
+
+" Set leader character
+let mapleader = " "
+
+" Set neovim specific config
+if has('nvim')
+  set inccommand=nosplit
+endif
+
+" VIM-PLUG {{{1
+
+if !empty(glob('~/.vim/autoload/plug.vim')) && !empty(glob('~/.vim/plugins.vim'))
+    source ~/.vim/plugins.vim
+endif
+
+" EDITOR OPTIONS {{{1
+
+" General
+set encoding=utf-8
+set nocompatible
+set showcmd
+set showmatch
+set history=200
+set laststatus=2
+set backspace=indent,eol,start
+set clipboard=unnamedplus
+set autoread autowrite
+set timeoutlen=500 ttimeoutlen=0
+set exrc secure
+
+if !has('nvim')
+  set noesckeys
+endif
+
+" Colorscheme
+silent! colorscheme dracula
+set background=dark
+set t_Co=256
+set t_ZH=[3m
+set t_ZR=[23m
+if has('termguicolors')
+    set termguicolors
+endif
+
+" Splits
+set splitbelow splitright
+
+" Indent
+set expandtab autoindent smartindent
+set tabstop=4 softtabstop=4 shiftwidth=4
+
+" Wrapping
+set nowrap textwidth=80
+
+" Appearence
+set cursorline colorcolumn=+1
+set number relativenumber
+set listchars=tab:▸\ ,space:·,eol:¶
+set ruler
+set title
+
+" Folds
+set foldenable foldmethod=marker
+
+" Diffs
+if has('nvim-0.3.2') || has("patch-8.1.0360")
+    set diffopt=filler,internal,algorithm:histogram,indent-heuristic
+endif
+
+" History
+set nobackup backupdir=~/.vim/backups
+set swapfile directory=~/.vim/swaps
+set undofile   undodir=~/.vim/undo
+
+" Search/global/substitute
+set hlsearch incsearch gdefault
+set ignorecase smartcase
+if executable('rg')
+  set grepprg=rg\ --vimgrep\ --smart-case\ --follow
+endif
+
+" AUTO COMMANDS {{{1
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+
+" General purpose
+augroup AutoCommands
+    autocmd!
+
+    " Open quickfix window after command only if there was errors/matches
+    autocmd QuickFixCmdPost *             :cwindow
+
+    " Automatically reload vimrc on save
+    autocmd BufWritePost .vimrc,vimrc     :source %
+
+    " Jump to last location when opening a file
+    autocmd BufReadPost *
+        \ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+        \ |   exe "normal! g`\""
+        \ | endif
+
+    " Skeleton files
+    autocmd BufNewFile *.*
+          \ silent! execute '0r ~/.vim/templates/skeleton.'.expand("<afile>:e").'
+          \ | normal Gddgg'
+
+    " Highligh trailing whitespace
+    autocmd BufWinEnter *           match ExtraWhitespace /\s\+$/
+    autocmd InsertEnter *           match ExtraWhitespace /\s\+\%#\@<!$/
+    autocmd InsertLeave *           match ExtraWhitespace /\s\+$/
+    autocmd BufWinLeave *           call clearmatches()
+
+    " Rebalance tmux splits on window resize
+    autocmd VimResized  *           :wincmd =
+
+augroup END
+
+" FUNCTIONS {{{1
+
+" Print the current filename joined with the current line and yank the result to
+" the clipboard.
+function! GetSource()
+  let @+=join([expand('%:p'), line('.')], ':')
+  echo "Copied: " . @+
+endfunction
+
+nnoremap <silent> <leader>ss    :call GetSource()<CR>
+
+" MAPPINGS {{{1
+
+" Escape
+inoremap jk             <esc>
+inoremap JK             <esc>
+inoremap Jk             <esc>
+
+" Line movement
+vnoremap <silent> <C-J>          :m '>+1<CR>gv=gv
+vnoremap <silent> <C-K>          :m '<-2<CR>gv=gv
+inoremap <silent> <C-J>          <esc>:m .+1<CR>==a
+inoremap <silent> <C-K>          <esc>:m .-2<CR>==a
+
+" Window movement
+nnoremap <silent> <leader>h      :wincmd h<CR>
+nnoremap <silent> <leader>j      :wincmd j<CR>
+nnoremap <silent> <leader>k      :wincmd k<CR>
+nnoremap <silent> <leader>l      :wincmd l<CR>
+
+" Buffer movement
+nnoremap <silent> <tab>          :bnext<CR>
+nnoremap <silent> <s-tab>        :bprevious<CR>
+
+" Indentation
+vnoremap >              >gv
+vnoremap <              <gv
+
+" Search
+nnoremap /              /\v
+nnoremap ?              ?\v
+nnoremap n              nzzzv
+nnoremap N              Nzzzv
+
+" Miscellaneous
+inoremap <C-P>          <C-G>u<ESC>[s1z=`]a<C-G>u
+nnoremap <leader>sr     :%s/\<<C-R><C-W>\>/
+nnoremap Y              y$
+ noremap <F5>           :setlocal spell!<CR>
+ noremap ,              za
+ noremap '              `
+
+" Disable
+nnoremap <up>           <nop>
+nnoremap <down>         <nop>
+nnoremap <left>         <nop>
+nnoremap <right>        <nop>
+inoremap <up>           <nop>
+inoremap <down>         <nop>
+inoremap <left>         <nop>
+inoremap <right>        <nop>
+nnoremap <space>        <nop>
+
+" Break undo sequence on punctuation.
+"
+" It is not desirable to have these mappings globally, therefore they are
+" defined in a function that can be called by specific ftplugins.
+"
+" See: :h CTRL-G_u
+function! SetupBreakUndoOnPunctuation()
+    inoremap ,  ,<C-G>u
+    inoremap .  .<C-G>u
+    inoremap !  !<C-G>u
+    inoremap ?  ?<C-G>u
+endfunction
+
+" COMMANDS {{{1
+
+command! Config       :tabnew | edit $MYVIMRC | vsplit ~/dotfiles/vim/plugins.vim | wincmd h
+
+cnoreabbrev W   w
+cnoreabbrev Wq  wq
+cnoreabbrev WQ  wq
+cnoreabbrev Sh  sh
+cnoreabbrev SH  sh
+cnoreabbrev Set set
+
+" }}}
+
+" PLUGIN CONFIGURATION
+" --------------------------------------------------------------------
+
+" vim-airline/vim-airline {{{1
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#tab_min_count = 1
+let g:airline#extensions#tabline#buffer = 1
+let g:airline#extensions#tabline#show_tabs = 1
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline_theme = 'dracula'
+let g:airline_powerline_fonts = 1
+let g:airline_left_sep = ''
+let g:airline_left_alt_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_detect_modified = 1
+let g:airline_detect_paste = 1
+
+" lervag/vimtex {{{1
+
+let g:tex_flavor = 'latex'
+let g:vimtex_complete_close_braces = 1
+let g:vimtex_compiler_latexmk = { 'callback': 0, 'build_dir': 'build' }
+
+if has('mac')
+  let g:vimtex_view_method = 'skim'
+else
+  let g:vimtex_view_method = 'zathura'
+endif
+
+" SirVer/ultisnips {{{1
+
+let g:UltiSnipsEditSplit = "vertical"
+let g:UltiSnipsSnippetDirectories = [ "snips" ]
+let g:UltiSnipsExpandTrigger = "<c-l>"
+let g:UltiSnipsListSnippets = "<c-tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-b>"
+let g:UltiSnipsJumpBackwardTrigger = "<c-z>"
+
+" neoclide/coc.nvim {{{1
+
+set hidden
+set nobackup
+set nowritebackup
+" set cmdheight=2
+
+set updatetime=300
+set shortmess+=c
+
+if has("patch-8.1.1564")
+  set signcolumn=number
+else
+  set signcolumn=yes
+endif
+
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <c-space> coc#refresh()
+nnoremap <silent>       <c-space>      :CocList symbols<CR>
+nnoremap <silent>       <leader>sh     :CocCommand clangd.switchSourceHeader<CR>
+
+"if exists('*complete_info')
+"  inoremap <expr> <cr> complete_info()["selected"] != "-1" ? "\<C-y>" : "\<C-g>u\<CR>"
+"else
+"  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+"endif
+
+nmap <silent> [g <Plug>(coc-diagnostic-prev)
+nmap <silent> ]g <Plug>(coc-diagnostic-next)
+
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+nmap <leader>rn <Plug>(coc-rename)
+
+xmap <leader>f  <Plug>(coc-format-selected)
+nmap <leader>f  <Plug>(coc-format-selected)
+
+augroup mygroup
+  autocmd!
+  " Update signature help on jump placeholder.
+  autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
+augroup end
+
+xmap <leader>a  <Plug>(coc-codeaction-selected)
+nmap <leader>a  <Plug>(coc-codeaction-selected)
+
+nmap <leader>ac  <Plug>(coc-codeaction)
+nmap <leader>qf  <Plug>(coc-fix-current)
+nmap <leader>fa  <Plug>(coc-format)
+
+xmap if <Plug>(coc-funcobj-i)
+omap if <Plug>(coc-funcobj-i)
+xmap af <Plug>(coc-funcobj-a)
+omap af <Plug>(coc-funcobj-a)
+xmap ic <Plug>(coc-classobj-i)
+omap ic <Plug>(coc-classobj-i)
+xmap ac <Plug>(coc-classobj-a)
+omap ac <Plug>(coc-classobj-a)
+
+nmap <silent> <C-s> <Plug>(coc-range-select)
+xmap <silent> <C-s> <Plug>(coc-range-select)
+
+command! -nargs=0 Format :call CocAction('format')
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
+command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organizeImport')
+
+set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
+
+" nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+" nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+" nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+" nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+" nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+" nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+" nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+" nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+" reedes/vim-pencil {{{1
+
+let g:pencil#autoformat = 1
+let g:pencil#wrapModeDefault = 'hard'
+let g:pencil#textwidth = 80
+
+" augroup pencil
+"     autocmd!
+"     autocmd FileType markdown,rst call pencil#init({'wrap': 'hard', 'textwidth': 80})
+" augroup END
+
+" justinmk/sneak {{{1
+
+let g:sneak#label = 1
+
+" tpope/vim-commentary {{{1
+
+xmap <leader>c      <Plug>Commentary
+omap <leader>c      <Plug>Commentary
+nmap <leader>c      <Plug>Commentary
+nmap <leader>cg     <Plug>ChangeCommentary
+nmap <leader>cu     <Plug>Commentary<Plug>Commentary
+nmap <leader>cc     <Plug>CommentaryLine
+
+" tpope/vim-fugitive {{{1
+
+nmap <silent> <leader><leader>   :Git<CR>
+nmap <silent> <leader>gc         :Git commit<CR>
+nmap <silent> <leader>ls         :Git log<CR>
+nmap <silent> <leader>gr         :Git review<CR>
+nmap <silent> <leader>gd         :Git diff<CR>
+
+" junegunn/vim-plug {{{1
+
+nnoremap <leader>pc     :PlugClean<CR>
+nnoremap <leader>pi     :PlugInstall<CR>
+nnoremap <leader>pu     :PlugUpdate<CR>
+
+" junegunn/fzf.vim {{{1
+
+nmap <C-P>              :GFiles<CR>
+nmap g<C-P>             :Files<CR>
+nmap <leader>gg         :Commits<CR>
+nmap <leader>gb         :Buffers<CR>
+nmap <leader>gt         :Tags<CR>
+nmap <leader>gT         :BTags<CR>
+"
+" nmap <leader>gh         :History<CR>
+" nmap <leader>gl         :Lines<CR>
+" nmap <leader>gL         :BLines<CR>
+" nmap <leader>q      :Colors<CR>
+" nmap <leader>q      :Windows<CR>
+" nmap <leader>q      :Locate<CR>
+" nmap <leader>q      :Snippets<CR>
+" nmap <leader>q      :Marks<CR>
+" nmap <leader>q      :GFiles?<CR>
+" nmap <leader>q      :BCommits<CR>
+" nmap <leader>q      :Commands<CR>
+" nmap <leader>q      :Maps<CR>
+" nmap <leader>q      :Ag<CR>
+" nmap <leader>q      :Rg<CR>
+" nmap <leader>q      :History:<CR>
+" nmap <leader>q      :History/<CR>
+" nmap <leader>q      :Helptags<CR>
+" nmap <leader>q      :Filetypes<CR>
+
+" Source: https://github.com/junegunn/fzf.vim/issues/185#issuecomment-322120216
+function! s:build_quickfix_list(lines)
+    call setqflist(map(copy(a:lines), '{ "filename": v:val }'))
+    copen
+    cc
+endfunction
+
+let g:fzf_action = {
+  \ 'ctrl-q': function('s:build_quickfix_list'),
+  \ 'ctrl-t': 'tab split',
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit' }
+
+let $FZF_DEFAULT_OPTS = '--bind ctrl-a:select-all'
+
+" junegunn/vim-easy-align {{{1
+
+nmap ga                 <Plug>(EasyAlign)
+xmap ga                 <Plug>(EasyAlign)
+
+" preservim/NERDTree {{{1
+
+nnoremap <C-Z>          :NERDTreeToggleVCS<CR>
+
+" APZelos/blamer.nvim {{{1
+
+let g:blamer_enabled = 1
+let g:blamer_delay = 1500
+let g:blamer_show_in_visual_modes = 0
+let g:blamer_relative_time = 1
+
+" lervag/wiki.vim {{{1
+
+let g:wiki_root = '~/git/everything'
+let g:wiki_filetypes = ['rst', 'md']
+let g:wiki_journal = {
+    \ 'name': 'journal',
+    \ 'frequency': 'monthly',
+    \ 'date_format': {
+    \   'daily' : '%Y-%m-%d',
+    \   'weekly' : '%Y-%V',
+    \   'monthly' : '%Y-%m',
+    \ },
+    \}

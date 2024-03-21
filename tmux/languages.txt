@@ -1,0 +1,9 @@
+bash
+c
+cpp
+haskell
+lua
+python
+rust
+tmux
+zsh

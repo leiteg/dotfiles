@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+selected=$(cat ~/.config/tmux/languages.txt ~/.config/tmux/commands.txt | fzf)
+
+if [[ -z $selected ]]; then
+    exit 0
+fi
+
+read -p "Search terms: " query
+query=$(echo $query | tr ' ' '+')
+
+if command grep -qs "$selected" ~/.config/tmux/languages.txt; then
+    curl -s cht.sh/$selected/$query | less & while [ : ]; do sleep 1; done
+else
+    curl -s cht.sh/$selected~$query | less & while [ : ]; do sleep 1; done
+fi

@@ -1,0 +1,108 @@
+# vim: foldmethod=marker foldlevel=0
+# ==============================================================================
+#                      ____              _                  __      
+#               ____ _/ / /  _________  (_)___  ____  ___  / /______
+#              / __ `/ / /  / ___/ __ \/ / __ \/ __ \/ _ \/ __/ ___/
+#             / /_/ / / /_ (__  ) / / / / /_/ / /_/ /  __/ /_(__  ) 
+#             \__,_/_/_/(_)____/_/ /_/_/ .___/ .___/\___/\__/____/  
+#                                     /_/   /_/                     
+# ==============================================================================
+
+# FUNCTIONS --------------------------------------------------------------- {{{1
+
+global !p
+def run(*fragments):
+	import subprocess as sp
+	return sp.run(fragments, stdout=sp.PIPE, stderr=sp.PIPE)
+endglobal
+
+# DATES ------------------------------------------------------------------- {{{1
+
+global !p
+def date(string):
+	process = run("date", f"--date", string, "+%Y-%m-%d")
+	if process.returncode != 0:
+		return process.stderr.decode("utf-8")
+	return process.stdout.decode("utf-8")
+endglobal
+
+snippet today
+`date +%Y-%m-%d`
+endsnippet
+
+snippet yesterday
+`date --date='yesterday' +%Y-%m-%d`
+endsnippet
+
+snippet tomorrow
+`date --date='tomorrow' +%Y-%m-%d`
+endsnippet
+
+snippet now
+`date +%H:%M:%S`
+endsnippet
+
+snippet 'date:(.+)' "Date" wr
+`!p snip.rv = date(match.group(1))`
+endsnippet
+
+# FIGLET ------------------------------------------------------------------ {{{1
+
+global !p
+def figlet(text, font="slant", prefix=""):
+	process = run("figlet", "-f", font, text)
+	process = process.stdout.decode("utf-8").splitlines()[1:]
+	if prefix:
+		process = (prefix + line for line in process)
+	return "\n".join(process)
+endglobal
+
+snippet 'figlet(:(\w+))? (.+)' "Figlet text" br
+`!p snip.rv = figlet(match.group(3), match.group(2) or "slant")`
+endsnippet
+
+snippet fhdr "File header" b
+`!p snip.rv = "// " + "=" * 77`
+`!p snip.rv = figlet(vim.funcs.expand("%:t"), prefix="// ")`
+`!p snip.rv = "// " + "=" * 77`
+endsnippet
+
+# LICENSES ---------------------------------------------------------------- {{{1
+
+snippet !mit "MIT License Header" bA
+Copyright `date +%Y` ${1:<COPYRIGHT HOLDER>}
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of
+this software and associated documentation files (the "Software"), to deal in
+the Software without restriction, including without limitation the rights to
+use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of
+the Software, and to permit persons to whom the Software is furnished to do so,
+subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS
+FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR
+COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER
+IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
+CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+endsnippet
+
+snippet !gpl "GPL License Header" bA
+This file is part of ${1:<SOFTWARE>}.
+
+$1 is free software: you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later
+version.
+
+$1 is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
+details.
+
+You should have received a copy of the GNU General Public License along with
+$1. If not, see <https://www.gnu.org/licenses/>. 
+endsnippet

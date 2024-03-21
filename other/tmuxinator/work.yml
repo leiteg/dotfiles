@@ -1,0 +1,18 @@
+# /home/leite/.config/tmuxinator/work.yml
+
+name: work
+root: /scratch
+
+windows:
+  - research:
+      root: /scratch/research
+  - llvm:
+      root: /scratch/llvm
+  - taskbench:
+      root: /scratch/taskbench
+  - ompcbench:
+      root: /scratch/ompcbench
+      layout: main-vertical
+      panes:
+        - source venv/bin/activate
+        - source venv/bin/activate && vim

@@ -1,0 +1,247 @@
+# ------------------------------------------------------------------------------
+#                __                             ___
+#          __  /'__`\                         /'___\ __
+#         /\_\/\_\L\ \    ___    ___     ___ /\ \__//\_\     __
+#         \/\ \/_/_\_<_  /'___\ / __`\ /' _ `\ \ ,__\/\ \  /'_ `\
+#          \ \ \/\ \L\ \/\ \__//\ \L\ \/\ \/\ \ \ \_/\ \ \/\ \L\ \
+#           \ \_\ \____/\ \____\ \____/\ \_\ \_\ \_\  \ \_\ \____ \
+#            \/_/\/___/  \/____/\/___/  \/_/\/_/\/_/   \/_/\/___L\ \
+#                                                            /\____/
+#                                                            \_/__/
+#
+#                   Gustavo Leite <gustavoleite.ti@gmail.com>
+#
+# ------------------------------------------------------------------------------
+
+# set $mod Mod4
+set $mod Mod1
+
+# gaps inner 5
+# gaps outer 5
+
+# General Configuration
+    font pango:System San Francisco Display 11
+    floating_modifier $mod
+    hide_edge_borders both
+    new_window none
+    floating_maximum_size 800 x 600
+
+# ------------------------------------------------------------------------------
+
+# Color Scheme
+    set $base00 #101218
+    # set $base01 #1f222d
+    set $base01 #2F343F
+    set $base02 #252936
+    set $base03 #7780a1
+    set $base04 #C0C5CE
+    set $base05 #d1d4e0
+    set $base06 #C9CCDB
+    # set $base07 #ffffff
+    set $base07 #FF6AD5
+    # set $base08 #ee829f
+    set $base08 #C774E8
+    set $base09 #f99170
+    set $base0A #ffefcc
+    set $base0B #a5ffe1
+    set $base0C #97e0ff
+    set $base0D #97bbf7
+    set $base0E #c0b7f9
+    set $base0F #fcc09e
+
+# ------------------------------------------------------------------------------
+
+# Workspaces
+    set $ws1 "1: 1 |  "
+    set $ws2 "2: 2 | "
+    set $ws3 "3: 3 | "
+    set $ws4 "4: 4 |  "
+    set $ws5 "5: 5 |  "
+    set $ws6 "6: 6 |  "
+    set $ws7 "7: 7 | "
+    set $ws8 "8: 8 |  "
+    set $ws9 "9: 9 |  "
+    set $ws0 "10: 0 |  "
+
+# Workspace Assigning
+    # assign [class="Firefox"] $ws2
+    # assign [class="Spotify"] $ws0
+    # assign [class="Slack"] $ws4
+    # assign [class="discord"] $ws5
+    # assign [class="mpv"] $ws6
+    # assign [class="Thunderbird"] $ws8
+    # assign [class="Thunar"] $ws9
+
+# ------------------------------------------------------------------------------
+# Bar and Window configs
+
+# Window Colors
+#                           border  bg      text    indicator
+    client.focused          $base01 $base01 $base07 $base0F
+    client.focused_inactive $base02 $base02 $base03 $base0F
+    client.unfocused        $base02 $base02 $base03 $base0F
+    client.urgent           $base02 $base08 $base00 $base0F
+
+bar {
+    strip_workspace_numbers yes
+    #height 23
+    font pango: System San Francisco Display, FontAwesome 10
+    status_command  i3blocks
+    position        top
+    bindsym         button4 nop
+    bindsym         button5 nop
+
+    colors {
+        separator           $base03
+        background          $base01
+        statusline          $base05
+#                           border  bg      text
+        focused_workspace   $base07 $base07 $base01
+        active_workspace    $base03 $base03 $base01
+        inactive_workspace  $base01 $base01 $base03
+        urgent_workspace    $base08 $base08 $base01
+        binding_mode        $base09 $base09 $base01
+    }
+}
+
+# ------------------------------------------------------------------------------
+# Modes
+
+# Resize Mode
+bindsym $mod+r mode "  "
+
+mode "  " {
+    # bindsym h       resize shrink width 10 px or 10 ppt
+    # bindsym j       resize grow height 10 px or 10 ppt
+    # bindsym k       resize shrink height 10 px or 10 ppt
+    # bindsym l       resize grow width 10 px or 10 ppt
+    bindsym h       resize shrink width 5 px
+    bindsym j       resize grow height 5 px
+    bindsym k       resize shrink height 5 px
+    bindsym l       resize grow width 5 px
+    bindsym Escape  mode "default"
+    bindsym Return  mode "default"
+}
+
+# Move Mode
+bindsym $mod+m mode "  "
+
+mode "  " {
+    bindsym h       focus left
+    bindsym j       focus down
+    bindsym k       focus up
+    bindsym l       focus right
+    bindsym Escape  mode "default"
+    bindsym Return  mode "default"
+}
+
+# System mode
+bindsym $mod+s mode " [s]hutdown [r]eboot [l]ogout"
+
+mode " [s]hutdown [r]eboot [l]ogout" {
+    bindsym s       exec shutdown now, mode "default"
+    bindsym r       exec reboot, mode "default"
+    bindsym l       exec i3-msg exit
+    bindsym Escape  mode "default"
+    bindsym Return  mode "default"
+}
+
+# ------------------------------------------------------------------------------
+# Workspace bindings
+
+# Workspace Cycling
+    bindsym $mod+Tab        workspace next
+    bindsym $mod+Shift+Tab  workspace prev
+
+# Workspace Switching
+    bindsym $mod+1 workspace $ws1
+    bindsym $mod+2 workspace $ws2
+    bindsym $mod+3 workspace $ws3
+    bindsym $mod+4 workspace $ws4
+    bindsym $mod+5 workspace $ws5
+    bindsym $mod+6 workspace $ws6
+    bindsym $mod+7 workspace $ws7
+    bindsym $mod+8 workspace $ws8
+    bindsym $mod+9 workspace $ws9
+    bindsym $mod+0 workspace $ws0
+
+# Workspace Moving
+    bindsym $mod+Shift+1 move container to workspace $ws1
+    bindsym $mod+Shift+2 move container to workspace $ws2
+    bindsym $mod+Shift+3 move container to workspace $ws3
+    bindsym $mod+Shift+4 move container to workspace $ws4
+    bindsym $mod+Shift+5 move container to workspace $ws5
+    bindsym $mod+Shift+6 move container to workspace $ws6
+    bindsym $mod+Shift+7 move container to workspace $ws7
+    bindsym $mod+Shift+8 move container to workspace $ws8
+    bindsym $mod+Shift+9 move container to workspace $ws9
+    bindsym $mod+Shift+0 move container to workspace $ws0
+
+# ------------------------------------------------------------------------------
+# Bindings
+
+# Window bindings
+    bindsym $mod+q kill
+    bindsym $mod+h focus left
+    bindsym $mod+j focus down
+    bindsym $mod+k focus up
+    bindsym $mod+l focus right
+    bindsym $mod+Shift+h move left
+    bindsym $mod+Shift+j move down
+    bindsym $mod+Shift+k move up
+    bindsym $mod+Shift+l move right
+    bindsym $mod+Shift+space floating toggle
+    bindsym $mod+f fullscreen toggle
+    # bindsym $mod+v layout toggle split
+    bindsym $mod+v split v
+    bindsym $mod+c split h
+    bindsym $mod+space focus mode_toggle
+
+# Restart-Related Bindings
+    bindsym $mod+Shift+c reload
+    bindsym $mod+Shift+r restart
+
+# Program-Related Bindings
+    bindsym $mod+Shift+f exec firefox
+    bindsym $mod+Shift+t exec thunar
+    bindsym $mod+Shift+s exec spotify
+    bindsym $mod+Return exec i3-sensible-terminal
+    bindsym $mod+Shift+Return exec i3-sensible-terminal --role floating
+    # bindsym --release Print exec imgur-screenshot
+    bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+    bindsym $mod+d exec rofi -show run
+    bindsym $mod+w exec rofi -show window
+    bindsym $mod+p exec /home/laranjadinho/.config/i3/lock.sh
+
+for_window [class="Gnome-terminal" window_role="floating"] floating enable, border pixel 3
+for_window [class="Spotify"] move to workspace $ws0
+for_window [title="^Window"] floating enable
+
+#rofi -show run -color-window "#c774e8, argb:0002b36, argb:0333333" -color-normal "argb:0ad8cff, #333333, argb:0ad8cff, #ff6ad5, #ffffff" -color-active "argb:0fdf6e3, #333333, argb:0eee8d5, argb:0eee8d5, #333333" -color-urgent "argb:0fdf6e3, #333333, argb:0eee8d5, argb:0eee8d5, #303030" -opacity "90%" -width 100 -padding 340 -lines 5 -bw 0 -font "pango:Courier Bold 14"
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | grep RUNNING | awk '{print $1}') +5% #increase sound volume
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list sinks short | grep RUNNING | awk '{print $1}') -5% #decrease sound volume
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pactl list sinks short | grep RUNNING | awk '{print $1}') toggle # mute sound
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# ------------------------------------------------------------------------------
+# Exec
+
+#exec compton -f
+#exec --no-startup-id volti
+#exec_always xrandr --output HDMI-0 --mode 1920x1080 --dpi 90
+
+exec --no-startup-id dropbox start
+exec --no-startup-id nm-applet
+exec --no-startup-id cbatticon
+exec_always --no-startup-id feh --bg-center Pictures/wallpaper

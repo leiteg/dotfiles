@@ -1,0 +1,166 @@
+priority -1
+extends c
+
+global !p
+
+def get_ns_comment(t):
+    return "// {}".format("anonymous namespace" if not t else f"namespace {t}")
+
+endglobal
+
+priority 1
+
+snippet inc "#include <>" bA
+#include <${1:iostream}>$0
+endsnippet
+
+snippet ns "namespace foo {}" b
+namespace${1/.+/ /}${1:foo} {
+
+${0:${VISUAL}}
+
+} `!p snip.rv = get_ns_comment(t[1])`
+endsnippet
+
+snippet uns "using namespace std;"
+using namespace ${1:std};$0
+endsnippet
+
+priority 10
+snippet en "enum name {}" b
+enum ${1:enum_name} {
+  ${2:ENUM_ITEM,}
+};$0
+endsnippet
+
+priority 20
+snippet '(\w+)_en' "enum name {}" rbA
+enum `!p snip.rv = match.group(1)` {
+  ${1:ENUM_ITEM,}
+};$0
+endsnippet
+
+priority 10
+snippet cen "enum class name {}" b
+enum class ${1:enum_name} {
+  ${2:ENUM_ITEM,}
+};$0
+endsnippet
+
+priority 20
+snippet '(\w+)_cen' "enum class name {}" rbA
+enum class `!p snip.rv = match.group(1)` {
+  ${1:ENUM_ITEM,}
+};$0
+endsnippet
+
+priority 10
+snippet st "struct name {}" b
+struct ${1:struct_name} {
+  ${2:int value;}
+};$0
+endsnippet
+
+priority 20
+snippet '(\w+)_st' "struct name {}" rbA
+struct `!p snip.rv = match.group(1)` {
+  ${1:int value;}
+};$0
+endsnippet
+
+priority 10
+snippet fn "function" b
+auto ${1:function_name}(${2:/* parms */}) -> ${3:void} {
+  ${0:${VISUAL:return;}}
+}
+endsnippet
+
+priority 20
+snippet '(\w+)_fn' "function" rbA
+auto `!p snip.rv = match.group(1)`(${1:/* parms */})${2/.+/ -> /}${2:int} {
+  ${0:${VISUAL:return;}}
+}
+endsnippet
+
+snippet class "class Name {};" b
+class ${1:MyClass} {
+public:
+  $1() = default;
+  ~$1() = default;
+
+private:
+  $2
+};$0
+endsnippet
+
+snippet t "template <typename T>" b
+template <typename ${1:T}>$0
+endsnippet
+
+priority 10
+snippet afor "for (auto &a : b) {}" b
+for (auto &${2:value} : ${1:container}) {
+  ${0:${VISUAL:;}}
+}
+endsnippet
+
+priority 20
+snippet '(\w+)_afor' "for (auto &a : b) {}" rbA
+for (auto &${1:value} : `!p snip.rv = match.group(1)`) {
+  ${0:${VISUAL:;}}
+}
+endsnippet
+
+priority 10
+snippet cafor "for (const auto &a : b) {}" b
+for (const auto &${2:value} : ${1:container}) {
+  ${0:${VISUAL:;}}
+}
+endsnippet
+
+priority 20
+snippet '(\w+)_cafor' "for (const auto &a : b) {}" rbA
+for (const auto &${1:value} : `!p snip.rv = match.group(1)`) {
+  ${0:${VISUAL:;}}
+}
+endsnippet
+
+snippet cout "std::cout << std::endl;" b
+std::cout << ${1:"Hello, World!"} << std::endl;$0
+endsnippet
+
+snippet cerr "std::cerr << std::endl;" b
+std::cerr << ${1:"Hello, World!"} << std::endl;$0
+endsnippet
+
+snippet mup "std::make_unique<>()" w
+std::make_unique<${1:T}>(${2:${VISUAL}});$0
+endsnippet
+
+snippet msp "std::make_shared<>()" w
+std::make_shared<${1:T}>(${2:${VISUAL}});$0
+endsnippet
+
+snippet up "std::unique_ptr<T> up;" w
+std::unique_ptr<${1:T}>
+endsnippet
+
+snippet sp "std::shared_ptr<T> up;" w
+std::shared_ptr<${1:T}>
+endsnippet
+
+snippet vec "std::vector<T> vec;" i
+std::vector<${1:T}>
+endsnippet
+
+snippet map "std::map<K, V> map;" w
+std::map<${1:K}, ${2:V}>
+endsnippet
+
+snippet umap "std::unordered_map<K, V> map;" w
+std::unordered_map<${1:K}, ${2:V}>
+endsnippet
+
+snippet str "std::string" w
+std::string
+endsnippet

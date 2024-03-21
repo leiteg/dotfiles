@@ -1,0 +1,10 @@
+noto-fonts
+noto-fonts-cjk
+noto-fonts-emoji
+noto-fonts-extra
+ttf-dejavu
+ttf-fira-code
+ttf-fira-sans
+ttf-hack
+ttf-liberation
+ttf-roboto

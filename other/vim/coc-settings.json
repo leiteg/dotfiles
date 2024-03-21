@@ -1,0 +1,10 @@
+{
+    "clangd": {
+        "arguments": [
+            "-cross-file-rename",
+            "--log=verbose"
+        ]
+    },
+    "pyright.enable": true,
+    "python.formatting.provider": "black"
+}

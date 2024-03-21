@@ -1,0 +1,116 @@
+# vim: ft=sshconfig et sts=4 sw=4
+# ------------------------------------------------------------------------------
+#                                            __
+#                                 __________/ /_
+#                                / ___/ ___/ __ \
+#                               (__  |__  ) / / /
+#                              /____/____/_/ /_/
+#
+#                         <gustavoleite.ti@gmail.com>
+#
+# ------------------------------------------------------------------------------
+
+Host *
+    KeepAlive yes
+    ServerAliveInterval 30
+    ServerAliveCountMax 10
+    ControlMaster auto
+    ControlPath ~/.ssh/control:%h:%p:%r
+
+# ------------------------------------------------------------------------------
+
+# FIXME: This is a workaround
+Host gitlab.com
+    AddressFamily inet
+
+# Atomic (UNESP) ---------------------------------------------------------------
+
+Host atomic
+    User        leite
+    HostName    atomic.rc.unesp.br
+    Port        6868
+
+Host node10
+    User        leite
+    ProxyJump   atomic
+
+Host node01
+    User        leite
+    ProxyJump   atomic
+
+# Lightsail (Amazon) -----------------------------------------------------------
+
+Host lightsail
+    User            ubuntu
+    HostName        34.197.58.149
+    Port            222
+
+# LSC Cluster (Unicamp) --------------------------------------------------------
+
+Host lsc
+    User            gustavo.leite
+    Hostname        ssh.lsc.ic.unicamp.br
+    Port            6868
+
+Host n16
+    User        gustavo.leite
+    ProxyJump   lsc
+
+Host n18
+    User        gustavo.leite
+    ProxyJump   lsc
+
+Host workhard
+    User        gustavo.leite
+    ProxyJump   lsc
+
+Host sorgan
+    User        gustavo.leite
+    ProxyJump   lsc
+
+Host f1-alveo
+    User        gustavo.leite
+    ProxyJump   lsc
+
+# Ogbon (CIMATEC) --------------------------------------------------------------
+
+Host ogbon.br
+    User        gustavo.leite.br
+    Hostname    200.128.24.23
+    Port        22
+
+Host ogbon
+    User        gustavo.leite
+    Hostname    200.128.24.26
+    Port        5001
+
+Host dgx
+    User        etvw
+    Hostname    localhost
+    Port        23440
+    ProxyJump   ogbon.br
+
+Host tatu
+    User        etvw
+    ProxyJump   dgx
+
+# Kahuna (Unicamp) -------------------------------------------------------------
+
+Host kahuna
+    User        gustavoleite
+    Hostname    kahuna.iqm.unicamp.br
+    ProxyJump   lsc
+
+# Santos Dumon (LNCC) ----------------------------------------------------------
+
+Host sdumont
+    User        gustavo.leite
+    Hostname    login.sdumont.lncc.br
+
+Host sdumont11
+    User        gustavo.leite
+    ProxyJump   sdumont
+
+Host sdumont17
+    User        gustavo.leite
+    ProxyJump   sdumont

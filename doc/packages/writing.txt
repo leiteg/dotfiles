@@ -1,0 +1,5 @@
+texlive-most
+aspell
+aspell-en
+aspell-pt
+pandoc

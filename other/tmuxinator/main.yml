@@ -1,0 +1,9 @@
+# /home/leite/.config/tmuxinator/main.yml
+
+name: main
+root: ~/
+
+windows:
+  - system:
+  - dotfiles:   cd ~/dotfiles
+  - everything: cd ~/git/everything/
