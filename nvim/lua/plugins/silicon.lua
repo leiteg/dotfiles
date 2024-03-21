@@ -3,7 +3,6 @@ return {
     lazy = true,
     cmd = "Silicon",
     init = function()
-        print("Silicon/init")
         vim.keymap.set("v", "<leader>ss", "<cmd>'<,'>Silicon<CR>", {
             desc = "Take a screenshot of selected text with Silicon."
         })
@@ -13,7 +12,6 @@ return {
         })
     end,
     config = function()
-        print("Silicon/config")
         require("silicon").setup({
             font = "Iosevka Term",
             theme = "Dracula",
