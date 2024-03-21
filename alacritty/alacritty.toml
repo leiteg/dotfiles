@@ -1,0 +1,27 @@
+import = ["~/.config/alacritty/dracula.toml"]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12.0
+
+[font.normal]
+family = "Iosevka Term"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "T"
+mods = "Alt"
+
+[[keyboard.bindings]]
+action = "ToggleFullScreen"
+key = "Return"
+mods = "Control"
+
+[window]
+decorations = "None"
+
+[window.padding]
+x = 10
+y = 15
