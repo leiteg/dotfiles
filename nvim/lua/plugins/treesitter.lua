@@ -27,7 +27,7 @@ table.insert(plugins, {
                         ["i="] = "@assignment.inner",
                         ["l="] = "@assignment.lhs",
                         ["r="] = "@assignment.rhs",
-                        ["aa"] = "@parameter.inner",
+                        ["aa"] = "@parameter.outer",
                         ["ia"] = "@parameter.inner",
                         ["am"] = "@call.outer",
                         ["im"] = "@call.inner",
