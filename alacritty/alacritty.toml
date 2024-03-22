@@ -7,7 +7,7 @@ TERM = "xterm-256color"
 decorations = "None"
 
 [window.padding]
-x = 10
+x = 5
 y = 15
 
 [font]
