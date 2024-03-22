@@ -40,12 +40,12 @@ table.insert(plugins, {
                 swap = {
                     enable = true,
                     swap_next = {
-                        ["<leader>pj"] = "@parameter.inner",
+                        ["<leader>aj"] = "@parameter.inner",
                         ["<leader>fj"] = "@function.outer",
                         ["<leader>cj"] = "@class.outer",
                     },
                     swap_previous = {
-                        ["<leader>pk"] = "@parameter.inner",
+                        ["<leader>ak"] = "@parameter.inner",
                         ["<leader>fk"] = "@function.outer",
                         ["<leader>ck"] = "@class.outer",
                     },
