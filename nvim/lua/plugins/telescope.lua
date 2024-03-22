@@ -5,6 +5,7 @@ table.insert(plugins, {
     branch = '0.1.x',
     dependencies = {
         "nvim-lua/plenary.nvim",
+        "nvim-tree/nvim-web-devicons",
     },
     config = function()
         local actions = require("telescope.actions")
@@ -15,6 +16,9 @@ table.insert(plugins, {
                 mappings = {
                     i = {
                         ["<esc>"] = actions.close,
+                        ["<C-k>"] = actions.move_selection_previous,
+                        ["<C-j>"] = actions.move_selection_next,
+                        ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
                     },
                 },
             },
