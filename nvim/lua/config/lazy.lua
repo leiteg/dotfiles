@@ -23,4 +23,15 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins")
+require("lazy").setup("plugins", {
+    install = {
+        coloscheme = { "dracula" },
+    },
+    checker = {
+        enabled = true,
+        notify = false,
+    },
+    change_detection = {
+        nofify = false,
+    }
+})
