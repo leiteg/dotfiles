@@ -2,8 +2,18 @@ return {
     "stevearc/oil.nvim",
     cmd = "Oil",
     keys = {
-        { "-", "<cmd>Oil<CR>" }
+        { "-", "<cmd>Oil --float<CR>" }
     },
-    opts = {},
+    opts = {
+        float = {
+            padding = 5,
+            max_width = 60,
+            max_height = 25,
+
+        },
+        keymaps = {
+            ["<esc>"] = "actions.close"
+        }
+    },
     dependencies = { "nvim-tree/nvim-web-devicons" },
 }
