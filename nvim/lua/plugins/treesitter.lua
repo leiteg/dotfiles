@@ -88,4 +88,8 @@ table.insert(plugins, {
     end,
 })
 
+table.insert(plugins, {
+    "nvim-treesitter/nvim-treesitter-context",
+})
+
 return plugins
