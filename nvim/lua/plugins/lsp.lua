@@ -36,9 +36,24 @@ local config = function()
         }
     }
 
+    lspconfig.lua_ls.setup {
+        settings = {
+            Lua = {
+                diagnostics = {
+                    globals = {
+                        "vim",
+                        "require",
+                    }
+                },
+                workspace = {
+                    library = vim.api.nvim_get_runtime_file("", true),
+                },
+            },
+        },
+    }
+
     lspconfig.pyright.setup {}
     lspconfig.rust_analyzer.setup {}
-    lspconfig.lua_ls.setup {}
     lsp_zero.setup()
 end
 
