@@ -11,3 +11,6 @@ require "config.settings"
 require "config.keymaps"
 require "config.autocmds"
 require "config.lazy"
+
+-- Optionally load local config if exists
+pcall(require, "config.local")
