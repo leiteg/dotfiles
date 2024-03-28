@@ -23,7 +23,13 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require("lazy").setup("plugins", {
+-- Where to look for plugins
+local plugins = {
+    { import = "plugins" },
+}
+
+-- General options
+local opts = {
     install = {
         coloscheme = { "dracula" },
     },
@@ -32,6 +38,8 @@ require("lazy").setup("plugins", {
         notify = false,
     },
     change_detection = {
-        nofify = false,
+        notify = false,
     }
-})
+}
+
+require("lazy").setup(plugins, opts)
