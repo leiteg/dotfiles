@@ -150,7 +150,7 @@ function pacrs {
 
 alias quit="exit"
 
-try_alias ls    exa
+try_alias ls    eza
 try_alias cat   bat
 try_alias vim   nvim
 try_alias grep  rg
