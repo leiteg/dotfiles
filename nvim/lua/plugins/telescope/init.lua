@@ -1,6 +1,4 @@
-local plugins = {}
-
-table.insert(plugins, {
+return {
     "nvim-telescope/telescope.nvim",
     branch = '0.1.x',
     dependencies = {
@@ -44,24 +42,4 @@ table.insert(plugins, {
             builtin.lsp_dynamic_workspace_symbols({ ignore_symbols = "variable" })
         end, { desc = "Telescope Symbols" })
     end,
-})
-
-table.insert(plugins, {
-    "nvim-telescope/telescope-fzf-native.nvim",
-    build = "make",
-    config = function()
-        require("telescope").setup {
-            extensions = {
-                fzf = {
-                    fuzzy = true,
-                    override_generic_sorter = true,
-                    override_file_sorter = true,
-                    case_mode = "smart_case",
-                },
-            },
-        }
-        require("telescope").load_extension("fzf")
-    end
-})
-
-return plugins
+}
