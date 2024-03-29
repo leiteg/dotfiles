@@ -27,6 +27,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
     { import = "plugins" },
     { import = "plugins.mini" },
+    { import = "plugins.treesitter" },
 }
 
 -- General options
