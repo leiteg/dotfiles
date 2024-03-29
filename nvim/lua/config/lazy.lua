@@ -26,6 +26,7 @@ vim.opt.rtp:prepend(lazypath)
 -- Where to look for plugins
 local plugins = {
     { import = "plugins" },
+    { import = "plugins.mini" },
 }
 
 -- General options
