@@ -39,9 +39,9 @@ autocmd("QuickFixCmdPost", {
 augroup("JumpLastLocation", { clear = true })
 autocmd("BufReadPost", {
     group = "JumpLastLocation",
-    pattern = "*",
     callback = function()
-        if vim.bo.filetype == "gitcommit" then
+        local fname = vim.fn.expand("%:t")
+        if fname == "COMMIT_EDITMSG" then
             return
         end
         local line = vim.fn.line("'\"")
