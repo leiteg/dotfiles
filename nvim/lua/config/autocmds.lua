@@ -11,34 +11,30 @@ local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
 -- Highlight yanked text for a short period
-augroup("YankHighlight", { clear = true })
 autocmd("TextYankPost", {
-    group = "YankHighlight",
+    group = augroup("YankHighlight", { clear = true }),
     callback = function()
         vim.highlight.on_yank({ higroup = "IncSearch", timeout = "150" })
     end
 })
 
 -- Automatically rebalance windows when vim is resized
-augroup("ResizeWindow", { clear = true })
 autocmd("VimResized", {
-    group = "ResizeWindow",
+    group = augroup("ResizeWindow", { clear = true }),
     pattern = "*",
     command = "wincmd ="
 })
 
 -- Automatically open quickfix window
-augroup("OpenQuickFix", { clear = true })
 autocmd("QuickFixCmdPost", {
-    group = "OpenQuickFix",
+    group = augroup("OpenQuickFix", { clear = true }),
     pattern = "*",
     command = "cwindow",
 })
 
 -- Jump back to last location in file
-augroup("JumpLastLocation", { clear = true })
 autocmd("BufReadPost", {
-    group = "JumpLastLocation",
+    group = augroup("JumpLastLocation", { clear = true }),
     callback = function()
         local fname = vim.fn.expand("%:t")
         if fname == "COMMIT_EDITMSG" then
@@ -52,10 +48,9 @@ autocmd("BufReadPost", {
     end
 })
 
--- Load template when opening new file
-augroup("FileTemplates", { clear = true })
+-- Load template from extension on new file
 autocmd("BufNewFile", {
-    group = "FileTemplates",
+    group = augroup("FileTemplates", { clear = true }),
     pattern = "*.*",
     callback = function()
         vim.cmd [[
@@ -64,8 +59,10 @@ autocmd("BufNewFile", {
         ]]
     end,
 })
+
+-- Load template from full name on new file
 autocmd("BufNewFile", {
-    group = "FileTemplates",
+    group = augroup("FileTemplates", { clear = true }),
     pattern = {
         "pyproject.toml",
         "CMakeLists.txt",
