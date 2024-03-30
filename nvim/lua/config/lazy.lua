@@ -42,7 +42,10 @@ local opts = {
     },
     change_detection = {
         notify = false,
-    }
+    },
+    dev = {
+        path = "~/git/neovim",
+    },
 }
 
 require("lazy").setup(plugins, opts)
