@@ -1,5 +1,6 @@
 return {
     "stevearc/oil.nvim",
+    lazy = false,
     cmd = "Oil",
     keys = {
         { "-", "<cmd>Oil --float<CR>" }
@@ -12,8 +13,9 @@ return {
 
         },
         keymaps = {
-            ["<esc>"] = "actions.close"
-        }
+            ["<esc>"] = "actions.close",
+            ["q"] = "actions.close",
+        },
     },
     dependencies = { "nvim-tree/nvim-web-devicons" },
 }
