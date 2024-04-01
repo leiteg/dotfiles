@@ -1,4 +1,4 @@
-import = ["~/.config/alacritty/dracula.toml"]
+import = ["~/.config/alacritty/tokyonight-night.toml"]
 
 [env]
 TERM = "xterm-256color"
