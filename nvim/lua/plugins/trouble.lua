@@ -5,6 +5,6 @@ return {
         "TroubleToggle",
     },
     keys = {
-        { "<leader>t", "<cmd>TroubleToggle<CR>" }
+        { "<leader>t", "<cmd>TroubleToggle<CR>", desc = "Toggle Trouble" }
     }
 }

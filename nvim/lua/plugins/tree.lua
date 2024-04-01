@@ -5,7 +5,7 @@ return {
         "NvimTreeFindFile",
     },
     keys = {
-        { "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>" },
+        { "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Toggle Nvim Tree" },
     },
     opts = {
         filters = {

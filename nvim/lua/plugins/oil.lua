@@ -3,7 +3,7 @@ return {
     lazy = false,
     cmd = "Oil",
     keys = {
-        { "-", "<cmd>Oil --float<CR>" }
+        { "-", "<cmd>Oil --float<CR>", desc = "Open Oil" }
     },
     opts = {
         float = {

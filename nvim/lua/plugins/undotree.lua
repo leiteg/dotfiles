@@ -3,6 +3,6 @@ return {
     lazy = true,
     cmd = "UndotreeToggle",
     keys = {
-        { "<leader>u", vim.cmd.UndotreeToggle }
+        { "<leader>u", "<cmd>UndotreeToggle<CR>", desc = "Toggle Undo Tree" }
     },
 }
