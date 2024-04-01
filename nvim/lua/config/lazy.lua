@@ -29,6 +29,7 @@ local plugins = {
     { import = "plugins.mini" },
     { import = "plugins.treesitter" },
     { import = "plugins.telescope" },
+    { import = "plugins.lsp" },
     { import = "plugins.local" },
 }
 
