@@ -30,6 +30,7 @@ local plugins = {
     { import = "plugins.treesitter" },
     { import = "plugins.telescope" },
     { import = "plugins.lsp" },
+    { import = "plugins.dap" },
     { import = "plugins.local" },
 }
 
