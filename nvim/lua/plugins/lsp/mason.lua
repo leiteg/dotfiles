@@ -36,7 +36,15 @@ end
 return {
     {
         "williamboman/mason.nvim",
-        opts = {},
+        opts = {
+            ui = {
+                icons = {
+                    package_installed = " ",
+                    package_pending = " ",
+                    package_uninstalled = " ",
+                }
+            }
+        },
     },
     {
         "williamboman/mason-lspconfig.nvim",

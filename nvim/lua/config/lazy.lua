@@ -48,6 +48,14 @@ local opts = {
     dev = {
         path = "~/git/neovim",
     },
+    ui = {
+        icons = {
+            loaded = " ",
+            not_loaded = " "
+        },
+    }
 }
 
 require("lazy").setup(plugins, opts)
+
+vim.keymap.set("n", "<leader>lz", "<cmd>Lazy<cr>", { desc = "Open Lazy UI" })
