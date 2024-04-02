@@ -37,3 +37,6 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 -- Change sessions
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- Terminal
+vim.keymap.set("t", "<esc>", "<C-\\><C-n>")
