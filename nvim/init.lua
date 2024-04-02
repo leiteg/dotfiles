@@ -14,3 +14,7 @@ require "config.lazy"
 
 -- Optionally load local config if exists
 pcall(require, "config.local")
+
+function P(object)
+    print(vim.inspect(object))
+end
