@@ -13,4 +13,8 @@ return {
         { "<A-k>", "<cmd>TmuxNavigateUp<cr>",    desc = "Tmux Navigate Up" },
         { "<A-l>", "<cmd>TmuxNavigateRight<cr>", desc = "Tmux Navigate Right" },
     },
+    init = function()
+        -- Disable default mappings (<C-h>, <C-j>, <C-k>, <C-l>).
+        vim.cmd [[ let g:tmux_navigator_no_mappings = 1 ]]
+    end
 }
