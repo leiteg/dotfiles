@@ -63,8 +63,8 @@ return {
                     border = 'none',
                     floating_preview_opts = {},
                     peek_definition_code = {
-                        ["<leader>pf"] = "@function.outer",
-                        ["<leader>pc"] = "@class.outer",
+                        ["<leader>fp"] = "@function.outer",
+                        ["<leader>cp"] = "@class.outer",
                     }
                 },
             },
