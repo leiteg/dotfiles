@@ -1,3 +1,31 @@
+local icons = {
+	Text = "",
+	Function = "󰊕",
+	Method = "󰡱",
+	Constructor = "󰎔",
+	Field = "",
+	Variable = "󰫧",
+	Constant = "",
+	Class = "󰆧",
+	Struct = "󰆼",
+	Enum = "",
+	Snippet = "",
+	File = "󰈔",
+	Folder = "󰉋",
+	Reference = "",
+	Color = "",
+	Interface = "",
+	Module = "󰆧",
+	Property = "",
+	Unit = "",
+	Keyword = "",
+	EnumMember = "",
+	Event = "",
+	Value = "V",
+	Operator = "O",
+	TypeParameter = "T",
+}
+
 local config = function()
     local cmp = require("cmp")
 
@@ -27,7 +55,20 @@ local config = function()
             { name = 'ultisnips' },
             { name = 'buffer' },
             { name = 'path' },
-        })
+        }),
+        formatting = {
+            fields = { "kind", "abbr", "menu" },
+            format = function(entry, vim_item)
+                vim_item.kind = string.format("%s ", icons[vim_item.kind])
+                vim_item.menu = ({
+                    nvim_lsp = "[LSP]",
+                    luasnip = "[LuaSnip]",
+                    buffer = "[Buffer]",
+                    path = "[Path]",
+                })[entry.source.name]
+                return vim_item
+            end,
+        },
     })
 end
 
