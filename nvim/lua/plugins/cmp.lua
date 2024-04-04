@@ -1,29 +1,29 @@
 local icons = {
-	Text = "",
-	Function = "󰊕",
-	Method = "󰡱",
-	Constructor = "󰎔",
-	Field = "",
-	Variable = "󰫧",
-	Constant = "",
-	Class = "󰆧",
-	Struct = "󰆼",
-	Enum = "",
-	Snippet = "",
-	File = "󰈔",
-	Folder = "󰉋",
-	Reference = "",
-	Color = "",
-	Interface = "",
-	Module = "󰆧",
-	Property = "",
-	Unit = "",
-	Keyword = "",
-	EnumMember = "",
-	Event = "",
-	Value = "V",
-	Operator = "O",
-	TypeParameter = "T",
+    Text = "",
+    Function = "󰊕",
+    Method = "󰡱",
+    Constructor = "󰎔",
+    Field = "",
+    Variable = "󰫧",
+    Constant = "",
+    Class = "󰆧",
+    Struct = "󰆼",
+    Enum = "",
+    Snippet = "",
+    File = "󰈔",
+    Folder = "󰉋",
+    Reference = "",
+    Color = "",
+    Interface = "",
+    Module = "󰆧",
+    Property = "",
+    Unit = "",
+    Keyword = "",
+    EnumMember = "",
+    Event = "",
+    Value = "V",
+    Operator = "O",
+    TypeParameter = "T",
 }
 
 local config = function()
@@ -51,6 +51,8 @@ local config = function()
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
+            { name = 'nvim_lua' },
+            { name = 'calc' },
             { name = 'buffer' },
             { name = 'path' },
         }),
@@ -68,6 +70,19 @@ local config = function()
             end,
         },
     })
+
+    cmp.setup({
+        enabled = function()
+            return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt"
+                or require("cmp_dap").is_dap_buffer()
+        end
+    })
+
+    cmp.setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+        sources = {
+            { name = "dap" },
+        },
+    })
 end
 
 return {
@@ -75,9 +90,13 @@ return {
     event = "InsertEnter",
     dependencies = {
         "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-nvim-lua",
+        "hrsh7th/cmp-calc",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
         "saadparwaiz1/cmp_luasnip",
+        "rcarriga/cmp-dap",
+        "micangl/cmp-vimtex",
     },
     config = config,
 }
