@@ -34,7 +34,7 @@ local config = function()
     cmp.setup({
         snippet = {
             expand = function(args)
-                vim.fn["UltiSnips#Anon"](args.body)
+                require('luasnip').lsp_expand(args.body)
             end,
         },
         window = {
@@ -42,17 +42,15 @@ local config = function()
             -- documentation = cmp.config.window.bordered(),
         },
         mapping = cmp.mapping.preset.insert({
-            ['<C-b>'] = cmp.mapping.scroll_docs(-4),
-            ['<C-f>'] = cmp.mapping.scroll_docs(4),
-            ['<C-k>'] = cmp.mapping.select_prev_item(),
-            ['<C-j>'] = cmp.mapping.select_next_item(),
-            ['<C-Space>'] = cmp.mapping.complete(),
+            ['<C-p>'] = cmp.mapping.select_prev_item(),
+            ['<C-n>'] = cmp.mapping.select_next_item(),
             ['<C-e>'] = cmp.mapping.abort(),
+            ['<C-Space>'] = cmp.mapping.complete(),
             ['<CR>'] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
-            { name = 'ultisnips' },
+            { name = 'luasnip' },
             { name = 'buffer' },
             { name = 'path' },
         }),
@@ -79,7 +77,7 @@ return {
         "hrsh7th/cmp-nvim-lsp",
         "hrsh7th/cmp-path",
         "hrsh7th/cmp-buffer",
-        "quangnguyen30192/cmp-nvim-ultisnips",
+        "saadparwaiz1/cmp_luasnip",
     },
     config = config,
 }
