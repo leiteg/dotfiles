@@ -62,7 +62,7 @@ autocmd("BufNewFile", {
 
 -- Load template from full name on new file
 autocmd("BufNewFile", {
-    group = augroup("FileTemplates", { clear = true }),
+    group = augroup("FileTemplates", { clear = false }),
     pattern = {
         "pyproject.toml",
         "CMakeLists.txt",
