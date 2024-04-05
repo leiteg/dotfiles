@@ -1,5 +1,6 @@
 return {
     "lewis6991/gitsigns.nvim",
+    lazy = false,
     keys = {
         { "<leader>hs", "<cmd>lua require'gitsigns'.stage_hunk()<CR>",      desc = "Stage hunk" },
         { "<leader>hu", "<cmd>lua require'gitsigns'.undo_stage_hunk()<CR>", desc = "Undo stage hunk" },
