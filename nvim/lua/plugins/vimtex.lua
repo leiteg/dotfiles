@@ -1,6 +1,6 @@
 return {
     "lervag/vimtex",
-    ft = "tex",
+    event = "VeryLazy",
     config = function()
         vim.g.tex_flavor = 'latex'
         vim.g.vimtex_complete_close_braces = 1

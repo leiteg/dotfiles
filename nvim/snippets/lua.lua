@@ -6,53 +6,54 @@ local ls = require("luasnip")
 local utils = require("config.sniputils")
 
 --------------------------------------------------------------------------------
--- INITIALIZATIONS
+-- INITIALIZATION
 --------------------------------------------------------------------------------
 
 local snippet = utils.snippet
-
---[[
-local s = ls.snippet
-local sn = ls.snippet_node
-local isn = ls.indent_snippet_node
-local t = ls.text_node
-local i = ls.insert_node
-local f = ls.function_node
-local c = ls.choice_node
+local i = ls.i
+local t = ls.t
 local d = ls.dynamic_node
-local r = ls.restore_node
-local events = require("luasnip.util.events")
-local ai = require("luasnip.nodes.absolute_indexer")
-local extras = require("luasnip.extras")
-local l = extras.lambda
-local rep = extras.rep
-local p = extras.partial
-local m = extras.match
-local n = extras.nonempty
-local dl = extras.dynamic_lambda
-local fmt = require("luasnip.extras.fmt").fmt
-local fmta = require("luasnip.extras.fmt").fmta
-local conds = require("luasnip.extras.expand_conditions")
-local postfix = require("luasnip.extras.postfix").postfix
-local types = require("luasnip.util.types")
-local parse = require("luasnip.util.parser").parse_snippet
-local ms = ls.multi_snippet
-local k = require("luasnip.nodes.key_indexer").new_key
---]]
+local sn = ls.snippet_node
 
 --------------------------------------------------------------------------------
 -- FUNCTIONS
 --------------------------------------------------------------------------------
 
-local function _()
-    return nil
+local function last_in_path(index, opts)
+    local function _(args)
+        local last = ""
+        for arg in string.gmatch(args[1][1], '([^.]+)') do
+            last = arg
+        end
+        return sn(nil, t(last))
+    end
+    return d(index, _, { opts.from })
 end
 
 --------------------------------------------------------------------------------
 -- SNIPPETS
 --------------------------------------------------------------------------------
 
-local snippets = {}
+local snippets = {
+
+    snippet("req", "Require", [[
+        local <name> = require("<pack>")
+    ]], {
+        pack = i(1),
+        name = last_in_path(2, { from = 1 }),
+    }),
+
+    snippet("fn", "Function", [[
+        local function <name>(<args>)
+            <body>
+        end
+    ]], {
+        name = i(1, "name"),
+        args = i(2),
+        body = i(0, "return nil"),
+    }),
+
+}
 
 --------------------------------------------------------------------------------
 -- AUTOSNIPPETS
