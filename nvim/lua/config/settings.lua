@@ -47,3 +47,6 @@ vim.opt.splitright = true
 
 -- Python
 vim.g.python3_host_prog = '/usr/bin/python'
+
+-- Undo
+vim.opt.undofile = true
