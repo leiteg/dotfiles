@@ -20,8 +20,8 @@ vim.keymap.set("v", "J", "<cmd>m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", "<cmd>m '<-2<CR>gv=gv")
 
 -- Movement
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
+vim.keymap.set("n", "<C-d>", "<C-d>M")
+vim.keymap.set("n", "<C-u>", "<C-u>M")
 vim.keymap.set("n", "<tab>", "<cmd>bn<CR>")
 vim.keymap.set("n", "<s-tab>", "<cmd>bp<CR>")
 
