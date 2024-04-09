@@ -6,8 +6,20 @@ return {
             ensure_installed = { "c", "lua", "vim", "vimdoc", "query", "rust", "python" },
             sync_install = false,
             auto_install = true,
-            highlight = { enable = true },
-            indent = { enable = true },
+            highlight = {
+                enable = true,
+                disable = { "tex", "latex" },
+            },
+            indent = {
+                enable = true,
+            },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    node_incremental = "+",
+                    node_decremental = "-",
+                },
+            },
         }
     end,
 }
