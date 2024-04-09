@@ -25,6 +25,7 @@ local function last_in_path(index, opts)
         for arg in string.gmatch(args[1][1], '([^.]+)') do
             last = arg
         end
+        last = last:gsub("-", "_")
         return sn(nil, t(last))
     end
     return d(index, _, { opts.from })
@@ -34,16 +35,31 @@ end
 -- SNIPPETS
 --------------------------------------------------------------------------------
 
-local snippets = {
+local snippets = {}
 
-    snippet("req", "Require", [[
+--------------------------------------------------------------------------------
+-- AUTOSNIPPETS
+--------------------------------------------------------------------------------
+
+local autosnippets = {
+
+    snippet(";req", "Require", [[
         local <name> = require("<pack>")
     ]], {
         pack = i(1),
         name = last_in_path(2, { from = 1 }),
     }),
 
-    snippet("fn", "Function", [[
+    snippet(";fn", "Function", [[
+        function(<args>)
+            <body>
+        end
+    ]], {
+        args = i(1),
+        body = i(0, "return nil"),
+    }),
+
+    snippet(";lfn", "Local Function", [[
         local function <name>(<args>)
             <body>
         end
@@ -53,16 +69,20 @@ local snippets = {
         body = i(0, "return nil"),
     }),
 
+    snippet(";ins", "Table Insert", [[
+        table.insert(<table>, <value>)
+    ]], {
+        table = i(1, "table"),
+        value = i(2, "value"),
+    }),
+
+    snippet(";p", "Print", [[print(<>)]], {
+        i(1, "message")
+    }),
+
 }
-
---------------------------------------------------------------------------------
--- AUTOSNIPPETS
---------------------------------------------------------------------------------
-
-local autosnippets = {}
 
 --------------------------------------------------------------------------------
 -- RETURN
 --------------------------------------------------------------------------------
-
 return snippets, autosnippets

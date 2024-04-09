@@ -12,7 +12,7 @@ M.snippet = function(trig, desc, pat, nodes, opts)
     return s(vim.tbl_deep_extend("keep", {
         trig = trig,
         desc = desc,
-    }, opts), fmta(pat, nodes))
+    }, opts), fmta(pat, nodes), { stored = opts.stored })
 end
 
 M.regex_snippet = function(trig, desc, pat, nodes, opts)

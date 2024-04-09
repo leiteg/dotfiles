@@ -2,6 +2,8 @@
 -- REQUIRES
 --------------------------------------------------------------------------------
 
+-- @see: https://github.com/ejmastnak/dotfiles/blob/main/config/nvim/LuaSnip/tex
+
 local ls = require("luasnip")
 local utils = require("config.sniputils")
 
@@ -11,33 +13,15 @@ local utils = require("config.sniputils")
 
 local snippet = utils.snippet
 local regex_snippet = utils.regex_snippet
+local inline_snippet = utils.inline_snippet
+
 local i = ls.insert_node
 local t = ls.text_node
 local c = ls.choice_node
+
 local extras = require("luasnip.extras")
 local rep = extras.rep
-local conds = require("luasnip.extras.expand_conditions")
 local fmta = require("luasnip.extras.fmt").fmta
-local f = ls.function_node
-
---[[
-local s = ls.snippet
-local sn = ls.snippet_node
-local isn = ls.indent_snippet_node
-local d = ls.dynamic_node
-local events = require("luasnip.util.events")
-local ai = require("luasnip.nodes.absolute_indexer")
-local l = extras.lambda
-local p = extras.partial
-local m = extras.match
-local n = extras.nonempty
-local dl = extras.dynamic_lambda
-local postfix = require("luasnip.extras.postfix").postfix
-local types = require("luasnip.util.types")
-local parse = require("luasnip.util.parser").parse_snippet
-local ms = ls.multi_snippet
-local k = require("luasnip.nodes.key_indexer").new_key
---]]
 
 --------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -53,7 +37,11 @@ local function in_list()
     return (ul[1] > 0 and ul[2] > 0) or (ol[1] > 0 and ol[2] > 0)
 end
 
-local function math_snippet(trig, desc, pat, nodes, opts)
+local function math(trig, desc, pat, nodes, opts)
+    if nodes == nil then
+        nodes = {}
+    end
+
     if opts == nil then
         opts = {}
     end
@@ -64,20 +52,40 @@ local function math_snippet(trig, desc, pat, nodes, opts)
     }, opts))
 end
 
+local function regex_math(trig, desc, pat, nodes, opts)
+    if nodes == nil then
+        nodes = {}
+    end
+
+    if opts == nil then
+        opts = {}
+    end
+
+    return snippet(trig, desc, pat, nodes, vim.tbl_deep_extend("keep", {
+        condition = in_mathzone,
+        regTrig = true,
+        wordTrig = false,
+    }, opts))
+end
+
+local function greek(trig, text)
+    return math(trig, "Greek letter " .. text, text, {}, {})
+end
+
 --------------------------------------------------------------------------------
 -- SNIPPETS
 --------------------------------------------------------------------------------
 
 local snippets = {
 
-    snippet("@", "Cite", "~\\cite{<text>}", { text = i(1) }),
-    snippet("b", "Bold", "\\textbf{<text>}", { text = i(1) }),
-    snippet("i", "Italic", "\\textit{<text>}", { text = i(1) }),
-    snippet("t", "Monospaced", "\\texttt{<text>}", { text = i(1) }),
+    inline_snippet("@", "Cite", "~\\cite{<>}", { i(1) }),
+    snippet("b", "Bold", "\\textbf{<>}", { i(1) }),
+    snippet("i", "Italic", "\\textit{<>}", { i(1) }),
+    snippet("t", "Monospaced", "\\texttt{<>}", { i(1) }),
 
-    snippet("###", "Subsubsection", "\\subsubsection{<text>}", { text = i(1) }),
-    snippet("##", "Subsection", "\\subsection{<text>}", { text = i(1) }),
-    snippet("#", "Section", "\\section{<text>}", { text = i(1) }),
+    snippet("###", "Subsubsection", "\\subsubsection{<>}", { i(1) }),
+    snippet("##", "Subsection", "\\subsection{<>}", { i(1) }),
+    snippet("#", "Section", "\\section{<>}", { i(1) }),
 
     regex_snippet("$(%a)", "Inline Math", [[$<f>$ ]], {
         f = utils.capture(1),
@@ -91,31 +99,33 @@ local snippets = {
 
 local autosnippets = {
 
-    snippet("!use", "Use Package", "\\usepackage{<pack>}", {
+    snippet(";use", "Use Package", "\\usepackage{<pack>}", {
         pack = i(1, "package"),
     }),
 
-    snippet("!env", "Environment", [[
+    -- ENVIRONMENTS ------------------------------------------------------------
+
+    snippet(";env", "Environment", [[
         \begin{<open>}
             <body>
         \end{<close>}
     ]], {
         open = i(1, "environment"),
-        body = i(0, "%"),
+        body = i(2, "%"),
         close = rep(1),
     }),
 
-    snippet("!ul", "Itemize", [[
+    snippet(";ul", "Itemize", [[
         \begin{itemize}
             <body>
         \end{itemize}
-    ]], { body = i(0, "%"), }),
+    ]], { body = i(1, "%"), }),
 
-    snippet("!ol", "Enumerate", [[
+    snippet(";ol", "Enumerate", [[
         \begin{enumerate}
             <body>
         \end{enumerate}
-    ]], { body = i(0, "%"), }),
+    ]], { body = i(1, "%"), }),
 
     snippet("-", "Item", [[
         \item <text>
@@ -125,7 +135,7 @@ local autosnippets = {
         condition = in_list,
     }),
 
-    snippet("!fig", "Figure", [[
+    snippet(";fig", "Figure", [[
         \begin{figure}[ht]
             \centering
             \includegraphics[width=<width>\textwidth]{images/<image>}
@@ -143,38 +153,44 @@ local autosnippets = {
     -- TODO: Table
     -- TODO: Listing
 
-    snippet("!eq", "Equation", [[
+    snippet(";eq", "Equation", [[
         \begin{equation}
             <body>
         \end{equation}
-    ]], { body = i(0, "%"), }),
+    ]], { body = i(1, "%"), }),
 
-    snippet("!al", "Align", [[
-        \begin{align*}
+    snippet(";al", "Align", [[
+        \begin{align<ast1>}
             <body>
-        \end{align*}
-    ]], { body = i(0, "%"), }),
+        \end{align<ast2>}
+    ]], {
+        body = i(2, "%"),
+        ast1 = c(1, { t "", t "*" }),
+        ast2 = rep(1),
+    }),
 
-    snippet("!th", "Theorem", [[
+    snippet(";th", "Theorem", [[
         \begin{theorem}
             <body>
         \end{theorem}
-    ]], { body = i(0, "%"), }),
+    ]], { body = i(1, "%"), }),
 
-    snippet("!pr", "Proof", [[
+    snippet(";pr", "Proof", [[
         \begin{proof}
             <body>
         \end{proof}
-    ]], { body = i(0, "%"), }),
+    ]], { body = i(1, "%"), }),
 
-    snippet("!abs", "Abstract", [[
+    snippet(";abs", "Abstract", [[
         \begin{abstract}
             <body>
         \end{abstract}
-    ]], { body = i(0, "%"), }),
+    ]], { body = i(1, "%"), }),
 
-    math_snippet("sum", "Summation", "<s>", {
-        s = c(1, {
+    -- MATH SNIPPETS -----------------------------------------------------------
+
+    math("sum", "Summation", "<>", {
+        c(1, {
             fmta([[\sum_{<a>}^{<b>} ]], {
                 a = i(1, "i = 0"),
                 b = i(2, "n"),
@@ -186,8 +202,8 @@ local autosnippets = {
         })
     }),
 
-    math_snippet("br", "Brackets", "<s>", {
-        s = c(1, {
+    math("br", "Brackets", "<>", {
+        c(1, {
             fmta("\\left( <eq> \\right)", { eq = i(1, "x") }),
             fmta("\\left[ <eq> \\right]", { eq = i(1, "x") }),
             fmta("\\left\\{ <eq> \\right\\}", { eq = i(1, "x") }),
@@ -195,34 +211,115 @@ local autosnippets = {
         }),
     }),
 
-    math_snippet("mod", "Modulus", [[\|<eq>\|]], {
-        eq = i(0, "x"),
+    math("mod", "Modulus", [[\|<eq>\|]], {
+        eq = i(1, "x"),
     }),
 
-    math_snippet("//", "Fraction", [[\frac{<a>}{<b>}]], {
+    math("//", "Fraction", [[\frac{<a>}{<b>}]], {
         a = i(1, "a"),
         b = i(2, "b"),
     }),
 
-    math_snippet("==", "Equals", [[&= ]], {}),
-    math_snippet("!=", "Not Equals", [[\neq ]], {}),
-    math_snippet(">=", "Greater Than Or Equals", [[\geq ]], {}),
-    math_snippet("<=", "Less Than Or Equals", [[\leq ]], {}),
-    math_snippet("=>", "Implies", [[\implies ]], {}),
-    math_snippet("->", "To", [[\to ]], {}),
-    math_snippet("!>", "Maps To", [[\mapsto ]], {}),
-    math_snippet("nin", "Not In", [[\notin ]], {}),
-    math_snippet("in", "In", [[\in ]], {}),
-    math_snippet("xx", "Times", [[\times ]], {}),
-    math_snippet("**", "Dot", [[\cdot ]], {}),
-    math_snippet("cc", "Subset", [[\subset ]], {}),
-    math_snippet("c=", "Subset Equal", [[\subseteq ]], {}),
-    math_snippet("NN", "Natural Set", [[\mathbb{N} ]], {}),
-    math_snippet("ZZ", "Integer Set", [[\mathbb{Z} ]], {}),
-    math_snippet("RR", "Real Set", [[\mathbb{R} ]], {}),
-    math_snippet("iff", "iff Set", [[\iff ]], {}),
-    math_snippet("nabla", "Nabla", [[\nabla ]], {}),
-    math_snippet("part", "Partial", [[\partial ]], {}),
+    math("==", "Equals", [[&= ]]),
+    math("!=", "Not Equals", [[\ne ]]),
+    math(">=", "Greater Than Or Equals", [[\ge ]]),
+    math("<=", "Less Than Or Equals", [[\le ]]),
+    math("=>", "Implies", [[\implies ]]),
+    math("->", "To", [[\to ]]),
+    math("!>", "Maps To", [[\mapsto ]]),
+    math("nin", "Not In", [[\notin ]]),
+    math("in", "In", [[\in ]]),
+    math("xx", "Times", [[\times ]]),
+    math("..", "Dot", [[\cdot ]]),
+    math("cc", "Subset", [[\subset ]]),
+    math("c=", "Subset Equal", [[\subseteq ]]),
+    math("NN", "Natural Set", [[\mathbb{N} ]]),
+    math("ZZ", "Integer Set", [[\mathbb{Z} ]]),
+    math("RR", "Real Set", [[\mathbb{R} ]]),
+    math("iff", "iff Set", [[\iff ]]),
+    math("nabla", "Nabla", [[\nabla ]]),
+    math("grad", "Nabla", [[\nabla ]]),
+    math("part", "Partial", [[\partial ]]),
+
+    greek(";a", "\\alpha"),
+    greek(";b", "\\beta"),
+    greek(";g", "\\gamma"),
+    greek(";G", "\\Gamma"),
+    greek(";d", "\\delta"),
+    greek(";D", "\\Delta"),
+    greek(";e", "\\epsilon"),
+    greek(";ve", "\\varepsilon"),
+    greek(";z", "\\zeta"),
+    greek(";h", "\\eta"),
+    greek(";t", "\\theta"),
+    greek(";vt", "\\vartheta"),
+    greek(";t", "\\Theta"),
+    greek(";i", "\\iota"),
+    greek(";k", "\\kappa"),
+    greek(";l", "\\lambda"),
+    greek(";L", "\\Lambda"),
+    greek(";m", "\\mu"),
+    greek(";n", "\\nu"),
+    greek(";x", "\\xi"),
+    greek(";X", "\\Xi"),
+    greek(";p", "\\pi"),
+    greek(";P", "\\Pi"),
+    greek(";r", "\\rho"),
+    greek(";vr", "\\varrho"),
+    greek(";s", "\\sigma"),
+    greek(";S", "\\Sigma"),
+    greek(";o", "\\tau"),
+    greek(";u", "\\upsilon"),
+    greek(";U", "\\Upsilon"),
+    greek(";f", "\\phi"),
+    greek(";vf", "\\varphi"),
+    greek(";F", "\\Phi"),
+    greek(";c", "\\chi"),
+    greek(";j", "\\psi"),
+    greek(";J", "\\Psi"),
+    greek(";w", "\\omega"),
+    greek(";W", "\\Omega"),
+
+    regex_math("([%w%)%]%}|]):", "Superscript", [[<a>^{<b>}]], {
+        a = utils.capture(1),
+        b = i(1),
+    }),
+
+    regex_math("([%w%)%]%}|]);", "Subscript", [[<a>_{<b>}]], {
+        a = utils.capture(1),
+        b = i(1),
+    }),
+
+    regex_math("([%w%)%]%}|])__", "Sub and superscript", [[<a>^{<b>}_{<c>}]], {
+        a = utils.capture(1),
+        b = i(1),
+        c = i(2),
+    }),
+
+    regex_math("([^%a])vv", "Vector", [[<a>\vec{<b>}]], {
+        a = utils.capture(1),
+        b = i(1),
+    }),
+
+    regex_math("([^%a])hh", "Hat", [[<a>\hat{<b>}]], {
+        a = utils.capture(1),
+        b = i(1),
+    }),
+
+    regex_math("([^%a])dd", "Dot", [[<a>\dot{<b>}]], {
+        a = utils.capture(1),
+        b = i(1),
+    }),
+
+    regex_math("([^%a])bb", "Bar", [[<a>\bar{<b>}]], {
+        a = utils.capture(1),
+        b = i(1),
+    }),
+
+    regex_math("([^%a])sq", "Square Root", [[<a>\sqrt{<b>}]], {
+        a = utils.capture(1),
+        b = i(1),
+    }),
 
 }
 
