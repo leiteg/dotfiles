@@ -25,36 +25,30 @@ return {
                     enable = true,
                     swap_next = {
                         ["<leader>aj"] = "@parameter.inner",
-                        ["<leader>fj"] = "@function.outer",
-                        ["<leader>cj"] = "@class.outer",
+                        ["<leader>fj"] = "@toplevel",
                     },
                     swap_previous = {
                         ["<leader>ak"] = "@parameter.inner",
-                        ["<leader>fk"] = "@function.outer",
-                        ["<leader>ck"] = "@class.outer",
+                        ["<leader>fk"] = "@toplevel",
                     },
                 },
                 move = {
                     enable = true,
                     set_jumps = true,
                     goto_next_start = {
-                        ["]f"] = "@function.outer",
-                        ["]c"] = "@class.outer",
+                        ["]f"] = "@toplevel",
                         ["]a"] = "@parameter.inner",
                     },
                     goto_next_end = {
-                        ["]F"] = "@function.outer",
-                        ["]C"] = "@class.outer",
+                        ["]F"] = "@toplevel",
                         ["]A"] = "@parameter.inner",
                     },
                     goto_previous_start = {
-                        ["[f"] = "@function.outer",
-                        ["[c"] = "@class.outer",
+                        ["[f"] = "@toplevel",
                         ["[a"] = "@parameter.inner",
                     },
                     goto_previous_end = {
-                        ["[F"] = "@function.outer",
-                        ["[C"] = "@class.outer",
+                        ["[F"] = "@toplevel",
                         ["[A"] = "@parameter.inner",
                     },
                 },
