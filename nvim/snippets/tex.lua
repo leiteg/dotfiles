@@ -11,14 +11,17 @@ local utils = require("core.lib.sniputils")
 -- INITIALIZATIONS
 --------------------------------------------------------------------------------
 
+-- Utils
 local snippet = utils.snippet
 local regex_snippet = utils.regex_snippet
 local inline_snippet = utils.inline_snippet
 
+-- Luasnip
 local i = ls.insert_node
 local t = ls.text_node
 local c = ls.choice_node
 
+-- Luasnip Extras
 local extras = require("luasnip.extras")
 local rep = extras.rep
 local fmta = require("luasnip.extras.fmt").fmta

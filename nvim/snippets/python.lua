@@ -9,23 +9,22 @@ local utils = require("core.lib.sniputils")
 -- INITIALIZATIONS
 --------------------------------------------------------------------------------
 
+-- Utils
 local snippet = utils.snippet
-local if_empty = utils.if_empty
+local treesitter = utils.treesitter_snippet_factory("python")
 
-local t = ls.t
-local c = ls.c
+-- Luasnip
 local i = ls.i
+local c = ls.c
+local t = ls.t
 local f = ls.f
-local sn = ls.snippet_node
-local isn = ls.indent_snippet_node
 local d = ls.dynamic_node
+local r = ls.restore_node
+local sn = ls.snippet_node
 
-local fmt = require("luasnip.extras.fmt").fmt
+-- Luasnip Extras
+local l = require("luasnip.extras").lambda
 local fmta = require("luasnip.extras.fmt").fmta
-
-local ts_utils = require("nvim-treesitter.ts_utils")
-local ts_locals = require("nvim-treesitter.locals")
-
 
 --------------------------------------------------------------------------------
 -- FUNCTIONS
@@ -47,38 +46,68 @@ local function assign_list(index, opts)
     return d(index, generate, { opts.from })
 end
 
-local function is_inside_class()
-    local node = ts_utils.get_node_at_cursor()
-
-    if node ~= nil then
-        local scope = ts_locals.get_scope_tree(node, 0)
-        for _, current in ipairs(scope) do
-            if current:type() == "class_definition" then
-                return true
-            end
-        end
-    end
-
-    return false
-end
-
 local function self(from)
-    return f(function(args)
-        if is_inside_class() then
+    local _ = function(args)
+        if utils.ts_is_inside("class_definition") then
             if args[1][1] ~= "" then
                 return "self, "
             end
             return "self"
         end
         return ""
-    end, { from }, {})
+    end
+
+    return f(_, { from }, {})
 end
 
 --------------------------------------------------------------------------------
 -- SNIPPETS
 --------------------------------------------------------------------------------
 
-local snippets = {}
+local snippets = {
+
+    treesitter("@iter", [[
+        [
+            (attribute)
+            (identifier)
+            (call)
+        ] @prefix
+    ]], "<>", {
+        c(1, {
+            fmta([[
+                for <item> in <var>:
+                    <body>
+            ]], {
+                item = r(1, "item"),
+                var = l(l.LS_TSMATCH),
+                body = r(2, "body"),
+            }),
+            fmta([[
+                for <idx>, <item> in enumerate(<var>):
+                    <body>
+            ]], {
+                idx = i(3, "i"),
+                item = r(1, "item"),
+                var = l(l.LS_TSMATCH),
+                body = r(2, "body"),
+            }),
+        })
+    }, {
+        stored = {
+            ["item"] = i(1, "item"),
+            ["body"] = i(2, "pass"),
+        },
+    }),
+
+    treesitter("@trig", [[
+        (class_definition
+            name: (identifier)) @prefix
+    ]], [[
+        @dataclass
+        <>
+    ]], { l(l.LS_TSMATCH) })
+
+}
 
 --------------------------------------------------------------------------------
 -- AUTOSNIPPETS
@@ -89,33 +118,31 @@ local autosnippets = {
     snippet("#!", "Shebang", [[
         #!/usr/bin/env python3
 
-        <s>
-    ]], { s = i(0) }),
+        <>
+    ]], { i(0) }),
 
     snippet(";impl", "Not Implemented", "raise NotImplementedError()", {}),
 
-    snippet(";q", "Exit", "raise SystemExit(<code>)", {
-        code = i(1, "0"),
-    }),
+    snippet(";q", "Exit", "raise SystemExit(<>)", { i(1, "0"), }),
 
     snippet(";main", "Entry point", [[
         if __name__ == "__main__":
-            <body>
-    ]], {
-        body = i(1, "pass"),
-    }),
+            <>
+    ]], { i(1, "pass"), }),
 
     snippet(";h1", "Header 1", [[
         # ==============================================================================
         # <>
         # ==============================================================================
-    ]], { i(1, "Header"), }),
+        <>
+    ]], { i(1, "Header"), i(0) }),
 
     snippet(";h2", "Header 2", [[
         # ------------------------------------------------------------------------------
-        # <text>
+        # <>
         # ------------------------------------------------------------------------------
-    ]], { i(1, "Header"), }),
+        <>
+    ]], { i(1, "Header"), i(0) }),
 
     -- Printing & Logging
     snippet(";p", "Print", "print(<>)", { i(1, "message") }),
@@ -128,12 +155,9 @@ local autosnippets = {
     snippet(";doc", "Docstring", [[
         """<>"""
         <>
-    ]], {
-        i(1, "TODO"),
-        i(0, "pass"),
-    }),
+    ]], { i(1, "TODO"), i(0), }),
 
-    snippet(";def", "Function Definition", [[
+    snippet(";fn", "Function Definition", [[
         def <name>(<self><args>)<ret>:
             <body>
     ]], {
@@ -164,13 +188,13 @@ local autosnippets = {
         <assigns>
             <body>
     ]], {
-        comma   = if_empty(1, "", ", "),
+        comma   = utils.if_empty(1, "", ", "),
         args    = i(1),
         assigns = assign_list(2, { from = 1 }),
         body    = i(3, "pass"),
     }),
 
-    snippet(";f", "For Loop", [[
+    snippet(";for", "For Loop", [[
         for <var> in <iter>:
             <body>
     ]], {

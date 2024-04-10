@@ -9,8 +9,10 @@ local utils = require("core.lib.sniputils")
 -- INITIALIZATION
 --------------------------------------------------------------------------------
 
+-- Utils
 local snippet = utils.snippet
 
+-- Luasnip
 local t = ls.t
 local c = ls.c
 local f = ls.f
