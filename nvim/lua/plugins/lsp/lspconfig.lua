@@ -4,6 +4,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
         -- Enable completion triggered by <c-x><c-o>
         vim.bo[event.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
+        -- :h lsp-inlay_hint
+        vim.api.nvim_create_user_command("ToggleInlayHints", function()
+            vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+        end, {})
+
         local map = function(mode, lhs, rhs, desc)
             local opts = { buffer = event.buf, desc = desc }
             vim.keymap.set(mode, lhs, rhs, opts)
