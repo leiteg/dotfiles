@@ -12,5 +12,7 @@ return {
         "sindrets/diffview.nvim",
         "nvim-telescope/telescope.nvim",
     },
-    opts = {},
+    opts = {
+        graph_style = "unicode",
+    },
 }
