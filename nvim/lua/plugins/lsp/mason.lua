@@ -18,6 +18,10 @@ local handler_lua_ls = function()
     }
 end
 
+local handler_rust_analyzer = function()
+    -- Leave this function empty and let `rustaceanvim` handle LSP stuff.
+end
+
 local handler_clangd = function()
     local lspconfig = require("lspconfig")
     lspconfig.clangd.setup {
@@ -61,6 +65,7 @@ return {
                 handler_default,
                 ["lua_ls"] = handler_lua_ls,
                 ["clangd"] = handler_clangd,
+                ["rust_analyzer"] = handler_rust_analyzer,
             },
         },
     },
