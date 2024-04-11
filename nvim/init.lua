@@ -10,8 +10,9 @@
 require "core.settings"
 require "core.keymaps"
 require "core.autocmds"
-require "core.lazy"
+require "core.commands"
 require "core.lib"
+require "core.lazy"
 
 -- Optionally load local config if exists
 pcall(require, "core.local")
