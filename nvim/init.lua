@@ -7,14 +7,11 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 
-require "config.settings"
-require "config.keymaps"
-require "config.autocmds"
-require "config.lazy"
+require "core.settings"
+require "core.keymaps"
+require "core.autocmds"
+require "core.lazy"
+require "core.lib"
 
 -- Optionally load local config if exists
-pcall(require, "config.local")
-
-function P(object)
-    print(vim.inspect(object))
-end
+pcall(require, "core.local")

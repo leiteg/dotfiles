@@ -5,7 +5,7 @@
 -- @see: https://github.com/ejmastnak/dotfiles/blob/main/config/nvim/LuaSnip/tex
 
 local ls = require("luasnip")
-local utils = require("config.sniputils")
+local utils = require("core.lib.sniputils")
 
 --------------------------------------------------------------------------------
 -- INITIALIZATIONS
