@@ -1,14 +1,27 @@
 --[[
 -- Git integration for buffers.
 --]]
+
+local function gitsigns(name, opts)
+    return function()
+        require('gitsigns')[name](opts)
+    end
+end
+
 return {
     "lewis6991/gitsigns.nvim",
     lazy = false,
     keys = {
-        { "<leader>hs", "<cmd>lua require'gitsigns'.stage_hunk()<CR>",      desc = "Stage hunk" },
-        { "<leader>hu", "<cmd>lua require'gitsigns'.undo_stage_hunk()<CR>", desc = "Undo stage hunk" },
-        { "<leader>hr", "<cmd>lua require'gitsigns'.reset_hunk()<CR>",      desc = "Reset hunk" },
-        { "<leader>td", "<cmd>lua require'gitsigns'.toggle_deleted()<CR>",  desc = "Toggle deleted lines" },
+        { "<leader>gs", gitsigns("stage_hunk"),      desc = "Gitsigns stage hunk" },
+        { "<leader>gu", gitsigns("undo_stage_hunk"), desc = "Gitsigns undo stage hunk" },
+        { "<leader>gr", gitsigns("reset_hunk"),      desc = "Gitsigns reset hunk" },
+        { "<leader>gt", gitsigns("toggle_deleted"),  desc = "Gitsigns toggle deleted lines" },
+        { "<leader>gb", gitsigns("blame_line"),      desc = "Gitsigns blame line" },
+        { "<leader>gp", gitsigns("preview_hunk"),    desc = "Gitsigns preview hunk" },
     },
-    opts = {},
+    opts = {
+        -- Display sign column for staged hunks, with a dimer color.
+        -- See: https://github.com/lewis6991/gitsigns.nvim/issues/788
+        _signs_staged_enable = true,
+    },
 }
