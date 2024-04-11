@@ -65,6 +65,13 @@ return {
                     }
                 },
             },
+            -- Added just to satisfy type-checker.
+            modules = {},
+            sync_install = false,
+            ensure_installed = {},
+            auto_install = false,
+            ignore_install = {},
+            parser_install_dir = nil,
         }
     end,
 }
