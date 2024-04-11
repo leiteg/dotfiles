@@ -2,49 +2,27 @@
 -- Debug Adapter Protocol client implementation for Neovim.
 --]]
 
-local function dap_continue()
-    require 'dap'.continue()
-end
-
-local function dap_toggle_breakpoint()
-    require 'dap'.toggle_breakpoint()
+local function dap(name, opts)
+    return function()
+        require 'dap'[name](opts)
+    end
 end
 
 local function dap_conditional_breakpoint()
     require 'dap'.set_breakpoint(vim.fn.input("Condition: "))
 end
 
-local function dap_toggle_repl()
-    require 'dap'.toggle_repl()
-end
-
-local function dap_terminate()
-    require 'dap'.terminate()
-end
-
-local function dap_step_into()
-    require 'dap'.step_into()
-end
-
-local function dap_step_over()
-    require 'dap'.step_over()
-end
-
-local function dap_step_out()
-    require 'dap'.step_out()
-end
-
 return {
     "mfussenegger/nvim-dap",
     keys = {
-        { "<F5>",        dap_continue,               desc = "DAP Continue" },
-        { "<F1>",        dap_toggle_breakpoint,      desc = "DAP Breakpoint" },
+        { "<F1>",        dap("toggle_breakpoint"),   desc = "DAP Breakpoint" },
+        { "<F5>",        dap("continue"),            desc = "DAP Continue" },
         { "<leader>dc",  dap_conditional_breakpoint, desc = "DAP Conditional Breakpoint" },
-        { "<leader>dr",  dap_toggle_repl,            desc = "DAP REPL" },
-        { "<leader>dt",  dap_terminate,              desc = "DAP Terminate" },
-        { "<leader>dsi", dap_step_into,              desc = "DAP Step Into" },
-        { "<leader>dso", dap_step_over,              desc = "DAP Step Over" },
-        { "<leader>dsf", dap_step_out,               desc = "DAP Step Out" },
+        { "<leader>dr",  dap("toggle_repl"),         desc = "DAP REPL" },
+        { "<leader>dt",  dap("terminate"),           desc = "DAP Terminate" },
+        { "<leader>dsi", dap("step_into"),           desc = "DAP Step Into" },
+        { "<leader>dso", dap("step_over"),           desc = "DAP Step Over" },
+        { "<leader>dsf", dap("step_out"),            desc = "DAP Step Out" },
     },
     config = function()
         -- Icons
