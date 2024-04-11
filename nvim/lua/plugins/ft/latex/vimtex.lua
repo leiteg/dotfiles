@@ -1,6 +1,9 @@
+--[[
+-- A modern Vim and neovim filetype plugin for LaTeX files.
+--]]
 return {
     "lervag/vimtex",
-    event = "VeryLazy",
+    ft = "tex",
     config = function()
         vim.g.tex_flavor = 'latex'
         vim.g.vimtex_complete_close_braces = 1

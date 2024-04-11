@@ -1,3 +1,7 @@
+--[[
+-- A starting point to setup some lsp related features in neovim.
+--]]
+
 local config = function()
     local lsp_zero = require("lsp-zero").preset({})
     local lspconfig = require("lspconfig")

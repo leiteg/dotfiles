@@ -1,3 +1,6 @@
+--[[
+-- The undo history visualizer for VIM.
+--]]
 return {
     "mbbill/undotree",
     lazy = true,

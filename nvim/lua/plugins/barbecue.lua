@@ -1,4 +1,6 @@
--- VSCode-like winbar for Neovim.
+--[[
+-- A VSCode-like winbar for Neovim.
+--]]
 return {
     "utilyre/barbecue.nvim",
     name = "barbecue",

@@ -1,3 +1,6 @@
+--[[
+-- A file explorer tree for neovim written in lua.
+--]]
 return {
     "nvim-tree/nvim-tree.lua",
     cmd = {

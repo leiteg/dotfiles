@@ -1,3 +1,12 @@
+--[[
+-- mason.nvim:
+-- Portable package manager for Neovim that runs everywhere Neovim runs.
+-- Easily install and manage LSP servers, DAP servers, linters, and formatters.
+--
+-- mason-lspconfig.nvim:
+-- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim.
+--]]
+
 local handler_default = function(server_name)
     require("lspconfig")[server_name].setup({})
 end

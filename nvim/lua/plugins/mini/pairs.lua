@@ -1,5 +1,7 @@
+--[[
+-- Neovim Lua plugin to automatically manage character pairs. Part of 'mini.nvim' library.
+--]]
 return {
-    -- Autopairs
     "echasnovski/mini.pairs",
     version = false,
     opts = {},

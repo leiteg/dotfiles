@@ -1,3 +1,6 @@
+--[[
+-- Neovim's answer to the mouse.
+--]]
 return {
     "ggandor/leap.nvim",
     lazy = false,

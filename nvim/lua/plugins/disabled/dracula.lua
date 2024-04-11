@@ -1,3 +1,6 @@
+--[[
+-- Dark theme for Vim.
+--]]
 return {
     "dracula/vim",
     name = "dracula",

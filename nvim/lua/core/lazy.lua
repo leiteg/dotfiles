@@ -25,19 +25,29 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Where to look for plugins
 local plugins = {
+    -- General purpose plugins
     { import = "plugins" },
+    -- Plugins from the mini.nvim bundle
     { import = "plugins.mini" },
+    -- Treesitter-related
     { import = "plugins.treesitter" },
+    -- Telescope-related
     { import = "plugins.telescope" },
+    -- Language Server Protocol related
     { import = "plugins.lsp" },
+    -- Debug Adapter Protocol related
     { import = "plugins.dap" },
+    -- Plugins by filetype
+    { import = "plugins.ft.latex" },
+    { import = "plugins.ft.rust" },
+    -- Local plugins for testing
     { import = "plugins.local" },
 }
 
 -- General options
 local opts = {
     install = {
-        coloscheme = { "dracula" },
+        coloscheme = { "tokyonight" },
     },
     checker = {
         enabled = true,

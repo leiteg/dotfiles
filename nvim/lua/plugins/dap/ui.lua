@@ -1,3 +1,7 @@
+--[[
+-- A UI for nvim-dap.
+--]]
+
 local function dapui_toggle()
     require 'dapui'.toggle()
 end

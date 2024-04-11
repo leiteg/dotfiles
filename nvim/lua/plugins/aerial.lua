@@ -1,3 +1,6 @@
+--[[
+-- Neovim plugin for a code outline window.
+--]]
 return {
     'stevearc/aerial.nvim',
     lazy = false,

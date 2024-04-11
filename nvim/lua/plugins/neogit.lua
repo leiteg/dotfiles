@@ -1,3 +1,6 @@
+--[[
+-- An interactive and powerful Git interface for Neovim, inspired by Magit.
+--]]
 return {
     "NeogitOrg/neogit",
     cmd = "Neogit",

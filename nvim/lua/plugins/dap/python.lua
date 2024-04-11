@@ -1,3 +1,7 @@
+--[[
+-- An extension for nvim-dap, providing default configurations for python and
+-- methods to debug individual test methods or classes.
+--]]
 return {
     "mfussenegger/nvim-dap-python",
     ft = "python",

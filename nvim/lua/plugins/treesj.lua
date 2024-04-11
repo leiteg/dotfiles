@@ -1,4 +1,6 @@
--- Split/join blocks of bode.
+--[[
+-- Neovim plugin for splitting/joining blocks of code.
+--]]
 return {
     "Wansmer/treesj",
     dependencies = {

@@ -1,3 +1,7 @@
+--[[
+-- Debug Adapter Protocol client implementation for Neovim.
+--]]
+
 local function dap_continue()
     require 'dap'.continue()
 end
@@ -43,7 +47,6 @@ return {
         { "<leader>dsf", dap_step_out,               desc = "DAP Step Out" },
     },
     config = function()
-
         -- Icons
         vim.fn.sign_define('DapBreakpoint', {
             text = " ",

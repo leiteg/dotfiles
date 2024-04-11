@@ -1,3 +1,6 @@
+--[[
+-- The missing motion for Vim
+--]]
 return {
     "justinmk/vim-sneak",
     keys = {

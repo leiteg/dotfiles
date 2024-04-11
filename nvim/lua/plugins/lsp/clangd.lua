@@ -1,3 +1,6 @@
+--[[
+-- Clangd's off-spec features for neovim's LSP client.
+--]]
 return {
     "p00f/clangd_extensions.nvim",
     opts = {

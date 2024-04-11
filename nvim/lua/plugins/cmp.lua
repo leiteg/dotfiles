@@ -1,3 +1,7 @@
+--[[
+-- A completion plugin for neovim coded in Lua. 
+--]]
+
 local icons = {
     Text = "",
     Function = "󰊕",

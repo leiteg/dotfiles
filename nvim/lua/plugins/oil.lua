@@ -1,3 +1,6 @@
+--[[
+-- Neovim file explorer: edit your filesystem like a buffer.
+--]]
 return {
     "stevearc/oil.nvim",
     lazy = false,
