@@ -1,52 +1,8 @@
---[[
--- mason.nvim:
--- Portable package manager for Neovim that runs everywhere Neovim runs.
--- Easily install and manage LSP servers, DAP servers, linters, and formatters.
---
--- mason-lspconfig.nvim:
--- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim.
---]]
-
-local handler_default = function(server_name)
-    require("lspconfig")[server_name].setup({})
-end
-
-local handler_lua_ls = function()
-    local lspconfig = require("lspconfig")
-    lspconfig.lua_ls.setup {
-        settings = {
-            Lua = {
-                diagnostics = {
-                    globals = { "vim", "require" }
-                },
-                workspace = {
-                    library = vim.api.nvim_get_runtime_file("", true),
-                },
-            },
-        },
-    }
-end
-
-local handler_rust_analyzer = function()
-    -- Leave this function empty and let `rustaceanvim` handle LSP stuff.
-end
-
-local handler_clangd = function()
-    local lspconfig = require("lspconfig")
-    lspconfig.clangd.setup {
-        cmd = {
-            "clangd",
-            "--background-index",
-            "--clang-tidy",
-            "--completion-style=bundled",
-            "--cross-file-rename",
-            "--header-insertion=iwyu",
-            "--suggest-missing-includes",
-        },
-    }
-end
-
 return {
+    --[[
+    -- Portable package manager for Neovim that runs everywhere Neovim runs.
+    -- Easily install and manage LSP servers, DAP servers, linters, and formatters.
+    --]]
     {
         "williamboman/mason.nvim",
         opts = {
@@ -59,6 +15,9 @@ return {
             }
         },
     },
+    --[[
+    -- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim.
+    --]]
     {
         "williamboman/mason-lspconfig.nvim",
         opts = {
@@ -69,13 +28,69 @@ return {
                 "rust_analyzer",
                 "lua_ls",
             },
-            -- See `:h mason-lspconfig.setup_handlers()`
-            handlers = {
-                handler_default,
-                ["lua_ls"] = handler_lua_ls,
-                ["clangd"] = handler_clangd,
-                ["rust_analyzer"] = handler_rust_analyzer,
-            },
         },
+        config = function(_, opts)
+            local mason_lspconfig = require("mason-lspconfig")
+            local lspconfig = require("lspconfig")
+
+            -- Client capabilities
+            local capabilities = vim.lsp.protocol.make_client_capabilities()
+            local cmp_capabilities = require("cmp_nvim_lsp").default_capabilities()
+            vim.tbl_deep_extend("force", capabilities, cmp_capabilities)
+
+            -- HANDLERS --------------------------------------------------------
+
+            local default = function(server_name)
+                lspconfig[server_name].setup {
+                    capabilities = capabilities,
+                }
+            end
+
+            local lua_ls = function()
+                lspconfig.lua_ls.setup {
+                    capabilities = capabilities,
+                    settings = {
+                        Lua = {
+                            diagnostics = {
+                                globals = { "vim", "require" },
+                            },
+                            workspace = {
+                                library = vim.api.nvim_get_runtime_file("", true)
+                            },
+                        },
+                    },
+                }
+            end
+
+            local clangd = function()
+                lspconfig.clangd.setup {
+                    capabilities = capabilities,
+                    cmd = {
+                        "clangd",
+                        "--background-index",
+                        "--clang-tidy",
+                        "--completion-style=bundled",
+                        "--cross-file-rename",
+                        "--header-insertion=iwyu",
+                        "--suggest-missing-includes",
+                    },
+                }
+            end
+
+            local rust_analyzer = function()
+                -- Empty. Let `rustaceanvim` handle this.
+            end
+
+            -- SETUP -----------------------------------------------------------
+
+            mason_lspconfig.setup(opts)
+            mason_lspconfig.setup_handlers {
+                -- See `:h mason-lspconfig.setup_handlers()`
+                default,
+                ["lua_ls"] = lua_ls,
+                ["clangd"] = clangd,
+                ["rust_analyzer"] = rust_analyzer,
+            }
+        end
     },
 }
