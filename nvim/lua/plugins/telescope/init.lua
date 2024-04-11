@@ -35,24 +35,52 @@ return {
             },
         })
 
+        local theme = require("telescope.themes").get_dropdown()
+
         local find_all_files = function()
-            builtin.find_files({
-                hidden = true,
-                no_ignore = true,
-            })
+            builtin.find_files(
+                vim.tbl_deep_extend("keep", theme, {
+                    hidden = true,
+                    no_ignore = true,
+                })
+            )
         end
 
         local workspace_symbols = function()
-            builtin.lsp_dynamic_workspace_symbols({ ignore_symbols = "variable" })
+            builtin.lsp_dynamic_workspace_symbols(
+                vim.tbl_deep_extend("keep", theme, {
+                    ignore_symbols = "variable",
+                })
+            )
         end
 
-        -- See :h telescope.builtin
-        vim.keymap.set("n", "<C-p>", builtin.git_files, { desc = "Telescope Git Files", })
-        vim.keymap.set("n", "g<C-P>", find_all_files, { desc = "Telescope All Files", })
-        vim.keymap.set("n", "<leader>p", find_all_files, { desc = "Telescope All Files", })
-        vim.keymap.set("n", "<leader>ls", builtin.buffers, { desc = "Telescope Buffers", })
-        vim.keymap.set("n", "<leader>lg", builtin.live_grep, { desc = "Telescope Live Grep", })
-        vim.keymap.set("n", "<leader>td", builtin.diagnostics, { desc = "Telescope Diagnostics", })
-        vim.keymap.set("n", "<leader>go", workspace_symbols, { desc = "Telescope Symbols" })
+        local git_files = function()
+            builtin.git_files(theme)
+        end
+
+        local buffers = function()
+            builtin.buffers(theme)
+        end
+
+        local live_grep = function()
+            builtin.live_grep(theme)
+        end
+
+        local diagnostics = function()
+            builtin.diagnostics(theme)
+        end
+
+        local keymaps = {
+            { "<leader>P",  git_files,         { desc = "Telescope Git Files", } },
+            { "<leader>p",  find_all_files,    { desc = "Telescope All Files", } },
+            { "<leader>ls", buffers,           { desc = "Telescope Buffers", } },
+            { "<leader>lg", live_grep,         { desc = "Telescope Live Grep", } },
+            { "<leader>ld", diagnostics,       { desc = "Telescope Diagnostics", } },
+            { "<leader>go", workspace_symbols, { desc = "Telescope Symbols" } },
+        }
+
+        for _, keymap in ipairs(keymaps) do
+            vim.keymap.set("n", keymap[1], keymap[2], keymap[3])
+        end
     end,
 }
