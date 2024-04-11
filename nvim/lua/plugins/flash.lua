@@ -2,15 +2,22 @@
 -- Navigate your code with search labels, enhanced character motions and
 -- Treesitter integration.
 --]]
+
+local function flash(name, opts)
+    return function()
+        require 'flash'[name](opts)
+    end
+end
+
 return {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
     keys = {
-        { "s",     mode = { "n", "x", "o" }, function() require("flash").jump() end,              desc = "Flash" },
-        { "S",     mode = { "n", "x", "o" }, function() require("flash").treesitter() end,        desc = "Flash Treesitter" },
-        { "r",     mode = { "o" },           function() require("flash").remote() end,            desc = "Flash Remote" },
-        { "R",     mode = { "o", "x" },      function() require("flash").treesitter_search() end, desc = "Flash Treesitter Search" },
-        { "<c-s>", mode = { "c" },           function() require("flash").toggle() end,            desc = "Flash Toggle Search" },
+        { "s",     flash("jump"),              mode = { "n", "x", "o" }, desc = "Flash" },
+        -- { "r",     flash("remote"),            mode = { "o" },           desc = "Flash Remote" },
+        -- { "R",     flash("treesitter_search"), mode = { "o", "x" },      desc = "Flash Treesitter Search" },
+        -- { "<c-s>", flash("toggle"),            mode = { "c" },           desc = "Flash Toggle Search" },
+        -- { "S",     flash("treesitter"),        mode = { "n", "x", "o" }, desc = "Flash Treesitter" },
     },
 }
