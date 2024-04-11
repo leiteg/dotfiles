@@ -4,6 +4,9 @@
 return {
     "lervag/vimtex",
     ft = "tex",
+    dependencies = {
+        "mateusbraga/vim-spell-pt-br",
+    },
     config = function()
         vim.g.tex_flavor = 'latex'
         vim.g.vimtex_complete_close_braces = 1
