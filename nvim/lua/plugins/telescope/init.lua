@@ -3,6 +3,7 @@
 --]]
 return {
     "nvim-telescope/telescope.nvim",
+    event = "VimEnter",
     branch = '0.1.x',
     dependencies = {
         "nvim-lua/plenary.nvim",
@@ -82,5 +83,8 @@ return {
         for _, keymap in ipairs(keymaps) do
             vim.keymap.set("n", keymap[1], keymap[2], keymap[3])
         end
+
+        -- Used by `goolord/alpha-nvim`
+        vim.api.nvim_create_user_command("TelescopeFiles", find_all_files, {})
     end,
 }
