@@ -46,22 +46,6 @@ return {
                 }
             end
 
-            local lua_ls = function()
-                lspconfig.lua_ls.setup {
-                    capabilities = capabilities,
-                    settings = {
-                        Lua = {
-                            diagnostics = {
-                                globals = { "vim", "require" },
-                            },
-                            workspace = {
-                                library = vim.api.nvim_get_runtime_file("", true)
-                            },
-                        },
-                    },
-                }
-            end
-
             local clangd = function()
                 lspconfig.clangd.setup {
                     capabilities = capabilities,
@@ -87,7 +71,6 @@ return {
             mason_lspconfig.setup_handlers {
                 -- See `:h mason-lspconfig.setup_handlers()`
                 default,
-                ["lua_ls"] = lua_ls,
                 ["clangd"] = clangd,
                 ["rust_analyzer"] = rust_analyzer,
             }
