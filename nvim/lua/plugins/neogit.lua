@@ -1,19 +1,26 @@
 --[[
 -- An interactive and powerful Git interface for Neovim, inspired by Magit.
 --]]
+
+local function _(fn)
+    return function()
+        require("neogit").open({ fn })
+    end
+end
+
 return {
     "NeogitOrg/neogit",
-    cmd = "Neogit",
-    keys = {
-        { "<leader><leader>", "<cmd>Neogit<cr>",            desc = "Neogit" },
-        { "<leader>gc",       "<cmd>tab Neogit commit<CR>", desc = "Neogit commit" },
-        { "<leader>gd",       "<cmd>tab Neogit diff<CR>",   desc = "Neogit diff" },
-        { "<leader>gl",       "<cmd>tab Neogit log<CR>",    desc = "Neogit log" },
-    },
     dependencies = {
         "nvim-lua/plenary.nvim",
         "sindrets/diffview.nvim",
         "nvim-telescope/telescope.nvim",
+    },
+    cmd = "Neogit",
+    keys = {
+        { "<leader><leader>", _(nil),     desc = "Neogit Status" },
+        { "<leader>gc",       _ "commit", desc = "Neogit Commit" },
+        { "<leader>gd",       _ "diff",   desc = "Neogit Diff" },
+        { "<leader>gl",       _ "log",    desc = "Neogit Log" },
     },
     opts = {
         graph_style = "unicode",

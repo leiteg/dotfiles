@@ -5,6 +5,7 @@ return {
     --]]
     {
         "williamboman/mason.nvim",
+        event = "VeryLazy",
         opts = {
             ui = {
                 icons = {
@@ -20,6 +21,7 @@ return {
     --]]
     {
         "williamboman/mason-lspconfig.nvim",
+        event = "VeryLazy",
         opts = {
             ensure_installed = {
                 "clangd",

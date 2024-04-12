@@ -25,18 +25,18 @@ return {
     cmd = "Crates",
     keys = {
         -- Information -------------------------------------------------------------------------
-        { "K",  _ "show_crate_popup",        desc = "Crates Show Crate",         buffer = true },
-        { "gv", _ "show_versions_popup",     desc = "Crates Show Versions",      buffer = true },
-        { "gf", _ "show_features_popup",     desc = "Crates Show Features",      buffer = true },
-        { "gr", _ "show_dependencies_popup", desc = "Crates Show Dependencies",  buffer = true },
+        { "K",  _ "show_crate_popup",        desc = "Crates Show Crate",         ft = "toml" },
+        { "gv", _ "show_versions_popup",     desc = "Crates Show Versions",      ft = "toml" },
+        { "gf", _ "show_features_popup",     desc = "Crates Show Features",      ft = "toml" },
+        { "gr", _ "show_dependencies_popup", desc = "Crates Show Dependencies",  ft = "toml" },
         -- Update ------------------------------------------------------------------------------
-        { "gu", _ "update_crate",            desc = "Crates Update",             buffer = true },
-        { "ga", _ "update_all_crates",       desc = "Crates Update (All)",       buffer = true },
+        { "gu", _ "update_crate",            desc = "Crates Update",             ft = "toml" },
+        { "ga", _ "update_all_crates",       desc = "Crates Update (All)",       ft = "toml" },
         -- Upgrade -----------------------------------------------------------------------------
-        { "gU", _ "upgrade_crate",           desc = "Crates Upgrade",            buffer = true },
-        { "gA", _ "upgrade_all_crates",      desc = "Crates Upgrade (All)",      buffer = true },
+        { "gU", _ "upgrade_crate",           desc = "Crates Upgrade",            ft = "toml" },
+        { "gA", _ "upgrade_all_crates",      desc = "Crates Upgrade (All)",      ft = "toml" },
         -- Documentation -----------------------------------------------------------------------
-        { "gd", _ "open_documentation",      desc = "Crates Open Documentation", buffer = true },
-        { "gi", _ "open_repository",         desc = "Crates Open Repository",    buffer = true },
+        { "gd", _ "open_documentation",      desc = "Crates Open Documentation", ft = "toml" },
+        { "gi", _ "open_repository",         desc = "Crates Open Repository",    ft = "toml" },
     },
 }

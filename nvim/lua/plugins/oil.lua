@@ -1,12 +1,22 @@
 --[[
 -- Neovim file explorer: edit your filesystem like a buffer.
 --]]
+
+local function _(fn, opts)
+    return function()
+        require("oil")[fn](opts)
+    end
+end
+
 return {
     "stevearc/oil.nvim",
-    lazy = false,
+    event = "VeryLazy",
+    dependencies = {
+        "nvim-tree/nvim-web-devicons",
+    },
     cmd = "Oil",
     keys = {
-        { "-", "<cmd>Oil --float<CR>", desc = "Open Oil" }
+        { "-", _ "open_float", desc = "Oil" }
     },
     opts = {
         float = {
@@ -20,5 +30,4 @@ return {
             ["q"] = "actions.close",
         },
     },
-    dependencies = { "nvim-tree/nvim-web-devicons" },
 }

@@ -2,7 +2,7 @@
 -- Git integration for buffers.
 --]]
 
-local function gitsigns(name, opts)
+local function _(name, opts)
     return function()
         require('gitsigns')[name](opts)
     end
@@ -12,12 +12,12 @@ return {
     "lewis6991/gitsigns.nvim",
     lazy = false,
     keys = {
-        { "<leader>gs", gitsigns("stage_hunk"),      desc = "Gitsigns stage hunk" },
-        { "<leader>gu", gitsigns("undo_stage_hunk"), desc = "Gitsigns undo stage hunk" },
-        { "<leader>gr", gitsigns("reset_hunk"),      desc = "Gitsigns reset hunk" },
-        { "<leader>gt", gitsigns("toggle_deleted"),  desc = "Gitsigns toggle deleted lines" },
-        { "<leader>gb", gitsigns("blame_line"),      desc = "Gitsigns blame line" },
-        { "<leader>gp", gitsigns("preview_hunk"),    desc = "Gitsigns preview hunk" },
+        { "<leader>gs", _ "stage_hunk",      desc = "Gitsigns Hunk Stage" },
+        { "<leader>gu", _ "undo_stage_hunk", desc = "Gitsigns Hunk Stage Undo" },
+        { "<leader>gr", _ "reset_hunk",      desc = "Gitsigns Hunk Reset" },
+        { "<leader>gp", _ "preview_hunk",    desc = "Gitsigns Hunk Preview" },
+        { "<leader>gt", _ "toggle_deleted",  desc = "Gitsigns Deleted" },
+        { "<leader>gb", _ "blame_line",      desc = "Gitsigns Blame" },
     },
     opts = {
         -- Display sign column for staged hunks, with a dimer color.

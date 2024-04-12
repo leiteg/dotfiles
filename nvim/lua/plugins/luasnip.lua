@@ -3,9 +3,9 @@
 --]]
 return {
     "L3MON4D3/LuaSnip",
-    lazy = false,
     version = "v2.*",
     run = "make install_jsregexp",
+    event = "VeryLazy",
     config = function()
         local ls = require("luasnip")
         local types = require("luasnip.util.types")

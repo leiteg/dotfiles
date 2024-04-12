@@ -2,8 +2,10 @@
 -- A UI for nvim-dap.
 --]]
 
-local function dapui_toggle()
-    require 'dapui'.toggle()
+local function _(fn)
+    return function()
+        require("dapui")[fn]()
+    end
 end
 
 return {
@@ -14,7 +16,7 @@ return {
         "nvim-neotest/nvim-nio",
     },
     keys = {
-        { "<leader>dd", dapui_toggle, desc = "DAPUI Toggle" },
+        { "<leader>dd", _ "toggle", desc = "DAPUI Toggle" },
     },
     config = function()
         local dap = require("dap")

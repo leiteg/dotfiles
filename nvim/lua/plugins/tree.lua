@@ -1,6 +1,13 @@
 --[[
 -- A file explorer tree for neovim written in lua.
 --]]
+
+local function _(fn, opts)
+    return function()
+        require("nvim-tree.api").tree[fn](opts)
+    end
+end
+
 return {
     "nvim-tree/nvim-tree.lua",
     cmd = {
@@ -8,7 +15,7 @@ return {
         "NvimTreeFindFile",
     },
     keys = {
-        { "<leader>e", "<cmd>NvimTreeFindFileToggle<CR>", desc = "Toggle Nvim Tree" },
+        { "<leader>e", _("toggle", { find_file = true }), desc = "NvimTree Toggle" },
     },
     opts = {
         filters = {

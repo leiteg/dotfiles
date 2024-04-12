@@ -1,14 +1,24 @@
 --[[
 -- Neovim plugin for a code outline window.
 --]]
+
+local function _(fn, opts)
+    return function()
+        require("aerial")[fn](opts)
+    end
+end
+
 return {
     'stevearc/aerial.nvim',
-    lazy = false,
+    event = "VeryLazy",
     opts = {
         autojump = true,
         close_on_select = true,
         highlight_on_jump = false,
         show_guides = true,
+        layout = {
+            default_direction = "float",
+        },
         keymaps = {
             ["<esc>"] = "actions.close",
         },
@@ -21,8 +31,8 @@ return {
         },
     },
     keys = {
-        { "<leader>q", "<cmd>AerialToggle float<CR>", desc = "Aerial Toggle" },
-        { "<leader>Q", "<cmd>AerialNavToggle<CR>",    desc = "Aerial Toggle Nav" },
+        { "<leader>q", _ "toggle",     desc = "Aerial Toggle" },
+        { "<leader>Q", _ "nav_toggle", desc = "Aerial Toggle Nav" },
     },
     dependencies = {
         "nvim-treesitter/nvim-treesitter",

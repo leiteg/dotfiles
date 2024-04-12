@@ -58,4 +58,5 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 return {
     "neovim/nvim-lspconfig",
+    event = "VeryLazy",
 }

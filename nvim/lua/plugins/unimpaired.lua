@@ -2,5 +2,6 @@
 -- Pairs of handy bracket mappings.
 --]]
 return {
-    "tpope/vim-unimpaired"
+    "tpope/vim-unimpaired",
+    event = "VeryLazy",
 }

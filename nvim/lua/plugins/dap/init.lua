@@ -2,27 +2,33 @@
 -- Debug Adapter Protocol client implementation for Neovim.
 --]]
 
-local function dap(name, opts)
+local function _(name, opts)
     return function()
-        require 'dap'[name](opts)
+        require("dap")[name](opts)
     end
 end
 
-local function dap_conditional_breakpoint()
-    require 'dap'.set_breakpoint(vim.fn.input("Condition: "))
+local function __conditional_break()
+    require("dap").set_breakpoint(vim.fn.input("Condition: "))
+end
+
+local function __toggle_repl()
+    require("dap").repl.toggle()
 end
 
 return {
     "mfussenegger/nvim-dap",
     keys = {
-        { "<F1>",        dap("toggle_breakpoint"),   desc = "DAP Breakpoint" },
-        { "<F5>",        dap("continue"),            desc = "DAP Continue" },
-        { "<leader>dc",  dap_conditional_breakpoint, desc = "DAP Conditional Breakpoint" },
-        { "<leader>dr",  dap("toggle_repl"),         desc = "DAP REPL" },
-        { "<leader>dt",  dap("terminate"),           desc = "DAP Terminate" },
-        { "<leader>dsi", dap("step_into"),           desc = "DAP Step Into" },
-        { "<leader>dso", dap("step_over"),           desc = "DAP Step Over" },
-        { "<leader>dsf", dap("step_out"),            desc = "DAP Step Out" },
+        -- Middle Function Keys
+        { "<F5>",  _ "continue",          desc = "DAP Continue" },
+        { "<F6>",  _ "terminate",         desc = "DAP Terminate" },
+        { "<F7>",  _ "toggle_breakpoint", desc = "DAP Breakpoint" },
+        { "<F8>",  __conditional_break,   desc = "DAP Conditional Breakpoint" },
+        -- Right Function Keys
+        { "<F9>",  __toggle_repl,         desc = "DAP REPL" },
+        { "<F10>", _ "step_into",         desc = "DAP Step Into" },
+        { "<F11>", _ "step_over",         desc = "DAP Step Over" },
+        { "<F12>", _ "step_out",          desc = "DAP Step Out" },
     },
     config = function()
         -- Icons
