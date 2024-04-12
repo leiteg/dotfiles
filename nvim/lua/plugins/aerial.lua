@@ -13,6 +13,7 @@ return {
             ["<esc>"] = "actions.close",
         },
         nav = {
+            autojump = true,
             keymaps = {
                 ["q"] = "actions.close",
                 ["<esc>"] = "actions.close",
@@ -27,4 +28,8 @@ return {
         "nvim-treesitter/nvim-treesitter",
         "nvim-tree/nvim-web-devicons",
     },
+    config = function(_, opts)
+        require("aerial").setup(opts)
+        require("telescope").load_extension("aerial")
+    end
 }
