@@ -38,8 +38,7 @@ local plugins = {
     -- Debug Adapter Protocol related
     { import = "plugins.dap" },
     -- Plugins by filetype
-    { import = "plugins.ft.latex" },
-    { import = "plugins.ft.rust" },
+    { import = "plugins.ft" },
     -- Local plugins for testing
     { import = "plugins.local" },
 }
