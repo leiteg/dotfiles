@@ -1,7 +1,11 @@
 import = ["~/.config/alacritty/tokyonight-night.toml"]
 
 [env]
-TERM = "xterm-256color"
+# Ensures undercurl works inside tmux and neovim.
+# See: https://github.com/neovim/neovim/issues/21182
+# See: https://github.com/alacritty/alacritty/issues/6149
+# See: https://github.com/alacritty/alacritty/issues/6802
+TERM = "alacritty"
 
 [window]
 decorations = "None"
