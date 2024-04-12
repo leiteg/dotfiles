@@ -1,6 +1,13 @@
 --[[
 -- A neovim plugin that helps managing crates.io dependencies.
 --]]
+
+local function _(fn, opts)
+    return function()
+        require("crates")[fn](opts)
+    end
+end
+
 return {
     "saecki/crates.nvim",
     event = { "BufRead Cargo.toml" },
@@ -15,30 +22,21 @@ return {
             error = "  Error fetching crate ",
         },
     },
-    config = function(_, opts)
-        local crates = require("crates")
-        crates.setup(opts)
-
-        local opts = {
-            silent = true,
-            buffer = true,
-        }
-
-        -- Information
-        vim.keymap.set("n", "<leader>cv", crates.show_versions_popup, opts)
-        vim.keymap.set("n", "<leader>cf", crates.show_features_popup, opts)
-        -- Update
-        vim.keymap.set("n", "<leader>cu", crates.update_crate, opts)
-        vim.keymap.set("v", "<leader>cu", crates.update_crates, opts)
-        vim.keymap.set("n", "<leader>ca", crates.update_all_crates, opts)
-        -- Upgrade
-        vim.keymap.set("n", "<leader>cU", crates.upgrade_crate, opts)
-        vim.keymap.set("v", "<leader>cU", crates.upgrade_crates, opts)
-        vim.keymap.set("n", "<leader>cA", crates.upgrade_all_crates, opts)
-        -- Docs
-        vim.keymap.set("n", "<CR>", crates.open_documentation, opts)
-        vim.keymap.set("n", "<leader>cd", crates.open_documentation, opts)
-        vim.keymap.set("n", "<leader>cr", crates.open_repository, opts)
-        vim.keymap.set("n", "<leader>ch", crates.open_homepage, opts)
-    end
+    cmd = "Crates",
+    keys = {
+        -- Information -------------------------------------------------------------------------
+        { "K",  _ "show_crate_popup",        desc = "Crates Show Crate",         buffer = true },
+        { "gv", _ "show_versions_popup",     desc = "Crates Show Versions",      buffer = true },
+        { "gf", _ "show_features_popup",     desc = "Crates Show Features",      buffer = true },
+        { "gr", _ "show_dependencies_popup", desc = "Crates Show Dependencies",  buffer = true },
+        -- Update ------------------------------------------------------------------------------
+        { "gu", _ "update_crate",            desc = "Crates Update",             buffer = true },
+        { "ga", _ "update_all_crates",       desc = "Crates Update (All)",       buffer = true },
+        -- Upgrade -----------------------------------------------------------------------------
+        { "gU", _ "upgrade_crate",           desc = "Crates Upgrade",            buffer = true },
+        { "gA", _ "upgrade_all_crates",      desc = "Crates Upgrade (All)",      buffer = true },
+        -- Documentation -----------------------------------------------------------------------
+        { "gd", _ "open_documentation",      desc = "Crates Open Documentation", buffer = true },
+        { "gi", _ "open_repository",         desc = "Crates Open Repository",    buffer = true },
+    },
 }

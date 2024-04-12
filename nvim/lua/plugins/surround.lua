@@ -5,14 +5,17 @@ return {
     "kylechui/nvim-surround",
     version = "*",
     event = "VeryLazy",
-    config = function()
-        require("nvim-surround").setup {
-            move_cursor = false,
-            aliases = {
-                -- Use `c` to surround text with function call.
-                ["c"] = "f",
-            },
-        }
-        vim.cmd [[ highlight link NvimSurroundHighlight IncSearch ]]
+    opts = {
+        move_cursor = false,
+        aliases = {
+            -- Use `c` to surround text with function call.
+            ["c"] = "f",
+        },
+    },
+    config = function(_, opts)
+        require("nvim-surround").setup(opts)
+        vim.cmd [[
+            highlight link NvimSurroundHighlight IncSearch
+        ]]
     end
 }
