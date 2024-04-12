@@ -14,7 +14,7 @@
 # Check if command exists in the system.
 function command_exists {
     command -v $1 &>/dev/null
-    #        │
+    #        ┯
     #        ╰──⮞ Echo a string with the pathname that will be used.
 }
 
@@ -60,7 +60,7 @@ function tsetup {
         #            ╰──⮞ Start new tmux session from config file.
     done
     tmux attach -t main
-    #            │
+    #            ┯
     #            ╰──⮞ Target session.
 }
 
@@ -69,7 +69,7 @@ function create-tunnel {
     host=${1:=lsc}
     port=${2:=23440}
     ssh -f -N -R $port\:localhost:22 $host
-    #    │  │  │
+    #    ┯  ┯  ┯
     #    │  │  ╰──⮞ Forward a remote port to localhost:22.
     #    │  ╰──⮞ Do not execute a remote command.
     #    ╰──⮞ Go to background just before command execution.
@@ -80,7 +80,7 @@ function dlvideo {
     file=${1:-video.mp4}
     url=${2:-$(xsel -ob)}
     youtube-dl -q -o - $url | ffmpeg -i pipe: -async 1 $file
-    #           │  ━┯━                │
+    #           ┯  ━┯━                ┯
     #           │   │                 ╰──⮞ Read video stream from stdin.
     #           │   ╰──⮞ Output video stream to stdout.
     #           ╰──⮞ Run in quiet mod.
@@ -135,13 +135,14 @@ function pacown {
 # List explicitly installed packages and pipe through FZF
 function pacls {
     pacman -Qq $1 | fzf -m --preview='pacman -Qi {+}'
-    #       ━┯━          │           ━━━━━━━┯━━━━━━━━
+    #       ━┯━          ┯           ━━━━━━━┯━━━━━━━━
     #        │           │                  │
     #        │           │                  ╰──⮞ Content of preview window.
     #        │           ╰──⮞ Multi line selection.
     #        ╰──⮞ (Q)uery, (q)uiet, (e)xplicit.
 }
 
+# Uninstall Pacman packages with FZF
 function pacrs {
     pacman -Qq $1 | fzf -m --preview='pacman -Qi {+}' --bind='enter:execute(sudo pacman -Rs {})'
 }
@@ -185,10 +186,11 @@ export MAKEFLAGS=--no-print-directory
 
 # Less default options
 export LESS="-FIRX"
-#             │││╰──⮞ Do not clear screen on exit.
-#             ││╰───⮞ Raw control characters, preservers color.
-#             │╰────⮞ Ignore case on searches.
-#             ╰─────⮞ Quit if output occupies less than one screen.
+#             ┯┯┯┯
+#             │││╰──⮞ X: Do not clear screen on exit.
+#             ││╰───⮞ R: Raw control characters, preservers color.
+#             │╰────⮞ I: Ignore case on searches.
+#             ╰─────⮞ F: Quit if output occupies less than one screen.
 
 # Choose default editor
 if command_exists nvim; then
