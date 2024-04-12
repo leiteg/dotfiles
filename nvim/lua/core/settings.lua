@@ -33,6 +33,7 @@ vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.colorcolumn = { "+1" }
 vim.opt.wrap = false
+vim.opt.signcolumn = "yes"
 
 -- Search
 vim.opt.hlsearch = true
