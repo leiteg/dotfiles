@@ -9,16 +9,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.bo[event.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
         -- :h lsp-inlay_hint
-        vim.api.nvim_create_user_command("ToggleInlayHints", function()
+        vim.api.nvim_create_user_command("LspToggleInlayHints", function()
             vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
         end, {})
 
-        vim.api.nvim_create_user_command("LspWorkspaceList", function()
-            vim.lsp.buf.list_workspace_folders()
-        end, {})
-
-        -- Wrapper for `vim.lsp.buf.format`
-        local async_format = function()
+        -- Wrapper for `vim.lsp.buf.format()`
+        local vim_lsp_buf_format_async = function()
             vim.lsp.buf.format({ async = true })
         end
 
@@ -30,11 +26,11 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { 'n', 'go',   vim.lsp.buf.type_definition, 'Go to type definition' },
             { 'n', 'gr',   vim.lsp.buf.references,      'Go to reference' },
             { 'n', 'gs',   vim.lsp.buf.signature_help,  'Show function signature' },
+            { 'n', '<F1>', vim.diagnostic.open_float,   'Show diagnostic' },
             { 'n', '<F2>', vim.lsp.buf.rename,          'Rename symbol' },
-            { 'n', '<F3>', async_format,                'Format file' },
-            { 'x', '<F3>', async_format,                'Format selection' },
+            { 'n', '<F3>', vim_lsp_buf_format_async,    'Format file' },
+            { 'x', '<F3>', vim_lsp_buf_format_async,    'Format selection' },
             { 'n', '<F4>', vim.lsp.buf.code_action,     'Execute code action' },
-            { 'n', 'gl',   vim.diagnostic.open_float,   'Show diagnostic' },
             { 'n', '[d',   vim.diagnostic.goto_prev,    'Previous diagnostic' },
             { 'n', ']d',   vim.diagnostic.goto_next,    'Next diagnostic' },
         }
@@ -58,5 +54,4 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 return {
     "neovim/nvim-lspconfig",
-    event = "VeryLazy",
 }
