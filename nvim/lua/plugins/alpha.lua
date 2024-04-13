@@ -33,8 +33,13 @@ return {
             dashboard.button("q", "󰈆  Quit", "<cmd>qa<CR>"),
         }
 
+        local prerelease = ""
+        if version.prerelease then
+            prerelease = string.format("-%s (%s)", version.prerelease, version.build)
+        end
+
         dashboard.section.footer.val = {
-            string.format("Neovim v%s.%s.%s", version.major, version.minor, version.patch)
+            string.format("Neovim v%s.%s.%s%s", version.major, version.minor, version.patch, prerelease)
         }
 
         alpha.setup(dashboard.opts)
