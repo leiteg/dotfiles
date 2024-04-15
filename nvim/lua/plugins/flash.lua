@@ -12,7 +12,14 @@ end
 return {
     "folke/flash.nvim",
     event = "VeryLazy",
-    opts = {},
+    opts = {
+        modes = {
+            char = {
+                -- Disable f/t/F/T mappings
+                enabled = false,
+            },
+        },
+    },
     keys = {
         { "s", _ "jump", mode = { "n", "x", "o" }, desc = "Flash" },
         -- { "r",     _ "remote",            mode = { "o" },           desc = "Flash Remote" },
