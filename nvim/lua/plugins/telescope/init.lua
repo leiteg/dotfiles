@@ -72,7 +72,12 @@ return {
             builtin.diagnostics(theme)
         end
 
+        local _builtin = function()
+            builtin.builtin(theme)
+        end
+
         local keymaps = {
+            { "<leader>T",  _builtin,          { desc = "Telescope Pickers", } },
             { "<leader>P",  git_files,         { desc = "Telescope Git Files", } },
             { "<leader>p",  find_all_files,    { desc = "Telescope All Files", } },
             { "<leader>ls", buffers,           { desc = "Telescope Buffers", } },
