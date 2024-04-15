@@ -20,4 +20,10 @@ return {
         -- { "<c-s>", _ "toggle",            mode = { "c" },           desc = "Flash Toggle Search" },
         -- { "S",     _ "treesitter",        mode = { "n", "x", "o" }, desc = "Flash Treesitter" },
     },
+    config = function(_, opts)
+        require("flash").setup(opts)
+        vim.cmd [[
+            highlight FlashLabel guifg=#ff007c guibg=none
+        ]]
+    end
 }
