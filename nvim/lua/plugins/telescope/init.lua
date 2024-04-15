@@ -15,6 +15,7 @@ return {
 
         require("telescope").setup({
             defaults = {
+                prompt_prefix = "  > ",
                 mappings = {
                     i = {
                         ["<esc>"] = actions.close,
@@ -86,5 +87,14 @@ return {
 
         -- Used by `goolord/alpha-nvim`
         vim.api.nvim_create_user_command("TelescopeFiles", find_all_files, {})
+
+        vim.cmd [[
+            highlight TelescopeBorder       guifg=#565f89
+            highlight TelescopePromptBorder guifg=#565f89
+            highlight TelescopePromptTitle  gui=bold guifg=#bb9af7
+            highlight TelescopePromptPrefix gui=bold
+            highlight TelescopePreviewTitle gui=bold guifg=#bb9af7
+            highlight TelescopeMatching     gui=reverse
+        ]]
     end,
 }
