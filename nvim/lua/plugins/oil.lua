@@ -19,6 +19,7 @@ return {
         { "-", _ "open_float", desc = "Oil" }
     },
     opts = {
+        skip_confirm_for_simple_edits = true,
         float = {
             padding = 5,
             max_width = 60,
