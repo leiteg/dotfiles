@@ -21,6 +21,17 @@ return {
             upgrade = "  %s ",
             error = "  Error fetching crate ",
         },
+        src = {
+            cmp = {
+                enabled = true,
+            },
+            lsp = {
+                enabled = true,
+                actions = true,
+                completion = true,
+                hover = true,
+            }
+        },
     },
     cmd = "Crates",
     keys = {

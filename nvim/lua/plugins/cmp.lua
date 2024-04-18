@@ -56,6 +56,7 @@ local config = function()
             { name = 'nvim_lsp' },
             { name = 'luasnip' },
             { name = 'nvim_lua' },
+            { name = 'crates' },
             { name = 'calc' },
             { name = 'buffer' },
             { name = 'path' },
