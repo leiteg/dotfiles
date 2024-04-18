@@ -206,7 +206,7 @@ if command_exists clang; then
 fi
 
 if command_exists bat; then
-    export BAT_THEME="Dracula"
+    export BAT_THEME="tokyonight"
 fi
 
 export SHELL_NAME="${SHELL##*/}"
