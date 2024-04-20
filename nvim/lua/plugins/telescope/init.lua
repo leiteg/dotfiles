@@ -39,6 +39,17 @@ return {
 
         local theme = require("telescope.themes").get_dropdown()
 
+        local _ = function(fn)
+            if type(fn) == "function" then
+                return fn
+            end
+
+            return function()
+                builtin[fn](theme)
+            end
+        end
+
+
         local find_all_files = function()
             builtin.find_files(
                 vim.tbl_deep_extend("keep", theme, {
@@ -56,34 +67,14 @@ return {
             )
         end
 
-        local git_files = function()
-            builtin.git_files(theme)
-        end
-
-        local buffers = function()
-            builtin.buffers(theme)
-        end
-
-        local live_grep = function()
-            builtin.live_grep(theme)
-        end
-
-        local diagnostics = function()
-            builtin.diagnostics(theme)
-        end
-
-        local _builtin = function()
-            builtin.builtin(theme)
-        end
-
         local keymaps = {
-            { "<leader>T",  _builtin,          { desc = "Telescope Pickers", } },
-            { "<leader>P",  git_files,         { desc = "Telescope Git Files", } },
-            { "<leader>p",  find_all_files,    { desc = "Telescope All Files", } },
-            { "<leader>ls", buffers,           { desc = "Telescope Buffers", } },
-            { "<leader>lg", live_grep,         { desc = "Telescope Live Grep", } },
-            { "<leader>ld", diagnostics,       { desc = "Telescope Diagnostics", } },
-            { "<leader>go", workspace_symbols, { desc = "Telescope Symbols" } },
+            { "<leader>T",  _ "builtin",          { desc = "Telescope Pickers", } },
+            { "<leader>P",  _ "git_files",        { desc = "Telescope Git Files", } },
+            { "<leader>p",  _(find_all_files),    { desc = "Telescope All Files", } },
+            { "<leader>ls", _ "buffers",          { desc = "Telescope Buffers", } },
+            { "<leader>lg", _ "live_grep",        { desc = "Telescope Live Grep", } },
+            { "<leader>ld", _ "diagnostics",      { desc = "Telescope Diagnostics", } },
+            { "<leader>go", _(workspace_symbols), { desc = "Telescope Symbols" } },
         }
 
         for _, keymap in ipairs(keymaps) do
