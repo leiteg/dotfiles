@@ -105,7 +105,7 @@ local snippets = {
     ]], [[
         @dataclass
         <>
-    ]], { l(l.LS_TSMATCH) })
+    ]], { l(l.LS_TSMATCH) }),
 
 }
 
@@ -144,6 +144,10 @@ local autosnippets = {
         <>
     ]], { i(1, "Header"), i(0) }),
 
+    snippet(";todo", "TODO Comment", [[
+        # TODO: <>
+    ]], { i(1, "...") }),
+
     -- Printing & Logging
     snippet(";p", "Print", "print(<>)", { i(1, "message") }),
     snippet(";log", "Info", 'log.info(<>)', { i(1, "message") }),
@@ -165,13 +169,10 @@ local autosnippets = {
         self = self(2),
         args = i(2),
         ret  = c(3, {
-            t "",
             sn(nil, { t " -> ", i(1, "None") }),
+            t "",
         }),
-        body = c(4, {
-            i(1, "raise NotImplementedError()"),
-            i(1, "pass"),
-        }),
+        body = i(4, "pass"),
     }),
 
     snippet(";cl", "Class", [[
