@@ -18,6 +18,7 @@ local c = ls.choice_node
 local t = ls.text_node
 local f = ls.function_node
 local r = ls.restore_node
+local d = ls.dynamic_node
 local sn = ls.snippet_node
 
 -- Luasnip Extras
@@ -39,6 +40,19 @@ local function namespace_comment(args)
     end
 end
 
+local function inherits(index, opts)
+    local function _(class_name)
+        -- Return inheritance snippet if class name ends with `:`.
+        if class_name:match(":$") then
+            return sn(nil, { t " public ", i(1, "Base") })
+        end
+        -- Otherwise, return empty snippet.
+        return sn(nil, {})
+    end
+
+    return d(index, function(args) return _(args[1][1]) end, { opts.from })
+end
+
 --------------------------------------------------------------------------------
 -- SNIPPETS
 --------------------------------------------------------------------------------
@@ -52,18 +66,13 @@ local snippets = {}
 local autosnippets = {
 
     snippet("#!", "Include guard", [[
-        #ifndef <macro1>
-        #define <macro2>
+        #ifndef <>
+        #define <>
 
-        <body>
+        <>
 
-        #endif /* <macro3> */
-    ]], {
-        macro1 = i(1, "MACRO"),
-        macro2 = rep(1),
-        macro3 = rep(1),
-        body = i(0)
-    }),
+        #endif /* <> */
+    ]], { i(1, "FILE_H"), rep(1), i(0), rep(1) }),
 
     -- MAIN --------------------------------------------------------------------
 
@@ -113,51 +122,56 @@ local autosnippets = {
     }),
 
     snippet(";cl", "Class Declaration", [[
-        class <name><inherits> {
+        class <name><base> {
         public:
           <body>
         };
     ]], {
         name = i(1, "ClassName"),
-        inherits = c(2, {
-            t "",
-            sn(nil, { t " : public ", i(1, "BaseClass") }),
-        }),
+        base = inherits(2, { from = 1 }),
         body = i(3, "// TODO"),
     }),
 
     snippet(";st", "Struct Declaration", [[
-        struct <name><inherits> {
+        struct <name><base> {
           <body>
         };
     ]], {
         name = i(1, "StructName"),
-        inherits = c(2, {
-            t "",
-            sn(nil, { t " : public ", i(1, "BaseClass") }),
-        }),
+        base = inherits(2, { from = 1 }),
         body = i(3, "// TODO"),
     }),
 
     snippet(";en", "Enum Declaration", [[
-        enum<class> <name> {
+        <enum> {
           <body>
         };
     ]], {
-        class = c(1, { t " class", t "" }),
-        name = i(2, "EnumName"),
-        body = i(3, "// TODO"),
+        enum = c(1, {
+            fmt("enum {}", { r(1, "name") }),
+            fmt("enum class {}", { r(1, "name") }),
+        }),
+        body = i(2, "// TODO"),
+    }, {
+        stored = { ["name"] = i(1, "EnumName") }
     }),
 
     snippet(";fn", "Function Declaration", [[
-        <ret> <name>(<args>) {
+        <decl> {
           <body>
         }
     ]], {
-        ret = i(1, "void"),
-        name = i(2, "function"),
-        args = i(3),
-        body = i(4, "// TODO"),
+        decl = c(1, {
+            fmt("{} {}({})", { r(3, "rtyp"), r(1, "name"), r(2, "args") }),
+            fmt("auto {}({}) -> {}", { r(1, "name"), r(2, "args"), r(3, "rtyp") }),
+        }),
+        body = i(2, "// TODO"),
+    }, {
+        stored = {
+            rtyp = i(1, "void"),
+            name = i(2, "function_name"),
+            args = i(3),
+        }
     }),
 
     -- STATEMENTS --------------------------------------------------------------
@@ -168,11 +182,36 @@ local autosnippets = {
         }
     ]], {
         iter = c(1, {
-            fmta("int <> = <>; <> << <>; ++<>", { i(1, "i"), i(2, "0"), rep(1), i(3, "n"), rep(1) }),
-            fmta("auto &<> : <>", { i(1, "item"), i(2, "collection") }),
-            fmta("const auto &<> : <>", { i(1, "item"), i(2, "collection") }),
+            fmta("int <> = <>; <> << <>; ++<>", { r(1, "index"), i(2, "0"), rep(1), i(3, "n"), rep(1) }),
+            fmta("auto &<> : <>", { r(1, "index"), r(2, "collection") }),
+            fmta("const auto &<> : <>", { r(1, "index"), r(2, "collection") }),
         }),
         body = i(2, "// TODO"),
+    }, {
+        stored = {
+            index = i(1, "i"),
+            collection = i(2, "collection"),
+        }
+    }),
+
+    snippet(";wh", "While Loop", "<>", {
+        c(1, {
+            fmta([[
+                while (<>) {
+                  <>
+                }
+            ]], { r(1, "cond"), r(2, "body") }),
+            fmta([[
+                do {
+                  <>
+                } while (<>);
+            ]], { r(1, "body"), r(2, "cond") }),
+        })
+    }, {
+        stored = {
+            cond = i(1, "true"),
+            body = i(2, "// TODO")
+        }
     }),
 
     -- TYPES -------------------------------------------------------------------
