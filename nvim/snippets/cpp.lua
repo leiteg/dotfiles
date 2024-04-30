@@ -51,12 +51,26 @@ local snippets = {}
 
 local autosnippets = {
 
+    snippet("#!", "Include guard", [[
+        #ifndef <macro1>
+        #define <macro2>
+
+        <body>
+
+        #endif /* <macro3> */
+    ]], {
+        macro1 = i(1, "MACRO"),
+        macro2 = rep(1),
+        macro3 = rep(1),
+        body = i(0)
+    }),
+
     -- MAIN --------------------------------------------------------------------
 
     snippet(";main", "Main Function", [[
         int main(<args>) {
-            <body>
-            return 0;
+          <body>
+          return 0;
         }
     ]], {
         args = c(1, {
@@ -101,7 +115,7 @@ local autosnippets = {
     snippet(";cl", "Class Declaration", [[
         class <name><inherits> {
         public:
-            <body>
+          <body>
         };
     ]], {
         name = i(1, "ClassName"),
@@ -114,7 +128,7 @@ local autosnippets = {
 
     snippet(";st", "Struct Declaration", [[
         struct <name><inherits> {
-            <body>
+          <body>
         };
     ]], {
         name = i(1, "StructName"),
@@ -127,7 +141,7 @@ local autosnippets = {
 
     snippet(";en", "Enum Declaration", [[
         enum<class> <name> {
-            <body>
+          <body>
         };
     ]], {
         class = c(1, { t " class", t "" }),
@@ -137,7 +151,7 @@ local autosnippets = {
 
     snippet(";fn", "Function Declaration", [[
         <ret> <name>(<args>) {
-            <body>
+          <body>
         }
     ]], {
         ret = i(1, "void"),
@@ -150,7 +164,7 @@ local autosnippets = {
 
     snippet(";for", "For Loop", [[
         for (<iter>) {
-            <body>
+          <body>
         }
     ]], {
         iter = c(1, {
