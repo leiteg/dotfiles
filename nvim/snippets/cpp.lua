@@ -220,34 +220,34 @@ local autosnippets = {
 
     -- TYPES -------------------------------------------------------------------
 
-    snippet(";uu", "Unique Pointer", "std::unique_ptr<<<T>>>", {
+    snippet(";U", "Unique Pointer", "std::unique_ptr<<<T>>>", {
         T = i(1, "T")
     }),
 
-    snippet(";ss", "Shared Pointer", "std::shared_ptr<<<T>>>", {
+    snippet(";S", "Shared Pointer", "std::shared_ptr<<<T>>>", {
         T = i(1, "T")
     }),
 
-    snippet(";mu", "Make Unique Pointer", "std::make_unique<<<T>>>(<V>)", {
+    snippet(";mU", "Make Unique Pointer", "std::make_unique<<<T>>>(<V>)", {
         T = i(1, "T"),
         V = i(2),
     }),
 
-    snippet(";ms", "Make Shared Pointer", "std::make_shared<<<T>>>(<V>)", {
+    snippet(";mS", "Make Shared Pointer", "std::make_shared<<<T>>>(<V>)", {
         T = i(1, "T"),
         V = i(2),
     }),
 
-    snippet(";vec", "Vector", "std::vector<<<T>>>", {
+    snippet(";V", "Vector", "std::vector<<<T>>>", {
         T = i(1, "T")
     }),
 
-    snippet(";map", "Map", "std::map<<<K>, <V>>>", {
+    snippet(";M", "Map", "std::map<<<K>, <V>>>", {
         K = i(1, "K"),
         V = i(2, "V"),
     }),
 
-    snippet(";str", "String", "std::string", {}),
+    snippet(";S", "String", "std::string", {}),
 
     -- PRINTING ----------------------------------------------------------------
 

@@ -58,22 +58,22 @@ local autosnippets = {
 
     -- TYPES -------------------------------------------------------------------
 
-    snippet(";o", "Option", "Option<<<t>>>", {
+    snippet(";O", "Option", "Option<<<t>>>", {
         t = i(0, "()"),
     }),
 
-    snippet(";r", "Result", "Result<<<t>, <e>>>", {
+    snippet(";R", "Result", "Result<<<t>, <e>>>", {
         t = i(1, "()"),
         e = i(0, "Error"),
     }),
 
-    snippet(";v", "Vec", "Vec<<<t>>>", {
+    snippet(";V", "Vec", "Vec<<<t>>>", {
         t = i(0, "()"),
     }),
 
-    snippet(";s", "String", "String", {}),
+    snippet(";S", "String", "String", {}),
 
-    snippet(";h", "HashMap", "HashMap<<<key>, <value>>>", {
+    snippet(";H", "HashMap", "HashMap<<<key>, <value>>>", {
         key = i(1, "Key"),
         value = i(0, "Value"),
     }),
