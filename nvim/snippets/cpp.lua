@@ -214,6 +214,10 @@ local autosnippets = {
         }
     }),
 
+    snippet(";r", "Return", "return <>;", {
+        i(1, "nullptr");
+    }),
+
     -- TYPES -------------------------------------------------------------------
 
     snippet(";uu", "Unique Pointer", "std::unique_ptr<<<T>>>", {

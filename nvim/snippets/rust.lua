@@ -182,6 +182,10 @@ local autosnippets = {
         rhs = i(2, "rhs"),
     }),
 
+    snippet(";r", "Return", "return <>;", {
+        i(1, "None");
+    }),
+
     -- TESTING -----------------------------------------------------------------
 
     snippet(";modtest", "Test Module", [[
