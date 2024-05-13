@@ -104,7 +104,7 @@ local autosnippets = {
 
     -- TEMPLATES ---------------------------------------------------------------
 
-    snippet(";t", "Template", "template <<typename <>>>", {
+    snippet(";t", "Template", "template <<class <>>>", {
         i(1, "T")
     }),
 
