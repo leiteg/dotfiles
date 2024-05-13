@@ -8,35 +8,45 @@
 --                                                                            --
 --------------------------------------------------------------------------------
 
--- Search
-vim.keymap.set("n", "/", "/\\v")
-vim.keymap.set("n", "?", "?\\v")
-vim.keymap.set("n", "n", "nzz")
-vim.keymap.set("n", "N", "Nzz")
+local set = vim.keymap.set
 
--- Editing
-vim.keymap.set("n", "J", "mzJ`z")
-vim.keymap.set("v", "J", "<cmd>m '>+1<CR>gv=gv")
-vim.keymap.set("v", "K", "<cmd>m '<-2<CR>gv=gv")
+-- Search ----------------------------------------------------------------------
 
--- Movement
-vim.keymap.set("n", "<C-d>", "<C-d>zz")
-vim.keymap.set("n", "<C-u>", "<C-u>zz")
-vim.keymap.set("n", "<tab>", "<cmd>bn<CR>")
-vim.keymap.set("n", "<s-tab>", "<cmd>bp<CR>")
+set("n", "/", "/\\v")
+set("n", "?", "?\\v")
+set("n", "n", "nzz")
+set("n", "N", "Nzz")
 
--- Insert mode
-vim.keymap.set("i", "jk", "<esc>")
+-- Editing ---------------------------------------------------------------------
 
--- Quickfix
-vim.keymap.set("n", "<C-j>", "<cmd>cnext<CR>zz")
-vim.keymap.set("n", "<C-k>", "<cmd>cprev<CR>zz")
+set("n", "J", "mzJ`z")
+set("v", "J", "<cmd>m '>+1<CR>gv=gv")
+set("v", "K", "<cmd>m '<-2<CR>gv=gv")
 
--- Misc
-vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+-- Movement --------------------------------------------------------------------
 
--- Change sessions
-vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+set("n", "<C-d>", "<C-d>zz")
+set("n", "<C-u>", "<C-u>zz")
+set("n", "<tab>", "<cmd>bn<CR>")
+set("n", "<s-tab>", "<cmd>bp<CR>")
 
--- Terminal
-vim.keymap.set("t", "<esc>", "<C-\\><C-n>")
+-- Insert mode -----------------------------------------------------------------
+
+set("i", "jk", "<esc>")
+
+-- Quickfix --------------------------------------------------------------------
+
+set("n", "<C-j>", "<cmd>cnext<CR>zz")
+set("n", "<C-k>", "<cmd>cprev<CR>zz")
+
+-- Miscellaneous ---------------------------------------------------------------
+
+set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- Change sessions -------------------------------------------------------------
+
+set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+
+-- Terminal --------------------------------------------------------------------
+
+set("t", "<esc>", "<C-\\><C-n>")
