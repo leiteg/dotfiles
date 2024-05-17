@@ -19,7 +19,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
         end
 
         local keymaps = {
-            { 'n', 'K',    vim.lsp.buf.hover,           'Hover documentation' },
             { 'n', 'gd',   vim.lsp.buf.definition,      'Go to definition' },
             { 'n', 'gD',   vim.lsp.buf.declaration,     'Go to declaration' },
             { 'n', 'gi',   vim.lsp.buf.implementation,  'Go to implementation' },
@@ -31,8 +30,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
             { 'n', '<F3>', vim_lsp_buf_format_async,    'Format file' },
             { 'x', '<F3>', vim_lsp_buf_format_async,    'Format selection' },
             { 'n', '<F4>', vim.lsp.buf.code_action,     'Execute code action' },
-            { 'n', '[d',   vim.diagnostic.goto_prev,    'Previous diagnostic' },
-            { 'n', ']d',   vim.diagnostic.goto_next,    'Next diagnostic' },
         }
 
         if vim.lsp.buf.range_code_action then
