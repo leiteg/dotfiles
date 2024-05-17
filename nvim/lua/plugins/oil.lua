@@ -10,7 +10,7 @@ end
 
 return {
     "stevearc/oil.nvim",
-    event = "VeryLazy",
+    lazy = false,
     dependencies = {
         "nvim-tree/nvim-web-devicons",
     },
@@ -19,6 +19,7 @@ return {
         { "-", _ "open_float", desc = "Oil" }
     },
     opts = {
+        default_file_explorer = true,
         skip_confirm_for_simple_edits = true,
         float = {
             padding = 5,
