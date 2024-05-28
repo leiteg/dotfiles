@@ -25,7 +25,7 @@ return {
 
         dashboard.section.buttons.val = {
             dashboard.button("n", "  New File", "<cmd>enew<CR>"),
-            dashboard.button("f", "  Find File", "<cmd>TelescopeFiles<CR>"),
+            dashboard.button("p", "  Find File", "<cmd>TelescopeFiles<CR>"),
             dashboard.button("l", "󰒲  Open Lazy", "<cmd>Lazy<CR>"),
             dashboard.button("g", "  Open Neogit", "<cmd>Neogit<CR>"),
             dashboard.button("o", "󰧑  Open Obsidian", "<cmd>ObsidianToday<CR>"),
