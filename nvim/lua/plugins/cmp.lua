@@ -58,8 +58,8 @@ local config = function()
             { name = 'nvim_lua' },
             { name = 'crates' },
             { name = 'calc' },
-            { name = 'buffer' },
             { name = 'path' },
+            { name = 'buffer' },
         }),
         formatting = {
             fields = { "kind", "abbr", "menu" },
