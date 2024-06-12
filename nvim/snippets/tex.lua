@@ -49,10 +49,17 @@ local function math(trig, desc, pat, nodes, opts)
         opts = {}
     end
 
-    return snippet(trig, desc, pat, nodes, vim.tbl_deep_extend("keep", {
+    return snippet(trig, desc, pat, nodes, vim.tbl_deep_extend("force", {
         condition = in_mathzone,
         wordTrig = false,
     }, opts))
+end
+
+local function wmath(trig, desc, pat, nodes, opts)
+    if opts == nil then
+        opts = {}
+    end
+    return math(trig, desc, pat, nodes, vim.tbl_deep_extend("force", { wordTrig = true}, opts))
 end
 
 local function regex_math(trig, desc, pat, nodes, opts)
@@ -81,7 +88,7 @@ end
 
 local snippets = {
 
-    inline_snippet("@", "Cite", "~\\cite{<>}", { i(1) }),
+    snippet("@", "Cite", "~\\cite{<>}", { i(1) }),
     snippet("b", "Bold", "\\textbf{<>}", { i(1) }),
     snippet("i", "Italic", "\\textit{<>}", { i(1) }),
     snippet("t", "Monospaced", "\\texttt{<>}", { i(1) }),
@@ -130,20 +137,22 @@ local autosnippets = {
         \end{enumerate}
     ]], { body = i(1, "%"), }),
 
-    snippet("-", "Item", [[
-        \item <text>
+    snippet("^(%s+)-", "Item", [[
+        <space>\item <text>
     ]], {
+        space = utils.capture(1),
         text = i(0),
     }, {
         condition = in_list,
+        regTrig = true,
     }),
 
     snippet(";fig", "Figure", [[
         \begin{figure}[ht]
-            \centering
-            \includegraphics[width=<width>\textwidth]{images/<image>}
-            \caption{<caption>}
-            \label{fig:<label>}
+          \centering
+          \includegraphics[width=<width>\textwidth]{images/<image>}
+          \caption{<caption>}
+          \label{fig:<label>}
         \end{figure}
     ]], {
         width = i(1, "0.75"),
@@ -152,19 +161,32 @@ local autosnippets = {
         label = i(4, "label"),
     }),
 
+    snippet(";alg", "Algorithm", [[
+        \begin{algorithm}
+          \KwData{<data>}
+          \KwReturn{<ret>}
+
+          \caption{<caption>}
+        \end{algorithm}
+    ]], {
+        data = i(1, "Input data"),
+        ret = i(2, "Return data"),
+        caption = i(3, "\\TODO"),
+    }),
+
     -- TODO: Side-by-side Figure
     -- TODO: Table
     -- TODO: Listing
 
     snippet(";eq", "Equation", [[
         \begin{equation}
-            <body>
+          <body>
         \end{equation}
     ]], { body = i(1, "%"), }),
 
-    snippet(";al", "Align", [[
+    snippet(";ali", "Align", [[
         \begin{align<ast1>}
-            <body>
+          <body>
         \end{align<ast2>}
     ]], {
         body = i(2, "%"),
@@ -174,19 +196,19 @@ local autosnippets = {
 
     snippet(";th", "Theorem", [[
         \begin{theorem}
-            <body>
+          <body>
         \end{theorem}
     ]], { body = i(1, "%"), }),
 
     snippet(";pr", "Proof", [[
         \begin{proof}
-            <body>
+          <body>
         \end{proof}
     ]], { body = i(1, "%"), }),
 
     snippet(";abs", "Abstract", [[
         \begin{abstract}
-            <body>
+          <body>
         \end{abstract}
     ]], { body = i(1, "%"), }),
 
@@ -223,26 +245,26 @@ local autosnippets = {
         b = i(2, "b"),
     }),
 
-    math("==", "Equals", [[&= ]]),
-    math("!=", "Not Equals", [[\ne ]]),
-    math(">=", "Greater Than Or Equals", [[\ge ]]),
-    math("<=", "Less Than Or Equals", [[\le ]]),
-    math("=>", "Implies", [[\implies ]]),
-    math("->", "To", [[\to ]]),
-    math("!>", "Maps To", [[\mapsto ]]),
-    math("nin", "Not In", [[\notin ]]),
-    math("in", "In", [[\in ]]),
-    math("xx", "Times", [[\times ]]),
-    math("..", "Dot", [[\cdot ]]),
-    math("cc", "Subset", [[\subset ]]),
-    math("c=", "Subset Equal", [[\subseteq ]]),
-    math("NN", "Natural Set", [[\mathbb{N} ]]),
-    math("ZZ", "Integer Set", [[\mathbb{Z} ]]),
-    math("RR", "Real Set", [[\mathbb{R} ]]),
-    math("iff", "iff Set", [[\iff ]]),
-    math("nabla", "Nabla", [[\nabla ]]),
-    math("grad", "Nabla", [[\nabla ]]),
-    math("part", "Partial", [[\partial ]]),
+    wmath("==", "Equals", [[&= ]]),
+    wmath("!=", "Not Equals", [[\ne ]]),
+    wmath(">=", "Greater Than Or Equals", [[\ge ]]),
+    wmath("<=", "Less Than Or Equals", [[\le ]]),
+    wmath("=>", "Implies", [[\implies ]]),
+    wmath("->", "To", [[\to ]]),
+    wmath("!>", "Maps To", [[\mapsto ]]),
+    wmath("nin", "Not In", [[\notin ]]),
+    wmath("in", "In", [[\in ]]),
+    wmath("xx", "Times", [[\times ]]),
+    wmath("..", "Dot", [[\cdot ]]),
+    wmath("cc", "Subset", [[\subset ]]),
+    wmath("c=", "Subset Equal", [[\subseteq ]]),
+    wmath("NN", "Natural Set", [[\mathbb{N} ]]),
+    wmath("ZZ", "Integer Set", [[\mathbb{Z} ]]),
+    wmath("RR", "Real Set", [[\mathbb{R} ]]),
+    wmath("iff", "iff Set", [[\iff ]]),
+    wmath("nabla", "Nabla", [[\nabla ]]),
+    wmath("grad", "Nabla", [[\nabla ]]),
+    wmath("part", "Partial", [[\partial ]]),
 
     greek(";a", "\\alpha"),
     greek(";b", "\\beta"),

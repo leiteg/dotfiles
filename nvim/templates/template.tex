@@ -1,0 +1,114 @@
+\documentclass[12pt,a4paper]{article}
+
+% ----------------------------------------------------------------------------------------
+% METADATA
+% ----------------------------------------------------------------------------------------
+
+% TODO: Update title information
+\title{This is my document title \\ \large This is my document subtitle}
+\author{Gustavo Leite \\ \texttt{gustavo.leite@ic.unicamp.br}}
+\date{\today}
+
+% ----------------------------------------------------------------------------------------
+% PACKAGES
+% ----------------------------------------------------------------------------------------
+
+\usepackage[english]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{algorithm}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bookmark}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{geometry}
+\usepackage{lipsum}
+\usepackage{microtype}
+\usepackage{pifont}
+\usepackage{setspace}
+\usepackage{tikz}
+\usepackage{xcolor}
+
+% ----------------------------------------------------------------------------------------
+% DEFINITIONS
+% ----------------------------------------------------------------------------------------
+
+\definecolor{lightblue}{RGB}{41,5,195}
+\definecolor{_green}{RGB}{13, 163, 86}
+\definecolor{_magenta}{RGB}{107,3,252}
+
+\def \TODO {{\color{red}TODO.}}
+
+\newcommand* \etal  {\textit{et~al.}}
+\newcommand* \eg    {\textit{e.g.}}
+\newcommand* \ie    {\textit{i.e.}}
+\newcommand* \B     {\textbullet}
+\newcommand* \Y     {\ding{51}}
+\newcommand* \N     {\ding{55}}
+\newcommand* \reg   {\textsuperscript{\textregistered}}
+\newcommand* \tm    {\textsuperscript{\texttrademark}}
+
+% ----------------------------------------------------------------------------------------
+% CONFIGURATION
+% ----------------------------------------------------------------------------------------
+
+% Bookmarks
+\hypersetup{
+  pdftitle       = {\@title},
+  pdfauthor      = {\@author},
+  pdfcreator     = {LaTeX},
+  colorlinks     = true,
+  linkcolor      = lightblue,
+  citecolor      = lightblue,
+  urlcolor       = lightblue,
+  filecolor      = lightblue,
+  bookmarksdepth = 4,
+}
+
+% Geometry
+\textheight     =  8.6in
+\oddsidemargin  =  0.1in
+\evensidemargin = -0.1in
+\textwidth      =  6.1in
+
+% ----------------------------------------------------------------------------------------
+% DOCUMENT & FRONT-MATTER
+% ----------------------------------------------------------------------------------------
+
+\begin{document}
+\maketitle
+
+% ----------------------------------------------------------------------------------------
+% ABSTRACT
+% ----------------------------------------------------------------------------------------
+
+\begin{abstract}
+  \TODO
+\end{abstract}
+
+% ----------------------------------------------------------------------------------------
+% MAIN-MATTER
+% ----------------------------------------------------------------------------------------
+
+\section{Introduction}
+
+\TODO
+
+\section{Conclusion} \label{sec:conclusion}
+
+\TODO
+
+% ----------------------------------------------------------------------------------------
+% BIBLIOGRAPHY
+% ----------------------------------------------------------------------------------------
+
+\newpage
+\singlespacing
+
+\nocite{*} % TODO: Remove this line
+\bibliographystyle{plain}
+\bibliography{references}
+
+\end{document}
+% vim: tw=90 sts=2 sw=2
