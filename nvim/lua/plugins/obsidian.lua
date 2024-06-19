@@ -12,8 +12,8 @@ return {
     opts = {
         workspaces = {
             {
-                name = "personal",
-                path = "~/vaults/personal/",
+                name = "second-brain",
+                path = "~/vaults/second-brain/",
             },
         },
         daily_notes = {
@@ -21,9 +21,10 @@ return {
             date_format = "/%Y/%m/%Y-%m-%d",
             template = "Daily",
         },
-        templates = { subdir = "Templates" },
-        notes_subdir = "Notes",
+        templates = { subdir = "04 - Templates" },
+        notes_subdir = "01 - Notes",
         new_notes_location = "notes_subdir",
+        disable_frontmatter = true,
     },
     keys = {
         -- Navigation
