@@ -21,9 +21,4 @@ return {
         { "]h",         _("nav_hunk", "next"), desc = "Gitsigns Hunk Next" },
         { "[h",         _("nav_hunk", "prev"), desc = "Gitsigns Hunk Prev" },
     },
-    opts = {
-        -- Display sign column for staged hunks, with a dimer color.
-        -- See: https://github.com/lewis6991/gitsigns.nvim/issues/788
-        _signs_staged_enable = true,
-    },
 }
