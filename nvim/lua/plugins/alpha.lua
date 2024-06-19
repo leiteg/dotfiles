@@ -28,9 +28,10 @@ return {
             dashboard.button("p", "  Find File", "<cmd>TelescopeFiles<CR>"),
             dashboard.button("l", "󰒲  Open Lazy", "<cmd>Lazy<CR>"),
             dashboard.button("g", "  Open Neogit", "<cmd>Neogit<CR>"),
-            dashboard.button("o", "󰧑  Open Obsidian", "<cmd>ObsidianToday<CR>"),
+            dashboard.button("o", "󰧑  Open Obsidian", "<cmd>ObsidianQuickSwitch<CR>"),
             dashboard.button("r", "  Restore Session", "<cmd>SessionRestore<CR>"),
-            dashboard.button("c", "󰣖  Edit Config", "<cmd>edit ~/.config/nvim<CR>"),
+            dashboard.button("c", "󰣖  Edit Config", "<cmd>cd ~/dotfiles | edit nvim<CR>"),
+            dashboard.button("P", "󰣖  Edit Plugins", "<cmd>cd ~/dotfiles | edit nvim/lua/plugins<CR>"),
             dashboard.button("q", "󰈆  Quit", "<cmd>qa<CR>"),
         }
 
