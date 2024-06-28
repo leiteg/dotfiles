@@ -157,8 +157,37 @@ local autosnippets = {
     ]], {
         width = i(1, "0.75"),
         image = i(2, "image.png"),
-        caption = i(3, "Caption"),
+        caption = i(3, "TODO"),
         label = i(4, "label"),
+    }),
+
+    snippet(";sfig", "Side Figure", [[
+        \begin{figure}[ht]
+            \centering
+            \begin{subfigure}{.5\textwidth}
+                \centering
+                \includegraphics[width=0.95\linewidth]{images/<image1>}
+                \caption{<subcaption1>}
+                \label{fig:<sublabel1>}
+            \end{subfigure}%
+            \begin{subfigure}{.5\textwidth}
+                \centering
+                \includegraphics[width=0.95\linewidth]{images/<image2>}
+                \caption{<subcaption2>}
+                \label{fig:<sublabel2>}
+            \end{subfigure}
+            \caption{<caption>}
+            \label{fig:<label>}
+        \end{figure}
+    ]], {
+        image1 = i(1, "image.png"),
+        subcaption1 = i(2, "TODO"),
+        sublabel1 = i(3, "label"),
+        image2 = i(4, "image.png"),
+        subcaption2 = i(5, "TODO"),
+        sublabel2 = i(6, "label"),
+        caption = i(7, "TODO"),
+        label = i(8, "label"),
     }),
 
     snippet(";alg", "Algorithm", [[
@@ -174,7 +203,6 @@ local autosnippets = {
         caption = i(3, "\\TODO"),
     }),
 
-    -- TODO: Side-by-side Figure
     -- TODO: Table
     -- TODO: Listing
 
