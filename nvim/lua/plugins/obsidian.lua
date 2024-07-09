@@ -25,6 +25,9 @@ return {
         notes_subdir = "Notes",
         new_notes_location = "notes_subdir",
         disable_frontmatter = true,
+        note_id_func = function(title)
+            return title
+        end,
     },
     keys = {
         -- Navigation
