@@ -67,6 +67,17 @@ return {
             )
         end
 
+        local dotfiles = function()
+            builtin.find_files(
+                vim.tbl_deep_extend("keep", theme, {
+                    search_dirs = { "~/dotfiles" },
+                    path_display = function(_, path)
+                        return path:gsub("^/home/leite/dotfiles/", "")
+                    end
+                })
+            )
+        end
+
         local keymaps = {
             { "<leader>T",  _ "builtin",          { desc = "Telescope Pickers", } },
             { "<leader>P",  _ "git_files",        { desc = "Telescope Git Files", } },
@@ -75,6 +86,7 @@ return {
             { "<leader>lg", _ "live_grep",        { desc = "Telescope Live Grep", } },
             { "<leader>ld", _ "diagnostics",      { desc = "Telescope Diagnostics", } },
             { "<leader>go", _(workspace_symbols), { desc = "Telescope Symbols" } },
+            { "<leader>.",  _(dotfiles),          { desc = "Telescope Dotfiles" } },
         }
 
         for _, keymap in ipairs(keymaps) do
@@ -83,6 +95,7 @@ return {
 
         -- Used by `goolord/alpha-nvim`
         vim.api.nvim_create_user_command("TelescopeFiles", find_all_files, {})
+        vim.api.nvim_create_user_command("TelescopeDotfiles", dotfiles, {})
 
         vim.cmd [[
             highlight TelescopeBorder       guifg=#565f89
