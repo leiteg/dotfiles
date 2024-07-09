@@ -83,7 +83,7 @@ return {
             { "<leader>P",  _ "git_files",        { desc = "Telescope Git Files", } },
             { "<leader>p",  _(find_all_files),    { desc = "Telescope All Files", } },
             { "<leader>ls", _ "buffers",          { desc = "Telescope Buffers", } },
-            { "<leader>lg", _ "live_grep",        { desc = "Telescope Live Grep", } },
+            { "<leader>/",  _ "live_grep",        { desc = "Telescope Live Grep", } },
             { "<leader>ld", _ "diagnostics",      { desc = "Telescope Diagnostics", } },
             { "<leader>go", _(workspace_symbols), { desc = "Telescope Symbols" } },
             { "<leader>.",  _(dotfiles),          { desc = "Telescope Dotfiles" } },
