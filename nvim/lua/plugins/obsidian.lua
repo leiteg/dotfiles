@@ -32,7 +32,7 @@ return {
     keys = {
         -- Navigation
         { "<leader>os", "<cmd>ObsidianSearch<CR>",      desc = "Obsidian Search" },
-        { "<leader>oS", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian Quick Switch" },
+        { "<leader>oo", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian Quick Switch" },
         { "<leader>ol", "<cmd>ObsidianLinks<CR>",       desc = "Obsidian Links" },
         { "<leader>ob", "<cmd>ObsidianBacklinks<CR>",   desc = "Obsidian Backlinks" },
         { "<leader>o#", "<cmd>ObsidianTags<CR>",        desc = "Obsidian Tags" },
