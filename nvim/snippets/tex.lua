@@ -203,7 +203,26 @@ local autosnippets = {
         caption = i(3, "\\TODO"),
     }),
 
-    -- TODO: Table
+    snippet(";tab", "Table", [[
+        \begin{table}[ht]
+          \centering
+          \caption{<caption>}
+          \label{tab:<label>}
+          \begin{tabular}{<cols>}
+            \toprule
+            a & b \\
+            \midrule
+            c & d \\
+            e & f \\
+            \bottomrule
+          \end{tabular}
+        \end{table}
+    ]], {
+        caption = i(1, "caption"),
+        label = i(2, "label"),
+        cols = i(3, "cc"),
+    }),
+
     -- TODO: Listing
 
     snippet(";eq", "Equation", [[
