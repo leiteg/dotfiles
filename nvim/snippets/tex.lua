@@ -196,11 +196,13 @@ local autosnippets = {
           \KwReturn{<ret>}
 
           \caption{<caption>}
+          \label{alg:<label>}
         \end{algorithm}
     ]], {
         data = i(1, "Input data"),
         ret = i(2, "Return data"),
         caption = i(3, "\\TODO"),
+        label = i(4, "label"),
     }),
 
     snippet(";tab", "Table", [[
