@@ -28,14 +28,35 @@ return {
         note_id_func = function(title)
             return title
         end,
+        mappings = {
+            ["<C-Space>"] = {
+                action = function()
+                    return require("obsidian").util.toggle_checkbox()
+                end,
+                opts = { buffer = true },
+            },
+            ["[a"] = {
+                action = function()
+                    return vim.fn.search("[[", "bsW")
+                end,
+                opts = { buffer = true },
+            },
+            ["]a"] = {
+                action = function()
+                    return vim.fn.search("[[", "sW")
+                end,
+                opts = { buffer = true },
+            },
+        },
     },
     keys = {
         -- Navigation
-        { "<leader>os", "<cmd>ObsidianSearch<CR>",      desc = "Obsidian Search" },
-        { "<leader>oo", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian Quick Switch" },
+        { "<leader>o/", "<cmd>ObsidianSearch<CR>",      desc = "Obsidian Search" },
+        { "<leader>os", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian Quick Switch" },
         { "<leader>ol", "<cmd>ObsidianLinks<CR>",       desc = "Obsidian Links" },
         { "<leader>ob", "<cmd>ObsidianBacklinks<CR>",   desc = "Obsidian Backlinks" },
         { "<leader>o#", "<cmd>ObsidianTags<CR>",        desc = "Obsidian Tags" },
+        { "<CR>",       "<cmd>ObsidianFollowLink<CR>",  desc = "Obsidian Follow Link" },
         -- Creation
         { "<leader>on", "<cmd>ObsidianNew<CR>",         desc = "Obsidian New" },
         { "<leader>oN", "<cmd>ObsidianExtractNote<CR>", desc = "Obsidian Extract Note", mode = "v" },
