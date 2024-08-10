@@ -17,9 +17,9 @@ return {
             },
         },
         daily_notes = {
-            folder = "Journal/",
+            folder = "Daily/",
             date_format = "/%Y/%m/%Y-%m-%d",
-            template = "Daily",
+            template = "New Daily",
         },
         templates = { subdir = "Templates" },
         notes_subdir = "Notes",
@@ -48,6 +48,9 @@ return {
                 opts = { buffer = true },
             },
         },
+        attachments = {
+            img_folder = "Assets/",
+        }
     },
     keys = {
         -- Navigation
