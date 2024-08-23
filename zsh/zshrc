@@ -27,8 +27,21 @@ zstyle ':completion:*:*:vim:*:*files' \
 
 unsetopt autocd
 
+# COMMON CONFIGURATION ---------------------------------------------------- {{{1
+
 # Load common settings
 [ -f ~/dotfiles/sh/common.sh ] && source ~/dotfiles/sh/common.sh
+
+# HISTORY ----------------------------------------------------------------- {{{1
+
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt HIST_IGNORE_SPACE
+setopt HIST_IGNORE_DUPS
+setopt SHARE_HISTORY
+
+# KEYBINDINGS ------------------------------------------------------------- {{{1
 
 # List files with ripgrep, search with FZF and open with editor
 function rg_fzf_vim() {
