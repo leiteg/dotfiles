@@ -173,10 +173,22 @@ fi
 export CARGO_HOME="$HOME/.local/cargo"
 export RUSTUP_HOME="$HOME/.local/rustup"
 
-# User environment variables
-export PATH="$PATH:$HOME/bin"
-export PATH="$PATH:$HOME/.local/bin"
-export PATH="$PATH:$CARGO_HOME/bin"
+# WARNING: Using zsh-specific syntax here.
+
+# Path configuration
+path=(
+    $path
+    $HOME/bin
+    $HOME/.local/bin
+    $CARGO_HOME/bin
+    /not/found
+)
+
+# Remove duplicates
+typeset -U path
+# Remove directories that do not exist
+path=($^path(N-/))
+export PATH
 
 # Where the configuration files should live
 export XDG_CONFIG_HOME="$HOME/.config"
