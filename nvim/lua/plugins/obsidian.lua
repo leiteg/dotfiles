@@ -50,7 +50,9 @@ return {
         },
         attachments = {
             img_folder = "Assets/",
-        }
+        },
+        -- Interferes with render-markdown.nvim
+        ui = { enable = false },
     },
     keys = {
         -- Navigation
