@@ -155,6 +155,18 @@ local autosnippets = {
         scope = cmake_scope(2),
         library = i(3, "${CMAKE_SOURCE_DIR}/include")
     }),
+
+    snippet(";tcd", "Target compile definitions", [[
+        target_compile_definitions(
+            <target>
+            <scope>
+                <definitions>
+        )
+    ]], {
+        target = i(1, "target"),
+        scope = cmake_scope(2),
+        definitions = i(3, "${CMAKE_SOURCE_DIR}/DEFINITION")
+    }),
 }
 
 --------------------------------------------------------------------------------
