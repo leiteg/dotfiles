@@ -154,6 +154,8 @@ alias quit="exit"
 try_alias ls    eza
 try_alias cat   bat
 try_alias vim   nvim
+try_alias vi    nvim
+try_alias v     nvim
 try_alias grep  rg
 try_alias t     tmux
 try_alias life  ~/.local/pyenv/versions/life-py/bin/life
