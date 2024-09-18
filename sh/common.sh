@@ -164,6 +164,7 @@ if command_exists life; then
     alias ,h="life habit"
     alias ,s="life session"
     alias ,t="life todo"
+    alias ,r="life resources open"
     alias note="life note"
     alias trn="life transaction"
     alias acc="life account"
