@@ -21,7 +21,7 @@ return {
             upgrade = "  %s ",
             error = "  Error fetching crate ",
         },
-        src = {
+        completion = {
             cmp = {
                 enabled = true,
             },
