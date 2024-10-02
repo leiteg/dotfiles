@@ -41,7 +41,8 @@ return {
             section = { "►", "▼" },
         },
         commit_editor = {
-            kind = "vsplit",
+            kind = "tab",
+            staged_diff_split_kind = "auto",
         },
     },
 }
