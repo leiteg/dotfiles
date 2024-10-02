@@ -36,12 +36,12 @@ return {
         graph_style = "unicode",
         disable_insert_on_commit = true,
         signs = {
-          hunk = { "►", "▼" },
-          item = { "►", "▼" },
-          section = { "►", "▼" },
+            hunk = { "►", "▼" },
+            item = { "►", "▼" },
+            section = { "►", "▼" },
         },
         commit_editor = {
-          kind = "vsplit",
+            kind = "vsplit",
         },
     },
 }
