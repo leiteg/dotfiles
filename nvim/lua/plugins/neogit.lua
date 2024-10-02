@@ -8,6 +8,15 @@ local function _(fn)
     end
 end
 
+local function neogit_log_current()
+    require("neogit").action("log", "log_current", {
+        "--graph",
+        "--decorate",
+        "--",
+        vim.fn.expand("%"),
+    })()
+end
+
 return {
     "NeogitOrg/neogit",
     dependencies = {
@@ -17,10 +26,11 @@ return {
     },
     cmd = "Neogit",
     keys = {
-        { "<leader><leader>", _(nil),     desc = "Neogit Status" },
-        { "<leader>gc",       _ "commit", desc = "Neogit Commit" },
-        { "<leader>gd",       _ "diff",   desc = "Neogit Diff" },
-        { "<leader>gl",       _ "log",    desc = "Neogit Log" },
+        { "<leader><leader>", _(nil),             desc = "Neogit Status" },
+        { "<leader>gc",       _ "commit",         desc = "Neogit Commit" },
+        { "<leader>gd",       _ "diff",           desc = "Neogit Diff" },
+        { "<leader>gl",       _ "log",            desc = "Neogit Log" },
+        { "<leader>gl",       neogit_log_current, desc = "Neogit Log Current File" },
     },
     opts = {
         graph_style = "unicode",
