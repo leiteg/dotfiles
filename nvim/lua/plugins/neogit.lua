@@ -44,5 +44,8 @@ return {
             kind = "tab",
             staged_diff_split_kind = "auto",
         },
+        rebase_editor = {
+            kind = "tab",
+        }
     },
 }
