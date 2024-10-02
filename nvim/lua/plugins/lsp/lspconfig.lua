@@ -9,9 +9,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.bo[event.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
         -- :h lsp-inlay_hint
-        vim.api.nvim_create_user_command("LspToggleInlayHints", function()
-            vim.lsp.inlay_hint.enable(0, not vim.lsp.inlay_hint.is_enabled(0))
+        vim.api.nvim_create_user_command("InlayHintsToggle", function()
+            vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
         end, {})
+
+        -- Enable inlay hints by default
+        vim.lsp.inlay_hint.enable(true)
 
         -- Wrapper for `vim.lsp.buf.format()`
         local vim_lsp_buf_format_async = function()
