@@ -3,19 +3,14 @@
 -- list to help you solve all the trouble your code is causing.
 --]]
 
-local function _(fn)
-    return function()
-        require("trouble")[fn]()
-    end
-end
-
 return {
     "folke/trouble.nvim",
+    opts = {},
     cmd = {
         "Trouble",
         "TroubleToggle",
     },
     keys = {
-        { "<leader>t", _ "toggle", desc = "Trouble Toggle" }
+        { "<leader>td", "<cmd>Trouble diagnostics toggle<cr>", desc = "Trouble Toggle" },
     }
 }
