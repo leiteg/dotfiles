@@ -34,7 +34,17 @@ end
 -- SNIPPETS
 --------------------------------------------------------------------------------
 
-local snippets = {}
+local snippets = {
+
+    snippet("p", "println!", "println!(\"<str>\");", {
+        str = i(1, "{}"),
+    }),
+
+    snippet("pe", "eprintln!", "eprintln!(\"<str>\");", {
+        str = i(1, "{}"),
+    }),
+
+}
 
 --------------------------------------------------------------------------------
 -- AUTOSNIPPETS
@@ -80,7 +90,7 @@ local autosnippets = {
 
     -- MACROS ------------------------------------------------------------------
 
-    snippet(";p", "println!", "println!(\"<str>\");", {
+    snippet(";;", "println!", "println!(\"<str>\");", {
         str = i(1, "{}"),
     }),
 
@@ -88,7 +98,7 @@ local autosnippets = {
         str = i(1, "{}"),
     }),
 
-    snippet(";a", "assert!", "assert!(<cond>);", {
+    snippet(";aa", "assert!", "assert!(<cond>);", {
         cond = i(1, "true"),
     }),
 
@@ -102,8 +112,32 @@ local autosnippets = {
         b = i(2, "false"),
     }),
 
+    snippet(";dbg", "dbg!", "dbg!(<var>);", {
+        var = i(1, "variable"),
+    }),
+
     snippet(";dd", "Derive Macro", "#[derive(<trait>)]", {
         trait = i(1, "Debug")
+    }),
+
+    snippet(";allow", "Allow diagnostic", "#![allow(<diagnostic>)]", {
+        diagnostic = i(1, "dead_code")
+    }),
+
+    snippet(";deny", "Deny diagnostic", "#![deny(<diagnostic>)]", {
+        diagnostic = i(1, "dead_code")
+    }),
+
+    snippet(";warn", "Warn diagnostic", "#![warn(<diagnostic>)]", {
+        diagnostic = i(1, "dead_code")
+    }),
+
+    snippet(";#", "Item attribute", "#[<attribute>]", {
+        attribute = i(1, "attribute")
+    }),
+
+    snippet(";!", "Global attribute", "#![<attribute>]", {
+        attribute = i(1, "attribute")
     }),
 
     -- ITEMS -------------------------------------------------------------------
@@ -123,12 +157,17 @@ local autosnippets = {
     }),
 
     snippet(";st", "Struct", [[
-        struct <name> {
-            <fields>
-        }
+        struct <name><fields>
     ]], {
         name = i(1, "Name"),
-        fields = i(2)
+        fields = c(2, {
+            fmta([[
+                     {
+                        <a>
+                    }
+                ]], { a = i(1) }),
+            fmta("(<a>);", { a = i(1) })
+        }),
     }),
 
     snippet(";en", "Enum", [[
@@ -140,7 +179,7 @@ local autosnippets = {
         variants = i(2)
     }),
 
-    snippet(";imp", "Impl Block", [[
+    snippet(";ii", "Impl Block", [[
         impl <kinds> {
             <body>
         }
@@ -183,7 +222,7 @@ local autosnippets = {
     }),
 
     snippet(";r", "Return", "return <>;", {
-        i(1, "None");
+        i(1, "None"),
     }),
 
     -- TESTING -----------------------------------------------------------------
@@ -203,6 +242,18 @@ local autosnippets = {
         #[test]
         fn <name>() {
             <body>
+        }
+    ]], {
+        name = i(1, "name"),
+        body = i(2, "assert!(true);"),
+    }),
+
+    snippet(";bench", "Benchmark Case", [[
+        #[bench]
+        fn <name>(b: &mut Bencher) {
+            b.iter(|| {
+                <body>
+            })
         }
     ]], {
         name = i(1, "name"),

@@ -31,8 +31,7 @@ local rep = extras.rep
 -- FUNCTIONS & HELPERS
 --------------------------------------------------------------------------------
 
-local function cmake_scope(index)
-    return c(index, {
+local function cmake_scope(index) return c(index, {
         t "PRIVATE",
         t "PUBLIC",
         t "INTERFACE",
@@ -65,6 +64,21 @@ local snippets = {}
 --------------------------------------------------------------------------------
 
 local autosnippets = {
+
+    snippet(";;", "CMake Boilerplate", [[
+        cmake_minimum_required(VERSION <cmake_version>)
+
+        project(
+            <name>
+            VERSION     <version>
+            LANGUAGES   <langs>
+        )
+    ]], {
+        cmake_version = i(1, "3.22"),
+        name = i(2, "my_project"),
+        version = i(3, "0.0.1"),
+        langs = i(4, "CXX"),
+    }),
 
     snippet(";min", "CMake minimum version", [[
         cmake_minimum_required(VERSION <>)

@@ -26,6 +26,23 @@ local sn = ls.snippet_node
 local l = require("luasnip.extras").lambda
 local fmta = require("luasnip.extras.fmt").fmta
 
+local query_rvalue = [[
+    [
+        (call)
+        (identifier)
+        (attribute)
+    ] @prefix
+]]
+
+local query_identifier = [[
+    (identifier) @prefix
+]]
+
+local query_class = [[
+    (class_definition
+        name: (identifier)) @prefix
+]]
+
 --------------------------------------------------------------------------------
 -- FUNCTIONS
 --------------------------------------------------------------------------------
@@ -33,6 +50,11 @@ local fmta = require("luasnip.extras.fmt").fmta
 local function assign_list(index, opts)
     local function generate(args)
         local result = {}
+
+        if args[1][1] == "" or args[1][1] == nil then
+            return sn(nil, t({ "    pass" }))
+        end
+
         for arg in string.gmatch(args[1][1], '([^,]+)') do
             if arg ~= " " and not arg:find("*") then
                 local name = arg:match("([^%s:]+).*")
@@ -65,47 +87,6 @@ end
 --------------------------------------------------------------------------------
 
 local snippets = {
-
-    treesitter("@iter", [[
-        [
-            (attribute)
-            (identifier)
-            (call)
-        ] @prefix
-    ]], "<>", {
-        c(1, {
-            fmta([[
-                for <item> in <var>:
-                    <body>
-            ]], {
-                item = r(1, "item"),
-                var = l(l.LS_TSMATCH),
-                body = r(2, "body"),
-            }),
-            fmta([[
-                for <idx>, <item> in enumerate(<var>):
-                    <body>
-            ]], {
-                idx = i(3, "i"),
-                item = r(1, "item"),
-                var = l(l.LS_TSMATCH),
-                body = r(2, "body"),
-            }),
-        })
-    }, {
-        stored = {
-            ["item"] = i(1, "item"),
-            ["body"] = i(2, "pass"),
-        },
-    }),
-
-    treesitter("@trig", [[
-        (class_definition
-            name: (identifier)) @prefix
-    ]], [[
-        @dataclass
-        <>
-    ]], { l(l.LS_TSMATCH) }),
 
 }
 
@@ -149,6 +130,7 @@ local autosnippets = {
     ]], { i(1, "...") }),
 
     -- Printing & Logging
+    snippet(";;", "Print", "print(<>)", { i(1, "message") }),
     snippet(";p", "Print", "print(<>)", { i(1, "message") }),
     snippet(";log", "Info", 'log.info(<>)', { i(1, "message") }),
     snippet(";deb", "Debug", 'log.debug(<>)', { i(1, "message") }),
@@ -187,12 +169,10 @@ local autosnippets = {
     snippet(";init", "Constructor", [[
         def __init__(self<comma><args>) ->> None:
         <assigns>
-            <body>
     ]], {
         comma   = utils.if_empty(1, "", ", "),
         args    = i(1),
         assigns = assign_list(2, { from = 1 }),
-        body    = i(3, "pass"),
     }),
 
     snippet(";for", "For Loop", [[
@@ -217,6 +197,49 @@ local autosnippets = {
         i(1, "Exception"),
         i(2),
     }),
+
+    treesitter(";;", query_rvalue, [[
+        for <item> in <var>:
+            <body>
+    ]], {
+        item = i(1, "item"),
+        var = l(l.LS_TSMATCH),
+        body = i(2, "pass"),
+    }),
+
+    treesitter(";e", query_rvalue, [[
+        for <idx>, <item> in enumerate(<var>):
+            <body>
+    ]], {
+        idx = i(1, "i"),
+        item = i(2, "item"),
+        var = l(l.LS_TSMATCH),
+        body = i(3, "pass"),
+    }),
+
+    treesitter(";z", query_rvalue, [[
+        for <a>, <b> in zip(<lhs>, <rhs>):
+            <body>
+    ]], {
+        rhs = i(1, "[]"),
+        lhs = l(l.LS_TSMATCH),
+        a = i(2, "a"),
+        b = i(3, "b"),
+        body = i(4, "pass"),
+    }),
+
+    treesitter(";c", query_identifier, [[
+        class <name>:
+            <body>
+    ]], {
+        name = l(l.LS_TSMATCH),
+        body = i(1, "pass")
+    }),
+
+    treesitter(";d", query_class, [[
+        @dataclass
+        <>
+    ]], { l(l.LS_TSMATCH) }),
 
 }
 

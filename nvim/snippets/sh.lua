@@ -2,6 +2,7 @@
 -- REQUIRES
 --------------------------------------------------------------------------------
 
+local ls = require("luasnip")
 local utils = require("core.lib.sniputils")
 
 --------------------------------------------------------------------------------
@@ -10,6 +11,9 @@ local utils = require("core.lib.sniputils")
 
 -- Utils
 local snippet = utils.snippet
+
+-- Luasnip
+local i = ls.i
 
 --------------------------------------------------------------------------------
 -- SNIPPETS
@@ -23,22 +27,30 @@ local snippets = {}
 
 local autosnippets = {
 
-    -- CALLOUTS ----------------------------------------------------------------
+    snippet("#!", "Shebang", [[
+        #!/usr/bin/env bash
 
-    snippet(";info",    "Info Callout",    [[>> [!info] ]],    {}),
-    snippet(";note",    "Note Callout",    [[>> [!note] ]],    {}),
-    snippet(";summary", "Summary Callout", [[>> [!summary] ]], {}),
-    snippet(";info",    "Info Callout",    [[>> [!info] ]],    {}),
-    snippet(";todo",    "Todo Callout",    [[>> [!todo] ]],    {}),
-    snippet(";tip",     "Tip Callout",     [[>> [!tip] ]],     {}),
-    snippet(";done",    "Done Callout",    [[>> [!done] ]],    {}),
-    snippet(";help",    "Help Callout",    [[>> [!help] ]],    {}),
-    snippet(";warning", "Warning Callout", [[>> [!warning] ]], {}),
-    snippet(";fail",    "Fail Callout",    [[>> [!fail] ]],    {}),
-    snippet(";error",   "Error Callout",   [[>> [!error] ]],   {}),
-    snippet(";bug",     "Bug Callout",     [[>> [!bug] ]],     {}),
-    snippet(";example", "Example Callout", [[>> [!example] ]], {}),
-    snippet(";quote",   "Quote Callout",   [[>> [!quote] ]],   {}),
+        <>
+    ]], { i(0) }),
+
+    snippet(";if", "If", [=[
+        if [[ <cond> ]]; then
+            <body>
+        fi
+    ]=], {
+        cond = i(1, "-f $0"),
+        body = i(2, "echo $0"),
+    }),
+
+    snippet(";for", "For", [[
+        for <var> in <vars>; do
+            <body>
+        done
+    ]], {
+        var = i(1, "file"),
+        vars = i(2, "`ls`"),
+        body = i(3, "echo"),
+    }),
 
 }
 

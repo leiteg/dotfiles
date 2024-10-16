@@ -61,7 +61,7 @@ local snippets = {
         OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
         SOFTWARE.
     ]], {
-        year = i(1, "2024"),
+        year = i(1, os.date("%Y")),
         holders = i(2, "Gustavo Leite")
     }),
 

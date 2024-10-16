@@ -79,7 +79,7 @@ local autosnippets = {
         value = i(2, "value"),
     }),
 
-    snippet(";p", "Print", [[print(<>)]], {
+    snippet(";;", "Print", [[print(<>)]], {
         i(1, "message")
     }),
 

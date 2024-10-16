@@ -251,6 +251,14 @@ local autosnippets = {
 
     -- PRINTING ----------------------------------------------------------------
 
+    snippet(";;", "Print stdout", 'printf("<>\\n"<>);', {
+        i(1, "Hello, World"),
+        c(2, {
+            t "",
+            sn(nil, { t ", ", i(1, "args") })
+        })
+    }),
+
     snippet(";p", "Print stdout", 'printf("<>\\n"<>);', {
         i(1, "Hello, World"),
         c(2, {
