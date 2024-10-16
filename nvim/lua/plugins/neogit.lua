@@ -29,7 +29,7 @@ return {
         { "<leader><leader>", _(nil),             desc = "Neogit Status" },
         { "<leader>gc",       _ "commit",         desc = "Neogit Commit" },
         { "<leader>gd",       _ "diff",           desc = "Neogit Diff" },
-        { "<leader>gl",       _ "log",            desc = "Neogit Log" },
+        { "<leader>gL",       _ "log",            desc = "Neogit Log" },
         { "<leader>gl",       neogit_log_current, desc = "Neogit Log Current File" },
     },
     opts = {
