@@ -34,11 +34,6 @@ set("n", "<s-tab>", "<cmd>bp<CR>")
 
 set("i", "jk", "<esc>")
 
--- Quickfix --------------------------------------------------------------------
-
-set("n", "<C-j>", "<cmd>cnext<CR>zz")
-set("n", "<C-k>", "<cmd>cprev<CR>zz")
-
 -- Miscellaneous ---------------------------------------------------------------
 
 set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
