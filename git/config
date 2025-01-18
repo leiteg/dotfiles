@@ -13,12 +13,12 @@
 # BASIC CONFIGURATION ==========================================================
 
 [user]
-	name = Gustavo Leite
-	email = gustavoleite.ti@gmail.com
+    name = Gustavo Leite
+    email = gustavoleite.ti@gmail.com
 
 [core]
     pager = delta
-	trustctime = false
+    trustctime = false
     
 [pager]
     difftool = true
@@ -28,8 +28,8 @@
     interactive = auto
 
 [maintenance]
-	repo = /home/leite/git/research
-	repo = /home/leite/git/projects/life-py
+    repo = /home/leite/git/research
+    repo = /home/leite/git/projects/life-py
 
 [url "git@github.com:"]
     pushInsteadOf = "https://github.com/"
@@ -37,70 +37,70 @@
 # COMMANDS =====================================================================
 
 [init]
-	defaultBranch = main
+    defaultBranch = main
 
 [commit]
-	verbose = true
+    verbose = true
 
 [diff]
-	colorMoved = default
+    colorMoved = default
     algorithm = histogram
     tool = difftastic
 
 [pull]
-	ff = only
+    ff = only
 
 [push]
     default = simple
     autosetupremote = true
     
 [merge]
-	tool = vimdiff
-	conflictstyle = diff3
+    tool = vimdiff
+    conflictstyle = diff3
 
 [rebase]
-	autosquash = true
+    autosquash = true
     autostash = true
-	updateRefs = true
+    updateRefs = true
 
 [sendemail]
-	smtpuser = gustavoleite.ti@gmail.com
-	smtpserver = smtp.googlemail.com
-	smtpencryption = tls
-	smtpserverport = 587
+    smtpuser = gustavoleite.ti@gmail.com
+    smtpserver = smtp.googlemail.com
+    smtpencryption = tls
+    smtpserverport = 587
 
 # ALIASES ======================================================================
 
 [alias]
-	# DIFF ------------------------------------------------------------
-	d        = difftool
-	r        = difftool --staged
-	ds       = difftool --stat
-	wd       = difftool --word-diff
-	review   = difftool --staged
+    # DIFF ------------------------------------------------------------
+    d        = difftool
+    r        = difftool --staged
+    ds       = difftool --stat
+    wd       = difftool --word-diff
+    review   = difftool --staged
 
-	# STATUS ----------------------------------------------------------
-	s        = status --short
-	st       = status
+    # STATUS ----------------------------------------------------------
+    s        = status --short
+    st       = status
 
-	# LOG -------------------------------------------------------------
+    # LOG -------------------------------------------------------------
     log      = log --ext-diff
-	la       = log --oneline --graph --all --decorate
-	ls       = log --oneline --graph --branches --decorate
-	added    = log --follow --diff-filter=A
-	overview = "!git log --oneline --no-decorate --reverse main..$1 #"
-	tags     = log --graph --simplify-by-decoration --tags --date='format:%Y-%m-%d' --pretty='format:%ad %C(green)%h%C(reset)%C(brightred)%d%C(reset)'
+    la       = log --oneline --graph --all --decorate
+    ls       = log --oneline --graph --branches --decorate
+    added    = log --follow --diff-filter=A
+    overview = "!git log --oneline --no-decorate --reverse main..$1 #"
+    tags     = log --graph --simplify-by-decoration --tags --date='format:%Y-%m-%d' --pretty='format:%ad %C(green)%h%C(reset)%C(brightred)%d%C(reset)'
 
-	# COMMIT & PUSH ---------------------------------------------------
-	c		 = commit
-	fuck     = commit --amend --no-edit
-	oops     = !git fuck && git push -f
-	ignore   = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
-	preview  = !git commit -am \"squash!\" && git push
+    # COMMIT & PUSH ---------------------------------------------------
+    c        = commit
+    fuck     = commit --amend --no-edit
+    oops     = !git fuck && git push -f
+    ignore   = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
+    preview  = !git commit -am \"squash!\" && git push
 
-	# REBASE ----------------------------------------------------------
-	ri       = rebase --interactive
-	rc       = rebase --continue
+    # REBASE ----------------------------------------------------------
+    ri       = rebase --interactive
+    rc       = rebase --continue
     ra       = rebase --abort
 
     # SHOW ------------------------------------------------------------
@@ -109,16 +109,16 @@
 # TOOLS ========================================================================
 
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
 
 [difftool]
-	prompt = false
+    prompt = false
 
 [difftool "difftastic"]
-    cmd = difft "$LOCAL" "$REMOTE"
+    cmd = difft --display inline "$LOCAL" "$REMOTE"
 
 [delta]
     minus-style                   = syntax "#37222c"
@@ -139,7 +139,7 @@
     file-decoration-style = none
 
 [interactive]
-        diffFilter = delta --color-only
+    diffFilter = delta --color-only
 
 [mergetool]
-	prompt = false
+    prompt = false
