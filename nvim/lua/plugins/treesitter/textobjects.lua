@@ -46,6 +46,7 @@ local move_opts = {
     set_jumps = true,
     goto_next_start = {
         ["]f"] = "@toplevel",
+        ["]m"] = "@field",
         ["]a"] = "@parameter.inner",
     },
     goto_next_end = {
@@ -54,6 +55,7 @@ local move_opts = {
     },
     goto_previous_start = {
         ["[f"] = "@toplevel",
+        ["[m"] = "@field",
         ["[a"] = "@parameter.inner",
     },
     goto_previous_end = {
@@ -69,7 +71,7 @@ local lsp_opts = {
     border = 'none',
     floating_preview_opts = {},
     peek_definition_code = {
-        ["<leader>fp"] = "@function.outer",
+        ["<C-k>"] = "@function.outer",
         ["<leader>cp"] = "@class.outer",
     }
 }
