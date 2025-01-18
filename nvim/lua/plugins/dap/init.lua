@@ -73,7 +73,7 @@ return {
                     return vim.fn.input("Executable: ", vim.fn.getcwd() .. "/", "file")
                 end,
                 cwd = "${workspaceFolder}",
-                stopOnEntry = false,
+                stopOnEntry = true,
                 args = {},
                 runInTerminal = true,
             }

@@ -62,7 +62,7 @@ return {
         local workspace_symbols = function()
             builtin.lsp_dynamic_workspace_symbols(
                 vim.tbl_deep_extend("keep", theme, {
-                    ignore_symbols = "variable",
+                    -- ignore_symbols = "variable",
                 })
             )
         end
