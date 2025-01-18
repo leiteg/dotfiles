@@ -13,9 +13,9 @@ set clipboard=unnamed
 " ----------------------------------------------------------------------------
 
 exmap back    obcommand app:go-back
-nmap <C-o> :back
+nmap <C-o> :back<CR>
 exmap forward obcommand app:go-forward
-nmap <C-i> :forward
+nmap <C-i> :forward<CR>
 
 exmap vsplit  obcommand workspace:split-vertical
 exmap split   obcommand workspace:split-horizontal
@@ -41,14 +41,14 @@ exmap surround_curly_brackets surround { }
 
 nunmap S
 vunmap S
-map [[ :surround_wiki
-map S" :surround_double_quotes
-map S' :surround_single_quotes
-map S` :surround_backticks
-map Sb :surround_brackets
-map S( :surround_brackets
-map S) :surround_brackets
-map S[ :surround_square_brackets
-map S] :surround_square_brackets
-map S{ :surround_curly_brackets
-map S} :surround_curly_brackets
+map [[ :surround_wiki<CR>
+map S" :surround_double_quotes<CR>
+map S' :surround_single_quotes<CR>
+map S` :surround_backticks<CR>
+map Sb :surround_brackets<CR>
+map S( :surround_brackets<CR>
+map S) :surround_brackets<CR>
+map S[ :surround_square_brackets<CR>
+map S] :surround_square_brackets<CR>
+map S{ :surround_curly_brackets<CR>
+map S} :surround_curly_brackets<CR>
