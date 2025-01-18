@@ -159,7 +159,10 @@ try_alias v     nvim
 try_alias grep  rg
 try_alias t     tmux
 try_alias life  ~/.local/pyenv/versions/life-py/bin/life
-try_alias yt    yt-dlp
+
+if command_exists yt-dlp; then
+    alias yt="yt-dlp --cookies-from-browser firefox"
+fi
 
 if command_exists life; then
     alias ,h="life habit"
