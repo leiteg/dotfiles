@@ -17,8 +17,10 @@ return {
         { "<leader>gr", _ "reset_hunk",        desc = "Gitsigns Hunk Reset" },
         { "<leader>gp", _ "preview_hunk",      desc = "Gitsigns Hunk Preview" },
         { "<leader>gt", _ "toggle_deleted",    desc = "Gitsigns Deleted" },
-        { "<leader>gb", _ "blame_line",        desc = "Gitsigns Blame" },
+        { "<leader>gb", _ "blame_line",        desc = "Gitsigns Blame Line" },
+        { "<leader>gB", _ "blame",             desc = "Gitsigns Blame File" },
         { "]h",         _("nav_hunk", "next"), desc = "Gitsigns Hunk Next" },
         { "[h",         _("nav_hunk", "prev"), desc = "Gitsigns Hunk Prev" },
     },
+    opts = {},
 }
