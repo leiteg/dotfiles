@@ -3,7 +3,7 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    directories=$(find ~/vaults ~/git ~/git/rust ~/git/projects ~/Documents/papers ~/ -mindepth 1 -maxdepth 1 -type d -name '[a-z]*')
+    directories=$(find ~/vaults ~/git ~/ -mindepth 1 -maxdepth 1 -type d -name '[a-z]*')
     selected=$(cat <(echo "$directories") <(echo "main") | fzf)
 fi
 
