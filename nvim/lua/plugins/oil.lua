@@ -30,6 +30,8 @@ return {
         keymaps = {
             ["<esc>"] = "actions.close",
             ["q"] = "actions.close",
+            ["<C-x>"] = { "actions.select", opts = { horizontal = true } },
+            ["<C-v>"] = { "actions.select", opts = { vertical = true } },
         },
     },
 }
