@@ -1,16 +1,16 @@
-# ------------------------------------------------------------------------------
-#                            _ __                   _____
-#                     ____ _(_) /__________  ____  / __(_)___ _
-#                    / __ `/ / __/ ___/ __ \/ __ \/ /_/ / __ `/
-#                   / /_/ / / /_/ /__/ /_/ / / / / __/ / /_/ /
-#                   \__, /_/\__/\___/\____/_/ /_/_/ /_/\__, /
-#                  /____/                             /____/
-#
-#                   Gustavo Leite <gustavoleite.ti@gmail.com>
-#
-# ------------------------------------------------------------------------------
+# ---------------------------------------------------------------------------- #
+#                            _ __                   _____                      #
+#                     ____ _(_) /__________  ____  / __(_)___ _                #
+#                    / __ `/ / __/ ___/ __ \/ __ \/ /_/ / __ `/                #
+#                   / /_/ / / /_/ /__/ /_/ / / / / __/ / /_/ /                 #
+#                   \__, /_/\__/\___/\____/_/ /_/_/ /_/\__, /                  #
+#                  /____/                             /____/                   #
+#                                                                              #
+#                   Gustavo Leite <gustavoleite.ti@gmail.com>                  #
+#                                                                              #
+# ---------------------------------------------------------------------------- #
 
-# BASIC CONFIGURATION ==========================================================
+# GLOBAL CONFIGURATION =========================================================
 
 [user]
     name = Gustavo Leite
@@ -27,84 +27,100 @@
     ui = auto
     interactive = auto
 
+[column]
+    # Display output in columns in terminal.
+    ui = auto
+
 [maintenance]
     repo = /home/leite/git/research
     repo = /home/leite/git/projects/life-py
 
-[url "git@github.com:"]
-    pushInsteadOf = "https://github.com/"
+# PER-COMMAND CONFIGURATION ====================================================
 
-# COMMANDS =====================================================================
-
-[init]
-    defaultBranch = main
+[branch]
+    # Order branches by commit date by default instead of alphabetic.
+    sort = -committerdate
 
 [commit]
+    # Show the diff in the commit message editor.
     verbose = true
 
 [diff]
-    colorMoved = default
+    # Color moved lines differently.
+    colorMoved = plain
+    # Use better algorithm than `meyers`.
     algorithm = histogram
-    tool = difftastic
+    # Use (i)ndex, (w)orking tree, (c)ommit as prefixes instead of (a)/(b).
+    mnemonicPrefix = true
+    # Detect renames by default.
+    renames = true
+
+[fetch]
+    # Prune remote branches by default.
+    prune = true
+    # Prune tags by default.
+    pruneTags = true
+    # Fetch all remotes if none is specified.
+    all = true
+
+[init]
+    # Use `main` as default branch.
+    defaultBranch = main
+    
+[merge]
+    # Use neovim as merge tool.
+    tool = nvimdiff
+    # Shows three regions in conflicts (LOCAL, BASE, REMOTE).
+    conflictstyle = zdiff3
 
 [pull]
+    # Fast-forward only, no merge after pull.
     ff = only
 
 [push]
+    # Push the current branch with the same name on the remote.
     default = simple
+    # Automatically set upstream if the branch has none.
     autosetupremote = true
-    
-[merge]
-    tool = vimdiff
-    conflictstyle = diff3
+    # Push tags that are reachable from the commit being pushed.
+    followTags = true
 
 [rebase]
+    # Automatically enable autosquash in interactice mode.
     autosquash = true
+    # Automatically create stash before rebase.
     autostash = true
+    # Automatically for-update any branches that point to commits that are being
+    # rebased.
     updateRefs = true
 
-[sendemail]
-    smtpuser = gustavoleite.ti@gmail.com
-    smtpserver = smtp.googlemail.com
-    smtpencryption = tls
-    smtpserverport = 587
+[tag]
+    # Order tags by version instead of alphabetic
+    sort = version:refname
 
 # ALIASES ======================================================================
 
 [alias]
-    # DIFF ------------------------------------------------------------
-    d        = difftool
-    r        = difftool --staged
-    ds       = difftool --stat
-    wd       = difftool --word-diff
-    review   = difftool --staged
-
-    # STATUS ----------------------------------------------------------
     s        = status --short
     st       = status
-
-    # LOG -------------------------------------------------------------
-    log      = log --ext-diff
-    la       = log --oneline --graph --all --decorate
-    ls       = log --oneline --graph --branches --decorate
+    ss       = show --stat
+    d        = diff
+    r        = diff --staged
+    ds       = diff --stat
+    dw       = diff --word-diff
+    ls       = log --oneline --graph --decorate --branches
+    la       = log --oneline --graph --decorate --all
+    lb       = log --oneline --no-decorate --reverse main..HEAD
+    lbb      = log --no-decorate --reverse -p main..HEAD
     added    = log --follow --diff-filter=A
-    overview = "!git log --oneline --no-decorate --reverse main..$1 #"
     tags     = log --graph --simplify-by-decoration --tags --date='format:%Y-%m-%d' --pretty='format:%ad %C(green)%h%C(reset)%C(brightred)%d%C(reset)'
-
-    # COMMIT & PUSH ---------------------------------------------------
     c        = commit
     fuck     = commit --amend --no-edit
-    oops     = !git fuck && git push -f
     ignore   = !wget -O- https://www.gitignore.io/api/$@ >> .gitignore
-    preview  = !git commit -am \"squash!\" && git push
-
-    # REBASE ----------------------------------------------------------
     ri       = rebase --interactive
     rc       = rebase --continue
     ra       = rebase --abort
-
-    # SHOW ------------------------------------------------------------
-    sh       = !git show --ext-diff
+    rs       = rebase --autosquash
 
 # TOOLS ========================================================================
 
