@@ -10,7 +10,7 @@ return {
             -- C/C++
             "clangd",
             -- Python
-            "pyright", "ruff",
+            "ruff",
         },
     },
     config = function(_, opts)
