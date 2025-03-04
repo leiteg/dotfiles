@@ -2,13 +2,16 @@
 -- An interactive and powerful Git interface for Neovim, inspired by Magit.
 --]]
 
-local function _(fn)
-    return function()
-        require("neogit").open({ fn })
-    end
+local function neogit(fn)
+    require("neogit").open(fn)
 end
 
-local function neogit_log_current()
+local function open() neogit { kind = "floating" } end
+local function commit() neogit { "commit" } end
+local function diff() neogit { "diff" } end
+local function log() neogit { "log" } end
+
+local function logcurr()
     require("neogit").action("log", "log_current", {
         "--graph",
         "--decorate",
@@ -26,11 +29,11 @@ return {
     },
     cmd = "Neogit",
     keys = {
-        { "<leader><leader>", _(nil),             desc = "Neogit Status" },
-        { "<leader>gc",       _ "commit",         desc = "Neogit Commit" },
-        { "<leader>gd",       _ "diff",           desc = "Neogit Diff" },
-        { "<leader>gL",       _ "log",            desc = "Neogit Log" },
-        { "<leader>gl",       neogit_log_current, desc = "Neogit Log Current File" },
+        { "<leader><leader>", open,    desc = "Neogit Status" },
+        { "<leader>gc",       commit,  desc = "Neogit Commit" },
+        { "<leader>gd",       diff,    desc = "Neogit Diff" },
+        { "<leader>gL",       log,     desc = "Neogit Log" },
+        { "<leader>gl",       logcurr, desc = "Neogit Log Current File" },
     },
     opts = {
         graph_style = "unicode",
