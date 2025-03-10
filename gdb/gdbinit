@@ -32,6 +32,9 @@ set breakpoint pending on
 # Disassembly with Intel syntax
 set disassembly-flavor intel
 
+# Follow children processes
+set follow-fork-mode child
+
 # Show backtrace of all threads
 define bta
     thread apply all backtrace
