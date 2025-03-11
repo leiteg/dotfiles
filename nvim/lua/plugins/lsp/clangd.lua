@@ -10,7 +10,8 @@ return {
         },
     },
     keys = {
-        { "<leader>cth", "<cmd>ClangdTypeHierarchy<CR>", desc = "Show type hierarchy" },
-        { "<leader>csh", "<cmd>ClangdSwitchSourceHeader<CR>", desc = "Show switch source header" },
+        { "<leader>cth", "<cmd>ClangdTypeHierarchy<CR>",      desc = "Clangd show type hierarchy" },
+        { "<leader>csh", "<cmd>ClangdSwitchSourceHeader<CR>", desc = "Clangd switch source header" },
+        { "<leader>cas", "<cmd>ClangdAST<CR>",                desc = "Clangd show AST" },
     }
 }
