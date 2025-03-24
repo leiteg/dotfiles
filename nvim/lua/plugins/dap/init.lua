@@ -16,19 +16,26 @@ local function __toggle_repl()
     require("dap").repl.toggle()
 end
 
+local function __hover()
+    require("dap.ui.widgets").hover()
+end
+
 return {
     "mfussenegger/nvim-dap",
     keys = {
-        -- Middle Function Keys
-        { "<F5>",  _ "continue",          desc = "DAP Continue" },
-        { "<F6>",  _ "terminate",         desc = "DAP Terminate" },
-        { "<F7>",  _ "toggle_breakpoint", desc = "DAP Breakpoint" },
-        { "<F8>",  __conditional_break,   desc = "DAP Conditional Breakpoint" },
-        -- Right Function Keys
-        { "<F9>",  __toggle_repl,         desc = "DAP REPL" },
-        { "<F10>", _ "step_into",         desc = "DAP Step Into" },
-        { "<F11>", _ "step_over",         desc = "DAP Step Over" },
-        { "<F12>", _ "step_out",          desc = "DAP Step Out" },
+        { "<leader>db", _ "toggle_breakpoint", desc = "DAP Breakpoint" },
+        { "<leader>dB", __conditional_break,   desc = "DAP Conditional Breakpoint" },
+        { "<leader>ds", _ "continue",          desc = "DAP Continue" },
+        { "<leader>dT", _ "terminate",         desc = "DAP Terminate" },
+        { "<leader>d.", _ "run_to_cursor",     desc = "DAP Run to cursor" },
+        { "<leader>dh", __hover,               desc = "DAP Hover" },
+        { "<leader>dr", __toggle_repl,         desc = "DAP REPL" },
+        { "<leader>dj", _ "down",              desc = "DAP Stack Frame Down"},
+        { "<leader>dk", _ "up",                desc = "DAP Stack Frame Up"},
+        { "<leader>dg", _ "goto_",             desc = "DAP Goto"},
+        { "<F10>",      _ "step_into",         desc = "DAP Step Into" },
+        { "<F11>",      _ "step_over",         desc = "DAP Step Over" },
+        { "<F12>",      _ "step_out",          desc = "DAP Step Out" },
     },
     config = function()
         -- Icons
@@ -64,17 +71,25 @@ return {
             name = "codelldb",
         }
 
+        dap.adapters.cppdbg = {
+            id = "cppdbg",
+            type = "executable",
+            command = vim.fn.stdpath("data") .. "/mason/bin/OpenDebugAD7",
+        }
+
         dap.configurations.cpp = {
             {
                 name = "Launch",
-                type = "codelldb_c",
+                type = "cppdbg",
                 request = "launch",
                 program = function()
                     return vim.fn.input("Executable: ", vim.fn.getcwd() .. "/", "file")
                 end,
+                args = function()
+                    return vim.split(vim.fn.input("Arguments: "), " +")
+                end,
                 cwd = "${workspaceFolder}",
                 stopOnEntry = true,
-                args = {},
                 runInTerminal = true,
             }
         }
