@@ -147,6 +147,11 @@ function pacrs {
     pacman -Qq $1 | fzf -m --preview='pacman -Qi {+}' --bind='enter:execute(sudo pacman -Rs {})'
 }
 
+# Run ripgrep and open in vim quickfix
+function vimgrep {
+    nvim -q <(rg --vimgrep $@)
+}
+
 # ALIASES ----------------------------------------------------------------- {{{1
 
 alias quit="exit"
