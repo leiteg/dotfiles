@@ -185,21 +185,24 @@ fi
 export CARGO_HOME="$HOME/.local/cargo"
 export RUSTUP_HOME="$HOME/.local/rustup"
 
-# WARNING: Using zsh-specific syntax here.
-
 # Path configuration
 path=(
-    $path
-    $HOME/bin
     $HOME/.local/bin
     $CARGO_HOME/bin
-    /not/found
+    $path
 )
 
-# Remove duplicates
+# Remove duplicate paths and paths that do not exist.
+# NOTE: See zshbuiltins(1) and zshexpn(1).
+# WARN: This is zsh-specific syntax.
 typeset -U path
-# Remove directories that do not exist
 path=($^path(N-/))
+#            ┯┯┯
+#            ││╰──⮞ N: Sets NULL_GLOB option for the current pattern.
+#            │╰───⮞ -: Toggle the qualifiers to work on symbolic links.
+#            ╰────⮞ /: Directories.
+
+# Export tied variable path to PATH
 export PATH
 
 # Where the configuration files should live
