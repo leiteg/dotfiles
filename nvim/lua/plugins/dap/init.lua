@@ -20,6 +20,13 @@ local function __hover()
     require("dap.ui.widgets").hover()
 end
 
+local function __step(type, opts)
+    return function()
+        require("dap")["step_" .. type](opts)
+        vim.cmd [[ zz ]]
+    end
+end
+
 return {
     "mfussenegger/nvim-dap",
     keys = {
@@ -29,13 +36,13 @@ return {
         { "<leader>dT", _ "terminate",         desc = "DAP Terminate" },
         { "<leader>d.", _ "run_to_cursor",     desc = "DAP Run to cursor" },
         { "<leader>dh", __hover,               desc = "DAP Hover" },
-        { "<leader>dr", __toggle_repl,         desc = "DAP REPL" },
-        { "<leader>dj", _ "down",              desc = "DAP Stack Frame Down"},
-        { "<leader>dk", _ "up",                desc = "DAP Stack Frame Up"},
+        { "<leader>dk", _ "down",              desc = "DAP Stack Frame Down"},
+        { "<leader>dj", _ "up",                desc = "DAP Stack Frame Up"},
         { "<leader>dg", _ "goto_",             desc = "DAP Goto"},
-        { "<F10>",      _ "step_into",         desc = "DAP Step Into" },
-        { "<F11>",      _ "step_over",         desc = "DAP Step Over" },
-        { "<F12>",      _ "step_out",          desc = "DAP Step Out" },
+        { "<F9>",       __toggle_repl,         desc = "DAP REPL" },
+        { "<F10>",      __step("into"),        desc = "DAP Step Into" },
+        { "<F11>",      __step("over"),        desc = "DAP Step Over" },
+        { "<F12>",      __step("out"),         desc = "DAP Step Out" },
     },
     config = function()
         -- Icons
