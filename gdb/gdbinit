@@ -43,7 +43,7 @@ end
 # Get offset of field in a struct
 macro define offsetof(t, f) &((t *) 0)->f
 
-# STL utilities {{{1
+# STL UTILITIES ----------------------------------------------------------------
 # Obtained from: https://sourceware.org/legacy-ml/gdb/2008-02/msg00064.html
 
 define pvector
@@ -505,4 +505,34 @@ document pwstring
     Syntax: pwstring <wstring>
     Example:
     pwstring s - Prints content, size/length, capacity and ref-count of wstring s
+end
+
+# LLVM UTILITIES ---------------------------------------------------------------
+
+define psv
+    if $argc == 0
+        help parray
+    else
+        set $size = $arg0.size()
+        set $i = 0
+        while $i < $size
+            printf "[%u] = ", $i
+            p $arg0[$i]
+            set $i++
+        end
+    end
+end
+
+define pref
+    if $argc == 0
+        help parray
+    else
+        set $size = $arg0.size()
+        set $i = 0
+        while $i < $size
+            printf "[%u] = ", $i
+            p $arg0.Data[$i]
+            set $i++
+        end
+    end
 end
