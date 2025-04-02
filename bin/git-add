@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+
+if [[ $# -ne 0 ]]; then
+    command git add $@
+    exit 0
+fi
+
+function add_interactive() {
+    git status --porcelain | \
+    rg -v "^M" | \
+    cut -c4- | \
+    fzf --prompt "Add> " \
+        --cycle \
+        --multi \
+        --bind "ctrl-a:select-all" \
+        --preview "git diff {}" \
+        --preview-label "File" \
+        --preview-window "top" | \
+    xargs git add
+}
+
+add_interactive

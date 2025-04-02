@@ -121,6 +121,7 @@
     rc       = rebase --continue
     ra       = rebase --abort
     rs       = rebase --autosquash
+    a        = !~/dotfiles/bin/git-add
 
 # TOOLS ========================================================================
 
