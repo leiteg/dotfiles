@@ -15,6 +15,22 @@ return {
                 name = "second-brain",
                 path = "~/vaults/second-brain/",
             },
+            {
+                name = "blog",
+                path = "~/vaults/blog/",
+                overrides = {
+                    notes_subdir = "posts",
+                    daily_notes = {
+                        folder = vim.NIL,
+                    },
+                    templates = {
+                        subdir = "templates/",
+                    },
+                    attachments = {
+                        img_folder = "assets/",
+                    },
+                },
+            },
         },
         daily_notes = {
             folder = "Daily/",
@@ -56,6 +72,7 @@ return {
     },
     keys = {
         -- Navigation
+        { "<leader>ow", "<cmd>ObsidianWorkspace<CR>",   desc = "Obsidian Workspace" },
         { "<leader>o/", "<cmd>ObsidianSearch<CR>",      desc = "Obsidian Search" },
         { "<leader>os", "<cmd>ObsidianQuickSwitch<CR>", desc = "Obsidian Quick Switch" },
         { "<leader>ol", "<cmd>ObsidianLinks<CR>",       desc = "Obsidian Links" },
