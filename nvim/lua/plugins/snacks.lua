@@ -46,6 +46,7 @@ return {
                     { icon = "󰒲", key = "l", desc = "Open Lazy",       action = ":Lazy" },
                     { icon = "", key = "g", desc = "Open Neogit",     action = ":Neogit" },
                     { icon = "󰧑", key = "o", desc = "Open Obsidian",   action = ":ObsidianQuickSwitch" },
+                    { icon = "", key = ",", desc = "Open Scratchpad", action = scratch },
                     { icon = "", key = "r", desc = "Restore Session", action = ":SessionRestore" },
                     { icon = "󰣖", key = ".", desc = "Edit Dotfiles",   action = ":TelescopeDotfiles" },
                     { icon = "󰈆", key = "q", desc = "Quit",            action = ":qa" },
