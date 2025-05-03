@@ -66,6 +66,10 @@
 [init]
     # Use `main` as default branch.
     defaultBranch = main
+
+[status]
+    # Show all untracked files instead of only showing the directory
+    showUntrackedFiles = all
     
 [merge]
     # Use neovim as merge tool.
@@ -160,3 +164,17 @@
 
 [mergetool]
     prompt = false
+
+# URLS =========================================================================
+
+[url "git@github.com:"]
+    insteadOf = "gh:"
+
+[url "git@gitlab.com:"]
+    insteadOf = "gl:"
+
+[url "git@bitbucket.com:"]
+    insteadOf = "bb:"
+
+[url "git@github.com:leiteg/"]
+    insteadOf = "self:"
