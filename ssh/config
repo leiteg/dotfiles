@@ -72,6 +72,10 @@ Host f1-alveo
     User        gustavo.leite
     ProxyJump   lsc
 
+Host oregon
+    HostName    140.211.11.250
+    User        ubuntu
+
 # Ogbon (CIMATEC) --------------------------------------------------------------
 
 Host ogbon.br
