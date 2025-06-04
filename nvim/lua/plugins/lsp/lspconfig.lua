@@ -13,8 +13,8 @@ vim.api.nvim_create_autocmd('LspAttach', {
             vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 }), { bufnr = 0 })
         end, {})
 
-        -- Enable inlay hints by default
-        vim.lsp.inlay_hint.enable(true)
+        -- Disable inlay hints by default
+        vim.lsp.inlay_hint.enable(false)
 
         -- Wrapper for `vim.lsp.buf.format()`
         local vim_lsp_buf_format_async = function()
