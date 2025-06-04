@@ -12,6 +12,7 @@ return {
             -- Python
             "ruff",
         },
+        automatic_enable = true,
     },
     config = function(_, opts)
         local mason_lspconfig = require("mason-lspconfig")
@@ -81,13 +82,13 @@ return {
         -- SETUP -----------------------------------------------------------
 
         mason_lspconfig.setup(opts)
-        mason_lspconfig.setup_handlers {
-            -- See `:h mason-lspconfig.setup_handlers()`
-            default,
-            ["clangd"] = clangd,
-            ["rust_analyzer"] = rust_analyzer,
-            ["ruff_lsp"] = ruff_lsp,
-            ["pyright"] = pyright,
-        }
+        -- mason_lspconfig.setup_handlers {
+        --     -- See `:h mason-lspconfig.setup_handlers()`
+        --     default,
+        --     ["clangd"] = clangd,
+        --     ["rust_analyzer"] = rust_analyzer,
+        --     ["ruff_lsp"] = ruff_lsp,
+        --     ["pyright"] = pyright,
+        -- }
     end
 }
