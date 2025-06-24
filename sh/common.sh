@@ -179,6 +179,25 @@ if command_exists life; then
     alias acc="life account"
 fi
 
+if command_exists git; then
+    alias gd="git diff"
+    alias gr="git diff --staged"
+    alias gs="git status --short"
+    alias gl="git ls"
+    alias ga="git add"
+    alias gc="git commit"
+    alias gds="git diff --stat"
+    alias gri="git rebase --interactive"
+    alias gra="git rebase --abort"
+    alias grc="git rebase --continue"
+fi
+
+if command_exists tmux; then
+    alias ta="tmux attach"
+    alias tn="tmux new"
+    alias tl="tmux list-sessions"
+fi
+
 # VARIABLES --------------------------------------------------------------- {{{1
 
 # Where Cargo installs packages
