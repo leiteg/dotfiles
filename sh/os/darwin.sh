@@ -9,8 +9,13 @@
 #
 # --------------------------------------------------------------------
 
-alias copy="pbcopy"
-alias paste="pbpaste"
+if command_exists pbcopy; then
+    alias copy="pbcopy"
+fi
+
+if command_exists pbpaste; then
+    alias paste="pbpaste"
+fi
 
 export LC_ALL=en_US.UTF-8
 export PATH="/usr/local/opt/llvm/bin:$PATH"

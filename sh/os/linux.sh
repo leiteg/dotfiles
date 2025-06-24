@@ -9,6 +9,11 @@
 #
 # --------------------------------------------------------------------
 
-alias open="xdg-open"
-alias copy="xsel -ib"
-alias paste="xsel -ob"
+if command_exists "xdg-open"; then
+    alias open="xdg-open"
+fi
+
+if command_exists xsel; then
+    alias copy="xsel -ib"
+    alias paste="xsel -ob"
+fi

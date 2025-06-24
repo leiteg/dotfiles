@@ -152,6 +152,11 @@ function vimgrep {
     nvim -q <(rg --vimgrep $@)
 }
 
+# Dump PATH variable in a legible manner
+function showpath {
+    echo "$PATH" | tr ':' '\n'
+}
+
 # ALIASES ----------------------------------------------------------------- {{{1
 
 alias quit="exit"
@@ -163,20 +168,9 @@ try_alias vi    nvim
 try_alias v     nvim
 try_alias grep  rg
 try_alias t     tmux
-try_alias life  ~/.local/pyenv/versions/life-py/bin/life
 
 if command_exists yt-dlp; then
     alias yt="yt-dlp --cookies-from-browser firefox"
-fi
-
-if command_exists life; then
-    alias ,h="life habit"
-    alias ,s="life session"
-    alias ,t="life todo"
-    alias ,r="life resources open"
-    alias note="life note"
-    alias trn="life transaction"
-    alias acc="life account"
 fi
 
 if command_exists git; then
@@ -203,26 +197,6 @@ fi
 # Where Cargo installs packages
 export CARGO_HOME="$HOME/.local/cargo"
 export RUSTUP_HOME="$HOME/.local/rustup"
-
-# Path configuration
-path=(
-    $HOME/.local/bin
-    $CARGO_HOME/bin
-    $path
-)
-
-# Remove duplicate paths and paths that do not exist.
-# NOTE: See zshbuiltins(1) and zshexpn(1).
-# WARN: This is zsh-specific syntax.
-typeset -U path
-path=($^path(N-/))
-#            ┯┯┯
-#            ││╰──⮞ N: Sets NULL_GLOB option for the current pattern.
-#            │╰───⮞ -: Toggle the qualifiers to work on symbolic links.
-#            ╰────⮞ /: Directories.
-
-# Export tied variable path to PATH
-export PATH
 
 # Where the configuration files should live
 export XDG_CONFIG_HOME="$HOME/.config"
@@ -252,36 +226,62 @@ if command_exists clang; then
 fi
 
 if command_exists bat; then
-    export BAT_THEME="tokyonight"
+    if [[ -f "$XDG_CONFIG_HOME/bat/themes/tokyonight.tmTheme" ]]; then
+        export BAT_THEME="tokyonight"
+    else
+        export BAT_THEME="dracula"
+    fi
 fi
 
-export SHELL_NAME="${SHELL##*/}"
+# Local variables
+readonly shellname="${SHELL##*/}"
+readonly osname="$(uname | tr '[:upper:]' '[:lower:]')"
+readonly hostname="$(uname -n | tr '[:upper:]' '[:lower:]')"
+
+# PATH -------------------------------------------------------------------- {{{1
+
+# Fragments to be inserted in PATH. Inserted in reverse order.
+fragments=(
+    $CARGO_HOME/bin
+    $HOME/.local/bin
+)
+
+for fragment in "${fragments[@]}"; do
+    PATH="$fragment:$PATH"
+done
+
+# Remove duplicate paths and cleanup variable
+PATH="$(echo "$PATH" | awk -v RS=':' '!a[$1]++' | command paste -sd:)"
+PATH="${PATH#:}"
+PATH="${PATH%:}"
+
+export PATH
 
 # CONFIGURATION ----------------------------------------------------------- {{{1
 
 # Load os-specific config
-try_source ~/dotfiles/sh/os/$(uname | tr '[:upper:]' '[:lower:]').sh
+try_source ~/dotfiles/sh/os/$osname.sh
 # Load host-specific config
-try_source ~/dotfiles/sh/host/$(uname -n | tr '[:upper:]' '[:lower:]').sh
+try_source ~/dotfiles/sh/host/$hostname.sh
 # Load machine-specific config
 try_source ~/dotfiles/sh/local.sh
 
 # FZF --------------------------------------------------------------------- {{{2
 
 if command_exists fzf; then
-    source "/usr/share/fzf/key-bindings.$SHELL_NAME"
+    source <(fzf --"$shellname")
 fi
 
 # ZOXIDE ------------------------------------------------------------------ {{{2
 
 if command_exists zoxide; then
-    eval "$(zoxide init --cmd "cd" "$SHELL_NAME")"
+    source <(zoxide init --cmd "cd" "$shellname")
 fi
 
 # ATUIN ------------------------------------------------------------------- {{{2
 
 if command_exists atuin; then
-    source <(atuin init $SHELL_NAME --disable-up-arrow)
+    source <(atuin init "$shellname" --disable-up-arrow)
 fi
 
 # PYENV ------------------------------------------------------------------- {{{2
@@ -293,8 +293,8 @@ if [[ -d "$HOME/.local/pyenv" ]];  then
     export PATH="$PYENV_ROOT/bin:$PATH"
     export PYENV_VIRTUAL_ENV_DISABLE_PROMPT=1
 
-    eval "$(pyenv init -)"
-    eval "$(pyenv init --path)"
-    eval "$(pyenv virtualenv-init -)"
+    source <(pyenv init -)
+    source <(pyenv init --path)
+    source <(pyenv virtualenv-init -)
 
 fi
