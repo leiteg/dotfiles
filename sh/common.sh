@@ -278,6 +278,12 @@ if command_exists zoxide; then
     eval "$(zoxide init --cmd "cd" "$SHELL_NAME")"
 fi
 
+# ATUIN ------------------------------------------------------------------- {{{2
+
+if command_exists atuin; then
+    source <(atuin init $SHELL_NAME --disable-up-arrow)
+fi
+
 # PYENV ------------------------------------------------------------------- {{{2
 
 if [[ -d "$HOME/.local/pyenv" ]];  then
