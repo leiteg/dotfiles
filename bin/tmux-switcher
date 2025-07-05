@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-selected=$(tmux list-sessions -F "#S" | fzf)
+selected=$(tmux list-sessions -F "#S" \
+    | grep -v "$(tmux display-message -p "#S")" \
+    | fzf --bind 'ctrl-k:execute(tmux kill-session -t {})+reload(tmux list-sessions -F "#S" | grep -v "$(tmux display-message -p "#S")")')
 
 if [[ -z $selected ]]; then
     exit 0
