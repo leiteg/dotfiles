@@ -12,7 +12,7 @@
 vim.g.mapleader = " "
 
 -- Behavior
-vim.opt.mouse = ""
+vim.opt.mouse = "n"
 vim.opt.clipboard = 'unnamedplus'
 
 -- Colors
