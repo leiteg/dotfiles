@@ -37,7 +37,7 @@ return {
             date_format = "/%Y/%m/%Y-%m-%d",
             template = "New Daily",
         },
-        templates = { subdir = "Templates" },
+        templates = { subdir = "Meta/Templates" },
         notes_subdir = "Notes",
         new_notes_location = "notes_subdir",
         disable_frontmatter = true,
@@ -81,6 +81,7 @@ return {
         { "<CR>",       "<cmd>ObsidianFollowLink<CR>",  desc = "Obsidian Follow Link" },
         -- Creation
         { "<leader>on", "<cmd>ObsidianNew<CR>",         desc = "Obsidian New" },
+        { "<leader>oN", "<cmd>ObsidianTemplate<CR>",    desc = "Obsidian New from Template" },
         { "<leader>oN", "<cmd>ObsidianExtractNote<CR>", desc = "Obsidian Extract Note", mode = "v" },
         { "<leader>ol", "<cmd>ObsidianLink<CR>",        desc = "Obsidian Link",         mode = "v" },
         { "<leader>oL", "<cmd>ObsidianLinkNew<CR>",     desc = "Obsidian Link New",     mode = "v" },
@@ -114,5 +115,6 @@ return {
         "ObsidianTomorrow",
         "ObsidianWorkspace",
         "ObsidianYesterday",
+        "ObsidianTemplate"
     },
 }
