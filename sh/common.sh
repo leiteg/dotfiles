@@ -167,7 +167,6 @@ try_alias vim   nvim
 try_alias vi    nvim
 try_alias v     nvim
 try_alias grep  rg
-try_alias t     tmux
 
 if command_exists yt-dlp; then
     alias yt="yt-dlp --cookies-from-browser firefox"
@@ -187,9 +186,9 @@ if command_exists git; then
 fi
 
 if command_exists tmux; then
+    alias t="tmux list-sessions"
     alias ta="tmux attach"
     alias tn="tmux new"
-    alias tl="tmux list-sessions"
 fi
 
 # VARIABLES --------------------------------------------------------------- {{{1

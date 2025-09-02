@@ -16,7 +16,7 @@ ZSH_THEME="agnoster-vim"
 HYPHEN_INSENSITIVE="true"
 
 # Oh My Zsh plugins
-plugins=(git tmuxinator)
+plugins=(git)
 
 # Source relevant files
 source $ZSH/oh-my-zsh.sh
@@ -71,7 +71,7 @@ bindkey -s "^F" "tmux-sessionizer^M"
 #        ╰──⮞ Bind in-string to out-string (see zshzle(1))
 
 # Ctrl-O opens tmux-switcher
-bindkey -s "^O" "tmux-switcher^M"
+bindkey -s "^O" "tmux popup -E tmux-switcher^M"
 #        │   │
 #        │   ╰──⮞ Binding Ctrl-F to the command in the next string.
 #        ╰──⮞ Bind in-string to out-string (see zshzle(1))
