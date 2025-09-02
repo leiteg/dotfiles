@@ -19,7 +19,7 @@ y = 15
 size = 10.5
 
 [font.normal]
-family = "Iosevka Term"
+family = "Iosevka Term Nerd Font"
 
 [[keyboard.bindings]]
 action = "SpawnNewInstance"
