@@ -20,6 +20,7 @@ local inline_snippet = utils.inline_snippet
 local i = ls.insert_node
 local t = ls.text_node
 local c = ls.choice_node
+local r = ls.restore_node
 
 -- Luasnip Extras
 local extras = require("luasnip.extras")
@@ -59,7 +60,7 @@ local function wmath(trig, desc, pat, nodes, opts)
     if opts == nil then
         opts = {}
     end
-    return math(trig, desc, pat, nodes, vim.tbl_deep_extend("force", { wordTrig = true}, opts))
+    return math(trig, desc, pat, nodes, vim.tbl_deep_extend("force", { wordTrig = true }, opts))
 end
 
 local function regex_math(trig, desc, pat, nodes, opts)
@@ -278,10 +279,14 @@ local autosnippets = {
 
     math("br", "Brackets", "<>", {
         c(1, {
-            fmta("\\left( <eq> \\right)", { eq = i(1, "x") }),
-            fmta("\\left[ <eq> \\right]", { eq = i(1, "x") }),
-            fmta("\\left\\{ <eq> \\right\\}", { eq = i(1, "x") }),
-            fmta("\\left\\| <eq> \\right\\|", { eq = i(1, "x") }),
+            fmta("\\left( <> \\right)", { r(1, "x") }),
+            fmta("\\left[ <> \\right]", { r(1, "x") }),
+            fmta("\\left\\{ <> \\right\\}", { r(1, "x") }),
+            fmta("\\left\\| <> \\right\\|", { r(1, "x") }),
+        }, {
+            stored = {
+                ["x"] = i(1, "x"),
+            },
         }),
     }),
 
@@ -327,7 +332,7 @@ local autosnippets = {
     greek(";h", "\\eta"),
     greek(";t", "\\theta"),
     greek(";vt", "\\vartheta"),
-    greek(";t", "\\Theta"),
+    greek(";T", "\\Theta"),
     greek(";i", "\\iota"),
     greek(";k", "\\kappa"),
     greek(";l", "\\lambda"),
