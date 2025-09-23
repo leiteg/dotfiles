@@ -326,11 +326,6 @@ local autosnippets = {
         body = i(1, "pass")
     }),
 
-    treesitter(";d", query_class, [[
-        @dataclass
-        <>
-    ]], { l(l.LS_TSMATCH) }),
-
 }
 
 --------------------------------------------------------------------------------
