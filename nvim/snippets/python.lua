@@ -4,6 +4,7 @@
 
 local ls = require("luasnip")
 local utils = require("core.lib.sniputils")
+local ts_utils = require("nvim-treesitter.ts_utils")
 
 --------------------------------------------------------------------------------
 -- INITIALIZATIONS
@@ -82,6 +83,94 @@ local function self(from)
     return f(_, { from }, {})
 end
 
+local function docstring_arg_nodes(parameters)
+    if #parameters == 0 then
+        return nil
+    end
+
+    if parameters[1]:child_count() <= 2 then
+        return nil
+    end
+
+    local nodes = {
+        t { "", "Args:", "" }
+    }
+
+    local idx = 1
+
+    for param in parameters[1]:iter_children() do
+        local id = nil
+        local type = nil
+
+        if param:type() == "identifier" then
+            id = utils.ts_node_text(param)
+            table.insert(nodes, t(string.format("    %s: ", id)))
+            table.insert(nodes, i(idx, "..."))
+            table.insert(nodes, t { "", "" })
+            idx = idx + 1
+        end
+
+        if param:type() == "typed_parameter" then
+            id = utils.ts_node_text(param:child(0))
+            type = utils.ts_node_text(param:child(2))
+            table.insert(nodes, t(string.format("    %s (%s): ", id, type)))
+            table.insert(nodes, i(idx, "..."))
+            table.insert(nodes, t { "", "" })
+            idx = idx + 1
+        end
+
+        if param:type() == "list_splat_pattern" or param:type() == "dictionary_splat_pattern" then
+            id = utils.ts_node_text(param:child(1))
+            table.insert(nodes, t(string.format("    %s: ", id)))
+            table.insert(nodes, i(idx, "..."))
+            table.insert(nodes, t { "", "" })
+            idx = idx + 1
+        end
+    end
+
+    return sn(2, nodes)
+end
+
+local function docstring_ret_nodes(return_type)
+    if #return_type == 0 then
+        return nil
+    end
+
+    local type = utils.ts_node_text(return_type[1])
+    return sn(3, {
+        t { "", "Returns:", "    " .. type .. ": " },
+        i(1, "..."),
+        t { "", "" }
+    })
+end
+
+local function docstring(idx)
+    local generate = function(_)
+        local nodes = { i(1, "Lorem ipsum dolor sit amet.") }
+
+        local fn = utils.ts_parent_of_type("function_definition")
+        if not fn then
+            return sn(nil, nodes)
+        end
+
+        table.insert(nodes, t { "", "" })
+
+        local argnode = docstring_arg_nodes(fn:field("parameters"))
+        if argnode then
+            table.insert(nodes, argnode)
+        end
+
+        local retnode = docstring_ret_nodes(fn:field("return_type"))
+        if retnode then
+            table.insert(nodes, retnode)
+        end
+
+        return sn(0, nodes)
+    end
+
+    return d(idx, generate, {})
+end
+
 --------------------------------------------------------------------------------
 -- SNIPPETS
 --------------------------------------------------------------------------------
@@ -139,9 +228,10 @@ local autosnippets = {
     snippet(";err", "Error", 'log.error(<>)', { i(1, "message") }),
 
     snippet(";doc", "Docstring", [[
-        """<>"""
-        <>
-    ]], { i(1, "TODO"), i(0), }),
+        """<docstring>"""
+    ]], {
+        docstring = docstring(1),
+    }),
 
     snippet(";fn", "Function Definition", [[
         def <name>(<self><args>)<ret>:

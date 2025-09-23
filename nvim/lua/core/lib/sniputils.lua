@@ -98,6 +98,27 @@ M.ts_is_inside = function(type)
     return false
 end
 
+M.ts_parent_of_type = function(typ)
+    local node = ts_utils.get_node_at_cursor()
+
+    if node == nil then
+        return nil
+    end
+
+    local scope = ts_locals.get_scope_tree(node, 0)
+    for _, current in ipairs(scope) do
+        if current:type() == typ then
+            return current
+        end
+    end
+
+    return nil
+end
+
+M.ts_node_text = function(node)
+    return vim.treesitter.get_node_text(node, 0)
+end
+
 --------------------------------------------------------------------------------
 -- CUSTOM NODES
 --------------------------------------------------------------------------------
