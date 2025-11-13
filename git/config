@@ -165,6 +165,10 @@
 [mergetool]
     prompt = false
 
+[merge "mergiraf"]
+    name = mergiref
+    driver = mergiraf merge --git %O %A %B -s %S -x %X -y %Y -p %P -l %L
+
 # URLS =========================================================================
 
 [url "git@github.com:"]
