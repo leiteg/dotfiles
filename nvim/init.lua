@@ -13,6 +13,7 @@ require "core.autocmds"
 require "core.commands"
 require "core.lib"
 require "core.lazy"
+require "core.lsp"
 
 -- Optionally load local config if exists
 pcall(require, "core.local")
