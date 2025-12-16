@@ -23,7 +23,6 @@ end
 local function __step(type, opts)
     return function()
         require("dap")["step_" .. type](opts)
-        vim.cmd [[ zz ]]
     end
 end
 
