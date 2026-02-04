@@ -40,7 +40,7 @@ return {
         templates = { subdir = "Meta/Templates" },
         notes_subdir = "Notes",
         new_notes_location = "notes_subdir",
-        disable_frontmatter = true,
+        frontmatter = { enabled = true },
         note_id_func = function(title)
             return title
         end,
@@ -82,9 +82,9 @@ return {
         -- Creation
         { "<leader>on", "<cmd>ObsidianNew<CR>",         desc = "Obsidian New" },
         { "<leader>oN", "<cmd>ObsidianTemplate<CR>",    desc = "Obsidian New from Template" },
-        { "<leader>oN", "<cmd>ObsidianExtractNote<CR>", desc = "Obsidian Extract Note", mode = "v" },
-        { "<leader>ol", "<cmd>ObsidianLink<CR>",        desc = "Obsidian Link",         mode = "v" },
-        { "<leader>oL", "<cmd>ObsidianLinkNew<CR>",     desc = "Obsidian Link New",     mode = "v" },
+        { "<leader>oN", "<cmd>ObsidianExtractNote<CR>", desc = "Obsidian Extract Note",     mode = "v" },
+        { "<leader>ol", "<cmd>ObsidianLink<CR>",        desc = "Obsidian Link",             mode = "v" },
+        { "<leader>oL", "<cmd>ObsidianLinkNew<CR>",     desc = "Obsidian Link New",         mode = "v" },
         -- Editing
         { "<leader>or", "<cmd>ObsidianRename<CR>",      desc = "Obsidian Rename" },
         { "<leader>op", "<cmd>ObsidianPasteImg<CR>",    desc = "Obsidian Paste Image" },

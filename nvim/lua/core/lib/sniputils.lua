@@ -10,6 +10,7 @@ local f = ls.f
 local s = ls.s
 local fmta = require("luasnip.extras.fmt").fmta
 local treesitter_postfix = require("luasnip.extras.treesitter_postfix").treesitter_postfix
+local ps = require("luasnip.extras.postfix").postfix
 
 -- Treesitter
 local ts_utils = require("nvim-treesitter.ts_utils")
@@ -59,6 +60,19 @@ M.inline_snippet = function(trig, desc, pat, nodes, opts)
     )
 end
 
+M.postfix = function(trig, desc, pat, nodes, opts)
+    opts = opts or {}
+
+    return ps(
+        vim.tbl_deep_extend("keep", {
+            trig = trig,
+            desc = desc,
+        }, opts),
+        fmta(pat, nodes),
+        { stored = opts.stored, key = opts.key }
+    )
+end
+
 -- Factory function that returns a treesitter_postfix snippet creator.
 M.treesitter_snippet_factory = function(lang)
     return function(trig, query, pat, nodes, opts)
@@ -78,48 +92,6 @@ M.treesitter_snippet_factory = function(lang)
 end
 
 --------------------------------------------------------------------------------
--- MISCELLANEOUS FUNCTIONS
---------------------------------------------------------------------------------
-
-M.ts_is_inside = function(type)
-    local node = ts_utils.get_node_at_cursor()
-
-    if node == nil then
-        return false
-    end
-
-    local scope = ts_locals.get_scope_tree(node, 0)
-    for _, current in ipairs(scope) do
-        if current:type() == type then
-            return true
-        end
-    end
-
-    return false
-end
-
-M.ts_parent_of_type = function(typ)
-    local node = ts_utils.get_node_at_cursor()
-
-    if node == nil then
-        return nil
-    end
-
-    local scope = ts_locals.get_scope_tree(node, 0)
-    for _, current in ipairs(scope) do
-        if current:type() == typ then
-            return current
-        end
-    end
-
-    return nil
-end
-
-M.ts_node_text = function(node)
-    return vim.treesitter.get_node_text(node, 0)
-end
-
---------------------------------------------------------------------------------
 -- CUSTOM NODES
 --------------------------------------------------------------------------------
 
@@ -134,6 +106,30 @@ end
 
 M.capture = function(index)
     return f(function(_, snip) return snip.captures[index] end)
+end
+
+M.match = function()
+    return f(
+        function(_, parent)
+            return parent.snippet.env.POSTFIX_MATCH
+        end
+    )
+end
+
+M.tsmatch = function()
+    return f(
+        function(_, parent)
+            return parent.snippet.env.LS_TSMATCH
+        end
+    )
+end
+
+M.tscapture = function(name)
+    return f(
+        function(_, parent)
+            return parent.snippet.env["LS_TSCAPTURE_" .. string.upper(name)]
+        end
+    )
 end
 
 return M

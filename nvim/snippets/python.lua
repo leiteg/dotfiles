@@ -4,7 +4,7 @@
 
 local ls = require("luasnip")
 local utils = require("core.lib.sniputils")
-local ts_utils = require("nvim-treesitter.ts_utils")
+local tslib = require("core.lib.treesitter")
 
 --------------------------------------------------------------------------------
 -- INITIALIZATIONS
@@ -13,6 +13,10 @@ local ts_utils = require("nvim-treesitter.ts_utils")
 -- Utils
 local snippet = utils.snippet
 local treesitter = utils.treesitter_snippet_factory("python")
+local postfix = utils.postfix
+
+local tsmatch = utils.tsmatch
+local tscapture = utils.tscapture
 
 -- Luasnip
 local i = ls.i
@@ -37,6 +41,12 @@ local query_rvalue = [[
 
 local query_identifier = [[
     (identifier) @prefix
+]]
+
+local query_tuple = [[
+    (tuple
+        [(call) (identifier) (attribute)] @lhs
+        [(call) (identifier) (attribute)] @rhs) @prefix
 ]]
 
 local query_class = [[
@@ -71,7 +81,7 @@ end
 
 local function self(from)
     local _ = function(args)
-        if utils.ts_is_inside("class_definition") then
+        if tslib.has_parent_node("class_definition") then
             if args[1][1] ~= "" then
                 return "self, "
             end
@@ -103,7 +113,7 @@ local function docstring_arg_nodes(parameters)
         local type = nil
 
         if param:type() == "identifier" then
-            id = utils.ts_node_text(param)
+            id = tslib.get_node_text(param)
             table.insert(nodes, t(string.format("    %s: ", id)))
             table.insert(nodes, i(idx, "..."))
             table.insert(nodes, t { "", "" })
@@ -111,8 +121,8 @@ local function docstring_arg_nodes(parameters)
         end
 
         if param:type() == "typed_parameter" then
-            id = utils.ts_node_text(param:child(0))
-            type = utils.ts_node_text(param:child(2))
+            id = tslib.get_node_text(param:child(0))
+            type = tslib.get_node_text(param:child(2))
             table.insert(nodes, t(string.format("    %s (%s): ", id, type)))
             table.insert(nodes, i(idx, "..."))
             table.insert(nodes, t { "", "" })
@@ -120,7 +130,7 @@ local function docstring_arg_nodes(parameters)
         end
 
         if param:type() == "list_splat_pattern" or param:type() == "dictionary_splat_pattern" then
-            id = utils.ts_node_text(param:child(1))
+            id = tslib.get_node_text(param:child(1))
             table.insert(nodes, t(string.format("    %s: ", id)))
             table.insert(nodes, i(idx, "..."))
             table.insert(nodes, t { "", "" })
@@ -136,7 +146,7 @@ local function docstring_ret_nodes(return_type)
         return nil
     end
 
-    local type = utils.ts_node_text(return_type[1])
+    local type = tslib.get_node_text(return_type[1])
     return sn(3, {
         t { "", "Returns:", "    " .. type .. ": " },
         i(1, "..."),
@@ -144,11 +154,11 @@ local function docstring_ret_nodes(return_type)
     })
 end
 
-local function docstring(idx)
+local function docstring(idx, refs)
     local generate = function(_)
         local nodes = { i(1, "Lorem ipsum dolor sit amet.") }
 
-        local fn = utils.ts_parent_of_type("function_definition")
+        local fn = tslib.get_parent_node("function_definition")
         if not fn then
             return sn(nil, nodes)
         end
@@ -168,7 +178,32 @@ local function docstring(idx)
         return sn(0, nodes)
     end
 
-    return d(idx, generate, {})
+    return d(idx, generate, refs)
+end
+
+local function body(idx, from)
+    local docstring_inner = function(iidx)
+        return sn(iidx, fmta([[
+            """<>"""
+        ]], {
+            docstring(1),
+        }))
+    end
+
+    local body_inner = function(iidx)
+        return sn(iidx, { r(1, "body") })
+    end
+
+    local _ = function()
+        local choice = c(1, {
+            sn(nil, { docstring_inner(1), t { "", "" }, body_inner(2) }),
+            sn(nil, { body_inner(1) }),
+        })
+
+        return sn(nil, choice)
+    end
+
+    return d(idx, _, from)
 end
 
 --------------------------------------------------------------------------------
@@ -176,6 +211,28 @@ end
 --------------------------------------------------------------------------------
 
 local snippets = {
+
+    treesitter(".cl", query_identifier, [[
+        class <name>:
+            <body>
+    ]], {
+        name = tsmatch(),
+        body = i(1, "pass")
+    }),
+
+    treesitter(".fn", query_identifier, [[
+        def <name>(<self><args>)<ret>:
+            <body>
+    ]], {
+        name = tsmatch(),
+        self = self(1),
+        args = i(1),
+        ret  = c(2, {
+            sn(nil, { t " -> ", i(1, "None") }),
+            t "",
+        }),
+        body = i(3, "raise NotImplementedError()"),
+    }),
 
 }
 
@@ -244,7 +301,23 @@ local autosnippets = {
             sn(nil, { t " -> ", i(1, "None") }),
             t "",
         }),
-        body = i(4, "pass"),
+        body = i(4, "raise NotImplementedError()"),
+    }),
+
+    snippet(";dfn", "Function Definition with Docstring", [[
+        def <name>(<self><args>)<ret>:
+            """<docstring>"""
+            <body>
+    ]], {
+        name      = i(1, "function"),
+        self      = self(2),
+        args      = i(2),
+        ret       = c(3, {
+            sn(nil, { t " -> ", i(1, "None") }),
+            t "",
+        }),
+        docstring = docstring(4, { 2, 3 }),
+        body      = i(5, "raise NotImplementedError()"),
     }),
 
     snippet(";cl", "Class", [[
@@ -307,22 +380,32 @@ local autosnippets = {
         body = i(3, "pass"),
     }),
 
-    treesitter(";z", query_rvalue, [[
-        for <a>, <b> in zip(<lhs>, <rhs>):
+    treesitter(";it", query_rvalue, [[
+        for <key>, <value> in <container>.items():
             <body>
     ]], {
-        rhs = i(1, "[]"),
-        lhs = l(l.LS_TSMATCH),
-        a = i(2, "a"),
-        b = i(3, "b"),
-        body = i(4, "pass"),
+        key = i(1, "key"),
+        value = i(2, "value"),
+        container = tsmatch(),
+        body = i(3, "pass"),
+    }),
+
+    treesitter(";z", query_tuple, [[
+        for <lidx>, <ridx> in zip(<lhs>, <rhs>):
+            <body>
+    ]], {
+        lidx = i(1, "lhs"),
+        ridx = i(2, "rhs"),
+        lhs = tscapture("lhs"),
+        rhs = tscapture("rhs"),
+        body = i(3, "pass"),
     }),
 
     treesitter(";c", query_identifier, [[
         class <name>:
             <body>
     ]], {
-        name = l(l.LS_TSMATCH),
+        name = tsmatch(),
         body = i(1, "pass")
     }),
 

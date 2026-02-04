@@ -75,3 +75,8 @@ bindkey -s "^O" "tmux popup -E tmux-switcher^M"
 #        │   │
 #        │   ╰──⮞ Binding Ctrl-F to the command in the next string.
 #        ╰──⮞ Bind in-string to out-string (see zshzle(1))
+
+# Ctrl-I opens current command in $EDITOR
+bindkey '^X^X' edit-command-line
+#         │
+#         ╰──⮞ Binding Ctrl-X Ctrl-E to the builtin command.

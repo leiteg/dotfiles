@@ -50,7 +50,7 @@ local config = function()
             ['<C-n>'] = cmp.mapping.select_next_item(),
             ['<C-e>'] = cmp.mapping.abort(),
             ['<C-Space>'] = cmp.mapping.complete(),
-            ['<CR>'] = cmp.mapping.confirm({ select = true }),
+            ['<C-j>'] = cmp.mapping.confirm({ select = true }),
         }),
         sources = cmp.config.sources({
             { name = 'nvim_lsp' },
