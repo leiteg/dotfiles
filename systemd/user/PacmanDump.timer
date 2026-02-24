@@ -1,0 +1,9 @@
+[Unit]
+Description=Pacman installed package dump (timer)
+
+[Timer]
+OnCalendar=Mon *-*-* 12:00:00
+Persistent=true
+
+[Install]
+WantedBy=timers.target

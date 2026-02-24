@@ -1,0 +1,6 @@
+[Unit]
+Description=Pacman installed package dump (service)
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sh -c "/usr/bin/pacman -Qqen > %h/Documents/packages/packages-$(date +%%Y-%%M-%%d).txt"
