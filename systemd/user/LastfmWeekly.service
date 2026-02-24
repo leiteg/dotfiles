@@ -1,0 +1,9 @@
+[Unit]
+Description=Weekly Lastfm Collage Service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=%h/.local/secrets/lastfm.conf
+ExecStart=%h/.local/bin/scripts/lastfm-collage.sh --weekly
