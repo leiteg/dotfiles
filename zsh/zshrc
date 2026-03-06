@@ -80,3 +80,5 @@ bindkey -s "^O" "tmux popup -E tmux-switcher^M"
 bindkey '^X^X' edit-command-line
 #         │
 #         ╰──⮞ Binding Ctrl-X Ctrl-E to the builtin command.
+
+bindkey -s "^W" "obsidian-switcher^M"

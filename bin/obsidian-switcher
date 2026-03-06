@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+obsidian files ext=md | \
+    fzf --tmux \
+        --bind 'enter:execute(obsidian open path={} newtab)+accept' \
+    >&/dev/null
