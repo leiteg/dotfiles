@@ -4,7 +4,7 @@ if [[ $# -eq 1 ]]; then
     selected=$1
 else
     directories=$(find ~/vaults ~/git ~/ -mindepth 1 -maxdepth 1 -type d -name '[a-z]*')
-    selected=$(cat <(echo "$directories") <(echo "main") | fzf)
+    selected=$(cat <(echo "$directories") <(echo "main") | fzf --tmux)
 fi
 
 if [[ -z $selected ]]; then
