@@ -1,0 +1,13 @@
+alacritty
+blender
+calibre
+drawio-desktop
+firefox
+inkscape
+mattermost-desktop
+mpv
+obs-studio
+obsidian
+qbittorrent
+spotify
+steam

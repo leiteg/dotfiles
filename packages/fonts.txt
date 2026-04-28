@@ -1,0 +1,8 @@
+noto-fonts
+noto-fonts-emoji
+ttf-iosevka-term
+ttf-iosevka-term-slab
+ttf-iosevkaterm-nerd
+ttf-liberation
+ttf-victor-mono
+woff2-font-awesome

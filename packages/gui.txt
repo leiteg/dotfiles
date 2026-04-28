@@ -1,0 +1,9 @@
+gdm
+gnome
+hyprland
+hyprlauncher
+hyprpaper
+rofi
+waybar
+wayland
+wofi

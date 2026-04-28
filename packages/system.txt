@@ -1,0 +1,12 @@
+amd-ucode
+base
+efibootmgr
+grub
+linux
+linux-firmware
+linux-headers
+networkmanager
+ntfs-3g
+os-prober
+paru
+sudo
