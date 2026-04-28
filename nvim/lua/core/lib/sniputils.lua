@@ -13,8 +13,10 @@ local treesitter_postfix = require("luasnip.extras.treesitter_postfix").treesitt
 local ps = require("luasnip.extras.postfix").postfix
 
 -- Treesitter
-local ts_utils = require("nvim-treesitter.ts_utils")
-local ts_locals = require("nvim-treesitter.locals")
+-- local ts_utils = require("nvim-treesitter.ts_utils")
+local ts_utils = {}
+-- local ts_locals = require("nvim-treesitter.locals")
+local ts_locals = {}
 
 --------------------------------------------------------------------------------
 -- SNIPPET DEFINITION

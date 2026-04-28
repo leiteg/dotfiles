@@ -79,21 +79,12 @@ local lsp_opts = {
 return {
     "nvim-treesitter/nvim-treesitter-textobjects",
     opts = {
-        textobjects = {
-            select = select_opts,
-            swap = swap_opts,
-            move = move_opts,
-            lsp_interop = lsp_opts,
-        },
-        -- Added just to satisfy type-checker.
-        modules = {},
-        sync_install = false,
-        ensure_installed = {},
-        auto_install = false,
-        ignore_install = {},
-        parser_install_dir = nil,
+        select = select_opts,
+        swap = swap_opts,
+        move = move_opts,
+        lsp_interop = lsp_opts,
     },
     config = function(_, opts)
-        require("nvim-treesitter.configs").setup(opts)
+        require("nvim-treesitter-textobjects").setup(opts)
     end,
 }
