@@ -9,17 +9,17 @@
 #
 # --------------------------------------------------------------------
 
-export ZSH=$HOME/.local/oh-my-zsh
+if [[ -d "$HOME/.local/oh-my-zsh" ]]; then
+    export ZSH=$HOME/.local/oh-my-zsh
+    # Shell configuration
+    ZSH_THEME="agnoster-vim"
+    # Oh My Zsh plugins
+    plugins=(git)
+    # Source relevant files
+    source $ZSH/oh-my-zsh.sh
+fi
 
-# Shell configuration
-ZSH_THEME="agnoster-vim"
 HYPHEN_INSENSITIVE="true"
-
-# Oh My Zsh plugins
-plugins=(git)
-
-# Source relevant files
-source $ZSH/oh-my-zsh.sh
 
 # Ignore some patterns in autocomplete
 zstyle ':completion:*:*:vim:*:*files' \
