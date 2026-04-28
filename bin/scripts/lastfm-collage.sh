@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -xeuo pipefail
+# set -xeuo pipefail
 
 if [[ $# -eq 0 ]]; then
     echo "Usage: $0 [--weekly|--monthly]"
@@ -16,8 +16,8 @@ MONTHLY=1
 while [[ $# -gt 0 ]]; do
     case "$1" in
         -w|--weekly)
-            COLS="3"
-            ROWS="1"
+            COLS="2"
+            ROWS="2"
             PERIOD="7day"
             WEEKLY=1
             MONTHLY=0
@@ -48,6 +48,11 @@ $HOME/.local/bin/lastfm collage \
     -o "$file" \
     laranjadinho
 
+if [[ $? != 0 ]]; then
+    notify-send "Error" "Failed to generate Last.fm Collage"
+    exit 1
+fi
+
 # Compress image before posting
 magick "${file}" -define jpeg:extent=900kb "${file_compressed}"
 
@@ -60,6 +65,11 @@ fi
 # Post to Bluesky
 $HOME/.local/bin/uv run --with atproto \
     $HOME/.local/bin/scripts/bluesky-upload.py "${file_compressed}" "${text}"
+
+if [[ $? != 0 ]]; then
+    notify-send "Error" "Failed to upload to Bluesky"
+    exit 1
+fi
 
 if [[ "$PERIOD" == "1month" ]]; then
     message="Monthly collage posted!"
