@@ -233,7 +233,7 @@ if command_exists bat; then
 fi
 
 # Local variables
-readonly shellname="${SHELL##*/}"
+readonly shellname="$(ps -p $$ -o comm=)"
 readonly osname="$(uname | tr '[:upper:]' '[:lower:]')"
 readonly hostname="$(uname -n | tr '[:upper:]' '[:lower:]')"
 
