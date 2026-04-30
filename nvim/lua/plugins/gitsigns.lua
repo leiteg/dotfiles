@@ -11,6 +11,7 @@ end
 return {
     "lewis6991/gitsigns.nvim",
     lazy = false,
+    cmd = "Gitsigns",
     keys = {
         { "<leader>gs", _ "stage_hunk",        desc = "Gitsigns Hunk Stage" },
         { "<leader>gu", _ "undo_stage_hunk",   desc = "Gitsigns Hunk Stage Undo" },
