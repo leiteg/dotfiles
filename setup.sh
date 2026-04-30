@@ -24,3 +24,9 @@ for program in "${!configs[@]}"; do
         echo "Skipping '${program}', not installed."
     fi
 done
+
+if command -v "dconf" &>/dev/null; then
+    dconf load /org/gnome/settings-daemon/plugins/media-keys/ < dconf/media-keys.conf
+    dconf load /org/gnome/desktop/wm/keybindings/             < dconf/keybindings.conf
+    dconf load /org/gnome/shell/extension/forge/              < dconf/forge.conf
+fi
