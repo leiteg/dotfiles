@@ -4,7 +4,7 @@
 return {
     "nvim-telescope/telescope.nvim",
     event = "VimEnter",
-    branch = '0.1.x',
+    version = "*",
     dependencies = {
         "nvim-lua/plenary.nvim",
         "nvim-tree/nvim-web-devicons",
@@ -70,9 +70,9 @@ return {
         local dotfiles = function()
             builtin.find_files(
                 vim.tbl_deep_extend("keep", theme, {
-                    search_dirs = { "~/dotfiles" },
+                    search_dirs = { vim.fn.expand("~/dotfiles") },
                     path_display = function(_, path)
-                        return path:gsub("^/home/leite/dotfiles/", "")
+                        return (path:gsub("^/home/leite/dotfiles/", ""))
                     end
                 })
             )
