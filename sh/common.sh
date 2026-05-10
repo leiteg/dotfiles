@@ -168,29 +168,6 @@ try_alias vi    nvim
 try_alias v     nvim
 try_alias grep  rg
 
-if command_exists yt-dlp; then
-    alias yt="yt-dlp --cookies-from-browser firefox"
-fi
-
-if command_exists git; then
-    alias gd="git diff"
-    alias gr="git diff --staged"
-    alias gs="git status --short"
-    alias gl="git ls"
-    alias ga="git add"
-    alias gc="git commit"
-    alias gds="git diff --stat"
-    alias gri="git rebase --interactive"
-    alias gra="git rebase --abort"
-    alias grc="git rebase --continue"
-fi
-
-if command_exists tmux; then
-    alias t="tmux list-sessions"
-    alias ta="tmux attach"
-    alias tn="tmux new"
-fi
-
 # VARIABLES --------------------------------------------------------------- {{{1
 
 # Where Cargo installs packages
@@ -227,14 +204,6 @@ if command_exists clang; then
     export CXX=clang++
 fi
 
-if command_exists bat; then
-    if [[ -f "$XDG_CONFIG_HOME/bat/themes/tokyonight.tmTheme" ]]; then
-        export BAT_THEME="tokyonight"
-    else
-        export BAT_THEME="dracula"
-    fi
-fi
-
 # Local variables
 readonly shellname="$(ps -p $$ -o comm=)"
 readonly osname="$(uname | tr '[:upper:]' '[:lower:]')"
@@ -267,6 +236,46 @@ try_source ~/dotfiles/sh/os/$osname.sh
 try_source ~/dotfiles/sh/host/$hostname.sh
 # Load machine-specific config
 try_source ~/dotfiles/sh/local.sh
+
+# GIT --------------------------------------------------------------------- {{{2
+
+if command_exists git; then
+    alias gd="git diff"
+    alias gr="git diff --staged"
+    alias gs="git status --short"
+    alias gl="git ls"
+    alias ga="git add"
+    alias gc="git commit"
+    alias gds="git diff --stat"
+    alias gri="git rebase --interactive"
+    alias gra="git rebase --abort"
+    alias grc="git rebase --continue"
+fi
+
+# TMUX -------------------------------------------------------------------- {{{2
+
+if command_exists tmux; then
+    alias t="tmux list-sessions"
+    alias ta="tmux attach"
+    alias tn="tmux new"
+    alias tl="tmux list-sessions"
+fi
+
+# YT-DLP ------------------------------------------------------------------ {{{2
+
+if command_exists yt-dlp; then
+    alias yt="yt-dlp --cookies-from-browser firefox"
+fi
+
+# BAT --------------------------------------------------------------------- {{{2
+
+if command_exists bat; then
+    if [[ -f "$XDG_CONFIG_HOME/bat/themes/tokyonight.tmTheme" ]]; then
+        export BAT_THEME="tokyonight"
+    else
+        export BAT_THEME="dracula"
+    fi
+fi
 
 # FZF --------------------------------------------------------------------- {{{2
 
