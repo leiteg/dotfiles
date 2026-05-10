@@ -199,6 +199,9 @@ export RUSTUP_HOME="$HOME/.local/rustup"
 
 # Where the configuration files should live
 export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+export XDG_CACHE_HOME="$HOME/.cache"
 
 # Remove annoyng 'Entering directory' messages from make
 export MAKEFLAGS=--no-print-directory
